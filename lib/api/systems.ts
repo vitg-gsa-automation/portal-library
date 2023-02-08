@@ -1,26 +1,6 @@
-import { CreateSystemParams } from 'lib/types/systems';
-import { User } from 'lib/types/users';
-import portalService from 'services/portalService';
+import portalService from '../../services/portalService';
 
-export interface System {
-  SystemId?: number;
-  OrgID?: string;
-  OrgName?: string;
-  SystemName?: string;
-  SystemShortName?: string;
-  SystemIdentifier?: string;
-  CreatedBy?: string;
-  CreatedByID?: number;
-  CreatedDate?: string;
-  ModifiedBy?: number;
-  ModifiedDate?: string;
-  SystemTypeID?: number;
-  //exception
-  isActive?: 1 | 0;
-  Status?: 1 | 0;
-}
-
-export interface UpdateSystemParams {
+interface UpdateSystemParams {
   _authcode: string;
   _sysid: number;
   _orgid: string;
@@ -31,48 +11,24 @@ export interface UpdateSystemParams {
   _isactive: number;
 }
 
-export async function createSystem({
-  _authcode,
-  _orgid,
-  _sysname,
-  _systypeid,
-  _sysidentifier,
-  _uid,
-}: CreateSystemParams) {
+interface CreateSystemParams {
+  _orgid: string;
+  _sysname: string;
+  _systypeid: number;
+  _sysidentifier: string;
+  _uid: number;
+  _authcode: string;
+}
+export async function createSystem(params: CreateSystemParams) {
   const response = await portalService.post('/PutSystemDetail', undefined, {
-    params: {
-      _authcode,
-      _orgid,
-      _sysname,
-      _systypeid,
-      _sysidentifier,
-      _uid,
-    },
+    params,
   });
   return response.data;
 }
 
-export async function updateSystem({
-  _sysid,
-  _orgid,
-  _sysname,
-  _systypeid,
-  _sysidentifier,
-  _isactive,
-  _uid,
-  _authcode,
-}: UpdateSystemParams) {
+export async function updateSystem(params: UpdateSystemParams) {
   const response = await portalService.post('/UpdateSystemDetail', undefined, {
-    params: {
-      _authcode,
-      _sysid,
-      _orgid,
-      _sysname,
-      _systypeid,
-      _sysidentifier,
-      _uid,
-      _isactive,
-    },
+    params,
   });
   return response.data;
 }
@@ -85,17 +41,13 @@ interface GetSystemNamesAggregatorListResults {
   SystemName: string;
 }
 
-export async function getSystemNamesAggregatorList({
-  _systemname,
-  _orgident,
-}: GetSystemNamesAggregatorListParams) {
+export async function getSystemNamesAggregatorList(
+  params: GetSystemNamesAggregatorListParams
+) {
   const response = await portalService.get<
     GetSystemNamesAggregatorListResults[]
   >('/GetSystemNamesAggregatorList', {
-    params: {
-      _systemname,
-      _orgident,
-    },
+    params,
   });
   return response.data;
 }

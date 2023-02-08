@@ -1,5 +1,5 @@
-import { SVRL } from 'lib/types/validations';
-import validationService from 'services/validationService';
+import { SVRL } from '../types/validations';
+import validationService from '../../services/validationService';
 
 interface NistValidateParams {
   filename: string;
@@ -22,6 +22,7 @@ interface UploadResult {
   message: string;
   http_status: number;
 }
+
 //Nist validations
 export async function uploadToNistValidations(file: File) {
   const fileUploadResults = await validationService.post(

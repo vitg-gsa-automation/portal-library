@@ -1,10 +1,5 @@
 import authService from '../../services/authService';
-import { User } from 'lib/types/users';
-
-export interface Credentials {
-  email: string;
-  password: string;
-}
+import { Credentials, User } from '../types/users';
 
 export async function login(credentials: Credentials) {
   try {

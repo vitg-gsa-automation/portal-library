@@ -1,8 +1,17 @@
-export interface CreateSystemParams {
-  _orgid: string;
-  _sysname: string;
-  _systypeid: number;
-  _sysidentifier: string;
-  _uid: number;
-  _authcode: string;
+export interface System {
+  SystemId?: number;
+  OrgID?: string;
+  OrgName?: string;
+  SystemName?: string;
+  SystemShortName?: string;
+  SystemIdentifier?: string;
+  CreatedBy?: string;
+  CreatedByID?: number;
+  CreatedDate?: string;
+  ModifiedBy?: number;
+  ModifiedDate?: string;
+  SystemTypeID?: number;
+  //exception
+  isActive?: 1 | 0;
+  Status?: 1 | 0;
 }

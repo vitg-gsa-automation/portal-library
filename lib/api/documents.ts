@@ -1,16 +1,11 @@
-import { AxiosRequestConfig } from 'axios';
-import { User } from 'lib/types/users';
-import {
-  fileLinkToFileName,
-  fileNameToParts,
-  getDocTypeAbbrev,
-} from 'lib/helpers/documents';
-import documentService from 'services/documentService';
+import { User } from '../types/users';
+import { fileLinkToFileName, getDocTypeAbbrev } from '../helpers/documents';
+import documentService from '../../services/documentService';
 import fileService from '../../services/fileService';
 import validationService from '../../services/validationService';
-import { SVRL } from 'lib/types/validations';
-import { Document, UpdateDocParams } from 'lib/types/documents';
-import { UploadFileParams } from 'lib/types/files';
+import { SVRL } from '../types/validations';
+import { Document, UpdateDocParams } from '../types/documents';
+import { UploadFileParams } from '../types/files';
 
 export async function fetchDocument(user: User, docId: number) {
   const response = await documentService.get<[Document]>('/GetDocsByDocId', {
@@ -21,15 +16,6 @@ export async function fetchDocument(user: User, docId: number) {
   });
   return response.data;
 }
-
-// interface UploadFileParams {
-//   AuthCode: string;
-//   PackageId: number;
-//   SystemId: number;
-//   DocDesc: string;
-//   FileTypeId: number;
-//   DocObjTypeId: number;
-// }
 
 export async function uploadFile(file: File, params: UploadFileParams) {
   const formData = new FormData();

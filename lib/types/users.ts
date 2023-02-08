@@ -10,3 +10,8 @@ export interface User {
   OrganizationID?: string;
   OrganizationName?: string;
 }
+
+export interface Credentials {
+  email: string;
+  password: string;
+}
