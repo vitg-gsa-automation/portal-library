@@ -20,5 +20,4 @@
     "declarationDir": "declarations"
   },
   "include": ["src"],
-  "types": ["portal-library"]
 }
