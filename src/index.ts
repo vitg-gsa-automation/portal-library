@@ -1,4 +1,4 @@
-export * as api from './api';
-export * as helpers from './helpers';
-export * as services from './services';
-export * as types from './types';
+export * from './api';
+export * from './helpers';
+export * from './services';
+export * from './types';
