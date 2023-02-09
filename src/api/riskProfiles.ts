@@ -1,5 +1,5 @@
 import { Capability, Control } from '../types/riskProfiles';
-import riskProfileService from '../../services/riskProfileService';
+import riskProfileService from '../services/riskProfileService';
 
 interface GetRiskProfileUserAuthParams {
   loginid: string;

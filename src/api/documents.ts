@@ -1,8 +1,8 @@
 import { User } from '../types/users';
 import { fileLinkToFileName, getDocTypeAbbrev } from '../helpers/documents';
-import documentService from '../../services/documentService';
-import fileService from '../../services/fileService';
-import validationService from '../../services/validationService';
+import documentService from '../services/documentService';
+import fileService from '../services/fileService';
+import validationService from '../services/validationService';
 import { SVRL } from '../types/validations';
 import { Document, UpdateDocParams } from '../types/documents';
 import { UploadFileParams } from '../types/files';

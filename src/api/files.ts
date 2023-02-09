@@ -1,6 +1,6 @@
 import { UploadFileParams } from '../types/files';
 import { User } from '../types/users';
-import fileService from '../../services/fileService';
+import fileService from '../services/fileService';
 
 export async function uploadFile(file: File, params: UploadFileParams) {
   const formData = new FormData();
