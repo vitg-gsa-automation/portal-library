@@ -30,7 +30,6 @@ export interface Document {
   FileSize?: number;
   FileIdentifier?: string;
   DocumentDescription?: string;
-
   //
   User?: string;
   UploadDate?: string;

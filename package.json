@@ -1,5 +1,5 @@
 {
-  "name": "library",
+  "name": "portal-library",
   "version": "1.0.0",
   "description": "library for automation portals",
   "main": "index.js",
