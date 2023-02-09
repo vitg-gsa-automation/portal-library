@@ -1,15 +1,8 @@
 import { parseFileExt } from '.';
 import { AcceptableFileType } from '../types/files';
 
-import {
-  downloadFile,
-  fetchFedrampValidations,
-  uploadToFedrampValidations,
-  fedrampValidate,
-  uploadToNistValidations,
-  NistValidate,
-  fetchNistValidations,
-} from '../api/documents';
+import { downloadFile } from '../api/documents';
+
 import { DocTypeAbbrev, Document } from '../types/documents';
 
 import { CustomFile } from '../types/files';
@@ -44,54 +37,6 @@ export function fileLinkToFileName(fileLink: string) {
   return parts[parts.length - 1];
 }
 
-interface ValidateFedrampParams {
-  AuthCode: string;
-  doc: Document;
-}
-export async function validateFedramp({
-  AuthCode,
-  doc,
-}: ValidateFedrampParams) {
-  const { FileLink, FileIdentifier } = doc;
-  if (!FileLink) throw new Error('No FileLink');
-  if (!FileIdentifier) throw new Error('No FileIdentifier');
-  const blob = await downloadFile({
-    AuthCode,
-    FileIdentifier,
-  });
-  const fileName = fileLinkToFileName(FileLink);
-  if (!fileName)
-    throw new Error('A filename must be present to run FedRAMP validations');
-  const file = new File([blob], fileName);
-  await uploadToFedrampValidations(file);
-  await fedrampValidate({
-    filename: fileName,
-    dirname: 'upload',
-    rulesoption: 'rules_ssp',
-  });
-  const validationResults = await fetchFedrampValidations(doc);
-  return validationResults;
-}
-interface ValidateNistParams {
-  AuthCode: string;
-  doc: Document;
-}
-export async function validateNist({ AuthCode, doc }: ValidateNistParams) {
-  const { FileLink, FileIdentifier } = doc;
-  if (!FileLink) throw new Error('No FileLink');
-  if (!FileIdentifier) throw new Error('No FileIdentifier');
-  const blob = await downloadFile({ AuthCode, FileIdentifier });
-  const fileName = fileLinkToFileName(FileLink);
-  const file = new File([blob], fileName);
-  await uploadToNistValidations(file);
-  await NistValidate({
-    filename: fileName,
-    dirname: 'converter',
-    fileoption: 'json',
-  });
-  const validationResults = await fetchNistValidations(doc);
-  return validationResults;
-}
 interface DownloadParams {
   AuthCode: string;
   doc: Document;
