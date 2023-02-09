@@ -1,6 +1,6 @@
 import { User } from '../types/users';
-import documentService from '../services/documentService';
-import fileService from '../services/fileService';
+import { documentService } from '../services/documentService';
+import { fileService } from '../services/fileService';
 import { Document, UpdateDocParams } from '../types/documents';
 import { UploadFileParams } from '../types/files';
 

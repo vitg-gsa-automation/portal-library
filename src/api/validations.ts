@@ -1,5 +1,5 @@
 import { SVRL } from '../types/validations';
-import validationService from '../services/validationService';
+import { validationService } from '../services/validationService';
 
 interface NistValidateParams {
   filename: string;

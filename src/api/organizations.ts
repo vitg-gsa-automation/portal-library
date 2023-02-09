@@ -1,4 +1,4 @@
-import portalService from '../services/portalService';
+import { portalService } from '../services/portalService';
 import { Organization } from '../types/organizations';
 
 export async function getOrganizations() {

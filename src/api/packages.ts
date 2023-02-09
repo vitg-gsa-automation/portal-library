@@ -1,4 +1,4 @@
-import portalService from '../services/portalService';
+import { portalService } from '../services/portalService';
 
 interface CreatePackageParams {
   _id: number;
