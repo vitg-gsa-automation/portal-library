@@ -1,4 +1,4 @@
-import { getErrorMessage } from 'lib/helpers';
+import { getErrorMessage } from 'helpers/utils';
 import { useEffect, useState } from 'react';
 import useUser from './useUser';
 

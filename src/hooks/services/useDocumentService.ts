@@ -1,5 +1,5 @@
 import { AxiosError, AxiosRequestConfig } from 'axios';
-import documentService from 'services/documentService';
+import { documentService } from 'services/documentService';
 import useSWR, { BareFetcher } from 'swr';
 
 interface SWRKey {

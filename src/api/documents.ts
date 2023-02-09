@@ -50,6 +50,8 @@ export async function downloadFile({
   return response.data;
 }
 
+
+
 export async function updateDocument(params: UpdateDocParams) {
   const response = await documentService.post(
     '/UpdateDocumentDetail',

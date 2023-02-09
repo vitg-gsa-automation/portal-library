@@ -1,6 +1,6 @@
 import usePortalService from 'hooks/services/usePortalService';
 import useUser from 'hooks/useUser';
-import { Organization } from 'lib/api/organizations';
+import { Organization } from 'types/organizations';
 
 function useOrganization(organizationId?: string) {
   const user = useUser();

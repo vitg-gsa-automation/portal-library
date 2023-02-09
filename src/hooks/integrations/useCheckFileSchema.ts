@@ -1,16 +1,11 @@
-import { useEffect, useState } from 'react';
-import integrationService from 'services/integrationService';
+import { useState } from 'react';
+import { integrationService } from 'services/integrationService';
 import useUser from 'hooks/useUser';
-import { isOscal } from 'lib/helpers/documents';
-import { getErrorMessage } from 'lib/helpers';
-import { User } from 'lib/types/users';
-import { StageStatus } from 'lib/types/validations';
-import { CustomFile } from 'lib/types/files';
-import {
-  CheckError,
-  CheckResultsError,
-  PromiseSettledResultsError,
-} from 'lib/helpers/errors';
+import { isOscal } from 'helpers/documents';
+import { User } from 'types/users';
+import { StageStatus } from 'types/validations';
+import { CustomFile } from 'types/files';
+import { CheckError, CheckResultsError } from 'helpers/errors';
 
 export interface CheckFileSchemaResponse {
   FileIdentifier?: string;
@@ -22,7 +17,7 @@ export interface CheckFileSchemaResponse {
   Status?: 'success' | 'error';
 }
 
-interface FileSchemaResult {
+export interface FileSchemaResult {
   UploadFileName?: string;
   ID?: number;
   Message?: string;

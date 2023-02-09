@@ -1,7 +1,7 @@
-import { getErrorMessage } from 'lib/helpers';
+import { getErrorMessage } from 'helpers';
 import { useState } from 'react';
 import useUser from 'hooks/useUser';
-import { downloadFile } from 'lib/api/files';
+import { downloadFile } from 'api/documents';
 
 interface DownloadParams {
   fileIdentifier: string;
@@ -20,7 +20,10 @@ function useDownload() {
     try {
       if (!user?.AuthenticationCode) throw new Error('No authcode');
       setLoading(true);
-      const blob = await downloadFile(user, fileIdentifier);
+      const blob = await downloadFile({
+        AuthCode: user.AuthenticationCode,
+        FileIdentifier: fileIdentifier,
+      });
       // create file link in browser's memory
       const href = URL.createObjectURL(blob);
       const link = document.createElement('a');

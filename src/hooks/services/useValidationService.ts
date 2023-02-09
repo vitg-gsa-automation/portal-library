@@ -1,5 +1,5 @@
 import { AxiosError, AxiosRequestConfig } from 'axios';
-import validationService from 'services/validationService';
+import { validationService } from 'services/validationService';
 import useSWR, { BareFetcher } from 'swr';
 
 interface SWRKey {

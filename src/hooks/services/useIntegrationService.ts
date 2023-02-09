@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import integrationService from 'services/integrationService';
+import { integrationService } from 'services/integrationService';
 import useSWR, { BareFetcher, Key } from 'swr';
 
 interface SWRKey {

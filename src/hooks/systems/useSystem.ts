@@ -1,6 +1,6 @@
 import usePortalService from 'hooks/services/usePortalService';
 import useUser from 'hooks/useUser';
-import { System } from 'lib/api/systems';
+import { System } from 'types/systems';
 
 interface UseSystemParams {
   _orgid: string;

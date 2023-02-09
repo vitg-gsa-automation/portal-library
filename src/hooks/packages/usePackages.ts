@@ -1,6 +1,6 @@
 import usePortalService from 'hooks/services/usePortalService';
 import useUser from 'hooks/useUser';
-import { Package } from 'lib/api/packages';
+import { Package } from 'types/packages';
 
 function usePackages() {
   const user = useUser();

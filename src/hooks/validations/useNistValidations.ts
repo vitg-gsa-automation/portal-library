@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 
-import { getErrorMessage } from 'lib/helpers';
-import { StageStatus } from 'lib/types/validations';
-import { CustomFile } from 'lib/types/files';
-import { fileNameToParts, isOscal } from 'lib/helpers/documents';
+import { getErrorMessage } from 'helpers/utils';
+import { StageStatus } from 'types/validations';
+import { CustomFile } from 'types/files';
+import { fileNameToParts, isOscal } from 'helpers/documents';
 import {
   fetchNistValidations,
   nistValidate,
   uploadToNistValidations,
-} from 'lib/api/validations';
+} from 'api/validations';
 
-interface NistValidateResult {
+export interface NistValidateResult {
   UploadFileName?: string;
   Status?: 'success' | 'error';
   Message?: string;

@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 
-import { getErrorMessage, wait } from 'lib/helpers';
-import { StageStatus, SVRL } from 'lib/types/validations';
-import { CustomFile } from 'lib/types/files';
-import { fileNameToParts, isOscal } from 'lib/helpers/documents';
+import { getErrorMessage, wait } from 'helpers/utils';
+import { StageStatus, SVRL } from 'types/validations';
+import { CustomFile } from 'types/files';
+import { fileNameToParts, isOscal } from 'helpers/documents';
 import {
   convertToXML,
   fedrampValidate,
   fetchFedrampValidations,
   uploadToFedrampValidations,
-} from 'lib/api/validations';
-import { isSVRL } from 'lib/helpers/validations';
+} from 'api/validations';
+import { isSVRL } from 'helpers/validations';
 
-interface FedRampValidateResult {
+export interface FedRampValidateResult {
   UploadFileName?: string;
   Status?: 'success' | 'error';
   Message?: string;

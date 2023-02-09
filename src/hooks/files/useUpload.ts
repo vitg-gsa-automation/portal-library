@@ -1,11 +1,11 @@
-import { getErrorMessage } from 'lib/helpers';
+import { getErrorMessage } from 'helpers';
 import { useState } from 'react';
 import useUser from 'hooks/useUser';
-import { CustomFile, UploadFileParams, UploadResult } from 'lib/types/files';
-import { uploadFile } from 'lib/api/files';
-import { UploadError, UploadResultsError } from 'lib/helpers/errors';
+import { CustomFile, UploadFileParams, UploadResult } from 'types/files';
+import { uploadFile } from 'api/documents';
+import { UploadError, UploadResultsError } from 'helpers/errors';
 
-interface MultipleUploadFileParams {
+export interface MultipleUploadFileParams {
   AuthCode: string;
   PackageId: number | string;
   SystemId: number;

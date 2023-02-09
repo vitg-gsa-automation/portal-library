@@ -1,9 +1,10 @@
-import useUser from 'hooks/useUser';
-import { getRiskProfile } from 'lib/api/riskProfiles';
-import { getErrorMessage } from 'lib/helpers';
-import { Capability, Control } from 'lib/types/riskProfiles';
 import { useState } from 'react';
-import useCapabilitySummary from './useCapabilitySummary';
+
+import useUser from 'hooks/useUser';
+import { getRiskProfile } from 'api/riskProfiles';
+import { getErrorMessage } from 'helpers/utils';
+import { Capability, Control } from 'types/riskProfiles';
+import useCapabilitySummary from 'hooks/riskProfile/useCapabilitySummary';
 
 const mockedCapabilities: Capability[] = [
   {

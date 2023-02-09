@@ -1,11 +1,5 @@
-import { useEffect, useState } from 'react';
-import {
-  fetchFedrampValidations,
-  fetchNistValidations,
-} from 'lib/api/documents';
-import { SVRL } from 'lib/types/validations';
-import { Document } from 'lib/types/documents';
-import { fileLinkToFileName, fileNameToParts } from 'lib/helpers/documents';
+import { Document } from 'types/documents';
+import { fileLinkToFileName, fileNameToParts } from 'helpers/documents';
 import useUser from 'hooks/useUser';
 import useCheckFileSchema from 'hooks/integrations/useCheckFileSchema';
 import useNistValidations from './useNistValidations';
