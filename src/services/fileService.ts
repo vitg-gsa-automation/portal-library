@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseURL = 'http://appdev.volpegroup.com:8089';
-export default axios.create({
+export const fileService = axios.create({
   baseURL,
   // withCredentials: true,
 });

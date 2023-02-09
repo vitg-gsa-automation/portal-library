@@ -53,12 +53,6 @@ export interface UpdateDocParams {
   _modby: number;
 }
 
-export interface AcceptableFileType {
-  ID: number;
-  NAME: string;
-  Extension: string;
-}
-
 export interface DocumentDetails {
   RowID: number;
   DataDefinition: string;
