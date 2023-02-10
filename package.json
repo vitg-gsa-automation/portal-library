@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "description": "library for automation portals",
   "module": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./api": "./dist/api/index.js",
+    "./helpers": "./dist/helpers/index.js",
+    "./services": "./dist/services/index.js",
+    "./types": "./declarations/index.d.ts"
+  },
   "types": "declarations/index.d.ts",
   "scripts": {
     "build": "tsc",
