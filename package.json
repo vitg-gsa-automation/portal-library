@@ -2,7 +2,7 @@
   "name": "portal-library",
   "version": "1.0.0",
   "description": "library for automation portals",
-  "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "declarations/index.d.ts",
   "scripts": {
     "build": "tsc",
