@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "declarations/index.d.ts",
   "scripts": {
-    "build": "webpack",
+    "build": "tsc",
     "prepare": "npm run build"
   },
   "author": "",

@@ -5,7 +5,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    libraryTarget: 'commonjs2',
+    libraryTarget: 'module',
   },
   module: {
     rules: [
@@ -18,5 +18,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+  },
+  experiments: {
+    outputModule: true,
   },
 };
