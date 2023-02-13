@@ -32,7 +32,7 @@ function getNistStageStatus(
   return 'default';
 }
 
-function useNistValidations(fileName?: string) {
+export function useNistValidations(fileName?: string) {
   const [results, setResults] = useState<NistValidateResult[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<string>();
@@ -104,4 +104,3 @@ function useNistValidations(fileName?: string) {
 
   return { results, errors, status, loading, validateFile, validateAll };
 }
-export default useNistValidations;

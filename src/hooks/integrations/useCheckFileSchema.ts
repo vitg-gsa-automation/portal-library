@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { integrationService } from '../../services/integrationService';
-import useUser from '../../hooks/useUser';
+import { useUser } from '../../hooks/useUser';
 import { isOscal } from '../../helpers/documents';
 import { User } from '../../types/users';
 import {
@@ -53,7 +53,7 @@ function getFileSchemaStatus(
   return 'default';
 }
 
-function useCheckFileSchema(fileIdentifier?: string) {
+export function useCheckFileSchema(fileIdentifier?: string) {
   const user = useUser();
   const [results, setResults] = useState<FileSchemaResult[]>([]);
   const [loading, setLoading] = useState(false);
@@ -125,4 +125,3 @@ function useCheckFileSchema(fileIdentifier?: string) {
     checkAll,
   };
 }
-export default useCheckFileSchema;

@@ -8,7 +8,7 @@ import { authService } from '../services/authService';
 
 type SessionActiveResult = '200: Success' | '404: Not Active';
 
-export default function useUser() {
+export function useUser() {
   const navigate = useNavigate();
   const [user, setUser] = useState<User>();
 

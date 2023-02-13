@@ -7,7 +7,7 @@ interface SWRKey {
   config?: AxiosRequestConfig;
 }
 
-function useValidationService<T>(swrKey?: SWRKey) {
+export function useValidationService<T>(swrKey?: SWRKey) {
   const fetcher: BareFetcher<T> = async ({ url, config }: SWRKey) => {
     const response = await validationService.get<T>(url, config);
     return response.data;
@@ -19,5 +19,3 @@ function useValidationService<T>(swrKey?: SWRKey) {
 
   // return useSWR<T, AxiosError>(key, fetcher, { revalidateOnFocus: false });
 }
-
-export default useValidationService;

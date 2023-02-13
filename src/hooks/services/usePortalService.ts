@@ -7,7 +7,7 @@ interface SWRKey {
   params?: any;
 }
 
-function usePortalService<T>(swrKey?: SWRKey) {
+export function usePortalService<T>(swrKey?: SWRKey) {
   const fetcher: BareFetcher<T> = async ({ url, params }: SWRKey) => {
     const response = await portalService.get<T>(url, {
       params,
@@ -22,5 +22,3 @@ function usePortalService<T>(swrKey?: SWRKey) {
 
   // return useSWR<T, AxiosError>(key, fetcher, { revalidateOnFocus: false });
 }
-
-export default usePortalService;

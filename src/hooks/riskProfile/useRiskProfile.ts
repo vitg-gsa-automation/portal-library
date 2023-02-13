@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import { getRiskProfile } from '../../api/riskProfiles';
 import { getErrorMessage } from '../../helpers/utils';
-import useUser from '../../hooks/useUser';
+import { useUser } from '../../hooks/useUser';
 import { Capability } from '../../types/riskProfiles';
-import useCapabilitySummary from './useCapabilitySummary';
+import { useCapabilitySummary } from './useCapabilitySummary';
 
 const mockedCapabilities: Capability[] = [
   {
@@ -82,7 +82,7 @@ const mockedCapabilities: Capability[] = [
   },
 ];
 
-function useRiskProfile(systemId?: number) {
+export function useRiskProfile(systemId?: number) {
   const user = useUser();
   const [capabilities, setCapabilities] = useState<Capability[]>([]);
   const [loading, setLoading] = useState(false);
@@ -116,4 +116,3 @@ function useRiskProfile(systemId?: number) {
     capabilitySummary,
   };
 }
-export default useRiskProfile;

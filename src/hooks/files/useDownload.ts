@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { getErrorMessage } from '../../helpers';
-import useUser from '../../hooks/useUser';
+import { useUser } from '../../hooks/useUser';
 import { downloadFile } from '../../api/documents';
 
 interface DownloadParams {
@@ -8,7 +8,7 @@ interface DownloadParams {
   outputFileName: string;
 }
 
-function useDownload() {
+export function useDownload() {
   const user = useUser();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -54,4 +54,3 @@ function useDownload() {
     download,
   };
 }
-export default useDownload;

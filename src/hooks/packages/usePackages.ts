@@ -1,8 +1,8 @@
-import usePortalService from 'hooks/services/usePortalService';
-import useUser from 'hooks/useUser';
+import { usePortalService } from 'hooks/services/usePortalService';
+import { useUser } from 'hooks/useUser';
 import { Package } from 'types/packages';
 
-function usePackages() {
+export function usePackages() {
   const user = useUser();
   return usePortalService<Package[]>(
     user?.UserID && user.AuthenticationCode
@@ -16,5 +16,3 @@ function usePackages() {
       : undefined
   );
 }
-
-export default usePackages;

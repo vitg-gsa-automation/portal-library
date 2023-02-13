@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import useUser from '../../hooks/useUser';
+import { useUser } from '../../hooks/useUser';
 import { downloadFile } from '../../api/documents';
 import { CustomFile } from '../../types/files';
 
-function useRemoteFile(fileName?: string, fileIdentifier?: string) {
+export function useRemoteFile(fileName?: string, fileIdentifier?: string) {
   const user = useUser();
   const [file, setFile] = useState<CustomFile>();
   useEffect(() => {
@@ -22,5 +22,3 @@ function useRemoteFile(fileName?: string, fileIdentifier?: string) {
   }, [fileIdentifier, user, fileName]);
   return file;
 }
-
-export default useRemoteFile;

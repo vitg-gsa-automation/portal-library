@@ -1,8 +1,8 @@
-import usePortalService from 'hooks/services/usePortalService';
-import useUser from 'hooks/useUser';
+import { usePortalService } from 'hooks/services/usePortalService';
+import { useUser } from 'hooks/useUser';
 import { Organization } from 'types/organizations';
 
-function useOrganization(organizationId?: string) {
+export function useOrganization(organizationId?: string) {
   const user = useUser();
   return usePortalService<[Organization]>(
     user?.AuthenticationCode && organizationId
@@ -16,5 +16,3 @@ function useOrganization(organizationId?: string) {
       : undefined
   );
 }
-
-export default useOrganization;

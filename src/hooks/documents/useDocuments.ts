@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import useUser from 'hooks/useUser';
+import { useUser } from 'hooks/useUser';
 
-function useDocuments(docId?: number) {
+export function useDocuments(docId?: number) {
   const user = useUser();
   useEffect(() => {
     const start = async function () {
@@ -11,4 +11,3 @@ function useDocuments(docId?: number) {
     start();
   }, [docId]);
 }
-export default useDocuments;

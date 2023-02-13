@@ -8,7 +8,7 @@ interface SWRKey {
   config?: AxiosRequestConfig;
 }
 
-function useDocumentService<T>(swrKey?: SWRKey) {
+export function useDocumentService<T>(swrKey?: SWRKey) {
   const fetcher: BareFetcher<T> = async ({ url, config }: SWRKey) => {
     const response = await documentService.get<T>(url, config);
     return response.data;
@@ -20,5 +20,3 @@ function useDocumentService<T>(swrKey?: SWRKey) {
 
   // return useSWR<T, AxiosError>(key, fetcher, { revalidateOnFocus: false });
 }
-
-export default useDocumentService;

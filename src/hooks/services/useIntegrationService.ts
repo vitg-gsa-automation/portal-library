@@ -7,7 +7,7 @@ interface SWRKey {
   params?: any;
 }
 
-function useIntegrationService<T>(swrKey?: SWRKey) {
+export function useIntegrationService<T>(swrKey?: SWRKey) {
   const fetcher: BareFetcher<T> = async ({ url, params }: SWRKey) => {
     const response = await integrationService.get<T>(url, {
       params,
@@ -22,5 +22,3 @@ function useIntegrationService<T>(swrKey?: SWRKey) {
 
   // return useSWR<T, AxiosError>(key, fetcher, { revalidateOnFocus: false });
 }
-
-export default useIntegrationService;
