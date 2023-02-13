@@ -3,19 +3,13 @@ import { integrationService } from 'services/integrationService';
 import useUser from 'hooks/useUser';
 import { isOscal } from 'helpers/documents';
 import { User } from 'types/users';
-import { StageStatus } from 'types/validations';
+import {
+  CheckFileSchemaResponse,
+  CheckResult,
+  StageStatus,
+} from 'types/validations';
 import { CustomFile } from 'types/files';
 import { CheckError, CheckResultsError } from 'helpers/errors';
-
-export interface CheckFileSchemaResponse {
-  FileIdentifier?: string;
-  ID?: number;
-  LogDate?: string;
-  Message?: string;
-  MsgType?: string;
-  UploadFileName?: string;
-  Status?: 'success' | 'error';
-}
 
 export interface FileSchemaResult {
   UploadFileName?: string;
@@ -23,13 +17,6 @@ export interface FileSchemaResult {
   Message?: string;
   Status?: 'success' | 'error';
   Link?: string;
-}
-
-export interface CheckResult {
-  file: CustomFile;
-  status: 'success' | 'error';
-  passed: boolean;
-  response?: CheckFileSchemaResponse;
 }
 
 async function checkFileSchema(user: User, file: File) {
@@ -45,20 +32,6 @@ async function checkFileSchema(user: User, file: File) {
       },
       params: {
         AuthCode: user.AuthenticationCode,
-      },
-    }
-  );
-  return response.data[0];
-}
-
-async function fetchCheckFileValidations(user: User, fileIdentifier: string) {
-  if (!user.AuthenticationCode) throw new Error('No authcode provided');
-  const response = await integrationService.get<[CheckFileSchemaResponse]>(
-    '/GetValidationInfo',
-    {
-      params: {
-        AuthCode: user.AuthenticationCode,
-        FileIdentifier: fileIdentifier,
       },
     }
   );
@@ -141,27 +114,6 @@ function useCheckFileSchema(fileIdentifier?: string) {
     }
     return results;
   };
-
-  // const checkAll = async function (user: User, files: CustomFile[]) {
-  //   try {
-  //     const oscalFiles = files.filter(isOscal);
-  //     setLoading(true);
-  //     const promises = oscalFiles.map((file) => check(user, file));
-  //     const results = await Promise.all(promises);
-  //     setLoading(false);
-  //     return results;
-  //   } catch (error) {
-  //     if (error instanceof FileSchemaError) {
-  //       return Promise.reject(
-  //         new Error('At least one Oscal file failed basic file schema check.')
-  //       );
-  //     }
-  //     if (error instanceof Error) {
-  //       return Promise.reject(error);
-  //     }
-  //     throw error;
-  //   }
-  // };
 
   return {
     results,
