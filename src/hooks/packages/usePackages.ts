@@ -1,6 +1,6 @@
-import { usePortalService } from 'hooks/services/usePortalService';
-import { useUser } from 'hooks/useUser';
-import { Package } from 'types/packages';
+import { usePortalService } from '../../hooks/services/usePortalService';
+import { useUser } from '../../hooks/useUser';
+import { Package } from '../../types/packages';
 
 export function usePackages() {
   const user = useUser();

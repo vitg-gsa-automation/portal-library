@@ -1,6 +1,6 @@
-import { usePortalService } from 'hooks/services/usePortalService';
-import { useUser } from 'hooks/useUser';
-import { Option } from 'types/misc';
+import { usePortalService } from '../../hooks/services/usePortalService';
+import { useUser } from '../../hooks/useUser';
+import { Option } from '../../types/misc';
 
 export function useSystemTypes() {
   const user = useUser();

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useUser } from 'hooks/useUser';
+import { useUser } from '../../hooks/useUser';
 
 export function useDocuments(docId?: number) {
   const user = useUser();

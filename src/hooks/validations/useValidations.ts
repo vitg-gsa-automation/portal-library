@@ -1,10 +1,10 @@
-import { Document } from 'types/documents';
-import { fileLinkToFileName, fileNameToParts } from 'helpers/documents';
-import { useUser } from 'hooks/useUser';
-import { useCheckFileSchema } from 'hooks/integrations/useCheckFileSchema';
+import { Document } from '../../types/documents';
+import { fileLinkToFileName, fileNameToParts } from '../../helpers/documents';
+import { useUser } from '../../hooks/useUser';
+import { useCheckFileSchema } from '../../hooks/integrations/useCheckFileSchema';
 import { useNistValidations } from './useNistValidations';
 import { useFedrampValidations } from './useFedrampValidations';
-import { useRemoteFile } from 'hooks/files/useRemoteFile';
+import { useRemoteFile } from '../../hooks/files/useRemoteFile';
 
 export function useValidations(doc?: Document) {
   const user = useUser();
