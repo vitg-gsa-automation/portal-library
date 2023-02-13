@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import useUser from 'hooks/useUser';
-import { downloadFile } from 'api/documents';
-import { CustomFile } from 'types/files';
+import useUser from '../../hooks/useUser';
+import { downloadFile } from '../../api/documents';
+import { CustomFile } from '../../types/files';
 
 function useRemoteFile(fileName?: string, fileIdentifier?: string) {
   const user = useUser();

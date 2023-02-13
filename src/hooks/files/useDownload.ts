@@ -1,7 +1,7 @@
-import { getErrorMessage } from 'helpers';
 import { useState } from 'react';
-import useUser from 'hooks/useUser';
-import { downloadFile } from 'api/documents';
+import { getErrorMessage } from '../../helpers';
+import useUser from '../../hooks/useUser';
+import { downloadFile } from '../../api/documents';
 
 interface DownloadParams {
   fileIdentifier: string;

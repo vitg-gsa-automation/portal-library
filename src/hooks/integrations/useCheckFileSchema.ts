@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { integrationService } from 'services/integrationService';
-import useUser from 'hooks/useUser';
-import { isOscal } from 'helpers/documents';
-import { User } from 'types/users';
+import { integrationService } from '../../services/integrationService';
+import useUser from '../../hooks/useUser';
+import { isOscal } from '../../helpers/documents';
+import { User } from '../../types/users';
 import {
   CheckFileSchemaResponse,
   CheckResult,
   StageStatus,
-} from 'types/validations';
-import { CustomFile } from 'types/files';
-import { CheckError, CheckResultsError } from 'helpers/errors';
+} from '../../types/validations';
+import { CustomFile } from '../../types/files';
+import { CheckError, CheckResultsError } from '../../helpers/errors';
 
 export interface FileSchemaResult {
   UploadFileName?: string;

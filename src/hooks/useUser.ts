@@ -1,9 +1,10 @@
-import { AxiosRequestConfig } from 'axios';
-import { User } from 'types/users';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AxiosRequestConfig } from 'axios';
 import useSWR from 'swr';
-import {authService} from 'services/authService';
+
+import { User } from '../types/users';
+import { authService } from '../services/authService';
 
 type SessionActiveResult = '200: Success' | '404: Not Active';
 

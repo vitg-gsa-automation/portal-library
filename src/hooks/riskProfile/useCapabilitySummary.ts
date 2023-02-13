@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import useUser from 'hooks/useUser';
-import { getCapabilityControls } from 'api/riskProfiles';
-import { getErrorMessage } from 'helpers/utils';
-import { Capability, Control } from 'types/riskProfiles';
+import useUser from '../../hooks/useUser';
+import { getCapabilityControls } from '../../api/riskProfiles';
+import { getErrorMessage } from '../../helpers/utils';
+import { Capability, Control } from '../../types/riskProfiles';
 
 function useCapabilitySummary(systemId?: number) {
   const user = useUser();

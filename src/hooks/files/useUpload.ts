@@ -1,9 +1,9 @@
-import { getErrorMessage } from 'helpers';
 import { useState } from 'react';
-import useUser from 'hooks/useUser';
-import { CustomFile, UploadFileParams, UploadResult } from 'types/files';
-import { uploadFile } from 'api/documents';
-import { UploadError, UploadResultsError } from 'helpers/errors';
+import { getErrorMessage } from '../../helpers/utils';
+import useUser from '../../hooks/useUser';
+import { CustomFile, UploadFileParams, UploadResult } from '../../types/files';
+import { uploadFile } from '../../api/documents';
+import { UploadError, UploadResultsError } from '../../helpers/errors';
 
 export interface MultipleUploadFileParams {
   AuthCode: string;

@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
-import { integrationService } from 'services/integrationService';
 import useSWR, { BareFetcher, Key } from 'swr';
+import { integrationService } from '../../services/integrationService';
 
 interface SWRKey {
   url: string;

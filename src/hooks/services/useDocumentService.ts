@@ -1,6 +1,7 @@
 import { AxiosError, AxiosRequestConfig } from 'axios';
-import { documentService } from 'services/documentService';
 import useSWR, { BareFetcher } from 'swr';
+
+import { documentService } from '../../services/documentService';
 
 interface SWRKey {
   url: string;
