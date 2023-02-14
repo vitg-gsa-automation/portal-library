@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { getErrorMessage } from '../../helpers/utils';
-import { useUser } from '../../hooks/useUser';
+import { useUser } from '../useUser';
 import { CustomFile, UploadFileParams, UploadResult } from '../../types/files';
 import { uploadFile } from '../../api/documents';
 import { UploadError, UploadResultsError } from '../../helpers/errors';

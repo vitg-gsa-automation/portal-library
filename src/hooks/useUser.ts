@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { AxiosRequestConfig } from 'axios';
 import useSWR from 'swr';
 
-import { User } from '../types/users';
-import { authService } from '../services/authService';
+import { User } from '../types';
+import { authService } from '../services';
 
 type SessionActiveResult = '200: Success' | '404: Not Active';
 

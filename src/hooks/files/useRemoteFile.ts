@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useUser } from '../../hooks/useUser';
+import { useUser } from '../useUser';
 import { downloadFile } from '../../api/documents';
 import { CustomFile } from '../../types/files';
 

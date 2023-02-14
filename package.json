@@ -8,7 +8,6 @@
     "./api": "./dist/api/index.js",
     "./helpers": "./dist/helpers/index.js",
     "./services": "./dist/services/index.js",
-    "./hooks": "./dist/hooks/index.js",
     "./types": "./declarations/index.d.ts"
   },
   "types": "declarations/index.d.ts",

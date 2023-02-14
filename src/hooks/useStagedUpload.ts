@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { useUpload } from './files/useUpload';
 import { useCheckFileSchema } from './integrations/useCheckFileSchema';
-import { useUser } from './useUser';
-import { CustomFile, UploadResult } from '../types/files';
+
+import { CustomFile, UploadResult } from '../types';
 import {
   CheckError,
   CheckResultsError,
   PromiseSettledResultsError,
   UploadError,
   UploadResultsError,
-} from '../helpers/errors';
+} from '../helpers';
+import { useUser } from './useUser';
 
 interface MultipleUploadFileParams {
   AuthCode: string;

@@ -1,6 +1,6 @@
-import { usePortalService } from '../../hooks/services/usePortalService';
-import { useUser } from '../../hooks/useUser';
-import { AcceptableFileType } from '../../types/files';
+import { usePortalService } from '../services/usePortalService';
+import { useUser } from '../useUser';
+import { AcceptableFileType } from '../../types';
 
 export function useFileTypes() {
   const user = useUser();

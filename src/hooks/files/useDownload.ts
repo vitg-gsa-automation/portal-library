@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { getErrorMessage } from '../../helpers';
-import { useUser } from '../../hooks/useUser';
+import { useUser } from '../useUser';
 import { downloadFile } from '../../api/documents';
 
 interface DownloadParams {
