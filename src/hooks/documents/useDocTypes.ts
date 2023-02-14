@@ -1,8 +1,8 @@
-import { usePortalService } from '../services/usePortalService';
-import { useUser } from '../useUser';
+import usePortalService from '../services/usePortalService';
+import useUser from '../useUser';
 import { Option } from '../../types';
 
-export function useDocTypes() {
+function useDocTypes() {
   const user = useUser();
   return usePortalService<Option[]>(
     user?.AuthenticationCode
@@ -15,3 +15,4 @@ export function useDocTypes() {
       : undefined
   );
 }
+export default useDocTypes;

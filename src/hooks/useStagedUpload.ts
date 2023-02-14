@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useUpload } from './files/useUpload';
-import { useCheckFileSchema } from './integrations/useCheckFileSchema';
+import useUpload from './files/useUpload';
+import useCheckFileSchema from './integrations/useCheckFileSchema';
 
 import { CustomFile, UploadResult } from '../types';
 import {
@@ -10,7 +10,7 @@ import {
   UploadError,
   UploadResultsError,
 } from '../helpers';
-import { useUser } from './useUser';
+import useUser from './useUser';
 
 interface MultipleUploadFileParams {
   AuthCode: string;
@@ -18,7 +18,7 @@ interface MultipleUploadFileParams {
   SystemId: number;
 }
 
-export function useStagedUpload() {
+function useStagedUpload() {
   const user = useUser();
   const fileUpload = useUpload();
   const checkFileSchema = useCheckFileSchema();
@@ -112,3 +112,4 @@ export function generateUploadResults(
   });
   return uploadResults;
 }
+export default useStagedUpload;

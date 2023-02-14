@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { getErrorMessage } from '../../helpers/utils';
-import { useUser } from '../useUser';
+import useUser from '../useUser';
 import { CustomFile, UploadFileParams, UploadResult } from '../../types/files';
 import { uploadFile } from '../../api/documents';
 import { UploadError, UploadResultsError } from '../../helpers/errors';
@@ -11,7 +11,7 @@ export interface MultipleUploadFileParams {
   SystemId: number;
 }
 
-export function useUpload() {
+function useUpload() {
   const user = useUser();
   const [results, setResults] = useState<PromiseSettledResult<UploadResult>[]>(
     []
@@ -75,3 +75,4 @@ export function useUpload() {
     uploadAll,
   };
 }
+export default useUpload;

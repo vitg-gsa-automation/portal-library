@@ -1,12 +1,12 @@
 import { Document } from '../../types/documents';
 import { fileLinkToFileName, fileNameToParts } from '../../helpers/documents';
-import { useUser } from '../../hooks/useUser';
-import { useCheckFileSchema } from '../../hooks/integrations/useCheckFileSchema';
-import { useNistValidations } from './useNistValidations';
-import { useFedrampValidations } from './useFedrampValidations';
-import { useRemoteFile } from '../../hooks/files/useRemoteFile';
+import useUser from '../../hooks/useUser';
+import useCheckFileSchema from '../../hooks/integrations/useCheckFileSchema';
+import useNistValidations from './useNistValidations';
+import useFedrampValidations from './useFedrampValidations';
+import useRemoteFile from '../../hooks/files/useRemoteFile';
 
-export function useValidations(doc?: Document) {
+function useValidations(doc?: Document) {
   const user = useUser();
   const fileName = fileLinkToFileName(doc?.FileLink || '');
   const [fileIdentifier] = fileNameToParts(fileName) || [];
@@ -23,3 +23,4 @@ export function useValidations(doc?: Document) {
   };
   return { checkFileSchema, nistValidations, fedrampValidations, validate };
 }
+export default useValidations;

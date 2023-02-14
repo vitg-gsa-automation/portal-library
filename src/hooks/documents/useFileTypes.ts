@@ -1,8 +1,8 @@
-import { usePortalService } from '../services/usePortalService';
-import { useUser } from '../useUser';
+import usePortalService from '../services/usePortalService';
+import useUser from '../useUser';
 import { AcceptableFileType } from '../../types';
 
-export function useFileTypes() {
+function useFileTypes() {
   const user = useUser();
   return usePortalService<AcceptableFileType[]>(
     user?.AuthenticationCode
@@ -15,3 +15,4 @@ export function useFileTypes() {
       : undefined
   );
 }
+export default useFileTypes;

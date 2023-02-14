@@ -28,7 +28,7 @@ function getStageStatus(results: FedRampValidateResult[]): StageStatus {
   return 'default';
 }
 
-export function useFedrampValidations(fileName?: string) {
+function useFedrampValidations(fileName?: string) {
   const [results, setResults] = useState<FedRampValidateResult[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<string>();
@@ -102,3 +102,4 @@ export function useFedrampValidations(fileName?: string) {
   };
   return { svrl, results, errors, loading, status, validateFile, validateAll };
 }
+export default useFedrampValidations;

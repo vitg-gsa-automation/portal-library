@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { useUser } from '../../hooks/useUser';
+import useUser from '../../hooks/useUser';
 import { getCapabilityControls } from '../../api/riskProfiles';
 import { getErrorMessage } from '../../helpers/utils';
 import { Capability, Control } from '../../types/riskProfiles';
 
-export function useCapabilitySummary(systemId?: number) {
+function useCapabilitySummary(systemId?: number) {
   const user = useUser();
   const [capability, setCapability] = useState<Capability>();
   const [controls, setControls] = useState<Control[]>([]);
@@ -35,3 +35,4 @@ export function useCapabilitySummary(systemId?: number) {
 
   return { capability, select, loading, error, controls };
 }
+export default useCapabilitySummary;

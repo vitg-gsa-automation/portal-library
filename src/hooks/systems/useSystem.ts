@@ -1,5 +1,5 @@
-import { usePortalService } from '../../hooks/services/usePortalService';
-import { useUser } from '../../hooks/useUser';
+import usePortalService from '../../hooks/services/usePortalService';
+import useUser from '../../hooks/useUser';
 import { System } from '../../types/systems';
 
 interface UseSystemParams {
@@ -7,7 +7,7 @@ interface UseSystemParams {
   _systemid: number;
 }
 
-export function useSystem(params?: UseSystemParams) {
+function useSystem(params?: UseSystemParams) {
   const user = useUser();
   return usePortalService<[System]>(
     params && user?.AuthenticationCode
@@ -22,3 +22,4 @@ export function useSystem(params?: UseSystemParams) {
       : undefined
   );
 }
+export default useSystem;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const useThrottle = (value: string, limit: number) => {
+const useThrottle = (value: string, limit: number) => {
   const [throttledValue, setThrottledValue] = useState(value);
 
   useEffect(() => {
@@ -20,3 +20,4 @@ export const useThrottle = (value: string, limit: number) => {
 
   return throttledValue;
 };
+export default useThrottle;

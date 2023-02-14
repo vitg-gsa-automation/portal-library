@@ -1,8 +1,8 @@
-import { usePortalService } from '../../hooks/services/usePortalService';
-import { useUser } from '../../hooks/useUser';
+import usePortalService from '../../hooks/services/usePortalService';
+import useUser from '../../hooks/useUser';
 import { Option } from '../../types/misc';
 
-export function useSystemAttributes() {
+function useSystemAttributes() {
   const user = useUser();
   return usePortalService<Option[]>(
     user?.AuthenticationCode
@@ -15,3 +15,4 @@ export function useSystemAttributes() {
       : undefined
   );
 }
+export default useSystemAttributes;
