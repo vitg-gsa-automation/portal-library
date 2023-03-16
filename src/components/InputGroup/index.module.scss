@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.hint {
+  font-size: 1.2rem;
+  color: var(--font-color-secondary);
+  margin-bottom: 4px;
+}
+.label {
+  font-weight: 700;
+  color: var(--font-color-label);
+  margin-bottom: 4px;
+}
+
+.error {
+  margin-top: 4px;
+  font-size: 1.2rem;
+  color: var(--color-red-40);
+}

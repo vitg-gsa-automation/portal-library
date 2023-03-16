@@ -1,0 +1,54 @@
+.root {
+  height: 4.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2.4rem;
+  background-color: var(--color-bg-button-primary);
+  color: var(--font-color-button-primary);
+  font-weight: 800;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  user-select: none;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(85%);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    &:hover {
+      filter: unset;
+    }
+  }
+
+  &__text {
+    margin: 0 1rem;
+    line-height: 1;
+  }
+}
+
+.extended {
+  width: 100%;
+}
+
+//Sizes
+.small {
+  padding: 0.8rem 1rem;
+  height: 3.2rem;
+  font-size: 1.4rem;
+}
+
+//Colors
+.secondary {
+  border-color: var(--color-black-30);
+  background-color: var(--color-bg-button-secondary);
+  color: var(--font-color-button-secondary);
+}
+
+.red {
+  background-color: #eb5757;
+}

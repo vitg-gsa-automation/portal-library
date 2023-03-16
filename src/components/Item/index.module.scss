@@ -1,0 +1,24 @@
+.root {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.6rem;
+  white-space: nowrap;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+
+  &[data-highlighted] {
+    outline-width: 1px;
+    outline-style: solid;
+    filter: brightness(95%);
+  }
+
+  &[data-disabled] {
+    opacity: 0.25;
+  }
+}
+
+.icon {
+  color: inherit;
+  margin-right: 1.2rem;
+}

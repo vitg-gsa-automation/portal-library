@@ -1,0 +1,144 @@
+.root {
+  background-color: var(--color-bg-main-drawer);
+  border-right: 1px solid var(--color-border-drawer-right);
+  box-shadow: var(--shadow-panel);
+  z-index: 1;
+  @media only screen and (max-width: 1000px) {
+    width: 25rem !important;
+  }
+  @media only screen and (max-width: 800px) {
+    &,
+    & .trigger {
+      display: none !important;
+    }
+  }
+}
+
+.trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  min-width: 40px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-panel);
+  z-index: 1;
+
+  &[data-state='open'] {
+    display: none;
+  }
+  &[data-state='closed'] {
+  }
+  &:hover {
+    filter: brightness(85%);
+  }
+  &__icon {
+    padding: 1.6rem 0.8rem;
+  }
+}
+
+.nav {
+  padding: 2rem 3.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.separator {
+  border: none;
+  border-top: 1px solid var(--color-border-divider);
+  height: 0;
+  margin: 2.4rem 0;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 3.2rem;
+  border-bottom: 2px solid var(--color-border-divider);
+
+  @media only screen and (max-width: 500px) {
+    padding: 1.6rem 3.2rem;
+  }
+  &__close {
+    display: flex;
+    border: none;
+    background-color: unset;
+  }
+  &__icon {
+    cursor: pointer;
+    color: var(--font-color-secondary);
+    &:hover {
+      color: var(--font-color);
+    }
+  }
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: inherit;
+  cursor: pointer;
+  &:hover {
+    color: var(--color-gsa-blue-40);
+  }
+}
+
+.nav-link {
+  &,
+  &:link,
+  &:visited {
+    margin: 0.8rem 0;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.4rem;
+    font-weight: 500;
+    transition: color 0.1s;
+    &:hover {
+      color: var(--font-color-link);
+    }
+  }
+  &--active {
+    color: var(--font-color-link) !important;
+    font-weight: 800 !important;
+  }
+}
+
+.nav-toggle {
+  margin-top: 1rem;
+  margin-left: -2.4rem;
+
+  &[data-state='open'] {
+    & .nav-toggle__trigger__icon {
+      transform: rotate(90deg);
+    }
+    & .nav-toggle__content {
+      animation: fadeIn 0.1s ease-out;
+    }
+  }
+  &__trigger {
+    display: flex;
+    align-items: center;
+    background-color: unset;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: inherit;
+    cursor: pointer;
+    &:hover {
+      color: black;
+    }
+    &__icon {
+      color: currentColor;
+      margin-right: 4px;
+      transition: transform 0.1s ease-out;
+    }
+  }
+  &__content {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2.4rem;
+  }
+}

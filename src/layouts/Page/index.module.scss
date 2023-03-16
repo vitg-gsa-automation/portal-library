@@ -1,0 +1,9 @@
+.root {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-page);
+  overflow-y: scroll;
+}

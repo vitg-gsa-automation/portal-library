@@ -1,0 +1,25 @@
+.root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3.2rem;
+  text-align: center;
+  color: var(--font-color-secondary);
+}
+
+.main {
+  max-width: 50rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.text {
+  margin-top: 4px;
+  max-width: 50rem;
+}
+
+.actions {
+  margin-top: 1.6rem;
+}

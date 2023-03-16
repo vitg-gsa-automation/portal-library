@@ -1,0 +1,12 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: var(--font-color-label);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.value {
+}

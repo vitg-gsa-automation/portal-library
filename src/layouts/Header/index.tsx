@@ -1,0 +1,41 @@
+import { ReactNode } from 'react';
+
+import styles from './index.module.scss';
+
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  title?: string;
+  description?: ReactNode;
+  actions?: ReactNode;
+  status?: ReactNode;
+}
+
+interface HeaderDetailProps {
+  label: string;
+  value: ReactNode;
+}
+
+function Header({ title, description, actions, status }: Props) {
+  return (
+    <div className={styles.root}>
+      <div className={styles.box}>
+        <div className={styles.title}>
+          <h1 className={styles.text}>{title}</h1>
+          {status}
+        </div>
+        {description && <p className={styles.description}>{description}</p>}
+      </div>
+      {actions && <div className={styles.actions}>{actions}</div>}
+    </div>
+  );
+}
+
+export function HeaderDetail({ label, value }: HeaderDetailProps) {
+  return (
+    <div className={styles['header-detail']}>
+      <label className={styles['header-detail__label']}>{`${label}:`}</label>
+      {value}
+    </div>
+  );
+}
+
+export default Header;

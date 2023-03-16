@@ -1,0 +1,42 @@
+.root {
+  margin: 2.4rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  width: 100%;
+  margin-right: 3.2rem;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  font-size: 2.8rem;
+  color: var(--font-color-heading-title);
+  margin-right: 1rem;
+}
+
+.description {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+
+.actions {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: 1.6rem;
+}
+
+.header-detail {
+  display: flex;
+  align-items: center;
+  &__label {
+    margin-right: 6px;
+  }
+}

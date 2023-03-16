@@ -1,0 +1,136 @@
+.root {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.4rem;
+
+  & thead {
+    background-color: var(--color-bg-table-heading);
+    border-bottom: 2px solid var(--color-card-divider);
+  }
+  & th {
+    position: relative;
+    text-align: left;
+    padding: 0 1rem;
+    font-weight: 700;
+    color: var(--font-color-column-header);
+    user-select: none;
+
+    &:not(:first-child) {
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 25%;
+        height: 50%;
+        border-left: 1px solid var(--color-card-divider);
+      }
+    }
+  }
+
+  & td {
+    padding: 0.8rem 1.6rem;
+  }
+}
+
+.heading-box {
+  cursor: pointer;
+  color: unset;
+  border: none;
+  background-color: unset;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  &:hover {
+    color: var(--font-color-column-header-sorted);
+  }
+  &--alt {
+    width: 100%;
+    padding: 1rem;
+  }
+  &--sorted {
+    color: var(--font-color-column-header-sorted);
+  }
+}
+
+.icon {
+  &--asc {
+    transform: rotateZ(180deg);
+  }
+  &--desc {
+    transform: rotateZ(0deg);
+  }
+}
+.loading {
+  min-height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  border-bottom: 1px solid var(--color-card-divider);
+  &:last-child {
+    border-bottom: none;
+  }
+  &--selected {
+    background-color: #3c97ff18;
+    outline: 1px solid #3c97ff;
+  }
+}
+
+.header {
+  padding: 1.2rem 2.4rem;
+  background-color: var(--color-bg-heading);
+  border-bottom: 1px solid var(--color-card-divider);
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__content {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  &__text {
+    margin-top: 4px;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--font-color-card-header-text);
+  }
+  &__actions {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 1rem;
+  }
+  &__tools {
+    margin-top: 1rem;
+  }
+}
+
+.tools {
+  padding-top: 8px;
+  display: flex;
+  align-items: center;
+  &__filters {
+    margin-right: 2rem;
+    flex: 1;
+  }
+  &__pagination {
+    display: flex;
+    align-items: center;
+    &__page {
+      margin: 1rem;
+      font-weight: 700;
+    }
+  }
+}
+
+.flex-cell {
+  display: flex;
+  align-items: center;
+  &__text {
+    margin-left: 1rem;
+  }
+}

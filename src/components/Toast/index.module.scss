@@ -1,0 +1,73 @@
+.root {
+  overflow: hidden;
+  backface-visibility: hidden;
+  background-color: var(--color-gsa-blue-40);
+  color: white;
+  padding: 1.6rem 3.2rem;
+  display: flex;
+  align-items: center;
+  // transform: scaleY(0);
+  // transform-origin: top;
+  // &[data-state='open'] {
+  //   animation: openToast 0.2s ease-out forwards;
+  // }
+  // &[data-state='closed'] {
+  //   animation: closeToast 0.2s;
+  // }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.description {
+  font-size: 1.4rem;
+}
+
+.icon {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+//Status
+.success {
+  color: white;
+  background-color: var(--color-green-50);
+}
+.warning {
+  color: white;
+  background-color: #ec7211;
+}
+.error {
+  color: white;
+  background-color: var(--color-red-40);
+}
+.info {
+  color: white;
+  background-color: var(--color-gsa-blue-40);
+}
+
+@keyframes openToast {
+  0% {
+    transform: scaleY(0);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+@keyframes closeToast {
+  0% {
+    transform: scaleY(1);
+  }
+
+  100% {
+    transform: scaleY(0);
+  }
+}

@@ -1,0 +1,12 @@
+.root {
+  background-color: white;
+  padding: 1.6rem 3.2rem;
+  padding-top: 0;
+  border-bottom: var(--border);
+}
+
+.content {
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+}

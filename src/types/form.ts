@@ -1,4 +1,4 @@
-export interface SelectItem<T = any> {
+export interface SelectOption<T = any> {
   label?: string;
   value?: T;
 }

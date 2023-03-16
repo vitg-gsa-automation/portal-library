@@ -1,0 +1,46 @@
+.root {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+  padding: 3.2rem;
+  margin: auto;
+  border: var(--border);
+  border-radius: 2px;
+  @media only screen and (max-width: 550px) {
+    border: none;
+    margin: 0 auto;
+    padding: 2.4rem;
+  }
+}
+
+.logo {
+  width: 75px;
+}
+.heading {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-top: 2.4rem;
+  margin-bottom: 1.6rem;
+}
+.text {
+  color: var(--font-color-secondary);
+  margin-bottom: 3.2rem;
+}
+
+// &__form {
+//   display: grid;
+//   gap: 1.6rem;
+//   &__input {
+//     & input {
+//       &:-webkit-autofill {
+//         &,
+//         &:hover,
+//         &:focus,
+//         &:active {
+//           -webkit-box-shadow: 0 0 0 1000px white inset !important;
+//         }
+//       }
+//     }
+//   }
+// }

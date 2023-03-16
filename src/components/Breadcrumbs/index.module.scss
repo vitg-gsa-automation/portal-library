@@ -1,0 +1,34 @@
+.root {
+  padding-top: 1.6rem;
+  margin-bottom: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  user-select: none;
+  font-size: 1.4rem;
+}
+
+.crumb {
+  display: flex;
+  align-items: center;
+}
+.link {
+  display: flex;
+  align-items: center;
+  color: var(--font-color-link);
+  min-height: 24px;
+  white-space: nowrap;
+
+  &,
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+  &--active {
+    color: var(--font-color-breadcrumb-current);
+    font-weight: 700;
+  }
+}
+.icon {
+  color: var(--color-black-20);
+}

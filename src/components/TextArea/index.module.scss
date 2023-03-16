@@ -1,0 +1,23 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea {
+  width: 100%;
+  border: 2px solid var(--color-border-input);
+  border-radius: 8px;
+  padding: 4px 1.6rem;
+  background-color: var(--color-bg-input);
+  &:focus,
+  &:focus-visible {
+    border-color: var(--color-gsa-blue-40) !important;
+  }
+
+  &--error {
+    border-color: var(--color-red-40);
+    &:focus {
+      outline-color: var(--color-red-40) !important;
+    }
+  }
+}

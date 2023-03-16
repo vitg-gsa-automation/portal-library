@@ -1,0 +1,53 @@
+.root {
+  border: none;
+  background-color: unset;
+  width: 100%;
+  padding: 0.8rem 1.6rem;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+
+  &[data-state='closed'] {
+    & .toggle {
+      transform: rotate(-90deg);
+    }
+  }
+  &[data-state='open'] {
+    & .toggle {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+.text {
+  margin-left: 1rem;
+  margin-right: 3.2rem;
+}
+
+.toggle {
+  margin-left: auto;
+  color: var(--font-color-secondary);
+  transition: transform 0.1s;
+}
+
+.icon {
+}
+
+//Status
+.default {
+  & .icon {
+    color: var(--color-black-10);
+  }
+}
+.success {
+  & .icon {
+    color: var(--color-green-40);
+  }
+}
+.error {
+  & .icon {
+    color: var(--color-red-40);
+  }
+}

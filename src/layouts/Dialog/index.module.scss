@@ -1,0 +1,31 @@
+.root {
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-bg-overlay);
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60rem;
+  display: flex;
+  flex-direction: column;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: contentShow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @media only screen and (max-width: 650px) {
+    border-radius: 0;
+    width: 90%;
+    min-width: unset;
+    max-width: unset;
+  }
+}

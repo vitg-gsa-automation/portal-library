@@ -1,0 +1,34 @@
+.root {
+  height: 22px;
+  width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  padding: 0 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  user-select: none;
+}
+
+.text {
+  text-transform: capitalize;
+}
+
+//Colors
+.red {
+  background-color: var(--color-red-20);
+  color: var(--color-red-50);
+}
+.green {
+  background-color: var(--color-green-20);
+  color: var(--color-green-50);
+}
+.gray {
+  background-color: var(--color-black-10);
+  color: var(--color-black-40);
+}
+.orange {
+  background-color: #ffeab6;
+  color: #ffb800;
+}

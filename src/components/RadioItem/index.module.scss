@@ -1,0 +1,32 @@
+.root {
+  flex: 1;
+  display: flex;
+  padding: 1rem 1.6rem;
+  border: var(--border);
+  background-color: unset;
+  text-align: unset;
+  cursor: pointer;
+  &[data-state='checked'] {
+    background-color: #f3faff;
+    border-color: var(--color-gsa-blue-30);
+  }
+}
+
+.indicator {
+  color: var(--color-gsa-blue-30);
+  &[data-state='unchecked'] {
+    color: var(--color-black-20);
+  }
+}
+
+.content {
+  margin-left: 1rem;
+  &__title {
+    font-size: 1.4rem;
+  }
+  &__text {
+    color: var(--font-color-secondary);
+
+    font-size: 1.2rem;
+  }
+}

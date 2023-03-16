@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+}
+
+.column {
+  padding: 0 2rem;
+  &:not(:first-child) {
+    border-left: var(--border-column-seperator);
+  }
+  &:first-child {
+    padding-left: 0;
+  }
+}

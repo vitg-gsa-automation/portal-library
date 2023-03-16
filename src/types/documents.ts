@@ -8,6 +8,7 @@ export type DocStatus =
   | 'Pending Review';
 export interface Document {
   PkgName?: string;
+  PkgID?: number;
   PkgDesc?: string;
   SystemIdentifier?: string;
   SystemName?: string;
@@ -30,6 +31,9 @@ export interface Document {
   FileSize?: number;
   FileIdentifier?: string;
   DocumentDescription?: string;
+  OrgName?: string;
+  OrgID?: number;
+
   //
   User?: string;
   UploadDate?: string;

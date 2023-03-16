@@ -1,0 +1,13 @@
+.root {
+  &[data-state='closed'] {
+    & .icon {
+      transform: rotate(90deg);
+    }
+  }
+
+  &[data-state='open'] {
+    & .icon {
+      transform: rotate(270deg);
+    }
+  }
+}
