@@ -1,0 +1,32 @@
+name: Publish to GitHub Packages
+
+on:
+  push:
+    branches:
+      - main # Change this to your default branch if it's not 'main'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18 # You can adjust the Node.js version as needed
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@anolan23' # Replace with your GitHub username
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build library
+        run: npm run build # Add this if you have a build script in your package.json
+
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
