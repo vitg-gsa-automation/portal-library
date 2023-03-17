@@ -4,11 +4,14 @@ import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
 import json from '@rollup/plugin-json';
+import terser from '@rollup/plugin-terser';
+
 import packageJson from './package.json' assert { type: 'json' };
 
 export default [
   {
     input: 'src/index.ts',
+    external: ['react-dom'],
     output: [
       {
         file: packageJson.main,
@@ -35,13 +38,20 @@ export default [
       typescript({
         tsconfig: './tsconfig.json',
         declaration: true,
-        declarationDir: 'declarations',
+        declarationDir: 'dist/esm/dts',
         rootDir: 'src',
+        exclude: [
+          '**/stories',
+          '**/*.stories.tsx',
+          '**/*.test.tsx',
+          '**/*.test.ts',
+        ],
       }),
+      terser(),
     ],
   },
   {
-    input: 'dist/esm/types/index.d.ts',
+    input: 'dist/esm/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     plugins: [dts()],
   },
