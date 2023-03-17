@@ -3,12 +3,12 @@ import { ReactNode } from 'react';
 
 import styles from './index.module.scss';
 
-interface Props {
+interface ColumnLayoutProps {
   columns: number;
   children: ReactNode;
 }
 
-function ColumnLayout({ columns, children }: Props) {
+export function ColumnLayout({ columns, children }: ColumnLayoutProps) {
   const columnStyle = {
     flexBasis: `${100 / columns}%`,
   };
@@ -23,4 +23,3 @@ function ColumnLayout({ columns, children }: Props) {
     </div>
   );
 }
-export default ColumnLayout;

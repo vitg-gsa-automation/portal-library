@@ -2,14 +2,14 @@ import { RadioGroupItemProps } from '@radix-ui/react-radio-group';
 
 import styles from './index.module.scss';
 import { RadioGroupItem, RadioGroupIndicator } from '../Radio';
-import MaterialIcon from '../MaterialIcon';
+import { MaterialIcon } from '../MaterialIcon';
 
-interface Props extends RadioGroupItemProps {
+interface RadioItemProps extends RadioGroupItemProps {
   title: string;
   text: string;
 }
 
-function RadioItem({ title, text, ...props }: Props) {
+export function RadioItem({ title, text, ...props }: RadioItemProps) {
   return (
     <RadioGroupItem className={styles.root} {...props}>
       <RadioGroupIndicator className={styles.indicator} asChild forceMount>
@@ -28,5 +28,3 @@ function RadioItem({ title, text, ...props }: Props) {
     </RadioGroupItem>
   );
 }
-
-export default RadioItem;

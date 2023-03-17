@@ -4,13 +4,13 @@ import { Viewport as ToastViewport } from '@radix-ui/react-toast';
 
 import styles from './index.module.scss';
 
-interface Props {
+interface LayoutProps {
   navbar?: ReactElement;
   sidebar?: ReactElement;
   footer?: ReactElement;
 }
 
-function Layout({ navbar, sidebar, footer }: Props) {
+export function Layout({ navbar, sidebar, footer }: LayoutProps) {
   return (
     <div className={styles.root}>
       {navbar}
@@ -25,4 +25,3 @@ function Layout({ navbar, sidebar, footer }: Props) {
     </div>
   );
 }
-export default Layout;

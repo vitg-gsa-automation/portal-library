@@ -1,10 +1,12 @@
-import { Item, SelectItem, SelectMenu } from '../Select';
+import { SelectMenu } from '../Select';
 import { useCombobox } from 'downshift';
 
 import styles from './index.module.scss';
-import Input, { InputProps } from '../Input';
+import { Input, InputProps } from '../Input';
+import { Item } from '../../types/form';
+import { ListItem } from '../../components/Option';
 
-interface Props extends InputProps {
+interface ComboBoxProps extends InputProps {
   selectedItem?: Item;
   items: Item[];
   placeholder?: string;
@@ -23,7 +25,7 @@ export function ComboBox({
   onSelectedItemChange,
   onInputValueChange,
   ...props
-}: Props) {
+}: ComboBoxProps) {
   const {
     isOpen,
     getToggleButtonProps,
@@ -49,7 +51,7 @@ export function ComboBox({
   const renderItems = function () {
     if (!items.length) return null;
     return items.map((item, index) => (
-      <SelectItem
+      <ListItem
         key={index}
         item={item}
         highlighted={highlightedIndex === index}

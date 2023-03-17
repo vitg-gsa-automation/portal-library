@@ -14,7 +14,7 @@ interface HeaderDetailProps {
   value: ReactNode;
 }
 
-function Header({ title, description, actions, status }: HeaderProps) {
+export function Header({ title, description, actions, status }: HeaderProps) {
   return (
     <div className={styles.root}>
       <div className={styles.box}>
@@ -37,5 +37,3 @@ export function HeaderDetail({ label, value }: HeaderDetailProps) {
     </div>
   );
 }
-
-export default Header;

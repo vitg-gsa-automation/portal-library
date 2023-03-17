@@ -1,6 +1,6 @@
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-import Button from '../Button';
+import { Button } from '../Button';
 import {
   Card,
   CardContent,
@@ -21,7 +21,7 @@ interface AlertDialogProps extends AlertDialogPrimitive.AlertDialogProps {
   children: ReactNode;
 }
 
-function AlertDialog({
+export function AlertDialog({
   title,
   description,
   trigger,
@@ -72,5 +72,3 @@ function AlertDialog({
     </AlertDialogPrimitive.Root>
   );
 }
-
-export default AlertDialog;

@@ -1,14 +1,14 @@
 import { ReactNode } from 'react';
-import MaterialIcon from '../MaterialIcon';
+import { MaterialIcon } from '../MaterialIcon';
 
 import styles from './index.module.scss';
 
-interface Props {
+interface ValueProps {
   copyable?: boolean;
   children?: ReactNode;
 }
 
-function Value({ copyable, children }: Props) {
+export function Value({ copyable, children }: ValueProps) {
   return (
     <div className={styles.root}>
       {copyable && (
@@ -25,4 +25,3 @@ function Value({ copyable, children }: Props) {
     </div>
   );
 }
-export default Value;

@@ -2,7 +2,7 @@ import { ReactNode, useState } from 'react';
 import * as ToastPrimitive from '@radix-ui/react-toast';
 import clsx from 'clsx';
 
-import MaterialIcon from '../MaterialIcon';
+import { MaterialIcon } from '../MaterialIcon';
 import styles from './index.module.scss';
 
 type ToastStatus = 'success' | 'warning' | 'error' | 'info';

@@ -5,8 +5,8 @@ import { NavLink as RouterNavLink, NavLinkProps } from 'react-router-dom';
 import clsx from 'clsx';
 
 import styles from './index.module.scss';
-import Sidebar from '../../layouts/Sidebar';
-import MaterialIcon from '../MaterialIcon';
+import { Sidebar } from '../../layouts/Sidebar';
+import { MaterialIcon } from '../MaterialIcon';
 import {
   Drawer,
   DrawerTrigger,
@@ -15,14 +15,14 @@ import {
   DrawerTitle,
 } from '../../layouts/Drawer';
 
-export interface ServiceLink {
+interface ServiceLink {
   text: string;
   to: string;
 }
 
-interface Props {}
+interface MainDrawerProps {}
 
-function MainDrawer({}: Props) {
+export function MainDrawer({}: MainDrawerProps) {
   const serviceLinks: ServiceLink[] = [
     {
       text: 'Marketplace',
@@ -69,7 +69,6 @@ function MainDrawer({}: Props) {
                 <NavLink to="/portal/dashboards/marketplace">
                   Marketplace
                 </NavLink>
-                {/* <NavLink to="/portal/dashboards/conmon">ConMon</NavLink> */}
                 <a
                   href="http://vitgsplunkdev.volpegroup.com:8000/en-US/app/search/awesome_cloud_2022?form.global_time.earliest=-24h%40h&form.global_time.latest=now"
                   target="_blank"
@@ -85,30 +84,6 @@ function MainDrawer({}: Props) {
                 <hr className={styles.separator} />
               </Separator.Root>
               <NavLink to="/portal/registrations">Registrations</NavLink>
-              {/* <NavToggle text="Organizations" value="1">
-                <NavLink to="/portal/organizations" end>
-                  Organizations
-                </NavLink>
-                <NavLink to="/portal/organizations/maintenance">
-                  Maintenance
-                </NavLink>
-              </NavToggle>
-              <NavToggle text="Systems" value="1">
-                <NavLink to="/portal/systems" end>
-                  Systems
-                </NavLink>
-                <NavLink to="/portal/systems/maintenance">Maintenance</NavLink>
-              </NavToggle>
-              <NavToggle text="ATO Packages" value="1">
-                <NavLink to="/portal/packages" end>
-                  Packages
-                </NavLink>
-              </NavToggle>
-              <NavToggle text="Users" value="1">
-                <NavLink to="/portal/users" end>
-                  Users
-                </NavLink>
-              </NavToggle> */}
               <NavLink to="/portal/organizations">Organizations</NavLink>
               <NavLink to="/portal/systems">Systems</NavLink>
               <NavLink to="/portal/packages">ATO Packages</NavLink>
@@ -161,5 +136,3 @@ function NavToggle({ text, children, ...props }: NavToggleProps) {
     </Accordion.Root>
   );
 }
-
-export default MainDrawer;

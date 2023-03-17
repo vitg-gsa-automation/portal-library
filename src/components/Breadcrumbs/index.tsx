@@ -3,14 +3,14 @@ import clsx from 'clsx';
 
 import styles from './index.module.scss';
 import useBreadcrumbs, { BreadcrumbsRoute } from 'use-react-router-breadcrumbs';
-import MaterialIcon from '../MaterialIcon';
+import { MaterialIcon } from '../MaterialIcon';
 
-interface Props {
+interface BreadcrumbProps {
   routes?: BreadcrumbsRoute[];
   excludePaths?: string[];
 }
 
-function Breadcrumbs({ routes, excludePaths = [] }: Props) {
+export function Breadcrumbs({ routes, excludePaths = [] }: BreadcrumbProps) {
   const breadcrumbs = useBreadcrumbs(routes, {
     excludePaths: ['/', '/portal', ...excludePaths],
   });
@@ -43,5 +43,3 @@ function Breadcrumbs({ routes, excludePaths = [] }: Props) {
 
   return <nav className={styles.root}>{renderCrumbs()}</nav>;
 }
-
-export default Breadcrumbs;

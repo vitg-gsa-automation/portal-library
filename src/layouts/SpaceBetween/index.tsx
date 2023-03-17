@@ -3,13 +3,17 @@ import { clsx } from 'clsx';
 
 import styles from './index.module.scss';
 
-interface Props {
+interface SpaceBetweenProps {
   direction?: 'vertical' | 'horizontal';
   size?: 'xs' | 'sm' | 'l';
   children: ReactNode;
 }
 
-function SpaceBetween({ size = 'l', direction = 'vertical', children }: Props) {
+export function SpaceBetween({
+  size = 'l',
+  direction = 'vertical',
+  children,
+}: SpaceBetweenProps) {
   return (
     <div className={clsx(styles.root, styles[`root--${direction}`])}>
       {React.Children.map(children, (child, index) => (
@@ -23,4 +27,3 @@ function SpaceBetween({ size = 'l', direction = 'vertical', children }: Props) {
     </div>
   );
 }
-export default SpaceBetween;

@@ -1,4 +1,4 @@
-import { SelectOption } from './form';
+import { Item } from './form';
 import { CheckResult } from '../types/validations';
 
 export interface AcceptableFileType {
@@ -11,7 +11,7 @@ export interface CustomFile extends File {
   description?: string;
   ftDescription?: string;
   FileTypeId?: number;
-  docType?: SelectOption;
+  docType?: Item;
   FileIdentifier?: string;
 }
 export interface UploadFileParams {

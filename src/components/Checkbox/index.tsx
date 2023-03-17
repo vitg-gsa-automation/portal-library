@@ -1,13 +1,13 @@
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 
 import styles from './index.module.scss';
-import MaterialIcon from '../MaterialIcon';
+import { MaterialIcon } from '../MaterialIcon';
 
 const CheckboxIndicator = CheckboxPrimitive.Indicator;
 
-interface Props extends CheckboxPrimitive.CheckboxProps {}
+interface CheckboxProps extends CheckboxPrimitive.CheckboxProps {}
 
-function Checkbox({ ...props }: Props) {
+export function Checkbox({ ...props }: CheckboxProps) {
   return (
     <CheckboxPrimitive.Root
       {...props}
@@ -21,7 +21,7 @@ function Checkbox({ ...props }: Props) {
   );
 }
 
-export function RadioCheckbox({ ...props }: Props) {
+export function RadioCheckbox({ ...props }: CheckboxProps) {
   return (
     <CheckboxPrimitive.Root
       {...props}
@@ -34,5 +34,3 @@ export function RadioCheckbox({ ...props }: Props) {
     </CheckboxPrimitive.Root>
   );
 }
-
-export default Checkbox;

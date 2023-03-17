@@ -1,10 +1,9 @@
 import styles from './index.module.scss';
 
-interface Props {
+interface PageProps {
   children: React.ReactNode;
 }
 
-function Page({ children }: Props) {
+export function Page({ children }: PageProps) {
   return <main className={styles.root}>{children}</main>;
 }
-export default Page;

@@ -3,21 +3,17 @@ import { clsx } from 'clsx';
 import { useSelect } from 'downshift';
 
 import styles from './index.module.scss';
-import Empty from '../Empty';
-import Item from '../Item';
-import MaterialIcon from '../MaterialIcon';
+import { Empty } from '../Empty';
+import { ListItem } from '../Option';
+import { MaterialIcon } from '../MaterialIcon';
 import { InputError } from '../Input';
+import { Item } from '../../types/form';
 
 function itemToString(item: any) {
   return item ? item.title : '';
 }
 
-export interface Item<T = any> {
-  label?: string;
-  value?: T;
-}
-
-interface Props {
+interface SelectProps {
   items: Item[];
   selectedItem?: Item;
   onSelectChange: (item: Item) => any;
@@ -32,7 +28,7 @@ export function Select({
   onSelectChange,
   error,
   ...props
-}: Props) {
+}: SelectProps) {
   const {
     isOpen,
     getToggleButtonProps,
@@ -52,7 +48,7 @@ export function Select({
   const renderItems = function () {
     if (!items.length) return <Empty main="No items" />;
     return items.map((item, index) => (
-      <SelectItem
+      <ListItem
         key={index}
         item={item}
         highlighted={highlightedIndex === index}
@@ -103,9 +99,9 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
     }, [highlighted]);
 
     return (
-      <Item ref={myRef} {...props}>
+      <ListItem ref={myRef} {...props}>
         <span>{item.label}</span>
-      </Item>
+      </ListItem>
     );
   }
 );

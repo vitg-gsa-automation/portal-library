@@ -5,7 +5,6 @@ export * from './Dashboard';
 export * from './DashboardHeader';
 export * from './Dialog';
 export * from './Drawer';
-export * from './Footer';
 export * from './Form';
 export * from './FormActions';
 export * from './Header';

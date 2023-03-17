@@ -16,6 +16,6 @@
     "jsx": "react-jsx",
     "baseUrl": "src"
   },
-  "include": ["src", "globals.d.ts", ".storybook/preview.tsx"],
+  "include": ["src", ".storybook/preview.tsx"],
   "exclude": ["node_modules"]
 }

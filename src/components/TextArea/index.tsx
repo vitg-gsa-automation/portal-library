@@ -3,12 +3,13 @@ import clsx from 'clsx';
 
 import styles from './index.module.scss';
 
-interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface TextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   hints?: string;
   error?: string;
 }
 
-function TextArea({ name, hints, error, ...props }: Props) {
+export function TextArea({ name, hints, error, ...props }: TextAreaProps) {
   return (
     <div className={styles.root}>
       <textarea
@@ -24,5 +25,3 @@ function TextArea({ name, hints, error, ...props }: Props) {
     </div>
   );
 }
-
-export default TextArea;

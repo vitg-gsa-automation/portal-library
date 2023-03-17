@@ -9,7 +9,12 @@ export interface InputGroupProps {
   children?: ReactNode;
 }
 
-function InputGroup({ label, hint, htmlFor, children }: InputGroupProps) {
+export function InputGroup({
+  label,
+  hint,
+  htmlFor,
+  children,
+}: InputGroupProps) {
   return (
     <div className={styles.root}>
       <label className={styles.label} htmlFor={htmlFor}>
@@ -29,5 +34,3 @@ export function InputGroupError({ error }: InputGroupErrorProps) {
   if (!error) return null;
   return <div className={styles.error}>{error}</div>;
 }
-
-export default InputGroup;

@@ -2,12 +2,12 @@ import * as ProgressPrimitive from '@radix-ui/react-progress';
 
 import styles from './index.module.scss';
 
-interface Props {
+interface ProgressProps {
   progress?: number;
   indicatorColor?: string;
 }
 
-function Progress({ progress = 0, indicatorColor, ...props }: Props) {
+export function Progress({ progress = 0, indicatorColor }: ProgressProps) {
   return (
     <ProgressPrimitive.Root className={styles.root} value={progress}>
       <ProgressPrimitive.Indicator
@@ -24,4 +24,3 @@ function Progress({ progress = 0, indicatorColor, ...props }: Props) {
     </ProgressPrimitive.Root>
   );
 }
-export default Progress;

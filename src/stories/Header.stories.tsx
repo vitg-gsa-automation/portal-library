@@ -1,5 +1,5 @@
 import { Story } from '@storybook/react';
-import Header, { HeaderProps } from '../layouts/Header';
+import { Header, HeaderProps } from '../layouts/Header';
 
 export default {
   title: 'Header',

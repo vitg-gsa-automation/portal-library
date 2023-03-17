@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import Container from '../../layouts/Container';
-import Page from '../../layouts/Page';
+import { Container } from '../../layouts/Container';
+import { Page } from '../../layouts/Page';
 
-function NoMatch() {
+export function NoMatch() {
   return (
     <Page>
       <Container style={{ padding: '3.2rem' }}>
@@ -17,4 +17,3 @@ function NoMatch() {
     </Page>
   );
 }
-export default NoMatch;

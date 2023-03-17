@@ -2,14 +2,14 @@ import { ReactNode } from 'react';
 
 import styles from './index.module.scss';
 
-interface Props {
+interface EmptyProps {
   icon?: ReactNode;
   main: string;
   text?: string;
   children?: ReactNode;
 }
 
-function Empty({ icon, main, text, children }: Props) {
+export function Empty({ icon, main, text, children }: EmptyProps) {
   return (
     <div className={styles.root}>
       {icon}
@@ -19,4 +19,3 @@ function Empty({ icon, main, text, children }: Props) {
     </div>
   );
 }
-export default Empty;

@@ -3,7 +3,7 @@ import React, { ForwardedRef, forwardRef, ReactNode } from 'react';
 import { To, useNavigate } from 'react-router';
 
 import { Loader } from '../Loader';
-import MaterialIcon from '../MaterialIcon';
+import { MaterialIcon } from '../MaterialIcon';
 import styles from './index.module.scss';
 
 type Color = 'primary' | 'secondary';
@@ -22,68 +22,68 @@ export interface ButtonProps
   to?: To;
 }
 
-function Button(
-  {
-    loading,
-    size = 'small',
-    icon,
-    iconPos = 'left',
-    startIcon,
-    endIcon,
-    text,
-    extended,
-    color = 'primary',
-    className,
-    to,
-    ...props
-  }: ButtonProps,
-  ref: ForwardedRef<HTMLButtonElement>
-) {
-  const navigate = useNavigate();
-  const renderChildren = function () {
-    if (loading) {
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      loading,
+      size = 'small',
+      icon,
+      iconPos = 'left',
+      startIcon,
+      endIcon,
+      text,
+      extended,
+      color = 'primary',
+      className,
+      to,
+      ...props
+    }: ButtonProps,
+    forwardedRef
+  ) => {
+    const navigate = useNavigate();
+    const renderChildren = function () {
+      if (loading) {
+        return (
+          <Loader
+            data-testid="loader"
+            loaderColor={color === 'primary' ? 'white' : 'primary'}
+            size={20}
+            speedMultiplier={1.25}
+          />
+        );
+      }
       return (
-        <Loader
-          data-testid="loader"
-          loaderColor={color === 'primary' ? 'white' : 'primary'}
-          size={20}
-          speedMultiplier={1.25}
-        />
+        <React.Fragment>
+          {icon && iconPos === 'left' ? (
+            <MaterialIcon icon={icon} fontSize="1.6rem" type="outlined" />
+          ) : null}
+          <span className={styles['root__text']}>{text}</span>
+          {icon && iconPos === 'right' ? (
+            <MaterialIcon icon={icon} fontSize="1.6rem" type="outlined" />
+          ) : null}
+        </React.Fragment>
       );
-    }
+    };
+
     return (
-      <React.Fragment>
-        {icon && iconPos === 'left' ? (
-          <MaterialIcon icon={icon} fontSize="1.6rem" type="outlined" />
-        ) : null}
-        <span className={styles['root__text']}>{text}</span>
-        {icon && iconPos === 'right' ? (
-          <MaterialIcon icon={icon} fontSize="1.6rem" type="outlined" />
-        ) : null}
-      </React.Fragment>
+      <button
+        onClick={() => {
+          if (to) navigate(to);
+        }}
+        {...props}
+        ref={forwardedRef}
+        className={clsx(
+          styles.root,
+          styles[color],
+          styles[size],
+          extended && styles['extended'],
+          className
+        )}
+      >
+        {startIcon}
+        {renderChildren()}
+        {endIcon}
+      </button>
     );
-  };
-
-  return (
-    <button
-      onClick={() => {
-        if (to) navigate(to);
-      }}
-      {...props}
-      ref={ref}
-      className={clsx(
-        styles.root,
-        styles[color],
-        styles[size],
-        extended && styles['extended'],
-        className
-      )}
-    >
-      {startIcon}
-      {renderChildren()}
-      {endIcon}
-    </button>
-  );
-}
-
-export default forwardRef(Button);
+  }
+);

@@ -12,7 +12,7 @@ export * from './Empty';
 export * from './FileInput';
 export * from './Input';
 export * from './InputGroup';
-export * from './Item';
+export * from './Option';
 export * from './Loader';
 export * from './MainDrawer';
 export * from './MaterialIcon';

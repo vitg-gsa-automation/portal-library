@@ -3,7 +3,7 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { Card, CardHeader } from '../layouts';
 import { useMemo } from 'react';
 import { Package } from 'types';
-import Table, { TableProps } from '../layouts/Table';
+import { Table, TableProps } from '../layouts/Table';
 
 export default {
   title: 'Table',

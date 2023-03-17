@@ -1,14 +1,12 @@
 import styles from './index.module.scss';
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: any;
 }
-function Container({ children, ...props }: Props) {
+export function Container({ children, ...props }: ContainerProps) {
   return (
     <div className={styles.root} {...props}>
       {children}
     </div>
   );
 }
-
-export default Container;

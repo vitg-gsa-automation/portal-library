@@ -3,7 +3,8 @@ import clsx from 'clsx';
 
 import styles from './index.module.scss';
 
-export interface Props extends React.HTMLAttributes<HTMLSpanElement> {
+export interface MaterialIconProps
+  extends React.HTMLAttributes<HTMLSpanElement> {
   fontSize?: string;
   type?: 'outlined' | 'round';
   icon: string;
@@ -16,25 +17,27 @@ interface MaterialIconButtonProps
   icon: string;
 }
 
-function MaterialIcon(
-  { icon, fontSize = '2.4rem', type, className, ...props }: Props,
-  ref: ForwardedRef<HTMLSpanElement>
-) {
-  return (
-    <span
-      ref={ref}
-      style={{ fontSize }}
-      className={clsx(
-        styles.root,
-        `material-icons${type ? `-${type}` : ''}`,
-        className
-      )}
-      {...props}
-    >
-      {icon}
-    </span>
-  );
-}
+export const MaterialIcon = forwardRef(
+  (
+    { icon, fontSize = '2.4rem', type, className, ...props }: MaterialIconProps,
+    forwardedRef: ForwardedRef<HTMLSpanElement>
+  ) => {
+    return (
+      <span
+        ref={forwardedRef}
+        style={{ fontSize }}
+        className={clsx(
+          styles.root,
+          `material-icons${type ? `-${type}` : ''}`,
+          className
+        )}
+        {...props}
+      >
+        {icon}
+      </span>
+    );
+  }
+);
 
 export function MaterialIconButton({
   icon,
@@ -57,5 +60,3 @@ export function MaterialIconButton({
     </button>
   );
 }
-
-export default forwardRef(MaterialIcon);

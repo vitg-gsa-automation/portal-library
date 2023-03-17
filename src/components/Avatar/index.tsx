@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import styles from './index.module.scss';
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: 'small' | 'default';
   name?: string;
 }
@@ -15,17 +15,15 @@ export function getAbbrev(name: string): string {
     .slice(0, 2);
 }
 
-function Avatar({
+export function Avatar({
   size = 'default',
   name = 'Aaron Nolan',
   className,
   ...props
-}: Props) {
+}: AvatarProps) {
   return (
     <div className={clsx(styles.root, styles[size], className)} {...props}>
       {getAbbrev(name)}
     </div>
   );
 }
-
-export default Avatar;

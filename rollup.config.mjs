@@ -1,3 +1,4 @@
+import path from 'path';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
@@ -8,16 +9,16 @@ import terser from '@rollup/plugin-terser';
 
 import packageJson from './package.json' assert { type: 'json' };
 
+function getFolderName(filePath) {
+  const folderPath = path.dirname(filePath);
+  return path.basename(folderPath);
+}
+
 export default [
   {
     input: 'src/index.ts',
     external: ['react-dom'],
     output: [
-      {
-        file: packageJson.main,
-        format: 'cjs',
-        sourcemap: true,
-      },
       {
         file: packageJson.module,
         format: 'esm',
@@ -29,7 +30,17 @@ export default [
       commonjs(),
       postcss({
         extract: true,
-        modules: true,
+        minimize: true,
+        modules: {
+          generateScopedName: (name, filename, css) => {
+            const folderName = getFolderName(filename);
+            const hash = Buffer.from(`${folderName}_${name}_${css}`)
+              .toString('base64')
+              .slice(0, 5);
+            return `vitg_${folderName}_${name}__${hash}`;
+          },
+          // generateScopedName: 'vitg_[name]_[local]__[hash:base64:5]',
+        },
         use: ['sass'],
         extensions: ['.scss'],
         namedExports: true,
@@ -38,7 +49,7 @@ export default [
       typescript({
         tsconfig: './tsconfig.json',
         declaration: true,
-        declarationDir: 'dist/esm/dts',
+        outDir: 'dist',
         rootDir: 'src',
         exclude: [
           '**/stories',
@@ -51,8 +62,9 @@ export default [
     ],
   },
   {
-    input: 'dist/esm/index.d.ts',
+    input: 'dist/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     plugins: [dts()],
+    external: [/\.css$/],
   },
 ];

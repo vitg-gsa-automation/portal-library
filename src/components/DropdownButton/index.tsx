@@ -1,13 +1,13 @@
 import styles from './index.module.scss';
 import { Dropdown, DropdownTrigger, DropdownContent } from '../Dropdown';
-import Button, { ButtonProps } from '../Button';
-import MaterialIcon from '../MaterialIcon';
+import { Button, ButtonProps } from '../Button';
+import { MaterialIcon } from '../MaterialIcon';
 
-interface Props extends ButtonProps {
+interface DropdownButtonProps extends ButtonProps {
   children: React.ReactNode;
 }
 
-function DropdownButton({ children, ...props }: Props) {
+export function DropdownButton({ children, ...props }: DropdownButtonProps) {
   return (
     <Dropdown>
       <DropdownTrigger className={styles.root}>
@@ -29,4 +29,3 @@ function DropdownButton({ children, ...props }: Props) {
     </Dropdown>
   );
 }
-export default DropdownButton;

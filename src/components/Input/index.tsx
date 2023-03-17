@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef, ReactElement, useState } from 'react';
 import { clsx } from 'clsx';
 
 import styles from './index.module.scss';
-import MaterialIcon from '../MaterialIcon';
+import { MaterialIcon } from '../MaterialIcon';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -13,46 +13,48 @@ export interface InputProps
   error?: string;
 }
 
-function Input(
-  {
-    icon,
-    iconFontSize = '2rem',
-    name,
-    className,
-    extended,
-    hints,
-    error,
-    style,
-    ...props
-  }: InputProps,
-  ref: ForwardedRef<HTMLInputElement>
-) {
-  return (
-    <div
-      style={style}
-      className={clsx(styles.root, extended && styles['extended'])}
-    >
+export const Input = forwardRef(
+  (
+    {
+      icon,
+      iconFontSize = '2rem',
+      name,
+      className,
+      extended,
+      hints,
+      error,
+      style,
+      ...props
+    }: InputProps,
+    ref: ForwardedRef<HTMLInputElement>
+  ) => {
+    return (
       <div
-        className={clsx(
-          styles.container,
-          error && styles['container--error'],
-          className
-        )}
+        style={style}
+        className={clsx(styles.root, extended && styles['extended'])}
       >
-        {icon && (
-          <MaterialIcon
-            className={styles['container__icon']}
-            icon={icon}
-            fontSize={iconFontSize}
-          />
-        )}
-        <input ref={ref} className={styles.input} id={name} {...props} />
+        <div
+          className={clsx(
+            styles.container,
+            error && styles['container--error'],
+            className
+          )}
+        >
+          {icon && (
+            <MaterialIcon
+              className={styles['container__icon']}
+              icon={icon}
+              fontSize={iconFontSize}
+            />
+          )}
+          <input ref={ref} className={styles.input} id={name} {...props} />
+        </div>
+        {hints && <InputHints text={hints} />}
+        {error && <InputError error={error} />}
       </div>
-      {hints && <InputHints text={hints} />}
-      {error && <InputError error={error} />}
-    </div>
-  );
-}
+    );
+  }
+);
 
 interface InputErrorProps {
   error?: string;
@@ -101,5 +103,3 @@ export function InputSearch({ onSearch, children }: InputSearchProps) {
     </form>
   );
 }
-
-export default forwardRef(Input);
