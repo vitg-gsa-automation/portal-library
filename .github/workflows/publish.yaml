@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 18 # You can adjust the Node.js version as needed
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@anolan23' # Replace with your GitHub username
+          scope: '@vitg-gsa-automation' # Replace with your GitHub username
 
       - name: Install dependencies
         run: npm install
