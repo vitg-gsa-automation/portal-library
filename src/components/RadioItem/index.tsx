@@ -1,8 +1,8 @@
 import { RadioGroupItemProps } from '@radix-ui/react-radio-group';
 
 import styles from './index.module.scss';
-import { RadioGroupItem, RadioGroupIndicator } from 'components/Radio';
-import MaterialIcon from 'components/MaterialIcon';
+import { RadioGroupItem, RadioGroupIndicator } from '../Radio';
+import MaterialIcon from '../MaterialIcon';
 
 interface Props extends RadioGroupItemProps {
   title: string;

@@ -14,10 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "baseUrl": "src",
-    "declaration": true,
-    "declarationDir": "declarations",
-    "rootDir": "src"
+    "baseUrl": "src"
   },
-  "include": ["src", "globals.d.ts"]
+  "include": ["src", "globals.d.ts", ".storybook/preview.tsx"],
+  "exclude": ["node_modules"]
 }

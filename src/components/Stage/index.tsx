@@ -2,7 +2,7 @@ import { forwardRef, ReactNode } from 'react';
 import clsx from 'clsx';
 
 import styles from './index.module.scss';
-import MaterialIcon from 'components/MaterialIcon';
+import MaterialIcon from '../MaterialIcon';
 
 type StageStatus = 'default' | 'error' | 'success';
 

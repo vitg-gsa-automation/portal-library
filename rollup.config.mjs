@@ -32,7 +32,12 @@ export default [
         namedExports: true,
       }),
       json(),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({
+        tsconfig: './tsconfig.json',
+        declaration: true,
+        declarationDir: 'declarations',
+        rootDir: 'src',
+      }),
     ],
   },
   {

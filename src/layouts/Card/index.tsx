@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode } from 'react';
 
 import styles from './index.module.scss';
-import { Loader } from 'components/Loader';
+import { Loader } from '../../components/Loader';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   header?: ReactNode;

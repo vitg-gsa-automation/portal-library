@@ -15,9 +15,9 @@ import {
 import clsx from 'clsx';
 
 import styles from './index.module.scss';
-import MaterialIcon, { MaterialIconButton } from 'components/MaterialIcon';
-import { Loader } from 'components/Loader';
-import Empty from 'components/Empty';
+import MaterialIcon, { MaterialIconButton } from '../../components/MaterialIcon';
+import { Loader } from '../../components/Loader';
+import Empty from '../../components/Empty';
 
 export interface TableProps<T> {
   data: T[];

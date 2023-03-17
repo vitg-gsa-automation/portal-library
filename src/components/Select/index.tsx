@@ -1,11 +1,11 @@
 import { forwardRef, ReactNode, useEffect, useRef } from 'react';
 import { clsx } from 'clsx';
+import { useSelect } from 'downshift';
 
 import styles from './index.module.scss';
-import Empty from 'components/Empty';
-import Item from 'components/Item';
-import MaterialIcon from 'components/MaterialIcon';
-import { useSelect } from 'downshift';
+import Empty from '../Empty';
+import Item from '../Item';
+import MaterialIcon from '../MaterialIcon';
 import { InputError } from '../Input';
 
 function itemToString(item: any) {

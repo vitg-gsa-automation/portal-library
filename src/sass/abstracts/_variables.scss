@@ -1,0 +1,70 @@
+// COLORS
+$color-black-50: #000000;
+$color-black-40: #404040;
+$color-black-30: #808080;
+$color-black-20: #bfbfbf;
+$color-black-10: #e6e6e6;
+$color-black-00: #fafafa;
+
+$color-green-50: #0ab01a;
+$color-green-40: #47c453;
+$color-green-30: #84d78c;
+$color-green-20: #c2ebc6;
+$color-green-10: #e7f7e8;
+
+$color-red-50: #b90000;
+$color-red-40: #ca4040;
+$color-red-30: #dc8080;
+$color-red-20: #edbfbf;
+$color-red-10: #f8e5e5;
+
+$color-purple-50: #7800d7;
+$color-purple-40: #9a40e1;
+$color-purple-30: #bc80eb;
+$color-purple-20: #ddbff5;
+$color-purple-10: #f2e5fb;
+
+$color-orange-40: #ec7211;
+$color-orange-30: #ffa75f;
+$color-orange-20: #f9e6d6;
+
+//GSA COLORS
+$color-gsa-blue-50: #003c71;
+$color-gsa-blue-40: #33638d;
+$color-gsa-blue-30: #668aaa;
+$color-gsa-blue-20: #99b1c6;
+$color-gsa-blue-10: #ccd8e3;
+
+//LINK COLORS
+$color-sky-blue-50: #3c97ff;
+$color-sky-blue-10: #3c97ff18;
+
+$color-100: rgb(242, 242, 242);
+$color-200: white;
+$color-300: $color-gsa-blue-50;
+$color-400: $color-gsa-blue-50;
+//STATUS
+$color-success: $color-green-50;
+$color-fail: $color-red-40;
+$color-warning: #ffb800;
+// FONT
+$font-color: #505050;
+$font-color-secondary: #767676;
+// BORDERS
+$border: 1px solid $color-black-20;
+$border-light: 1px solid $color-black-10;
+// $border: 1px solid #cdcdcd;
+$input-border: 1px solid $color-black-20;
+//BG
+$bg-color: #f2f3f3;
+$bg-heading: $color-black-00;
+$bg-navbar: $color-gsa-blue-50;
+//BOX-SHADOWS
+$box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+$box-shadow-aws: 0 1px 1px 0 rgba(0, 28, 36, 0.3),
+  1px 1px 1px 0 rgba(0, 28, 36, 0.15), -1px 1px 1px 0 rgba(0, 28, 36, 0.15);
+
+//BUTTONS
+$button-primary: $color-gsa-blue-40;
+//LINKS
+$link-primary: $color-sky-blue-50;

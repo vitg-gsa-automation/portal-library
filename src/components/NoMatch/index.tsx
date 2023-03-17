@@ -1,6 +1,7 @@
-import Container from 'layouts/Container';
 import { Link } from 'react-router-dom';
-import Page from 'layouts/Page';
+
+import Container from '../../layouts/Container';
+import Page from '../../layouts/Page';
 
 function NoMatch() {
   return (

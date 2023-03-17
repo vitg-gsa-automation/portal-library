@@ -5,15 +5,15 @@ import { NavLink as RouterNavLink, NavLinkProps } from 'react-router-dom';
 import clsx from 'clsx';
 
 import styles from './index.module.scss';
-import Sidebar from 'layouts/Sidebar';
-import MaterialIcon from 'components/MaterialIcon';
+import Sidebar from '../../layouts/Sidebar';
+import MaterialIcon from '../MaterialIcon';
 import {
   Drawer,
   DrawerTrigger,
   DrawerContent,
   DrawerClose,
   DrawerTitle,
-} from 'layouts/Drawer';
+} from '../../layouts/Drawer';
 
 export interface ServiceLink {
   text: string;

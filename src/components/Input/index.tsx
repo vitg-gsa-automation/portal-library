@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef, ReactElement, useState } from 'react';
 import { clsx } from 'clsx';
 
 import styles from './index.module.scss';
-import MaterialIcon from 'components/MaterialIcon';
+import MaterialIcon from '../MaterialIcon';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

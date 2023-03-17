@@ -1,4 +1,4 @@
-import { Item, SelectItem, SelectMenu } from 'components/Select';
+import { Item, SelectItem, SelectMenu } from '../Select';
 import { useCombobox } from 'downshift';
 
 import styles from './index.module.scss';

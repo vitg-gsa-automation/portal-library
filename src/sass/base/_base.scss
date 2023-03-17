@@ -1,0 +1,191 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --color-black-50: #000000;
+  --color-black-40: #404040;
+  --color-black-30: #808080;
+  --color-black-20: #bfbfbf;
+  --color-black-10: #e6e6e6;
+  --color-black-00: #fafafa;
+
+  --color-green-50: #0ab01a;
+  --color-green-40: #47c453;
+  --color-green-30: #84d78c;
+  --color-green-20: #c2ebc6;
+  --color-green-10: #e7f7e8;
+
+  --color-red-50: #b90000;
+  --color-red-40: #ca4040;
+  --color-red-30: #dc8080;
+  --color-red-20: #edbfbf;
+  --color-red-10: #f8e5e5;
+
+  --color-gsa-blue-50: #003c71;
+  --color-gsa-blue-40: #33638d;
+  --color-gsa-blue-30: #668aaa;
+  --color-gsa-blue-20: #99b1c6;
+  --color-gsa-blue-10: #ccd8e3;
+
+  --color-fedramp-deep-blue-50: #162e51;
+  --color-fedramp-deep-blue-40: #455874;
+  --color-fedramp-deep-blue-30: #738297;
+  --color-fedramp-deep-blue-20: #a2abb9;
+  --color-fedramp-deep-blue-10: #d0d5dc;
+
+  --color-fedramp-vivid-blue-50: #1a4480;
+
+  --color-bg-page: #f2f3f3;
+  --color-bg-content: #f5f5f5;
+  --color-bg-heading: unset;
+  --color-bg-navbar: var(--color-fedramp-deep-blue-50);
+  --color-bg-footer: var(--color-fedramp-deep-blue-50);
+  --color-bg-table-heading: white;
+  --color-bg-card-content: white;
+  --color-bg-main-drawer: white;
+  --color-bg-button-primary: var(--color-fedramp-deep-blue-40);
+  --color-bg-button-secondary: white;
+  --color-bg-input: white;
+  --color-bg-dropdown: white;
+  --color-bg-overlay: rgba(0, 0, 0, 0.7);
+
+  --color-border-input: var(--color-black-20);
+  --color-border-card-top: #eaeded;
+  --color-border-tabs: var(--color-black-10);
+  --color-border-drawer-right: transparent;
+  --color-border-divider: var(--color-black-10);
+
+  --color-card-divider: var(--color-black-10);
+
+  --border: 1px solid var(--color-black-20);
+  --border-column-seperator: 2px solid #eaeded;
+
+  // FONT
+  --font-color: #16191f;
+  --font-color-secondary: #545b64;
+  --font-color-link: #3c97ff;
+  --font-color-label: #000716;
+  --font-color-tabs: #767676;
+  --font-color-tabs-active: var(--color-gsa-blue-40);
+  --font-color-card-header-content: var(--font-color);
+  --font-color-card-header-text: var(--font-color-secondary);
+  --font-color-heading-title: black;
+  --font-color-breadcrumb-current: var(--font-color-secondary);
+  --font-color-column-header: #545b64;
+  --font-color-column-header-sorted: black;
+  --font-color-button-primary: white;
+  --font-color-button-secondary: var(--font-color);
+  //SHADOW
+  --shadow-menu: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+  --shadow-panel: 0px 1px 1px 1px #e9ebed;
+}
+
+html {
+  // This defines what 1rem is
+  font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+  @media only screen and (max-width: 500px) {
+    font-size: 50%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 0;
+  background-color: $color-200;
+  &.dark {
+    --color-bg-page: #16191f;
+    --color-bg-heading: #21252c;
+    --color-bg-table-heading: #21252c;
+    --color-bg-card-content: #2a2e33;
+    --color-bg-main-drawer: #2a2e33;
+    --color-border-card-top: #2a2e33;
+    --color-border-tabs: #414750;
+    --color-border-input: #879596;
+    --color-border-drawer-right: transparent;
+    --color-border-divider: #414750;
+    --color-bg-button-secondary: #2a2e33;
+    --color-bg-input: #1a2029;
+    --color-bg-dropdown: #2a2e33;
+    --color-bg-overlay: rgba(0, 0, 0, 0.7);
+    --color-card-divider: #414750;
+
+    --font-color-card-header-content: #eaeded;
+    --font-color-card-header-text: #d5dbdb;
+    --font-color: #d5dbdb;
+    --font-color-label: #95a5a6;
+    --font-color-heading-title: #d5dbdb;
+    --font-color-breadcrumb-current: #d5dbdb;
+    --font-color-tabs: #d5dbdb;
+    --font-color-tabs-active: var(--font-color-link);
+    --font-color-column-header: #95a5a6;
+    --font-color-column-header-sorted: #d5dbdb;
+    --font-color-button-secondary: #d5dbdb;
+    --border: 1px solid #414750;
+
+    --shadow-card: 0 1px 1px 0 rgba(0, 0, 0, 0.3),
+      1px 1px 1px 0 rgba(0, 0, 0, 0.3), -1px 1px 1px 0 rgba(0, 0, 0, 0.3);
+  }
+  &.blue {
+    --color-bg-heading: var(--color-fedramp-deep-blue-50);
+    --color-bg-table-heading: var(--color-black-00);
+    --color-card-divider: var(--color-fedramp-deep-blue-10);
+
+    --font-color-card-header-content: white;
+    --font-color-card-header-text: var(--color-fedramp-deep-blue-10);
+  }
+}
+
+input,
+textarea {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  resize: none;
+  &::placeholder {
+    font-weight: 400;
+    color: $color-black-20;
+    font-style: italic;
+  }
+  &:-webkit-autofill {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    }
+  }
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+label {
+  user-select: none;
+}
+
+.link {
+  &,
+  &:link,
+  &:visited {
+    text-decoration: none;
+    color: $link-primary;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}

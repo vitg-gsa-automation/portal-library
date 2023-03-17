@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import styles from './index.module.scss';
-import { Select } from 'components/Select';
+import { Select } from '../../components/Select';
 
 interface DashboardHeaderProps {
   breadcrumbs: ReactNode;

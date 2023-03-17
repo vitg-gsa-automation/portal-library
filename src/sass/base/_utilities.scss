@@ -1,0 +1,28 @@
+.italic {
+  font-style: italic;
+}
+
+.center-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.margin-top {
+  margin-top: 1rem;
+}
+
+.text {
+  &--red {
+    color: $color-red-40 !important;
+  }
+  &--green {
+    color: $color-green-40 !important;
+  }
+}

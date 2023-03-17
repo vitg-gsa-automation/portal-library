@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import styles from './index.module.scss';
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   description?: ReactNode;
   actions?: ReactNode;
@@ -14,7 +14,7 @@ interface HeaderDetailProps {
   value: ReactNode;
 }
 
-function Header({ title, description, actions, status }: Props) {
+function Header({ title, description, actions, status }: HeaderProps) {
   return (
     <div className={styles.root}>
       <div className={styles.box}>

@@ -1,14 +1,14 @@
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-import Button from 'components/Button';
+import Button from '../Button';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from 'layouts/Card';
-import { FormActions } from 'layouts/FormActions';
+} from '../../layouts/Card';
+import { FormActions } from '../../layouts/FormActions';
 import { ReactNode } from 'react';
 
 import styles from './index.module.scss';
