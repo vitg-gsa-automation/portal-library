@@ -17,7 +17,7 @@ function getFolderName(filePath) {
 export default [
   {
     input: 'src/index.ts',
-    external: ['react', 'react-dom', 'react-router-dom'],
+    external: ['react', 'react-dom', 'react-router', 'react-router-dom'],
     output: [
       {
         file: packageJson.module,

@@ -1,7 +1,6 @@
 export * from './Accordion';
 export * from './AlertDialog';
 export * from './Avatar';
-export * from './Breadcrumbs';
 export * from './Button';
 export * from './Checkbox';
 export * from './Chip';
