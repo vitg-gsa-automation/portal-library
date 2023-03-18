@@ -1,4 +1,4 @@
-import { clsx } from 'clsx';
+import clsx from 'clsx';
 import React, { ForwardedRef, forwardRef, ReactNode } from 'react';
 import { To, useNavigate } from 'react-router';
 
@@ -67,11 +67,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
+        ref={forwardedRef}
         onClick={() => {
           if (to) navigate(to);
         }}
         {...props}
-        ref={forwardedRef}
         className={clsx(
           styles.root,
           styles[color],
