@@ -13,7 +13,7 @@ function itemToString(item: any) {
   return item ? item.title : '';
 }
 
-interface SelectProps {
+export interface SelectProps {
   items: Item[];
   selectedItem?: Item;
   onSelectChange: (item: Item) => any;
@@ -48,7 +48,7 @@ export function Select({
   const renderItems = function () {
     if (!items.length) return <Empty main="No items" />;
     return items.map((item, index) => (
-      <ListItem
+      <SelectItem
         key={index}
         item={item}
         highlighted={highlightedIndex === index}
