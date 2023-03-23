@@ -3,14 +3,15 @@
   align-items: center;
   padding: 0.8rem 1.6rem;
   white-space: nowrap;
-  border: none;
+  border: 1px solid transparent;
+  border: 2px solid transparent;
+
   font-size: 1.4rem;
   cursor: pointer;
 
   &[data-highlighted] {
-    outline-width: 1px;
-    outline-style: solid;
-    filter: brightness(95%);
+    border: 2px solid var(--color-gsa-blue-40);
+    border-radius: 8px;
   }
 
   &[data-disabled] {

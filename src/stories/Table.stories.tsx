@@ -4,6 +4,7 @@ import { Card, CardHeader } from '../layouts';
 import { useMemo } from 'react';
 import { Package } from 'types';
 import { Table, TableProps } from '../layouts/Table';
+import { Button, Empty } from '../components';
 
 export default {
   title: 'Table',
@@ -68,7 +69,7 @@ const columns = [
 export const Default: Story<TableProps<Package>> = (args) => {
   return (
     <Card header={<CardHeader>Packages</CardHeader>}>
-      <Table {...args} columns={columns} />
+      <Table {...args} columns={columns} data-cy="table-packages" />
     </Card>
   );
 };
@@ -76,15 +77,22 @@ Default.args = {
   data: pkgs,
 };
 
-export const Empty: Story<TableProps<Package>> = (args) => {
+export const UsingEmpty: Story<TableProps<Package>> = (args) => {
   return (
     <Card header={<CardHeader>Packages</CardHeader>}>
       <Table {...args} columns={columns} />
     </Card>
   );
 };
-Empty.args = {
+UsingEmpty.args = {
   data: [],
+  empty: (
+    <Empty
+      title="No packages"
+      description="No packages to display"
+      actions={<Button text="Create package" color="secondary" />}
+    />
+  ),
 };
 
 export const Loading: Story<TableProps<Package>> = (args) => {

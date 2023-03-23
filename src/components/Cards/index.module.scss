@@ -1,0 +1,13 @@
+.root {
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -2.4rem;
+  list-style-type: none;
+}
+
+.has-header {
+  margin-top: 2rem;
+}

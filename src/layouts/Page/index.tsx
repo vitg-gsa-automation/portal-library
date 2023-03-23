@@ -5,5 +5,9 @@ interface PageProps {
 }
 
 export function Page({ children }: PageProps) {
-  return <main className={styles.root}>{children}</main>;
+  return (
+    <main className={styles.root} data-cy="page">
+      {children}
+    </main>
+  );
 }

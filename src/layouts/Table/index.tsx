@@ -30,6 +30,7 @@ export interface TableProps<T> {
   onRowClick?: (rowData: T) => unknown;
   header?: (table: TableType<T>) => ReactElement;
   filters?: ReactNode;
+  empty?: ReactNode;
   loading?: boolean;
   error?: string;
   columnVisibility?: ColumnVisibility;
@@ -59,9 +60,11 @@ export const Table = <T extends unknown>({
   onRowClick,
   header,
   filters,
+  empty,
   loading,
   error,
   options,
+  ...props
 }: TableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, setPagination] = React.useState<PaginationState>({
@@ -102,8 +105,8 @@ export const Table = <T extends unknown>({
   return (
     <React.Fragment>
       {header && header(table)}
-      <table className={styles.root}>
-        <thead>
+      <table className={styles.root} data-cy="table" {...props}>
+        <thead data-cy="thead">
           <tr>
             {table.getHeaderGroups()[0].headers.map((header) => {
               const colWidth = header.getSize();
@@ -172,10 +175,12 @@ export const Table = <T extends unknown>({
           })}
         </tbody>
       </table>
-      {error && <Empty main={error} />}
-      {data.length === 0 && !error ? (
-        <Empty main="No resources" text="No resources to display" />
-      ) : null}
+      {error && <Empty title={error} />}
+      {data.length === 0 && !error
+        ? empty || (
+            <Empty title="No resources" description="No resources to display" />
+          )
+        : null}
     </React.Fragment>
   );
 };

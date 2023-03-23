@@ -1,10 +1,17 @@
 import clsx from 'clsx';
+import { ForwardedRef, forwardRef } from 'react';
 import styles from './index.module.scss';
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
 }
 
-export function Sidebar({ children, ...props }: SidebarProps) {
-  return <div className={clsx(styles.root, props.className)}>{children}</div>;
-}
+export const Sidebar = forwardRef(
+  ({ children, ...props }: Props, ref: ForwardedRef<HTMLDivElement>) => {
+    return (
+      <div ref={ref} className={clsx(styles.root, props.className)}>
+        {children}
+      </div>
+    );
+  }
+);

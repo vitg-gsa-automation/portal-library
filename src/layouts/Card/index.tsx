@@ -7,7 +7,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   header?: ReactNode;
   footer?: ReactNode;
   loading?: boolean;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -99,9 +99,9 @@ export function CardHeaderTools({
   );
 }
 
-export function CardTitle({ count, text }: CardTitleProps) {
+export function CardTitle({ count, text, ...props }: CardTitleProps) {
   return (
-    <div className={styles.title}>
+    <div className={styles.title} {...props}>
       {text}{' '}
       {count ? (
         <span className={styles['title__count']}>{`(${count})`}</span>
@@ -135,14 +135,22 @@ export function CardStat({ title, value, ...props }: CardStatProps) {
   );
 }
 
-export function CardStatValue({ children }: CardStatValueProps) {
-  return <div className={styles.statValue}>{children || '-'}</div>;
+export function CardStatValue({ children, ...props }: CardStatValueProps) {
+  return (
+    <div className={styles.statValue} {...props}>
+      {children || '-'}
+    </div>
+  );
 }
 
 interface CardActionProps {
   children: ReactNode;
 }
 
-export function CardActions({ children }: CardActionProps) {
-  return <div className={styles.actions}>{children}</div>;
+export function CardActions({ children, ...props }: CardActionProps) {
+  return (
+    <div className={styles.actions} {...props}>
+      {children}
+    </div>
+  );
 }

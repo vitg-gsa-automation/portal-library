@@ -4,7 +4,7 @@ import { useSelect } from 'downshift';
 
 import styles from './index.module.scss';
 import { Empty } from '../Empty';
-import { ListItem } from '../Option';
+import { ListItem } from '../ListItem';
 import { MaterialIcon } from '../MaterialIcon';
 import { InputError } from '../Input';
 import { Item } from '../../types/form';
@@ -46,7 +46,7 @@ export function Select({
   });
 
   const renderItems = function () {
-    if (!items.length) return <Empty main="No items" />;
+    if (!items.length) return <Empty title="No items" />;
     return items.map((item, index) => (
       <SelectItem
         key={index}

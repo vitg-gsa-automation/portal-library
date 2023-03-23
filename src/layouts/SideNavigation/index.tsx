@@ -23,6 +23,7 @@ interface Header {
 type ItemType = 'link' | 'section';
 
 interface Item {
+  id: any;
   type: ItemType;
   text: string;
   items?: Item[];
@@ -36,14 +37,18 @@ export interface SideNavigationProps {
   items?: Item[];
 }
 
-export function SideNavigation({ header, items }: SideNavigationProps) {
+export function SideNavigation({
+  header,
+  items,
+  ...props
+}: SideNavigationProps) {
   const renderItems = function (items?: Item[]) {
     if (!items) return null;
     return items.map((item) => {
       if (item.type === 'link')
         return (
           <Link
-            key={item.text}
+            key={item.id}
             icon={item.icon}
             text={item.text}
             to={item.href || '#'}
@@ -76,7 +81,7 @@ export function SideNavigation({ header, items }: SideNavigationProps) {
         className={styles.content}
         asChild
       >
-        <Sidebar className={styles.root}>
+        <Sidebar className={styles.root} data-cy="side-navigation">
           {header && (
             <div className={styles.header}>
               <DrawerTitle className={styles.title} asChild>

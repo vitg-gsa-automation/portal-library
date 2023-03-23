@@ -15,3 +15,4 @@ export * from './Sidebar';
 export * from './SpaceBetween';
 export * from './Table';
 export * from './Window';
+export * from './SideNavigation';
