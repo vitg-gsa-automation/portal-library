@@ -83,7 +83,7 @@ export function CardHeader({
 }
 
 interface CardHeaderToolsProps {
-  children: ReactNode;
+  children?: ReactNode;
   searchInput: ReactElement;
 }
 export function CardHeaderTools({

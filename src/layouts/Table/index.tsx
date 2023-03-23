@@ -69,7 +69,7 @@ export const Table = <T extends unknown>({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
-    pageSize: 50,
+    pageSize: 1,
   });
 
   const table = useReactTable<T>({
@@ -82,7 +82,6 @@ export const Table = <T extends unknown>({
       pagination,
       columnVisibility,
     },
-
     onSortingChange: setSorting,
     onRowSelectionChange: setRowSelection,
     onPaginationChange: setPagination,
@@ -223,28 +222,14 @@ export function TableHeader({
 }
 
 interface TableToolsProps {
-  table: TableType<any>;
-  filters?: ReactNode;
+  filters?: ReactElement;
+  pagination?: ReactElement;
 }
-export function TableTools({ filters, table, ...props }: TableToolsProps) {
+export function TableTools({ filters, pagination, ...props }: TableToolsProps) {
   return (
     <div className={styles.tools} {...props}>
       <div className={styles['tools__filters']}>{filters}</div>
-      <div className={styles['tools__pagination']}>
-        <MaterialIconButton
-          icon="navigate_before"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        />
-        <div className={styles['tools__pagination__page']}>
-          {table.getState().pagination.pageIndex + 1}
-        </div>
-        <MaterialIconButton
-          icon="navigate_next"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        />
-      </div>
+      <div className={styles['tools__pagination']}>{pagination}</div>
     </div>
   );
 }

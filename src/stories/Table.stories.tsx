@@ -1,10 +1,9 @@
 import { Story } from '@storybook/react';
 import { createColumnHelper } from '@tanstack/react-table';
-import { Card, CardHeader } from '../layouts';
-import { useMemo } from 'react';
 import { Package } from 'types';
-import { Table, TableProps } from '../layouts/Table';
-import { Button, Empty } from '../components';
+import { Button, Empty, TextFilter, Pagination } from '../components';
+import { Card, CardHeader, CardTitle } from '../layouts';
+import { Table, TableHeader, TableProps, TableTools } from '../layouts/Table';
 
 export default {
   title: 'Table',
@@ -23,23 +22,23 @@ const pkgs: Package[] = [
     ContactName: 'Aaron Nolan',
   },
   {
-    PkgName: 'AwesomecloudPkg1',
+    PkgName: 'AwesomecloudPkg2',
     PkgDesc: 'Pkg description',
     Status: 'Pending',
-    PkgCreateDate: 'March 03, 2023',
-    ATOBeginDate: 'March 03, 2023',
-    ATOEndDate: 'March 03, 2023',
-    LastModified: 'March 03, 2023',
+    PkgCreateDate: 'November 03, 2023',
+    ATOBeginDate: 'November 03, 2023',
+    ATOEndDate: 'November 03, 2023',
+    LastModified: 'November 03, 2023',
     ContactName: 'Aaron Nolan',
   },
   {
-    PkgName: 'AwesomecloudPkg1',
+    PkgName: 'AwesomecloudPkg3',
     PkgDesc: 'Pkg description',
     Status: 'Pending',
-    PkgCreateDate: 'March 03, 2023',
-    ATOBeginDate: 'March 03, 2023',
-    ATOEndDate: 'March 03, 2023',
-    LastModified: 'March 03, 2023',
+    PkgCreateDate: 'Jan 03, 2023',
+    ATOBeginDate: 'Jan 03, 2023',
+    ATOEndDate: 'Jan 03, 2023',
+    LastModified: 'Jan 03, 2023',
     ContactName: 'Aaron Nolan',
   },
 ];
@@ -95,6 +94,35 @@ UsingEmpty.args = {
   ),
 };
 
+export const WithTools: Story<TableProps<Package>> = (args) => {
+  return (
+    <Card>
+      <Table
+        {...args}
+        columns={columns}
+        header={(table) => (
+          <TableHeader
+            title={<CardTitle text="Packages" count={pkgs.length} />}
+            tools={
+              <TableTools
+                filters={
+                  <TextFilter
+                    filteringText=""
+                    filteringPlaceholder="Find by resource"
+                  />
+                }
+                pagination={<Pagination table={table} />}
+              />
+            }
+          />
+        )}
+      />
+    </Card>
+  );
+};
+WithTools.args = {
+  data: pkgs,
+};
 export const Loading: Story<TableProps<Package>> = (args) => {
   return (
     <Card header={<CardHeader>Packages</CardHeader>}>

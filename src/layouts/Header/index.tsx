@@ -24,7 +24,7 @@ export function Header({ title, description, actions, status }: HeaderProps) {
           </h1>
           {status}
         </div>
-        {description && <p className={styles.description}>{description}</p>}
+        {description && <div className={styles.description}>{description}</div>}
       </div>
       {actions && <div className={styles.actions}>{actions}</div>}
     </div>

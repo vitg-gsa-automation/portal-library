@@ -22,13 +22,13 @@
         left: 0;
         bottom: 25%;
         height: 50%;
-        border-left: 1px solid var(--color-card-divider);
+        border-left: 2px solid var(--color-card-divider);
       }
     }
   }
 
   & td {
-    padding: 0.8rem 1.6rem;
+    padding: 0.8rem 2rem;
   }
 }
 
@@ -47,8 +47,9 @@
     color: var(--font-color-column-header-sorted);
   }
   &--alt {
+    font-weight: 800;
     width: 100%;
-    padding: 1rem;
+    padding: 0.8rem 1rem;
   }
   &--sorted {
     color: var(--font-color-column-header-sorted);
@@ -84,7 +85,6 @@
 .header {
   padding: 1.2rem 2.4rem;
   background-color: var(--color-bg-heading);
-  border-bottom: 1px solid var(--color-card-divider);
   &__container {
     display: flex;
     justify-content: space-between;

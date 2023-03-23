@@ -1,27 +1,21 @@
 import { ReactElement } from 'react';
-import { Outlet } from 'react-router-dom';
-import { Viewport as ToastViewport } from '@radix-ui/react-toast';
 
 import styles from './index.module.scss';
 
 interface LayoutProps {
-  navbar?: ReactElement;
-  sidebar?: ReactElement;
-  footer?: ReactElement;
+  navigation?: ReactElement;
+  content?: ReactElement;
+  tools?: ReactElement;
 }
 
-export function Layout({ navbar, sidebar, footer }: LayoutProps) {
+export function Layout({ navigation, content, tools }: LayoutProps) {
   return (
     <div className={styles.root}>
-      {navbar}
       <div className={styles.container}>
-        {sidebar}
-        <div className={styles.content}>
-          <ToastViewport />
-          <Outlet />
-        </div>
+        {navigation}
+        <div className={styles.content}>{content}</div>
+        {tools}
       </div>
-      {footer}
     </div>
   );
 }

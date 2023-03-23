@@ -1,13 +1,21 @@
-import { ReactNode } from 'react';
+import { ReactElement } from 'react';
+
+import styles from './index.module.scss';
 
 interface DashboardProps {
-  children: ReactNode;
+  topNavigation?: ReactElement;
+  footer?: ReactElement;
+  children?: ReactElement;
 }
 
-export function Dashboard({ children, ...props }: DashboardProps) {
+export function Dashboard({ topNavigation, footer, children }: DashboardProps) {
   return (
-    <div className="dashboard" {...props}>
-      {children}
+    <div className={styles.root}>
+      {topNavigation}
+      <div className={styles.container}>
+        <div className={styles.content}>{children}</div>
+      </div>
+      {footer}
     </div>
   );
 }
