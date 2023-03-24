@@ -11,9 +11,10 @@ import {
   Container,
   Dashboard,
   Header,
-  Page,
+  ContentLayout,
   SideNavigation,
   TableProps,
+  HelpPanel,
 } from '../layouts';
 
 export default {
@@ -80,7 +81,6 @@ export const Default: Story<TableProps<Package>> = (args) => {
   return (
     <Dashboard topNavigation={<TopNavigation />}>
       <AppLayout
-        notifications={<div>notifica</div>}
         breadcrumbs={<div>breadcrumbs</div>}
         navigation={
           <SideNavigation
@@ -118,7 +118,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
           />
         }
         content={
-          <Page
+          <ContentLayout
             header={
               <PageHeader>
                 <Header
@@ -141,9 +141,9 @@ export const Default: Story<TableProps<Package>> = (args) => {
                 <CardContent>Card content</CardContent>
               </Card>
             </Container>
-          </Page>
+          </ContentLayout>
         }
-        tools={<div style={{ width: '80px' }}>Tools</div>}
+        tools={<HelpPanel header={{ href: '#', text: 'Help panel' }} />}
       />
     </Dashboard>
   );

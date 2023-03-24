@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
 import { Container } from '../../layouts/Container';
-import { Page } from '../../layouts/Page';
+import { ContentLayout } from '../../layouts/ContentLayout';
 
 export function NoMatch() {
   return (
-    <Page>
+    <ContentLayout>
       <Container style={{ padding: '3.2rem' }}>
         <h1>Nothing to see here!</h1>
         <div>
@@ -14,6 +14,6 @@ export function NoMatch() {
           </Link>
         </div>
       </Container>
-    </Page>
+    </ContentLayout>
   );
 }

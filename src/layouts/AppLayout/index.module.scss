@@ -14,7 +14,7 @@
   grid-template-rows: repeat(3, auto) 114px 1fr;
   grid-template-columns:
     min-content minmax(40px, 1fr)
-    minmax(280px, 1325px)
+    minmax(280px, 1350px)
     minmax(40px, 1fr) min-content;
 }
 
@@ -55,8 +55,9 @@
 }
 
 .tools {
+  position: sticky;
+  top: 0;
   z-index: 830;
-  background-color: gray;
   grid-column: 5;
   grid-row: 1 / span 5;
 }
