@@ -80,6 +80,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
   return (
     <Dashboard topNavigation={<TopNavigation />}>
       <AppLayout
+        notifications={<div>notifica</div>}
         breadcrumbs={<div>breadcrumbs</div>}
         navigation={
           <SideNavigation
@@ -142,7 +143,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
             </Container>
           </Page>
         }
-        tools={<div>Tools</div>}
+        tools={<div style={{ width: '80px' }}>Tools</div>}
       />
     </Dashboard>
   );

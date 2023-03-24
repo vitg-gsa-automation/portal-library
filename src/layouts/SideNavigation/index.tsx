@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, useState } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import * as Separator from '@radix-ui/react-separator';
 import { NavLink, NavLinkProps } from 'react-router-dom';
@@ -42,6 +42,7 @@ export function SideNavigation({
   items,
   ...props
 }: SideNavigationProps) {
+  const [open, setOpen] = useState(true);
   const renderItems = function (items?: Item[]) {
     if (!items) return null;
     return items.map((item) => {
@@ -69,20 +70,22 @@ export function SideNavigation({
   };
   return (
     <div className={styles.root}>
-      <Drawer modal={false} defaultOpen>
-        <DrawerTrigger asChild>
-          <button className={styles.trigger}>
-            <MaterialIcon icon="menu" className={styles['trigger__icon']} />
-          </button>
-        </DrawerTrigger>
+      <Drawer modal={false} open={open} onOpenChange={setOpen}>
+        {!open && (
+          <nav className={styles.closed}>
+            <DrawerTrigger className={styles.trigger}>
+              <MaterialIcon icon="menu" className={styles['trigger__icon']} />
+            </DrawerTrigger>
+          </nav>
+        )}
         <DrawerContent
           onInteractOutside={(e) => e.preventDefault()}
           onEscapeKeyDown={(e) => e.preventDefault()}
           aria-describedby={undefined}
-          className={styles.content}
-          asChild
+          className={styles.animated}
+          forceMount
         >
-          <Sidebar data-cy="side-navigation">
+          <nav className={styles.content}>
             {header && (
               <div className={styles.header}>
                 <DrawerTitle className={styles.title} asChild>
@@ -96,14 +99,14 @@ export function SideNavigation({
                 </DrawerClose>
               </div>
             )}
-            <div className={styles.content}>
+            <div>
               <nav className={styles.nav} aria-label="service navigation">
                 <Accordion.Root type="multiple">
                   {renderItems(items)}
                 </Accordion.Root>
               </nav>
             </div>
-          </Sidebar>
+          </nav>
         </DrawerContent>
       </Drawer>
     </div>

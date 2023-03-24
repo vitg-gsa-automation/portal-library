@@ -20,10 +20,7 @@ export function AppLayout({
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles['background__top']}></div>
-          <div className={styles['background__bottom']}></div>
-        </div>
+        <div className={styles.background}></div>
         <div className={styles.navigation}>{navigation}</div>
         <div className={styles.notifications}>{notifications}</div>
         <div className={styles.breadcrumbs}>{breadcrumbs}</div>
