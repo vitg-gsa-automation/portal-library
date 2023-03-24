@@ -69,7 +69,7 @@ export const Table = <T extends unknown>({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
-    pageSize: 1,
+    pageSize: 50,
   });
 
   const table = useReactTable<T>({
