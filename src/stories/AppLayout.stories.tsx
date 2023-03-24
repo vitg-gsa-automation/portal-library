@@ -1,13 +1,9 @@
 import { Story } from '@storybook/react';
 import { createColumnHelper } from '@tanstack/react-table';
-import {
-  Button,
-  PageHeader,
-  ToastComponent,
-  TopNavigation,
-} from '../components';
 import { Package } from 'types';
+import { Button, PageHeader, TopNavigation } from '../components';
 import {
+  AppLayout,
   Card,
   CardContent,
   CardFooter,
@@ -15,16 +11,14 @@ import {
   Container,
   Dashboard,
   Header,
-  Layout,
   Page,
   SideNavigation,
   TableProps,
 } from '../layouts';
-import { ToastProvider } from '@radix-ui/react-toast';
 
 export default {
-  title: 'Layout',
-  component: Layout,
+  title: 'AppLayout',
+  component: AppLayout,
 };
 
 const pkgs: Package[] = [
@@ -85,7 +79,7 @@ const columns = [
 export const Default: Story<TableProps<Package>> = (args) => {
   return (
     <Dashboard topNavigation={<TopNavigation />}>
-      <Layout
+      <AppLayout
         breadcrumbs={<div>breadcrumbs</div>}
         navigation={
           <SideNavigation

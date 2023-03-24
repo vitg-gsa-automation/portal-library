@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 import styles from './index.module.scss';
 
-interface LayoutProps {
+interface AppLayoutProps {
   navigation?: ReactElement;
   breadcrumbs?: ReactElement;
   notifications?: ReactElement;
@@ -10,13 +10,13 @@ interface LayoutProps {
   tools?: ReactElement;
 }
 
-export function Layout({
+export function AppLayout({
   navigation,
   breadcrumbs,
   notifications,
   content,
   tools,
-}: LayoutProps) {
+}: AppLayoutProps) {
   return (
     <div className={styles.root}>
       <div className={styles.container}>

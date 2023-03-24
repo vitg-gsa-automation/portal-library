@@ -8,7 +8,7 @@ export * from './Drawer';
 export * from './Form';
 export * from './FormActions';
 export * from './Header';
-export * from './Layout';
+export * from './AppLayout';
 export * from './Page';
 export * from './Property';
 export * from './Sidebar';
