@@ -10,20 +10,19 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-controls',
+    {
+      name: '@storybook/preset-scss',
+      options: {
+        cssLoaderOptions: {
+          modules: {
+            localIdentName: '[path][local]--[hash:base64:5]',
+          },
+        },
+      },
+    },
   ],
   framework: '@storybook/react',
   docs: {
     autodocs: true,
-  },
-  webpackFinal: async (config, { configType }) => {
-    // Make whatever fine-grained changes you need
-    config.module.rules.push({
-      test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader'],
-      include: path.resolve(__dirname, '../'),
-    });
-
-    // Return the altered config
-    return config;
   },
 };

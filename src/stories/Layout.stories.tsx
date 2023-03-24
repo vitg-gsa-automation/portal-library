@@ -1,10 +1,17 @@
 import { Story } from '@storybook/react';
 import { createColumnHelper } from '@tanstack/react-table';
-import { PageHeader, TopNavigation } from '../components';
+import {
+  Button,
+  PageHeader,
+  ToastComponent,
+  TopNavigation,
+} from '../components';
 import { Package } from 'types';
 import {
   Card,
   CardContent,
+  CardFooter,
+  CardHeader,
   Container,
   Dashboard,
   Header,
@@ -13,6 +20,7 @@ import {
   SideNavigation,
   TableProps,
 } from '../layouts';
+import { ToastProvider } from '@radix-ui/react-toast';
 
 export default {
   title: 'Layout',
@@ -78,6 +86,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
   return (
     <Dashboard topNavigation={<TopNavigation />}>
       <Layout
+        breadcrumbs={<div>breadcrumbs</div>}
         navigation={
           <SideNavigation
             header={{ href: '#', text: 'Service name' }}
@@ -117,17 +126,29 @@ export const Default: Story<TableProps<Package>> = (args) => {
           <Page
             header={
               <PageHeader>
-                <Header title="Packages" />
+                <Header
+                  title="AwesomeCloudSSP1"
+                  description="Lorem ipsum dolor sit amet consectetur. Vel ac id aliquam ac ullamcorper in justo vitae."
+                  actions={<Button text="Create resource" color="secondary" />}
+                />
               </PageHeader>
             }
           >
             <Container>
-              <Card>
+              <Card
+                header={
+                  <CardHeader text="This is a descriptive description">
+                    Card header
+                  </CardHeader>
+                }
+                footer={<CardFooter>View more</CardFooter>}
+              >
                 <CardContent>Card content</CardContent>
               </Card>
             </Container>
           </Page>
         }
+        tools={<div>Tools</div>}
       />
     </Dashboard>
   );

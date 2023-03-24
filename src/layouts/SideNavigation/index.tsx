@@ -68,43 +68,45 @@ export function SideNavigation({
     });
   };
   return (
-    <Drawer modal={false} defaultOpen>
-      <DrawerTrigger asChild>
-        <button className={styles.trigger}>
-          <MaterialIcon icon="menu" className={styles['trigger__icon']} />
-        </button>
-      </DrawerTrigger>
-      <DrawerContent
-        onInteractOutside={(e) => e.preventDefault()}
-        onEscapeKeyDown={(e) => e.preventDefault()}
-        aria-describedby={undefined}
-        className={styles.content}
-        asChild
-      >
-        <Sidebar className={styles.root} data-cy="side-navigation">
-          {header && (
-            <div className={styles.header}>
-              <DrawerTitle className={styles.title} asChild>
-                <h1>{header.text}</h1>
-              </DrawerTitle>
-              <DrawerClose className={styles['header__close']}>
-                <MaterialIcon
-                  icon="chevron_left"
-                  className={styles['header__icon']}
-                />
-              </DrawerClose>
+    <div className={styles.root}>
+      <Drawer modal={false} defaultOpen>
+        <DrawerTrigger asChild>
+          <button className={styles.trigger}>
+            <MaterialIcon icon="menu" className={styles['trigger__icon']} />
+          </button>
+        </DrawerTrigger>
+        <DrawerContent
+          onInteractOutside={(e) => e.preventDefault()}
+          onEscapeKeyDown={(e) => e.preventDefault()}
+          aria-describedby={undefined}
+          className={styles.content}
+          asChild
+        >
+          <Sidebar data-cy="side-navigation">
+            {header && (
+              <div className={styles.header}>
+                <DrawerTitle className={styles.title} asChild>
+                  <h1>{header.text}</h1>
+                </DrawerTitle>
+                <DrawerClose className={styles['header__close']}>
+                  <MaterialIcon
+                    icon="chevron_left"
+                    className={styles['header__icon']}
+                  />
+                </DrawerClose>
+              </div>
+            )}
+            <div className={styles.content}>
+              <nav className={styles.nav} aria-label="service navigation">
+                <Accordion.Root type="multiple">
+                  {renderItems(items)}
+                </Accordion.Root>
+              </nav>
             </div>
-          )}
-          <div className={styles.content}>
-            <nav className={styles.nav} aria-label="service navigation">
-              <Accordion.Root type="multiple">
-                {renderItems(items)}
-              </Accordion.Root>
-            </nav>
-          </div>
-        </Sidebar>
-      </DrawerContent>
-    </Drawer>
+          </Sidebar>
+        </DrawerContent>
+      </Drawer>
+    </div>
   );
 }
 
