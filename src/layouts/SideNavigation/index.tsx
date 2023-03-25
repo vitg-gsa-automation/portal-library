@@ -35,14 +35,16 @@ interface Item {
 export interface SideNavigationProps {
   header?: Header;
   items?: Item[];
+  defaultOpen?: boolean;
 }
 
 export function SideNavigation({
   header,
   items,
+  defaultOpen = true,
   ...props
 }: SideNavigationProps) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(defaultOpen);
   const renderItems = function (items?: Item[]) {
     if (!items) return null;
     return items.map((item) => {

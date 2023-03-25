@@ -37,7 +37,6 @@
 .content {
   grid-column: 3;
   grid-row: 4 / span 2;
-  overflow-x: auto;
   display: flex;
   flex-direction: column;
 }

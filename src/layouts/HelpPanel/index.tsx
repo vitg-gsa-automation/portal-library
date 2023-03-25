@@ -22,10 +22,16 @@ interface Header {
 export interface HelpPanelProps {
   header?: Header;
   content?: ReactNode;
+  defaulOpen?: boolean;
 }
 
-export function HelpPanel({ header, content, ...props }: HelpPanelProps) {
-  const [open, setOpen] = useState(true);
+export function HelpPanel({
+  header,
+  content,
+  defaulOpen = false,
+  ...props
+}: HelpPanelProps) {
+  const [open, setOpen] = useState(defaulOpen);
 
   return (
     <div className={styles.root}>
