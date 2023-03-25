@@ -1,7 +1,18 @@
 import { Story } from '@storybook/react';
 import { createColumnHelper } from '@tanstack/react-table';
+import React from 'react';
 import { Package } from 'types';
-import { Button, PageHeader, TopNavigation } from '../components';
+import {
+  Button,
+  DropdownButton,
+  PageHeader,
+  Tab,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+  TopNavigation,
+} from '../components';
 import {
   AppLayout,
   Card,
@@ -15,6 +26,10 @@ import {
   SideNavigation,
   TableProps,
   HelpPanel,
+  CardTitle,
+  ColumnLayout,
+  SpaceBetween,
+  Property,
 } from '../layouts';
 
 export default {
@@ -84,7 +99,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
         breadcrumbs={<div>breadcrumbs</div>}
         navigation={
           <SideNavigation
-            header={{ href: '#', text: 'Service name' }}
+            header={{ href: '#', text: 'Authorizations' }}
             items={[
               {
                 id: 'dashboard',
@@ -106,6 +121,22 @@ export const Default: Story<TableProps<Package>> = (args) => {
                 text: 'Navigation link',
                 icon: 'add',
                 href: '/add',
+                items: [
+                  {
+                    id: 'dashboard',
+                    type: 'link',
+                    text: 'Navigation link',
+                    icon: 'dashboard',
+                    href: '/dashboard',
+                  },
+                  {
+                    id: 'home',
+                    type: 'link',
+                    text: 'Navigation link',
+                    icon: 'home',
+                    href: '/home',
+                  },
+                ],
               },
               {
                 id: 'settings',
@@ -124,22 +155,59 @@ export const Default: Story<TableProps<Package>> = (args) => {
                 <Header
                   title="AwesomeCloudSSP1"
                   description="Lorem ipsum dolor sit amet consectetur. Vel ac id aliquam ac ullamcorper in justo vitae."
-                  actions={<Button text="Create resource" color="secondary" />}
+                  actions={
+                    <React.Fragment>
+                      <Button text="Edit resource" color="secondary" />
+                      <DropdownButton text="Actions">list</DropdownButton>
+                    </React.Fragment>
+                  }
                 />
               </PageHeader>
             }
           >
             <Container>
-              <Card
-                header={
-                  <CardHeader text="This is a descriptive description">
-                    Card header
-                  </CardHeader>
-                }
-                footer={<CardFooter>View more</CardFooter>}
-              >
-                <CardContent>Card content</CardContent>
-              </Card>
+              <Tabs defaultValue="1">
+                <TabsList loop={false}>
+                  <TabsTrigger value="1" asChild>
+                    <Tab title="Packages" />
+                  </TabsTrigger>
+                  <TabsTrigger value="2" asChild>
+                    <Tab title="Properties" />
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="1">
+                  <Card
+                    header={
+                      <CardHeader>
+                        <CardTitle text="Document overview" />
+                      </CardHeader>
+                    }
+                    footer={<CardFooter>View more</CardFooter>}
+                  >
+                    <CardContent>
+                      <ColumnLayout columns={3}>
+                        <SpaceBetween>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                          <Property label="Description">
+                            System Security Plan
+                          </Property>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                        </SpaceBetween>
+                        <SpaceBetween>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                        </SpaceBetween>
+                        <SpaceBetween>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                        </SpaceBetween>
+                      </ColumnLayout>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              </Tabs>
             </Container>
           </ContentLayout>
         }
