@@ -1,7 +1,7 @@
 .root {
   background-color: var(--color-bg-card-content);
   box-shadow: var(--shadow-card);
-  // border-top: 1px solid var(--color-border-card-top);
+  width: 100%;
   border-radius: 1.6rem;
   &__loading {
     min-height: 10rem;

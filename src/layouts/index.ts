@@ -17,3 +17,4 @@ export * from './Window';
 export * from './SideNavigation';
 export * from './HelpPanel';
 export * from './ContentLayout';
+export * from './Grid';

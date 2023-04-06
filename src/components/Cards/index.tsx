@@ -36,7 +36,13 @@ export function Cards<T extends unknown>({
         {items.map((item, index) => {
           return (
             <li key={index} style={columnStyle}>
-              <Card style={{ marginLeft: '2.4rem', marginBottom: '2.4rem' }}>
+              <Card
+                style={{
+                  marginLeft: '2.4rem',
+                  marginBottom: '2.4rem',
+                  width: 'auto',
+                }}
+              >
                 <CardContent>
                   {cardDefinition.header(item)}
                   {cardDefinition.sections.map((section) => (

@@ -1,0 +1,23 @@
+@use 'sass:math';
+
+$grid-columns: 12;
+$grid-gutter-width: 2.4rem;
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(#{$grid-gutter-width} / -2);
+}
+
+.column {
+  position: relative;
+  display: flex;
+  padding: calc(#{$grid-gutter-width} / 2);
+
+  @for $i from 1 through $grid-columns {
+    &.colspan-#{$i} {
+      flex: 0 0 math.percentage(math.div($i, $grid-columns));
+      max-width: math.percentage(math.div($i, $grid-columns));
+    }
+  }
+}
