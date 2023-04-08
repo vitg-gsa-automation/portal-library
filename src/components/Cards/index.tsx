@@ -1,9 +1,8 @@
 import { ReactElement, ReactNode } from 'react';
 
-import styles from './index.module.scss';
-import { Card, CardContent, Property } from '../../layouts';
-import { Link, Chip } from '../../components';
 import clsx from 'clsx';
+import { Card, CardContent, Property } from '../../layouts';
+import styles from './index.module.scss';
 interface Section<T> {
   id: string;
   label: string;

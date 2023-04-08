@@ -41,7 +41,7 @@ interface CardStatValueProps {
 export function Card({
   className,
   header,
-  footer,
+  footer, 
   loading,
   children,
   ...props
