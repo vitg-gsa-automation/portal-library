@@ -5,6 +5,7 @@ import { Package } from 'types';
 import {
   Button,
   DropdownButton,
+  Link,
   PageHeader,
   Tab,
   Tabs,
@@ -161,6 +162,11 @@ export const Default: Story<TableProps<Package>> = (args) => {
                       <DropdownButton text="Actions">list</DropdownButton>
                     </React.Fragment>
                   }
+                  info={
+                    <Link to="#" variant="info">
+                      Info
+                    </Link>
+                  }
                 />
               </PageHeader>
             }
@@ -178,9 +184,17 @@ export const Default: Story<TableProps<Package>> = (args) => {
                 <TabsContent value="1">
                   <Card
                     header={
-                      <CardHeader>
-                        <CardTitle text="Document overview" />
-                      </CardHeader>
+                      <Header
+                        variant="h2"
+                        title="Document overview"
+                        actions={<Button text="Edit" color="secondary" />}
+                        description="This is a description to create a system"
+                        info={
+                          <Link to="#" variant="info">
+                            Info
+                          </Link>
+                        }
+                      />
                     }
                     footer={<CardFooter>View more</CardFooter>}
                   >

@@ -26,19 +26,20 @@ export function Header({
   count,
   info,
   variant = 'h1',
+  ...props
 }: HeaderProps) {
   const HeadingTag = variant;
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} {...props}>
       <div className={styles.box}>
         <div className={styles.title}>
           <HeadingTag
             className={clsx(styles.text, styles[variant])}
             data-cy="header-title"
           >
-            <span>{title}</span>{' '}
-            {count && <span className={styles.count}>{count}</span>}
+            <span>{title}</span>
+            {count && <span className={styles.count}> {count}</span>}
           </HeadingTag>
           <div className={styles.info}>{info}</div>
         </div>

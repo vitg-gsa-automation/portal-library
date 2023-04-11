@@ -41,14 +41,14 @@ interface CardStatValueProps {
 export function Card({
   className,
   header,
-  footer, 
+  footer,
   loading,
   children,
   ...props
 }: CardProps) {
   return (
     <div className={styles.root} {...props}>
-      {header}
+      <div className={styles.header}>{header}</div>
       {loading ? (
         <div className={styles['root__loading']}>
           <Loader loading size={20} speedMultiplier={1} borderWidth={3} />
