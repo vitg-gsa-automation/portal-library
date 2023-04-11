@@ -1,12 +1,17 @@
 import { ReactNode } from 'react';
 
 import styles from './index.module.scss';
+import clsx from 'clsx';
+
+type HeaderVariant = 'h1' | 'h2' | 'h3';
 
 export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   description?: ReactNode;
   actions?: ReactNode;
-  status?: ReactNode;
+  count?: string;
+  info?: ReactNode;
+  variant?: HeaderVariant;
 }
 
 interface HeaderDetailProps {
@@ -14,17 +19,39 @@ interface HeaderDetailProps {
   value: ReactNode;
 }
 
-export function Header({ title, description, actions, status }: HeaderProps) {
+export function Header({
+  title,
+  description,
+  actions,
+  count,
+  info,
+  variant = 'h1',
+}: HeaderProps) {
+  const HeadingTag = variant;
+
   return (
     <div className={styles.root}>
       <div className={styles.box}>
         <div className={styles.title}>
-          <h1 className={styles.text} data-cy="header-title">
-            {title}
-          </h1>
-          {status}
+          <HeadingTag
+            className={clsx(styles.text, styles[variant])}
+            data-cy="header-title"
+          >
+            <span>{title}</span>{' '}
+            {count && <span className={styles.count}>{count}</span>}
+          </HeadingTag>
+          <div className={styles.info}>{info}</div>
         </div>
-        {description && <div className={styles.description}>{description}</div>}
+        {description && (
+          <div
+            className={clsx(
+              styles.description,
+              styles[`description-${variant}`]
+            )}
+          >
+            {description}
+          </div>
+        )}
       </div>
       {actions && <div className={styles.actions}>{actions}</div>}
     </div>

@@ -1,5 +1,4 @@
 .root {
-  margin: 2.4rem 0;
   display: flex;
   justify-content: space-between;
 }
@@ -10,20 +9,32 @@
 }
 
 .title {
-  display: flex;
-  align-items: center;
 }
 
 .text {
-  font-size: 3.2rem;
+  display: inline;
+  font-weight: 800;
   color: var(--font-color-heading-title);
-  margin-right: 1rem;
+  margin-right: 8px;
+}
+
+.count {
+  font-weight: 400;
+  color: var(--font-color-secondary);
 }
 
 .description {
-  margin-top: 1rem;
+  margin-top: 8px;
   font-size: 1.4rem;
-  line-height: 1.6;
+}
+
+.description-h3 {
+  font-size: 1.2rem;
+}
+
+.info {
+  display: inline;
+  padding-right: 1rem;
 }
 
 .actions {
@@ -39,4 +50,15 @@
   &__label {
     margin-right: 6px;
   }
+}
+
+//VARIANTS
+.h1 {
+  font-size: 3.2rem;
+}
+.h2 {
+  font-size: 2.4rem;
+}
+.h3 {
+  font-size: 2rem;
 }

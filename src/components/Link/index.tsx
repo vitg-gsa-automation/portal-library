@@ -8,12 +8,23 @@ import styles from './index.module.scss';
 
 export interface LinkProps extends LinkPrimitiveProps {
   size?: 'default' | 'l';
+  variant?: 'default' | 'info';
 }
 
-export function Link({ children, size = 'default', ...props }: LinkProps) {
+export function Link({
+  children,
+  size = 'default',
+  variant = 'default',
+  ...props
+}: LinkProps) {
   return (
     <LinkPrimitive
-      className={clsx(styles.root, styles[size], !props.to && styles['button'])}
+      className={clsx(
+        styles.root,
+        styles[size],
+        styles[variant],
+        !props.to && styles['button']
+      )}
       {...props}
     >
       {children}
