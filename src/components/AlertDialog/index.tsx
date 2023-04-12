@@ -1,19 +1,15 @@
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Button } from '../Button';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../../layouts/Card';
+import { Card, CardContent, CardFooter, CardTitle } from '../../layouts/Card';
 import { FormActions } from '../../layouts/FormActions';
 import { ReactNode } from 'react';
 
 import styles from './index.module.scss';
+import { Header } from '../../layouts';
 
-interface AlertDialogProps extends AlertDialogPrimitive.AlertDialogProps {
+export interface AlertDialogProps
+  extends AlertDialogPrimitive.AlertDialogProps {
   title: string;
   description: string;
   trigger: ReactNode;
@@ -38,13 +34,7 @@ export function AlertDialog({
         <AlertDialogPrimitive.Overlay className={styles.overlay} />
         <AlertDialogPrimitive.Content className={styles.content}>
           <Card
-            header={
-              <CardHeader>
-                <AlertDialogPrimitive.Title className={styles.title} asChild>
-                  <CardTitle text={title} />
-                </AlertDialogPrimitive.Title>
-              </CardHeader>
-            }
+            header={<Header title={title} variant="h2" />}
             footer={
               <CardFooter>
                 <FormActions>
