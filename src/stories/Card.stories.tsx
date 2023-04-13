@@ -8,6 +8,7 @@ import {
   CardHeaderTools,
   CardProps,
 } from '../layouts/Card';
+import { Header } from '../layouts';
 
 export default {
   title: 'Card',
@@ -18,7 +19,7 @@ export const Default: Story<CardProps> = (args) => {
   return <Card {...args} />;
 };
 Default.args = {
-  header: <CardHeader>Card header</CardHeader>,
+  header: <Header title="Card header" variant="h2" />,
   footer: <CardFooter>View more</CardFooter>,
   children: <CardContent>This is content</CardContent>,
 };

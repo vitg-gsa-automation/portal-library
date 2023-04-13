@@ -3,7 +3,7 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardTitle,
+  Header,
   Grid,
   GridProps,
 } from '../layouts';
@@ -25,40 +25,16 @@ export const Default: Story<GridProps> = (args) => {
         { colspan: 12 },
       ]}
     >
-      <Card
-        header={
-          <CardHeader>
-            <CardTitle text="colspan-12" />
-          </CardHeader>
-        }
-      >
+      <Card header={<Header title="colspan-12" variant="h2" />}>
         <CardContent>colspan-12</CardContent>
       </Card>
-      <Card
-        header={
-          <CardHeader>
-            <CardTitle text="colspan-4" />
-          </CardHeader>
-        }
-      >
+      <Card header={<Header title="colspan-4" variant="h2" />}>
         <CardContent>colspan-4</CardContent>
       </Card>
-      <Card
-        header={
-          <CardHeader>
-            <CardTitle text="colspan-8" />
-          </CardHeader>
-        }
-      >
+      <Card header={<Header title="colspan-8" variant="h2" />}>
         <CardContent>colspan-8</CardContent>
       </Card>
-      <Card
-        header={
-          <CardHeader>
-            <CardTitle text="colspan-12" />
-          </CardHeader>
-        }
-      >
+      <Card header={<Header title="colspan-12" variant="h2" />}>
         <CardContent>colspan-12</CardContent>
       </Card>
     </Grid>

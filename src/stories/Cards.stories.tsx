@@ -2,30 +2,31 @@ import { Story } from '@storybook/react';
 import { CardHeader, CardTitle } from '../layouts/Card';
 import { Cards, CardsProps, Button, Chip, Link } from '../components';
 import { Package } from '../types';
+import { Header } from '../layouts';
 
 const pkgs: Package[] = [
   {
-    PkgName: 'AweseomCloud1',
+    PkgName: 'AwesomeCloud1',
     AuthType: 'JAB Provisional',
     Status: 'Pending',
   },
   {
-    PkgName: 'AweseomCloud2',
+    PkgName: 'AwesomeCloud2',
     AuthType: 'JAB Provisional',
     Status: 'Pending',
   },
   {
-    PkgName: 'AweseomCloud3',
+    PkgName: 'AwesomeCloud3',
     AuthType: 'JAB Provisional',
     Status: 'Pending',
   },
   {
-    PkgName: 'AweseomCloud4',
+    PkgName: 'AwesomeCloud4',
     AuthType: 'JAB Provisional',
     Status: 'Pending',
   },
   {
-    PkgName: 'AweseomCloud',
+    PkgName: 'AwesomeCloud',
     AuthType: 'JAB Provisional',
     Status: 'Pending',
   },
@@ -65,9 +66,11 @@ export const Simple: Story<CardsProps> = (args) => {
 };
 Simple.args = {
   header: (
-    <CardHeader actions={<Button text="Create package" />}>
-      <CardTitle text="Recent authorization packages" count={pkgs.length} />
-    </CardHeader>
+    <Header
+      title="Recent authorization packages"
+      count={`(${pkgs.length})`}
+      variant="h2"
+    />
   ),
   cardsPerRow: 3,
 };

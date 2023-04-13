@@ -48,7 +48,7 @@ export function Card({
 }: CardProps) {
   return (
     <div className={styles.root} {...props}>
-      <div className={styles.header}>{header}</div>
+      {header && <div className={styles.header}>{header}</div>}
       {loading ? (
         <div className={styles['root__loading']}>
           <Loader loading size={20} speedMultiplier={1} borderWidth={3} />
