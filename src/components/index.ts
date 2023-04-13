@@ -33,3 +33,4 @@ export * from './Pagination';
 export * from './TopNavigation';
 export * from './PageHeader';
 export * from './Alert';
+export * from './Flashbar';

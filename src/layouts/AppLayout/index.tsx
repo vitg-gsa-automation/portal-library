@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 
 import styles from './index.module.scss';
+import clsx from 'clsx';
 
 interface AppLayoutProps {
   navigation?: ReactElement;
@@ -23,7 +24,14 @@ export function AppLayout({
         {/* <div className={styles.background}></div> */}
         <div className={styles.navigation}>{navigation}</div>
         <div className={styles.notifications}>{notifications}</div>
-        <div className={styles.breadcrumbs}>{breadcrumbs}</div>
+        <div
+          className={clsx(
+            styles.breadcrumbs,
+            notifications && styles['has-notifications']
+          )}
+        >
+          {breadcrumbs}
+        </div>
         <div className={styles.content}>{content}</div>
         <div className={styles.tools}>{tools}</div>
       </div>

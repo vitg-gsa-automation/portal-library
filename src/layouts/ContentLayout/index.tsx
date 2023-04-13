@@ -6,10 +6,14 @@ interface ContentLayoutProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
 }
 
-export function ContentLayout({ header, children, ...props }: ContentLayoutProps) {
+export function ContentLayout({
+  header,
+  children,
+  ...props
+}: ContentLayoutProps) {
   return (
     <main className={styles.root} data-cy="page" {...props}>
-      {header}
+      <div className={styles.header}>{header}</div>
       {children}
     </main>
   );
