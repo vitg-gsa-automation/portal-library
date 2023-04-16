@@ -98,7 +98,7 @@ const columns = [
 
 export const Default: Story<TableProps<Package>> = (args) => {
   return (
-    <Dashboard topNavigation={<TopNavigation />}>
+    <Dashboard topNavigation={<TopNavigation title="Authorization portal" />}>
       <AppLayout
         breadcrumbs={<div>breadcrumbs</div>}
         navigation={
@@ -260,7 +260,7 @@ export const Notifications: Story<TableProps<Package>> = (args) => {
     ]);
   }, []);
   return (
-    <Dashboard topNavigation={<TopNavigation />}>
+    <Dashboard topNavigation={<TopNavigation title="Authorization portal" />}>
       <AppLayout
         breadcrumbs={<div>breadcrumbs</div>}
         notifications={
