@@ -97,148 +97,6 @@ const columns = [
 ];
 
 export const Default: Story<TableProps<Package>> = (args) => {
-  return (
-    <Dashboard topNavigation={<TopNavigation title="Authorization portal" />}>
-      <AppLayout
-        breadcrumbs={<div>breadcrumbs</div>}
-        navigation={
-          <SideNavigation
-            header={{ href: '#', text: 'Authorizations' }}
-            items={[
-              {
-                id: 'dashboard',
-                type: 'link',
-                text: 'Navigation link',
-                icon: 'dashboard',
-                href: '/dashboard',
-              },
-              {
-                id: 'home',
-                type: 'link',
-                text: 'Navigation link',
-                icon: 'home',
-                href: '/home',
-              },
-              {
-                id: 'add',
-                type: 'section',
-                text: 'Navigation link',
-                icon: 'add',
-                href: '/add',
-                items: [
-                  {
-                    id: 'dashboard',
-                    type: 'link',
-                    text: 'Navigation link',
-                    icon: 'dashboard',
-                    href: '/dashboard',
-                  },
-                  {
-                    id: 'home',
-                    type: 'link',
-                    text: 'Navigation link',
-                    icon: 'home',
-                    href: '/home',
-                  },
-                ],
-              },
-              {
-                id: 'settings',
-                type: 'link',
-                text: 'Navigation link',
-                icon: 'settings',
-                href: '/settings',
-              },
-            ]}
-          />
-        }
-        content={
-          <ContentLayout
-            header={
-              <PageHeader>
-                <Header
-                  title="AwesomeCloudSSP1"
-                  description="Lorem ipsum dolor sit amet consectetur. Vel ac id aliquam ac ullamcorper in justo vitae."
-                  actions={
-                    <React.Fragment>
-                      <Button text="Edit resource" color="secondary" />
-                      <DropdownButton text="Actions">list</DropdownButton>
-                    </React.Fragment>
-                  }
-                  info={
-                    <Link to="#" variant="info">
-                      Info
-                    </Link>
-                  }
-                />
-              </PageHeader>
-            }
-          >
-            <Container>
-              <Tabs defaultValue="1">
-                <TabsList loop={false}>
-                  <TabsTrigger value="1" asChild>
-                    <Tab title="Packages" />
-                  </TabsTrigger>
-                  <TabsTrigger value="2" asChild>
-                    <Tab title="Properties" />
-                  </TabsTrigger>
-                </TabsList>
-                <TabsContent value="1">
-                  <Card
-                    header={
-                      <Header
-                        variant="h2"
-                        title="Document overview"
-                        actions={<Button text="Edit" color="secondary" />}
-                        description="This is a description to create a system"
-                        info={
-                          <Link to="#" variant="info">
-                            Info
-                          </Link>
-                        }
-                      />
-                    }
-                    footer={<CardFooter>View more</CardFooter>}
-                  >
-                    <CardContent>
-                      <ColumnLayout columns={3}>
-                        <SpaceBetween>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Description">
-                            System Security Plan
-                          </Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                        </SpaceBetween>
-                        <SpaceBetween>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                        </SpaceBetween>
-                        <SpaceBetween>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                        </SpaceBetween>
-                      </ColumnLayout>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
-              </Tabs>
-            </Container>
-          </ContentLayout>
-        }
-        tools={<HelpPanel header={{ href: '#', text: 'Help panel' }} />}
-      />
-    </Dashboard>
-  );
-};
-
-Default.args = {
-  data: pkgs,
-};
-
-export const Notifications: Story<TableProps<Package>> = (args) => {
   const { notifications, dismiss, publish } = useNotifications();
   useEffect(() => {
     publish([
@@ -262,6 +120,7 @@ export const Notifications: Story<TableProps<Package>> = (args) => {
   return (
     <Dashboard topNavigation={<TopNavigation title="Authorization portal" />}>
       <AppLayout
+        {...args}
         breadcrumbs={<div>breadcrumbs</div>}
         notifications={
           notifications.length ? <Flashbar items={notifications} /> : undefined
@@ -397,6 +256,70 @@ export const Notifications: Story<TableProps<Package>> = (args) => {
     </Dashboard>
   );
 };
-Notifications.args = {
+Default.args = {
   data: pkgs,
+};
+
+export const NoContentLayout: Story<TableProps<Package>> = (args) => {
+  return (
+    <Dashboard topNavigation={<TopNavigation title="Authorization portal" />}>
+      <AppLayout
+        {...args}
+        disableBackground
+        navigation={
+          <SideNavigation
+            header={{ href: '#', text: 'Home' }}
+            items={[
+              {
+                id: 'dashboard',
+                type: 'link',
+                text: 'Navigation link',
+                icon: 'dashboard',
+                href: '/dashboard',
+              },
+              {
+                id: 'home',
+                type: 'link',
+                text: 'Navigation link',
+                icon: 'home',
+                href: '/home',
+              },
+              {
+                id: 'add',
+                type: 'section',
+                text: 'Navigation link',
+                icon: 'add',
+                href: '/add',
+                items: [
+                  {
+                    id: 'dashboard',
+                    type: 'link',
+                    text: 'Navigation link',
+                    icon: 'dashboard',
+                    href: '/dashboard',
+                  },
+                  {
+                    id: 'home',
+                    type: 'link',
+                    text: 'Navigation link',
+                    icon: 'home',
+                    href: '/home',
+                  },
+                ],
+              },
+              {
+                id: 'settings',
+                type: 'link',
+                text: 'Navigation link',
+                icon: 'settings',
+                href: '/settings',
+              },
+            ]}
+          />
+        }
+        content={<div>No Content Layout</div>}
+        tools={<HelpPanel header={{ href: '#', text: 'Help panel' }} />}
+      />
+    </Dashboard>
+  );
 };

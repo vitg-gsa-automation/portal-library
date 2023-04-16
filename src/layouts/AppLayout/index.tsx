@@ -9,6 +9,7 @@ interface AppLayoutProps {
   notifications?: ReactElement;
   content?: ReactElement;
   tools?: ReactElement;
+  disableBackground?: boolean;
 }
 
 export function AppLayout({
@@ -17,11 +18,13 @@ export function AppLayout({
   notifications,
   content,
   tools,
+  disableBackground,
 }: AppLayoutProps) {
+  const isBackgroundDisabled = !content || disableBackground;
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        <div className={styles.background}></div>
+        {!isBackgroundDisabled && <div className={styles.background}></div>}
         <div className={styles.navigation}>{navigation}</div>
         <div className={styles.notifications}>{notifications}</div>
         <div

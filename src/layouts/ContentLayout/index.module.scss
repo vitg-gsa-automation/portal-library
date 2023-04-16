@@ -22,6 +22,9 @@
   &.is-overlap-disabled {
     grid-row: 1/2;
   }
+  &.is-background-disabled {
+    background-color: unset;
+  }
 }
 
 .header {
@@ -29,10 +32,12 @@
   grid-row: 1;
   padding-top: 4px;
   padding-bottom: 2.4rem;
-  --font-color-heading-title: white;
-  --font-color-heading-secondary: #c2c2c2;
-  --color-bg-button-secondary: transparent;
-  --font-color-button-secondary: white;
+  &.is-background-enabled {
+    --font-color-heading-title: white;
+    --font-color-heading-secondary: #c2c2c2;
+    --color-bg-button-secondary: transparent;
+    --font-color-button-secondary: white;
+  }
 }
 
 .content {
