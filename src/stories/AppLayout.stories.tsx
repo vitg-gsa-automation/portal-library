@@ -233,6 +233,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
     </Dashboard>
   );
 };
+
 Default.args = {
   data: pkgs,
 };
@@ -252,7 +253,7 @@ export const Notifications: Story<TableProps<Package>> = (args) => {
       {
         id: 2,
         type: 'success',
-        content: 'Successfully converted AwesomeCloudSSP1 to a Word file',
+        content: 'Successfully converted AwesomeCloudSSP1 to aWord file',
         dismissable: true,
         onDismiss: dismiss,
       },
@@ -339,6 +340,44 @@ export const Notifications: Story<TableProps<Package>> = (args) => {
             }
           >
             <Container>
+              <Card
+                header={
+                  <Header
+                    variant="h2"
+                    title="Document overview"
+                    actions={<Button text="Edit" color="secondary" />}
+                    description="This is a description to create a system"
+                    info={
+                      <Link to="#" variant="info">
+                        Info
+                      </Link>
+                    }
+                  />
+                }
+                footer={<CardFooter>View more</CardFooter>}
+              >
+                <CardContent>
+                  <ColumnLayout columns={3}>
+                    <SpaceBetween>
+                      <Property label="Name">AwesomeClouSSP1</Property>
+                      <Property label="Description">
+                        System Security Plan
+                      </Property>
+                      <Property label="Name">AwesomeClouSSP1</Property>
+                    </SpaceBetween>
+                    <SpaceBetween>
+                      <Property label="Name">AwesomeClouSSP1</Property>
+                      <Property label="Name">AwesomeClouSSP1</Property>
+                      <Property label="Name">AwesomeClouSSP1</Property>
+                    </SpaceBetween>
+                    <SpaceBetween>
+                      <Property label="Name">AwesomeClouSSP1</Property>
+                      <Property label="Name">AwesomeClouSSP1</Property>
+                      <Property label="Name">AwesomeClouSSP1</Property>
+                    </SpaceBetween>
+                  </ColumnLayout>
+                </CardContent>
+              </Card>
               <Tabs defaultValue="1">
                 <TabsList loop={false}>
                   <TabsTrigger value="1" asChild>
@@ -348,46 +387,7 @@ export const Notifications: Story<TableProps<Package>> = (args) => {
                     <Tab title="Properties" />
                   </TabsTrigger>
                 </TabsList>
-                <TabsContent value="1">
-                  <Card
-                    header={
-                      <Header
-                        variant="h2"
-                        title="Document overview"
-                        actions={<Button text="Edit" color="secondary" />}
-                        description="This is a description to create a system"
-                        info={
-                          <Link to="#" variant="info">
-                            Info
-                          </Link>
-                        }
-                      />
-                    }
-                    footer={<CardFooter>View more</CardFooter>}
-                  >
-                    <CardContent>
-                      <ColumnLayout columns={3}>
-                        <SpaceBetween>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Description">
-                            System Security Plan
-                          </Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                        </SpaceBetween>
-                        <SpaceBetween>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                        </SpaceBetween>
-                        <SpaceBetween>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                        </SpaceBetween>
-                      </ColumnLayout>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
+                <TabsContent value="1"></TabsContent>
               </Tabs>
             </Container>
           </ContentLayout>

@@ -11,7 +11,7 @@
   overflow-y: scroll;
   flex: 1;
   display: grid;
-  grid-template-rows: repeat(3, auto) 114px 1fr;
+  grid-template-rows: repeat(3, auto) 134px 1fr;
   grid-template-columns:
     min-content minmax(40px, 1fr)
     minmax(280px, 1350px)
@@ -21,7 +21,7 @@
 .background {
   // position: sticky;
   // top: 4rem;
-  background-color: var(--color-bg-header);
+  background-color: #000716;
   grid-column: 1 / span 5;
   grid-row: 1 / span 4;
 }

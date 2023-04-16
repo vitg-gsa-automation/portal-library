@@ -29,9 +29,11 @@ export const WithDescription: Story<CardProps> = (args) => {
 };
 WithDescription.args = {
   header: (
-    <CardHeader text="This is a descriptive description">
-      Card header
-    </CardHeader>
+    <Header
+      title="Card header"
+      variant="h2"
+      description="This is a descriptive description"
+    />
   ),
   footer: <CardFooter>View more</CardFooter>,
   children: <CardContent>This is content</CardContent>,

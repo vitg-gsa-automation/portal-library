@@ -21,7 +21,7 @@ export function AppLayout({
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        {/* <div className={styles.background}></div> */}
+        <div className={styles.background}></div>
         <div className={styles.navigation}>{navigation}</div>
         <div className={styles.notifications}>{notifications}</div>
         <div
