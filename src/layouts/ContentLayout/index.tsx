@@ -17,8 +17,6 @@ export function ContentLayout({
   disableBackground,
   ...props
 }: ContentLayoutProps) {
-  const [size, overlapElement] = useSize<HTMLDivElement>();
-  console.log(size?.height);
   const isOverlapDisabled = !children || !header || disableOverlap;
   const isBackgroundDisabled = disableBackground;
 
@@ -31,7 +29,6 @@ export function ContentLayout({
       {...props}
     >
       <div
-        ref={overlapElement}
         className={clsx(styles.background, {
           [styles['is-overlap-disabled']]: isOverlapDisabled,
           [styles['is-background-disabled']]: isBackgroundDisabled,
