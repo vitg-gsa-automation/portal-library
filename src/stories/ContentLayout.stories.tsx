@@ -37,7 +37,6 @@ export const Default: Story<TableProps<Package>> = (args) => {
         <PageHeader>
           <Header
             title="AwesomeCloudSSP1"
-            description="Lorem ipsum dolor sit amet consectetur. Vel ac id aliquam ac ullamcorper in justo vitae."
             actions={
               <React.Fragment>
                 <Button text="Edit resource" color="secondary" />

@@ -1,31 +1,30 @@
-import { ReactElement, ReactNode, useState } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import * as Separator from '@radix-ui/react-separator';
-import { NavLink, NavLinkProps } from 'react-router-dom';
 import clsx from 'clsx';
+import { ReactNode, useState } from 'react';
+import { NavLinkProps, NavLink as RouterNavLink } from 'react-router-dom';
 
-import styles from './index.module.scss';
-import { Sidebar } from '../../layouts/Sidebar';
 import { MaterialIcon } from '../../components/MaterialIcon';
 import {
   Drawer,
-  DrawerTrigger,
-  DrawerContent,
   DrawerClose,
+  DrawerContent,
   DrawerTitle,
+  DrawerTrigger,
 } from '../../layouts/Drawer';
+import styles from './index.module.scss';
 
 interface Header {
   href: string;
   text?: string;
 }
 
-type ItemType = 'link' | 'section';
+type ItemType = 'link' | 'section' | 'divider';
 
 interface Item {
   id: any;
   type: ItemType;
-  text: string;
+  text?: string;
   items?: Item[];
   icon?: string;
   defaultExpanded?: boolean;
@@ -50,22 +49,25 @@ export function SideNavigation({
     return items.map((item) => {
       if (item.type === 'link')
         return (
-          <Link
-            key={item.id}
-            icon={item.icon}
-            text={item.text}
-            to={item.href || '#'}
-          />
+          <li className={styles.item}>
+            <NavLink key={item.id} to={item.href || '#'}>
+              {item.text}
+            </NavLink>
+          </li>
         );
       else if (item.type === 'section') {
         return (
-          <Section
-            key={item.text}
-            trigger={<ItemComponent text={item.text} icon={item.icon} />}
-            value={item.text}
-          >
-            {renderItems(item.items)}
-          </Section>
+          <li className={styles.item}>
+            <Expandable key={item.text} text={item.text} value={item.id}>
+              {renderItems(item.items)}
+            </Expandable>
+          </li>
+        );
+      } else if (item.type === 'divider') {
+        return (
+          <Separator.Root asChild>
+            <hr className={styles.separator} />
+          </Separator.Root>
         );
       }
     });
@@ -104,7 +106,7 @@ export function SideNavigation({
             <div>
               <nav className={styles.nav} aria-label="service navigation">
                 <Accordion.Root type="multiple">
-                  {renderItems(items)}
+                  <ul className={styles.list}>{renderItems(items)}</ul>
                 </Accordion.Root>
               </nav>
             </div>
@@ -115,62 +117,42 @@ export function SideNavigation({
   );
 }
 
-interface LinkProps extends NavLinkProps {
-  icon?: string;
-  text: string;
-}
-
-function Link({ icon, text, ...props }: LinkProps) {
-  return (
-    <NavLink {...props} className={styles.link}>
-      {({ isActive }) => (
-        <ItemComponent isActive={isActive} icon={icon} text={text} />
-      )}
-    </NavLink>
-  );
-}
-interface ItemProps {
-  icon?: string;
-  text: string;
-  isActive?: boolean;
-}
-
-function ItemComponent({ icon, text, isActive, ...props }: ItemProps) {
-  return (
-    <div className={clsx(styles.item, isActive && styles['item--active'])}>
-      {icon && (
-        <MaterialIcon
-          icon={icon}
-          className={styles['item__icon']}
-          fontSize="2rem"
-        />
-      )}
-      <div className={styles['item__text']}>{text}</div>
-    </div>
-  );
-}
-interface SectionProps extends Accordion.AccordionItemProps {
-  trigger: ReactElement;
+interface ExpandableProps extends Accordion.AccordionItemProps {
   children?: ReactNode;
+  text?: string;
 }
-function Section({ children, trigger, ...props }: SectionProps) {
+function Expandable({ text, children, ...props }: ExpandableProps) {
   return (
-    <Accordion.Item {...props}>
-      <Accordion.Trigger asChild>
-        {
-          <button className={styles.toggle}>
-            {trigger}
+    <Accordion.Root type="multiple">
+      <Accordion.Item className={styles.expandable} {...props}>
+        <Accordion.Trigger asChild>
+          <button className={styles['expandable__trigger']}>
             <MaterialIcon
-              icon="expand_more"
-              className={styles['toggle__icon']}
+              icon="play_arrow"
+              className={styles['expandable__trigger__icon']}
               fontSize="2rem"
+              type="round"
             />
+            {text}
           </button>
-        }
-      </Accordion.Trigger>
-      <Accordion.Content className={styles['toggle__content']}>
-        {children}
-      </Accordion.Content>
-    </Accordion.Item>
+        </Accordion.Trigger>
+        <Accordion.Content className={styles['expandable__content']}>
+          <ul className={styles['expandable__list']}>{children}</ul>
+        </Accordion.Content>
+      </Accordion.Item>
+    </Accordion.Root>
+  );
+}
+
+function NavLink({ children, ...props }: NavLinkProps) {
+  return (
+    <RouterNavLink
+      className={({ isActive }) =>
+        clsx(styles['nav-link'], isActive && styles['nav-link--active'])
+      }
+      {...props}
+    >
+      {children}
+    </RouterNavLink>
   );
 }
