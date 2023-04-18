@@ -66,6 +66,11 @@
     "webpack": "^5.76.2"
   },
   "dependencies": {
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/lang-xml": "^6.0.2",
+    "@codemirror/search": "^6.3.0",
+    "@codemirror/state": "^6.2.0",
+    "@codemirror/view": "^6.9.5",
     "@radix-ui/react-accordion": "^1.0.0",
     "@radix-ui/react-alert-dialog": "^1.0.2",
     "@radix-ui/react-checkbox": "^1.0.0",
@@ -81,6 +86,7 @@
     "@radix-ui/react-visually-hidden": "^1.0.0",
     "@react-hook/resize-observer": "^1.2.6",
     "@tanstack/react-table": "^8.5.13",
+    "@uiw/react-codemirror": "^4.19.16",
     "axios": "^0.27.2",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.5",

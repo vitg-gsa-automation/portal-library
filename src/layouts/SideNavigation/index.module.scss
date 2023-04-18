@@ -120,10 +120,10 @@
   line-height: 2.2rem;
 
   &[data-state='open'] {
-    & .nav-toggle__trigger__icon {
+    & .expandable__trigger__icon {
       transform: rotate(90deg);
     }
-    & .nav-toggle__content {
+    & .expandable__content {
       animation: fadeIn 0.1s ease-out;
     }
   }

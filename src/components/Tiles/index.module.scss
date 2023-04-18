@@ -1,0 +1,41 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tile {
+  flex: 1;
+  display: flex;
+  margin: 1rem;
+  padding: 0.8rem 1.6rem;
+  border: 2px solid var(--color-border-item-default);
+  border-radius: 0.8rem;
+  background-color: unset;
+  text-align: unset;
+  cursor: pointer;
+  &[data-state='checked'] {
+    background-color: #f3faff;
+    border-color: var(--color-border-item-selected);
+    & .radio-item__content__title {
+      color: var(--font-color);
+    }
+  }
+}
+
+.indicator {
+  color: var(--color-black-20);
+  &[data-state='checked'] {
+    color: var(--color-border-item-selected);
+  }
+}
+.content {
+  margin-left: 1rem;
+}
+
+.label {
+  font-size: 1.4rem;
+}
+.description {
+  color: var(--font-color-secondary);
+  font-size: 1.2rem;
+}
