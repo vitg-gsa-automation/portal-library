@@ -1,7 +1,6 @@
 import { Story } from '@storybook/react';
-import { RadioGroup, RadioItem, RadioItemProps } from '../components';
-import { Tiles, TilesProps } from '../components/Tiles';
 import { useState } from 'react';
+import { Tiles, TilesProps } from '../components/Tiles';
 
 export default {
   title: 'Tiles',

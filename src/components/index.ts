@@ -34,3 +34,4 @@ export * from './PageHeader';
 export * from './Alert';
 export * from './Flashbar';
 export * from './Tiles';
+export * from './Editor';
