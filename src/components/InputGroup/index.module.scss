@@ -3,15 +3,28 @@
   flex-direction: column;
 }
 
-.hint {
-  font-size: 1.2rem;
-  color: var(--font-color-secondary);
-  margin-bottom: 4px;
-}
 .label {
   font-weight: 700;
   color: var(--font-color-label);
-  margin-bottom: 4px;
+  margin-right: 0.8rem;
+  &:only-child {
+    margin: 0;
+  }
+}
+.hint {
+  font-size: 1.2rem;
+  color: var(--font-color-secondary);
+  margin-top: 3px;
+  line-height: 1.6rem;
+}
+
+.info {
+  padding-left: 0.8rem;
+  border-left: 2px solid var(--color-border-divider);
+}
+
+.children {
+  margin-top: 4px;
 }
 
 .error {

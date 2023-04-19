@@ -3,25 +3,30 @@ import { ReactNode } from 'react';
 import styles from './index.module.scss';
 
 export interface InputGroupProps {
-  label: string;
-  hint?: string;
   htmlFor?: string;
+  label: string;
+  info?: ReactNode;
+  hint?: string;
   children?: ReactNode;
 }
 
 export function InputGroup({
-  label,
-  hint,
   htmlFor,
+  label,
+  info,
+  hint,
   children,
 }: InputGroupProps) {
   return (
     <div className={styles.root}>
-      <label className={styles.label} htmlFor={htmlFor}>
-        {label}
-      </label>
+      <div>
+        <label className={styles.label} htmlFor={htmlFor}>
+          {label}
+        </label>
+        {info && <span className={styles.info}>{info}</span>}
+      </div>
       {hint && <div className={styles.hint}>{hint}</div>}
-      {children}
+      <div className={styles.children}>{children}</div>
     </div>
   );
 }

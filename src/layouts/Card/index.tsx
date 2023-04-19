@@ -2,6 +2,7 @@ import { ReactElement, ReactNode } from 'react';
 
 import styles from './index.module.scss';
 import { Loader } from '../../components/Loader';
+import clsx from 'clsx';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   header?: ReactNode;
@@ -23,6 +24,7 @@ interface CardTitleProps {
 }
 
 interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  disableTopPadding?: boolean;
   children: React.ReactNode;
 }
 
@@ -110,9 +112,19 @@ export function CardTitle({ count, text, ...props }: CardTitleProps) {
   );
 }
 
-export function CardContent({ children, ...props }: CardContentProps) {
+export function CardContent({
+  disableTopPadding,
+  children,
+  ...props
+}: CardContentProps) {
+  const isTopPaddingDisabled = disableTopPadding;
   return (
-    <div className={styles.content} {...props}>
+    <div
+      className={clsx(styles.content, {
+        [styles['is-top-padding-disabled']]: isTopPaddingDisabled,
+      })}
+      {...props}
+    >
       {children}
     </div>
   );
