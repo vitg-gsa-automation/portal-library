@@ -21,3 +21,19 @@ Large.args = {
   to: '#',
   size: 'l',
 };
+export const External: Story<LinkProps> = (args) => {
+  return <Link {...args} />;
+};
+External.args = {
+  children: 'Primary link',
+  size: 'l',
+  external: true,
+  href: 'https://google.com',
+};
+export const Internal: Story<LinkProps> = (args) => {
+  return <Link {...args} />;
+};
+Internal.args = {
+  children: 'Internal link',
+  to: '#',
+};

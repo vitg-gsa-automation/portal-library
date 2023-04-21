@@ -1,17 +1,17 @@
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Button } from '../Button';
-import { Card, CardContent, CardFooter, CardTitle } from '../../layouts/Card';
+import { Card, CardContent, CardTitle } from '../../layouts/Card';
 import { FormActions } from '../../layouts/FormActions';
 import { ReactNode } from 'react';
 
 import styles from './index.module.scss';
-import { Header } from '../../layouts';
+import { Box, Header, SpaceBetween } from '../../layouts';
 
 export interface AlertDialogProps
   extends AlertDialogPrimitive.AlertDialogProps {
   title: string;
-  description: string;
+  visuallyHiddenDescription: string;
   trigger: ReactNode;
   action: ReactNode;
   children: ReactNode;
@@ -19,7 +19,7 @@ export interface AlertDialogProps
 
 export function AlertDialog({
   title,
-  description,
+  visuallyHiddenDescription,
   trigger,
   action,
   children,
@@ -36,26 +36,22 @@ export function AlertDialog({
           <Card
             header={<Header title={title} variant="h2" />}
             footer={
-              <CardFooter>
-                <FormActions>
+              <Box float="right">
+                <SpaceBetween direction="horizontal" size="xs">
                   <AlertDialogPrimitive.Cancel asChild>
                     <Button text="Cancel" color="secondary" />
                   </AlertDialogPrimitive.Cancel>
                   {action}
-                </FormActions>
-              </CardFooter>
+                </SpaceBetween>
+              </Box>
             }
           >
-            <CardContent>
-              <VisuallyHidden asChild>
-                <AlertDialogPrimitive.Description
-                  className={styles.description}
-                >
-                  {description}
-                </AlertDialogPrimitive.Description>
-              </VisuallyHidden>
-              {children}
-            </CardContent>
+            <VisuallyHidden asChild>
+              <AlertDialogPrimitive.Description className={styles.description}>
+                {visuallyHiddenDescription}
+              </AlertDialogPrimitive.Description>
+            </VisuallyHidden>
+            {children}
           </Card>
         </AlertDialogPrimitive.Content>
       </AlertDialogPrimitive.Portal>

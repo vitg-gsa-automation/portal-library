@@ -15,7 +15,6 @@ import {
 import {
   Card,
   CardContent,
-  CardFooter,
   ColumnLayout,
   ContentLayout,
   Header,
@@ -67,7 +66,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
               }
             />
           }
-          footer={<CardFooter>View more</CardFooter>}
+          footer="View more"
         >
           <CardContent>
             <ColumnLayout columns={3}>

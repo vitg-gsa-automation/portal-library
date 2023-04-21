@@ -3,7 +3,6 @@ import { createColumnHelper } from '@tanstack/react-table';
 import React, { useEffect, useState } from 'react';
 import { Package } from 'types';
 import {
-  Alert,
   Button,
   DropdownButton,
   Flashbar,
@@ -17,25 +16,22 @@ import {
   TabsTrigger,
   TopNavigation,
 } from '../components';
+import { useNotifications } from '../hooks';
 import {
   AppLayout,
   Card,
   CardContent,
-  CardFooter,
-  CardHeader,
+  ColumnLayout,
   Container,
+  ContentLayout,
   Dashboard,
   Header,
-  ContentLayout,
-  SideNavigation,
-  TableProps,
   HelpPanel,
-  CardTitle,
-  ColumnLayout,
-  SpaceBetween,
   Property,
+  SideNavigation,
+  SpaceBetween,
+  TableProps,
 } from '../layouts';
-import { useNotifications } from '../hooks';
 
 export default {
   title: 'AppLayout',
@@ -255,7 +251,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
                     }
                   />
                 }
-                footer={<CardFooter>View more</CardFooter>}
+                footer="View more"
               >
                 <CardContent>
                   <ColumnLayout columns={3}>

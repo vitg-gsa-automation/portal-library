@@ -50,9 +50,9 @@ export function SideNavigation({
       if (item.type === 'link')
         return (
           <li className={styles.item}>
-            <NavLink key={item.id} to={item.href || '#'}>
+            <SideNavigationLink key={item.id} to={item.href || '#'}>
               {item.text}
-            </NavLink>
+            </SideNavigationLink>
           </li>
         );
       else if (item.type === 'section') {
@@ -144,7 +144,10 @@ function Expandable({ text, children, ...props }: ExpandableProps) {
   );
 }
 
-function NavLink({ children, ...props }: NavLinkProps) {
+interface SideNavigationLinkProps extends NavLinkProps {
+  external?: boolean;
+}
+function SideNavigationLink({ children, ...props }: SideNavigationLinkProps) {
   return (
     <RouterNavLink
       className={({ isActive }) =>

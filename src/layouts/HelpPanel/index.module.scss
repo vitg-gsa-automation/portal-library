@@ -6,6 +6,8 @@
   height: 4rem;
   width: 4rem;
   margin: 1.2rem 2rem;
+  padding: 1.6rem 0.8rem;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,7 +26,6 @@
     filter: brightness(85%);
   }
   &__icon {
-    padding: 1.6rem 0.8rem;
   }
 }
 

@@ -1,5 +1,5 @@
 import { Story } from '@storybook/react';
-import { TextFilter } from '../components';
+import { Link, TextFilter } from '../components';
 import {
   Card,
   CardContent,
@@ -7,7 +7,7 @@ import {
   CardHeaderTools,
   CardProps,
 } from '../layouts/Card';
-import { Header } from '../layouts';
+import { Box, Header } from '../layouts';
 
 export default {
   title: 'Card',
@@ -18,23 +18,18 @@ export const Default: Story<CardProps> = (args) => {
   return <Card {...args} />;
 };
 Default.args = {
-  header: <Header title="Card header" variant="h2" />,
-  footer: 'View more',
-  children: <CardContent>This is content</CardContent>,
-};
-
-export const WithDescription: Story<CardProps> = (args) => {
-  return <Card {...args} />;
-};
-WithDescription.args = {
   header: (
     <Header
       title="Card header"
       variant="h2"
-      description="This is a descriptive description"
+      description="This is a description"
     />
   ),
-  footer: 'View more',
+  footer: (
+    <Box textAlign="center">
+      <Link to="#">View more</Link>
+    </Box>
+  ),
   children: <CardContent>This is content</CardContent>,
 };
 
@@ -50,7 +45,11 @@ WithTools.args = {
       Card header
     </CardHeader>
   ),
-  footer: 'View more',
+  footer: (
+    <Box textAlign="center">
+      <Link to="#">View more</Link>
+    </Box>
+  ),
   children: <CardContent>This is content</CardContent>,
 };
 
@@ -59,10 +58,16 @@ export const Loading: Story<CardProps> = (args) => {
 };
 Loading.args = {
   header: (
-    <CardHeader text="This is a descriptive description">
-      Card header
-    </CardHeader>
+    <Header
+      variant="h2"
+      title="Card header"
+      description="This is a descriptive description"
+    />
   ),
-  footer: 'View more',
+  footer: (
+    <Box textAlign="center">
+      <Link to="#">View more</Link>
+    </Box>
+  ),
   loading: true,
 };
