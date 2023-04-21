@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import styles from './index.module.scss';
 
-interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: 'green' | 'red' | 'gray' | 'orange';
   children: ReactNode;
 }

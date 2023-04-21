@@ -1,18 +1,14 @@
-import { ReactElement, ReactNode, useState } from 'react';
-import * as Accordion from '@radix-ui/react-accordion';
-import * as Separator from '@radix-ui/react-separator';
-import { NavLink, NavLinkProps } from 'react-router-dom';
-import clsx from 'clsx';
+import { ReactNode } from 'react';
 
-import styles from './index.module.scss';
 import { MaterialIcon } from '../../components/MaterialIcon';
 import {
   Drawer,
-  DrawerTrigger,
-  DrawerContent,
   DrawerClose,
+  DrawerContent,
   DrawerTitle,
+  DrawerTrigger,
 } from '../Drawer';
+import styles from './index.module.scss';
 
 interface Header {
   href: string;
@@ -22,35 +18,33 @@ interface Header {
 export interface HelpPanelProps {
   header?: Header;
   content?: ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
   defaulOpen?: boolean;
 }
 
 export function HelpPanel({
   header,
   content,
+  open,
+  onOpenChange,
   defaulOpen = false,
   ...props
 }: HelpPanelProps) {
-  const [open, setOpen] = useState(defaulOpen);
-
   return (
-    <div className={styles.root}>
-      <Drawer modal={false} open={open} onOpenChange={setOpen}>
-        {!open && (
-          <div className={styles.closed}>
-            <DrawerTrigger className={styles.trigger}>
-              <MaterialIcon icon="info" className={styles['trigger__icon']} />
-            </DrawerTrigger>
-          </div>
-        )}
-        <DrawerContent
-          onInteractOutside={(e) => e.preventDefault()}
-          onEscapeKeyDown={(e) => e.preventDefault()}
-          aria-describedby={undefined}
-          className={styles.animated}
-          forceMount
-        >
-          <div className={styles.content}>
+    <Drawer modal={false} open={open} onOpenChange={onOpenChange}>
+      <DrawerContent
+        onInteractOutside={(e) => e.preventDefault()}
+        onEscapeKeyDown={(e) => e.preventDefault()}
+        aria-describedby={undefined}
+        className={styles.animated}
+        forceMount
+      >
+        <div className={styles.root}>
+          <DrawerTrigger className={styles.trigger}>
+            <MaterialIcon icon="info" className={styles['trigger__icon']} />
+          </DrawerTrigger>
+          <div className={styles['help-panel']}>
             {header && (
               <div className={styles.header}>
                 <DrawerTitle className={styles.title} asChild>
@@ -64,10 +58,10 @@ export function HelpPanel({
                 </DrawerClose>
               </div>
             )}
-            <div>{content}</div>
+            <div className={styles.content}>{content}</div>
           </div>
-        </DrawerContent>
-      </Drawer>
-    </div>
+        </div>
+      </DrawerContent>
+    </Drawer>
   );
 }

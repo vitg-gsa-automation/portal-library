@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 
 import styles from './index.module.scss';
 
-interface SpaceBetweenProps {
+export interface SpaceBetweenProps {
   direction?: 'vertical' | 'horizontal';
   size?: 'xs' | 'sm' | 'l';
   children: ReactNode;

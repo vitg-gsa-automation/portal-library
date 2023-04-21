@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react';
 import { createColumnHelper } from '@tanstack/react-table';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Package } from 'types';
 import {
   Alert,
@@ -9,6 +9,7 @@ import {
   Flashbar,
   Link,
   PageHeader,
+  StatusIndicator,
   Tab,
   Tabs,
   TabsContent,
@@ -97,6 +98,7 @@ const columns = [
 ];
 
 export const Default: Story<TableProps<Package>> = (args) => {
+  const [toolsOpen, setToolsOpen] = useState(false);
   const { notifications, dismiss, publish } = useNotifications();
   useEffect(() => {
     publish([
@@ -226,7 +228,11 @@ export const Default: Story<TableProps<Package>> = (args) => {
                     </React.Fragment>
                   }
                   info={
-                    <Link to="#" variant="info">
+                    <Link
+                      to="#"
+                      variant="info"
+                      onClick={() => setToolsOpen(true)}
+                    >
                       Info
                     </Link>
                   }
@@ -258,7 +264,11 @@ export const Default: Story<TableProps<Package>> = (args) => {
                       <Property label="Description">
                         System Security Plan
                       </Property>
-                      <Property label="Name">AwesomeClouSSP1</Property>
+                      <Property label="Status">
+                        <StatusIndicator type="success">
+                          FedRAMP Ready
+                        </StatusIndicator>
+                      </Property>
                     </SpaceBetween>
                     <SpaceBetween>
                       <Property label="Name">AwesomeClouSSP1</Property>
@@ -287,7 +297,21 @@ export const Default: Story<TableProps<Package>> = (args) => {
             </Container>
           </ContentLayout>
         }
-        tools={<HelpPanel header={{ href: '#', text: 'Help panel' }} />}
+        tools={
+          <HelpPanel
+            header={{ href: '#', text: 'Help panel' }}
+            content={
+              <p>
+                View your current distributions and related information such as
+                the associated domain names, delivery methods, SSL certificates,
+                and more. To drill down even further into the details, choose
+                the name of an individual distribution.
+              </p>
+            }
+            open={toolsOpen}
+            onOpenChange={setToolsOpen}
+          />
+        }
       />
     </Dashboard>
   );

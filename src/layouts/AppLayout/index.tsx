@@ -9,6 +9,8 @@ interface AppLayoutProps {
   notifications?: ReactElement;
   content?: ReactElement;
   tools?: ReactElement;
+  toolsOpen?: boolean;
+  onToolsChange?: (open: boolean) => any;
   disableBackground?: boolean;
 }
 

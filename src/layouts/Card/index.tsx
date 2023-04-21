@@ -58,7 +58,7 @@ export function Card({
       ) : (
         children
       )}
-      {footer}
+      {footer && <div className={styles.footer}>{footer}</div>}
     </div>
   );
 }
@@ -125,14 +125,6 @@ export function CardContent({
       })}
       {...props}
     >
-      {children}
-    </div>
-  );
-}
-
-export function CardFooter({ children, ...props }: CardFooterProps) {
-  return (
-    <div className={styles.footer} {...props}>
       {children}
     </div>
   );

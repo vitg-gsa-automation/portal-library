@@ -3,7 +3,6 @@ import { TextFilter } from '../components';
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
   CardHeaderTools,
   CardProps,
@@ -20,7 +19,7 @@ export const Default: Story<CardProps> = (args) => {
 };
 Default.args = {
   header: <Header title="Card header" variant="h2" />,
-  footer: <CardFooter>View more</CardFooter>,
+  footer: 'View more',
   children: <CardContent>This is content</CardContent>,
 };
 
@@ -35,7 +34,7 @@ WithDescription.args = {
       description="This is a descriptive description"
     />
   ),
-  footer: <CardFooter>View more</CardFooter>,
+  footer: 'View more',
   children: <CardContent>This is content</CardContent>,
 };
 
@@ -51,7 +50,7 @@ WithTools.args = {
       Card header
     </CardHeader>
   ),
-  footer: <CardFooter>View more</CardFooter>,
+  footer: 'View more',
   children: <CardContent>This is content</CardContent>,
 };
 
@@ -64,6 +63,6 @@ Loading.args = {
       Card header
     </CardHeader>
   ),
-  footer: <CardFooter>View more</CardFooter>,
+  footer: 'View more',
   loading: true,
 };
