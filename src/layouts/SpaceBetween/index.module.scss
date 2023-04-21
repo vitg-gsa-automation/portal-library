@@ -1,43 +1,25 @@
 .root {
-  &--horizontal {
-    display: flex;
-  }
+  display: flex;
 }
 
-.child {
-  &-vertical {
-    &-l {
-      &:not(:last-child) {
-        margin-bottom: var(--space-l);
-      }
-    }
-    &-sm {
-      &:not(:last-child) {
-        margin-bottom: var(--space-sm);
-      }
-    }
+//DIRECTION
+.vertical {
+  flex-direction: column;
+}
+.horizontal {
+  flex-direction: row;
+}
 
-    &-xs {
-      &:not(:last-child) {
-        margin-bottom: var(--space-xs);
-      }
-    }
-  }
-  &-horizontal {
-    &-l {
-      &:not(:last-child) {
-        margin-right: var(--space-l);
-      }
-    }
-    &-sm {
-      &:not(:last-child) {
-        margin-right: var(--space-sm);
-      }
-    }
-    &-xs {
-      &:not(:last-child) {
-        margin-right: var(--space-xs);
-      }
-    }
-  }
+//SIZE
+.xs {
+  gap: var(--space-xs);
+}
+.sm {
+  gap: var(--space-sm);
+}
+.l {
+  gap: var(--space-l);
+}
+.xl {
+  gap: var(--space-xl);
 }

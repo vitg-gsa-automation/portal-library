@@ -2,7 +2,7 @@ import { Story } from '@storybook/react';
 import { createColumnHelper } from '@tanstack/react-table';
 import { Package } from 'types';
 import { Button, Empty, TextFilter, Pagination } from '../components';
-import { Card, CardHeader, CardTitle } from '../layouts';
+import { Card, CardHeader, CardTitle, Header } from '../layouts';
 import { Table, TableHeader, TableProps, TableTools } from '../layouts/Table';
 
 export default {
@@ -67,7 +67,7 @@ const columns = [
 
 export const Default: Story<TableProps<Package>> = (args) => {
   return (
-    <Card header={<CardHeader>Packages</CardHeader>}>
+    <Card header={<Header variant="h2" title="Packages" />}>
       <Table {...args} columns={columns} data-cy="table-packages" />
     </Card>
   );
@@ -78,7 +78,7 @@ Default.args = {
 
 export const UsingEmpty: Story<TableProps<Package>> = (args) => {
   return (
-    <Card header={<CardHeader>Packages</CardHeader>}>
+    <Card header={<Header variant="h2" title="Packages" />}>
       <Table {...args} columns={columns} />
     </Card>
   );
@@ -125,7 +125,7 @@ WithTools.args = {
 };
 export const Loading: Story<TableProps<Package>> = (args) => {
   return (
-    <Card header={<CardHeader>Packages</CardHeader>}>
+    <Card header={<Header variant="h2" title="Packages" />}>
       <Table {...args} columns={columns} />
     </Card>
   );

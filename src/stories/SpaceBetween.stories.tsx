@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react';
 import { Button } from '../components';
-import { SpaceBetween, SpaceBetweenProps } from '../layouts';
+import { Box, Card, Header, SpaceBetween, SpaceBetweenProps } from '../layouts';
 
 export default {
   title: 'SpaceBetween',
@@ -19,4 +19,33 @@ export const Default: Story<SpaceBetweenProps> = (args) => {
 Default.args = {
   direction: 'horizontal',
   size: 'xs',
+};
+export const Cards: Story<SpaceBetweenProps> = (args) => {
+  return (
+    <SpaceBetween {...args}>
+      <Card
+        header={<Header variant="h2" title="Card title" />}
+        footer="Card footer"
+      >
+        Content
+      </Card>
+      <Card
+        header={<Header variant="h2" title="Card title" />}
+        footer="Card footer"
+      >
+        Content
+      </Card>
+      <Card
+        header={<Header variant="h2" title="Card title" />}
+        footer="Card footer"
+      >
+        Content
+      </Card>
+    </SpaceBetween>
+  );
+};
+
+Cards.args = {
+  direction: 'vertical',
+  size: 'xl',
 };
