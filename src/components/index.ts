@@ -36,3 +36,4 @@ export * from './Alert';
 export * from './Flashbar';
 export * from './Tiles';
 export * from './Editor';
+export * from './Modal';
