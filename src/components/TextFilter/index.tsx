@@ -2,7 +2,7 @@ import { Input } from '../Input';
 
 import styles from './index.module.scss';
 
-interface TextFilterProps extends React.HTMLAttributes<HTMLInputElement> {
+interface TextFilterProps extends React.InputHTMLAttributes<HTMLInputElement> {
   filteringText: string;
   filteringPlaceholder?: string;
   filteringAriaLabel?: string;

@@ -1,4 +1,10 @@
-.root {
+.wrapper {
+  padding: 0 2rem;
+  padding-bottom: 4px;
+  overflow-x: auto;
+}
+
+.table {
   width: 100%;
   border-collapse: collapse;
   font-size: 1.4rem;
@@ -30,6 +36,16 @@
   & td {
     padding: 0.8rem 2rem;
   }
+}
+
+.cell {
+  padding: 0.8rem 2rem;
+}
+
+.no-wrapped-lines {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .heading-box {
@@ -65,7 +81,7 @@
   }
 }
 .loading {
-  min-height: 10rem;
+  padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +94,7 @@
   }
   &--selected {
     background-color: #3c97ff18;
-    outline: 1px solid #3c97ff;
+    outline: 2px solid #3c97ff;
   }
 }
 

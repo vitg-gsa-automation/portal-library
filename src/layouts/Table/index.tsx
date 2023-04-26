@@ -1,40 +1,56 @@
-import React, { ReactElement, ReactNode, useState } from 'react';
 import {
   ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getSortedRowModel,
-  getPaginationRowModel,
+  InitialTableState,
+  OnChangeFn,
   RowSelectionState,
   SortingState,
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
-  PaginationState,
-  Table as TableType,
-  TableOptions,
 } from '@tanstack/react-table';
 import clsx from 'clsx';
+import React, {
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
-import styles from './index.module.scss';
 import {
-  MaterialIcon,
-  MaterialIconButton,
-} from '../../components/MaterialIcon';
-import { Loader } from '../../components/Loader';
+  Button,
+  Checkbox,
+  Pagination,
+  Radio,
+  RadioGroup,
+} from '../../components';
 import { Empty } from '../../components/Empty';
+import { Loader } from '../../components/Loader';
+import { MaterialIcon } from '../../components/MaterialIcon';
+import { Card } from '../../layouts/Card';
+import styles from './index.module.scss';
 
 export interface TableProps<T> {
   data: T[];
   columns: ColumnDef<T, any>[];
   rowSelection?: RowSelectionState;
-  setRowSelection?: React.Dispatch<React.SetStateAction<RowSelectionState>>;
+  onRowSelectionChange?: OnChangeFn<RowSelectionState>;
   onRowClick?: (rowData: T) => unknown;
-  header?: (table: TableType<T>) => ReactElement;
-  filters?: ReactNode;
+  header?: ReactElement;
+  filter?: ReactNode;
+  pagination?: boolean;
   empty?: ReactNode;
   loading?: boolean;
   error?: string;
   columnVisibility?: ColumnVisibility;
-  options?: Partial<TableOptions<T>>;
+  initialState?: InitialTableState;
+  filteringText?: string;
+  selectionType?: 'single' | 'multi';
+  wrapLines?: boolean;
 }
 
 interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
@@ -56,131 +72,214 @@ export const Table = <T extends unknown>({
   columns,
   rowSelection,
   columnVisibility,
-  setRowSelection,
+  onRowSelectionChange,
   onRowClick,
   header,
-  filters,
+  filter,
+  pagination,
   empty,
   loading,
   error,
-  options,
+  initialState,
+  filteringText,
+  selectionType,
+  wrapLines = true,
   ...props
 }: TableProps<T>) => {
+  const columnHelper = createColumnHelper<T>();
+
+  const [internalGlobalFilter, setInternalGlobalFilter] =
+    useState(filteringText);
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [pagination, setPagination] = React.useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 50,
-  });
+  const internalColumns = useMemo(() => {
+    if (selectionType === 'multi') {
+      return [
+        columnHelper.display({
+          id: 'select',
+          size: 40,
+          header: ({ table }) => (
+            <div className="center-cell">
+              <Checkbox
+                checked={table.getIsAllRowsSelected()}
+                onCheckedChange={(checked) =>
+                  table.toggleAllRowsSelected(!!checked)
+                }
+              />
+            </div>
+          ),
+          cell: ({ row }) => (
+            <div className="center-cell">
+              <Checkbox
+                checked={row.getIsSelected()}
+                onCheckedChange={row.getToggleSelectedHandler()}
+              />
+            </div>
+          ),
+        }),
+      ];
+    }
+    if (selectionType === 'single') {
+      return [
+        columnHelper.display({
+          id: 'select',
+          size: 40,
+          cell: (info) => (
+            <div className="center-cell">
+              <RadioGroup onValueChange={info.row.getToggleSelectedHandler()}>
+                <Radio checked={info.row.getIsSelected()} value={''} />
+              </RadioGroup>
+            </div>
+          ),
+        }),
+      ];
+    }
+    return [];
+  }, [columnHelper]);
+
+  useEffect(() => {
+    setInternalGlobalFilter(filteringText);
+  }, [filteringText]);
 
   const table = useReactTable<T>({
     data,
-    columns,
-    pageCount: Math.ceil(data.length / pagination.pageSize),
+    columns: [...internalColumns, ...columns],
+    initialState,
     state: {
       rowSelection,
       sorting,
-      pagination,
       columnVisibility,
+      globalFilter: internalGlobalFilter,
     },
+    onGlobalFilterChange: setInternalGlobalFilter,
     onSortingChange: setSorting,
-    onRowSelectionChange: setRowSelection,
-    onPaginationChange: setPagination,
+    onRowSelectionChange,
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    getPaginationRowModel: pagination ? getPaginationRowModel() : undefined,
     debugTable: false,
     enableSortingRemoval: false,
     sortDescFirst: false,
-    ...options,
+    enableMultiRowSelection: selectionType === 'multi',
   });
+  const hasHeader = !!(header || filter);
+  const hasTools = !!(filter || pagination);
+  const hasNoMatches = !table.getFilteredRowModel().rows.length;
 
-  if (loading) {
-    return (
-      <div className={styles.loading}>
-        <Loader loading size={20} speedMultiplier={1} borderWidth={3} />
-      </div>
-    );
-  }
   return (
-    <React.Fragment>
-      {header && header(table)}
-      <table className={styles.root} data-cy="table" {...props}>
-        <thead data-cy="thead">
-          <tr>
-            {table.getHeaderGroups()[0].headers.map((header) => {
-              const colWidth = header.getSize();
+    <Card
+      header={
+        hasHeader && (
+          <div>
+            {header}
+            {hasTools && (
+              <TableTools
+                filter={filter}
+                pagination={pagination && <Pagination table={table} />}
+              />
+            )}
+          </div>
+        )
+      }
+    >
+      <div className={styles.wrapper}>
+        <table className={styles.table} data-cy="table" {...props}>
+          <thead data-cy="thead">
+            <tr>
+              {table.getHeaderGroups()[0].headers.map((header) => {
+                const colWidth = header.getSize();
+                return (
+                  <th
+                    key={header.id}
+                    style={
+                      colWidth !== 150 ? { width: header.getSize() } : undefined
+                    }
+                  >
+                    {header.column.getCanSort() ? (
+                      <button
+                        className={clsx(
+                          styles['heading-box'],
+                          header.column.getIsSorted() &&
+                            styles['heading-box--sorted']
+                        )}
+                        onClick={header.column.getToggleSortingHandler()}
+                        type="button"
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                        <MaterialIcon
+                          icon="expand_more"
+                          className={clsx(
+                            styles.icon,
+                            styles[
+                              `icon--${header.column.getIsSorted() as string}`
+                            ]
+                          )}
+                        />
+                      </button>
+                    ) : (
+                      <div className={styles['heading-box--alt']}>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                      </div>
+                    )}
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => {
               return (
-                <th
-                  key={header.id}
-                  style={
-                    colWidth !== 150 ? { width: header.getSize() } : undefined
-                  }
+                <TableRow
+                  selected={rowSelection ? row.getIsSelected() : false}
+                  key={row.id}
+                  onClick={() => {
+                    if (!onRowClick) return;
+                    onRowClick(row.original);
+                  }}
                 >
-                  {header.column.getCanSort() ? (
-                    <button
-                      className={clsx(
-                        styles['heading-box'],
-                        header.column.getIsSorted() &&
-                          styles['heading-box--sorted']
-                      )}
-                      onClick={header.column.getToggleSortingHandler()}
-                      type="button"
+                  {row.getVisibleCells().map((cell) => (
+                    <td
+                      key={cell.id}
+                      className={clsx(styles.cell, {
+                        [styles['no-wrapped-lines']]: !wrapLines,
+                      })}
                     >
                       {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
+                        cell.column.columnDef.cell,
+                        cell.getContext()
                       )}
-                      <MaterialIcon
-                        icon="expand_more"
-                        className={clsx(
-                          styles.icon,
-                          styles[
-                            `icon--${header.column.getIsSorted() as string}`
-                          ]
-                        )}
-                      />
-                    </button>
-                  ) : (
-                    <div className={styles['heading-box--alt']}>
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                    </div>
-                  )}
-                </th>
+                    </td>
+                  ))}
+                </TableRow>
               );
             })}
-          </tr>
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => {
-            return (
-              <TableRow
-                selected={rowSelection ? row.getIsSelected() : false}
-                key={row.id}
-                onClick={() => {
-                  if (!onRowClick) return;
-                  onRowClick(row.original);
-                }}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </TableRow>
-            );
-          })}
-        </tbody>
-      </table>
-      {error && <Empty title={error} />}
-      {data.length === 0 && !error
-        ? empty || (
+          </tbody>
+        </table>
+        {loading ? (
+          <div className={styles['loading']}>
+            <Loader loading size={16} speedMultiplier={1} borderWidth={2} />
+          </div>
+        ) : error ? (
+          <Empty title={error} />
+        ) : data.length === 0 ? (
+          empty || (
             <Empty title="No resources" description="No resources to display" />
           )
-        : null}
-    </React.Fragment>
+        ) : hasNoMatches ? (
+          <Empty
+            title="No matches"
+            description="We can’t find a match."
+            actions={<Button text="Clear filter" color="secondary" />}
+          />
+        ) : null}
+      </div>
+    </Card>
   );
 };
 
@@ -222,13 +321,13 @@ export function TableHeader({
 }
 
 interface TableToolsProps {
-  filters?: ReactElement;
-  pagination?: ReactElement;
+  filter?: ReactNode;
+  pagination?: ReactNode;
 }
-export function TableTools({ filters, pagination, ...props }: TableToolsProps) {
+export function TableTools({ filter, pagination, ...props }: TableToolsProps) {
   return (
     <div className={styles.tools} {...props}>
-      <div className={styles['tools__filters']}>{filters}</div>
+      <div className={styles['tools__filters']}>{filter}</div>
       <div className={styles['tools__pagination']}>{pagination}</div>
     </div>
   );

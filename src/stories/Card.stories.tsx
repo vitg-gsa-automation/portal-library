@@ -1,13 +1,7 @@
 import { Story } from '@storybook/react';
-import { Link, TextFilter } from '../components';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardHeaderTools,
-  CardProps,
-} from '../layouts/Card';
+import { Link } from '../components';
 import { Box, Header } from '../layouts';
+import { Card, CardContent, CardProps } from '../layouts/Card';
 
 export default {
   title: 'Card',
@@ -24,26 +18,6 @@ Default.args = {
       variant="h2"
       description="This is a description"
     />
-  ),
-  footer: (
-    <Box textAlign="center">
-      <Link to="#">View more</Link>
-    </Box>
-  ),
-  children: <CardContent>This is content</CardContent>,
-};
-
-export const WithTools: Story<CardProps> = (args) => {
-  return <Card {...args} />;
-};
-WithTools.args = {
-  header: (
-    <CardHeader
-      text="This is a descriptive description"
-      tools={<CardHeaderTools searchInput={<TextFilter filteringText="" />} />}
-    >
-      Card header
-    </CardHeader>
   ),
   footer: (
     <Box textAlign="center">
