@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 
 export interface SpaceBetweenProps {
   direction?: 'vertical' | 'horizontal';
-  size?: 'xs' | 'sm' | 'l' | 'xl';
+  size?: 'xxs' | 'xs' | 'sm' | 'l' | 'xl';
   children: ReactNode;
 }
 

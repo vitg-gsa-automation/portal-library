@@ -19,6 +19,7 @@ export * from './MaterialIcon';
 export * from './NoMatch';
 export * from './Progress';
 export * from './Radio';
+export * from './RadioGroup';
 export * from './Select';
 export * from './Stage';
 export * from './Switch';

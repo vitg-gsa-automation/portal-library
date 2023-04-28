@@ -26,7 +26,7 @@ import {
   Checkbox,
   Pagination,
   Radio,
-  RadioGroup,
+  RadioGroupRoot,
 } from '../../components';
 import { Empty } from '../../components/Empty';
 import { Loader } from '../../components/Loader';
@@ -125,9 +125,15 @@ export const Table = <T extends unknown>({
           size: 40,
           cell: (info) => (
             <div className="center-cell">
-              <RadioGroup onValueChange={info.row.getToggleSelectedHandler()}>
-                <Radio checked={info.row.getIsSelected()} value={''} />
-              </RadioGroup>
+              <RadioGroupRoot
+                onValueChange={info.row.getToggleSelectedHandler()}
+              >
+                <Radio
+                  checked={info.row.getIsSelected()}
+                  value={''}
+                  id={info.row.index}
+                />
+              </RadioGroupRoot>
             </div>
           ),
         }),
