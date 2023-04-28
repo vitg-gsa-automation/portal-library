@@ -9,8 +9,8 @@ import { MaterialIcon } from '../MaterialIcon';
 import { InputError } from '../Input';
 import { Item } from '../../types/form';
 
-function itemToString(item: any) {
-  return item ? item.title : '';
+function itemToString(item: Item<any> | null) {
+  return item?.label ? item.label : '';
 }
 
 export interface SelectProps {
@@ -19,6 +19,7 @@ export interface SelectProps {
   onSelectChange: (item: Item) => any;
   placeholder?: string;
   error?: string;
+  className?: string;
 }
 
 export function Select({
@@ -27,6 +28,7 @@ export function Select({
   placeholder = 'Placeholder',
   onSelectChange,
   error,
+  className,
   ...props
 }: SelectProps) {
   const {
@@ -61,7 +63,7 @@ export function Select({
   return (
     <div className={styles.root}>
       <div
-        className={styles['root__toggle']}
+        className={clsx(styles['root__toggle'], className)}
         {...props}
         {...getToggleButtonProps()}
       >
