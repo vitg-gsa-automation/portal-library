@@ -27,6 +27,7 @@ import {
   Pagination,
   Radio,
   RadioGroupRoot,
+  StatusIndicator,
 } from '../../components';
 import { Empty } from '../../components/Empty';
 import { Loader } from '../../components/Loader';
@@ -45,6 +46,7 @@ export interface TableProps<T> {
   pagination?: boolean;
   empty?: ReactNode;
   loading?: boolean;
+  loadingText?: string;
   error?: string;
   columnVisibility?: ColumnVisibility;
   initialState?: InitialTableState;
@@ -79,6 +81,7 @@ export const Table = <T extends unknown>({
   pagination,
   empty,
   loading,
+  loadingText = 'Loading resources',
   error,
   initialState,
   filteringText,
@@ -271,7 +274,7 @@ export const Table = <T extends unknown>({
         </table>
         {loading ? (
           <div className={styles['loading']}>
-            <Loader loading size={16} speedMultiplier={1} borderWidth={2} />
+            <StatusIndicator type="loading">{loadingText}</StatusIndicator>
           </div>
         ) : error ? (
           <Empty title={error} />

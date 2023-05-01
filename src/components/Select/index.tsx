@@ -8,6 +8,7 @@ import { ListItem } from '../ListItem';
 import { MaterialIcon } from '../MaterialIcon';
 import { InputError } from '../Input';
 import { Item } from '../../types/form';
+import { StatusIndicator } from '../StatusIndicator';
 
 function itemToString(item: Item<any> | null) {
   return item?.label ? item.label : '';
@@ -20,6 +21,8 @@ export interface SelectProps {
   placeholder?: string;
   error?: string;
   className?: string;
+  loading?: boolean;
+  loadingText?: string;
 }
 
 export function Select({
@@ -27,8 +30,10 @@ export function Select({
   selectedItem,
   placeholder = 'Placeholder',
   onSelectChange,
-  error,
   className,
+  error,
+  loading,
+  loadingText = 'Loading resources',
   ...props
 }: SelectProps) {
   const {
@@ -48,6 +53,12 @@ export function Select({
   });
 
   const renderItems = function () {
+    if (loading)
+      return (
+        <div className={styles.loading}>
+          <StatusIndicator type="loading">{loadingText}</StatusIndicator>
+        </div>
+      );
     if (!items.length) return <Empty title="No items" />;
     return items.map((item, index) => (
       <SelectItem
@@ -63,13 +74,15 @@ export function Select({
   return (
     <div className={styles.root}>
       <div
-        className={clsx(styles['root__toggle'], className)}
+        className={clsx(styles.toggle, className, {
+          [styles.error]: error,
+        })}
         {...props}
         {...getToggleButtonProps()}
       >
         <span>{selectedItem?.label ? selectedItem.label : placeholder}</span>
         <MaterialIcon
-          className={styles['root__toggle__icon']}
+          className={styles['toggle__icon']}
           icon="play_arrow"
           type="round"
           style={{ rotate: isOpen ? '270deg' : '90deg', fontSize: '1.8rem' }}
@@ -113,6 +126,8 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
 interface SelectMenuProps {
   open?: boolean;
   children?: ReactNode;
+  loading?: boolean;
+  loadingText?: string;
 }
 
 export const SelectMenu = forwardRef<HTMLUListElement, SelectMenuProps>(

@@ -1,31 +1,45 @@
 .root {
   position: relative;
-  &__toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 2px solid var(--color-border-input);
-    box-shadow: none;
-    border-radius: 8px;
-    height: 3.4rem;
-    font-size: 1.4rem;
-    padding: 0 1.6rem;
-    background-color: var(--color-bg-input);
-    transition: border-color 0.1s;
-    &:hover {
-      & .root__toggle__icon {
-        color: black;
-      }
-    }
-    &:focus,
-    &:focus-within {
-      border-color: var(--color-gsa-blue-40);
-    }
-  }
   &__placeholder {
     font-weight: 400;
     color: var(--font-color);
   }
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid var(--color-border-input);
+  box-shadow: none;
+  border-radius: 8px;
+  height: 3.4rem;
+  font-size: 1.4rem;
+  padding: 0 1.6rem;
+  background-color: var(--color-bg-input);
+  transition: border-color 0.1s;
+  &:hover {
+    & .toggle__icon {
+      color: black;
+    }
+  }
+  &:focus,
+  &:focus-within {
+    border-color: var(--color-gsa-blue-40);
+  }
+  &.error {
+    border-color: var(--color-red-40);
+    & .toggle__icon {
+      color: var(--color-red-40);
+    }
+  }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.6rem;
+  white-space: nowrap;
 }
 
 .menu {
@@ -36,9 +50,7 @@
   border-radius: 8px;
   padding: 1px;
 
-  // border: var(--border);
   border: 2px solid var(--color-black-20);
-  box-shadow: var(--shadow-menu);
   z-index: 3;
   max-height: 40rem;
   overflow-y: auto;

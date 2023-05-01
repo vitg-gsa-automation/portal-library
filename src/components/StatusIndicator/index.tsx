@@ -2,14 +2,16 @@ import { ReactNode } from 'react';
 import clsx from 'clsx';
 
 import styles from './index.module.scss';
-import { MaterialIcon } from '../../components/MaterialIcon';
+import { MaterialIcon } from '../MaterialIcon';
+import { Loader } from '../Loader';
 type StatusIndicatorType =
   | 'info'
   | 'warning'
   | 'success'
   | 'error'
   | 'pending'
-  | 'in-progress';
+  | 'in-progress'
+  | 'loading';
 
 export interface StatusIndicatorProps
   extends React.HTMLAttributes<HTMLSpanElement> {
@@ -42,12 +44,15 @@ export function StatusIndicator({
   const icon = getIcon(type);
   return (
     <span className={clsx(styles.root, styles[type])} {...props}>
-      <MaterialIcon
-        className={styles.icon}
-        icon={icon}
-        type="outlined"
-        fontSize="1.6rem"
-      />
+      {type === 'loading' && <Loader size={14} borderWidth={2} />}
+      {icon && (
+        <MaterialIcon
+          className={styles.icon}
+          icon={icon}
+          type="outlined"
+          fontSize="1.6rem"
+        />
+      )}
       <span className={styles.text}>{children}</span>
     </span>
   );
