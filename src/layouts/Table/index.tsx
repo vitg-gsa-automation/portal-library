@@ -159,6 +159,14 @@ export const Table = <T extends unknown>({
       columnVisibility,
       globalFilter: internalGlobalFilter,
     },
+    globalFilterFn: (row, columnId, filterValue: string) => {
+      const search = filterValue.toLowerCase();
+
+      let value = row.getValue(columnId) as string;
+      if (typeof value === 'number') value = String(value);
+
+      return value?.toLowerCase().includes(search);
+    },
     onGlobalFilterChange: setInternalGlobalFilter,
     onSortingChange: setSorting,
     onRowSelectionChange,

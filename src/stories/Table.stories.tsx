@@ -21,6 +21,7 @@ export default {
 const pkgs: Package[] = [
   {
     PkgName: 'VITGPkg1',
+    SystemID: 43242,
     PkgDesc: 'Pkg description',
     Status: 'Pending',
     PkgCreateDate: 'March 03, 2023',
@@ -31,6 +32,7 @@ const pkgs: Package[] = [
   },
   {
     PkgName: 'AwesomecloudPkg2',
+    SystemID: 543,
     PkgDesc: 'Pkg description',
     Status: 'Pending',
     PkgCreateDate: 'November 03, 2023',
@@ -41,6 +43,7 @@ const pkgs: Package[] = [
   },
   {
     PkgName: 'GooglePkg3',
+    SystemID: 765,
     PkgDesc: 'Pkg description',
     Status: 'Pending',
     PkgCreateDate: 'Jan 03, 2023',
@@ -51,6 +54,7 @@ const pkgs: Package[] = [
   },
   {
     PkgName: 'MicrosoftPkg3',
+    SystemID: 987,
     PkgDesc: 'Pkg description',
     Status: 'Pending',
     PkgCreateDate: 'Jan 03, 2023',
@@ -61,6 +65,7 @@ const pkgs: Package[] = [
   },
   {
     PkgName: 'AwesomecloudPkg3',
+    SystemID: 987,
     PkgDesc: 'Pkg description',
     Status: 'Pending',
     PkgCreateDate: 'Jan 03, 2023',
@@ -70,6 +75,7 @@ const pkgs: Package[] = [
     ContactName: 'Aaron Nolan',
   },
   {
+    SystemID: 65,
     PkgName: 'AwesomecloudPkg3',
     PkgDesc: 'Pkg description',
     Status: 'Pending',
@@ -80,6 +86,7 @@ const pkgs: Package[] = [
     ContactName: 'Aaron Nolan',
   },
   {
+    SystemID: 98,
     PkgName: 'AwesomecloudPkg3',
     PkgDesc: 'Pkg description',
     Status: 'Pending',
@@ -90,6 +97,7 @@ const pkgs: Package[] = [
     ContactName: 'Aaron Nolan',
   },
   {
+    SystemID: 2345,
     PkgName: 'AwesomecloudPkg3',
     PkgDesc: 'Pkg description',
     Status: 'Pending',
@@ -100,6 +108,7 @@ const pkgs: Package[] = [
     ContactName: 'Aaron Nolan',
   },
   {
+    SystemID: 65,
     PkgName: 'AwesomecloudPkg3',
     PkgDesc: 'Pkg description',
     Status: 'Pending',
@@ -110,6 +119,7 @@ const pkgs: Package[] = [
     ContactName: 'Aaron Nolan',
   },
   {
+    SystemID: 9876,
     PkgName: 'AwesomecloudPkg3',
     PkgDesc: 'Pkg description',
     Status: 'Pending',
@@ -120,6 +130,7 @@ const pkgs: Package[] = [
     ContactName: 'Aaron Nolan',
   },
   {
+    SystemID: 65,
     PkgName: 'AwesomecloudPkg3',
     PkgDesc: 'Pkg description',
     Status: 'Pending',
@@ -130,6 +141,7 @@ const pkgs: Package[] = [
     ContactName: 'Aaron Nolan',
   },
   {
+    SystemID: 2,
     PkgName: 'AwesomecloudPkg3',
     PkgDesc: 'Pkg description',
     Status: 'Pending',
@@ -140,6 +152,7 @@ const pkgs: Package[] = [
     ContactName: 'Aaron Nolan',
   },
   {
+    SystemID: 234,
     PkgName: 'AwesomecloudPkg3',
     PkgDesc: 'Pkg description',
     Status: 'Pending',
@@ -150,6 +163,7 @@ const pkgs: Package[] = [
     ContactName: 'Aaron Nolan',
   },
   {
+    SystemID: 654,
     PkgName: 'AwesomecloudPkg3',
     PkgDesc: 'Pkg description',
     Status: 'Pending',
@@ -165,6 +179,9 @@ const columnHelper = createColumnHelper<Package>();
 const columns = [
   columnHelper.accessor('PkgName', {
     header: 'Package name',
+  }),
+  columnHelper.accessor('SystemID', {
+    header: 'SystemID',
   }),
   columnHelper.accessor('ATOBeginDate', {
     header: 'ATO Begins',
