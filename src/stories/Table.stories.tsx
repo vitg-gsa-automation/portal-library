@@ -270,7 +270,7 @@ export const Loading: Story<TableProps<Package>> = (args) => {
 };
 Loading.args = {
   header: <Header variant="h2" title="Packages" />,
-  data: [],
+  data: pkgs,
   loading: true,
   filter: (
     <TextFilter filteringText={''} filteringPlaceholder="Find by resource" />

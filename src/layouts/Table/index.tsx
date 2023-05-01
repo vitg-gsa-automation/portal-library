@@ -238,34 +238,36 @@ export const Table = <T extends unknown>({
               })}
             </tr>
           </thead>
-          <tbody>
-            {table.getRowModel().rows.map((row) => {
-              return (
-                <TableRow
-                  selected={rowSelection ? row.getIsSelected() : false}
-                  key={row.id}
-                  onClick={() => {
-                    if (!onRowClick) return;
-                    onRowClick(row.original);
-                  }}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <td
-                      key={cell.id}
-                      className={clsx(styles.cell, {
-                        [styles['no-wrapped-lines']]: !wrapLines,
-                      })}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </td>
-                  ))}
-                </TableRow>
-              );
-            })}
-          </tbody>
+          {!loading && (
+            <tbody>
+              {table.getRowModel().rows.map((row) => {
+                return (
+                  <TableRow
+                    selected={rowSelection ? row.getIsSelected() : false}
+                    key={row.id}
+                    onClick={() => {
+                      if (!onRowClick) return;
+                      onRowClick(row.original);
+                    }}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <td
+                        key={cell.id}
+                        className={clsx(styles.cell, {
+                          [styles['no-wrapped-lines']]: !wrapLines,
+                        })}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </td>
+                    ))}
+                  </TableRow>
+                );
+              })}
+            </tbody>
+          )}
         </table>
         {loading ? (
           <div className={styles['loading']}>

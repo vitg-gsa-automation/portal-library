@@ -96,8 +96,10 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
   ) => {
     const myRef = useRef<HTMLLIElement>(null);
     useEffect(() => {
-      if (highlighted) myRef.current?.setAttribute('data-highlighted', 'true');
-      else myRef.current?.removeAttribute('data-highlighted');
+      if (highlighted) {
+        myRef.current?.setAttribute('data-highlighted', 'true');
+        myRef.current?.scrollIntoView({ block: 'nearest' });
+      } else myRef.current?.removeAttribute('data-highlighted');
     }, [highlighted]);
 
     return (

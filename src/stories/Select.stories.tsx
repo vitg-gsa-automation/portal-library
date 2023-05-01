@@ -4,16 +4,56 @@ import { Select, SelectProps } from '../components';
 
 const items: Item[] = [
   {
-    label: 'Item 1',
+    label: 'Mario',
     value: 1,
   },
   {
-    label: 'Item 2',
+    label: 'Luigi',
     value: 2,
   },
   {
-    label: 'Item 3',
+    label: 'Zelda',
     value: 3,
+  },
+  {
+    label: 'Peach',
+    value: 4,
+  },
+  {
+    label: 'Toad',
+    value: 5,
+  },
+  {
+    label: 'Bowser',
+    value: 6,
+  },
+  {
+    label: 'Link',
+    value: 7,
+  },
+  {
+    label: 'Donkey Kong',
+    value: 8,
+  },
+  {
+    label: 'Wario',
+    value: 9,
+  },
+  {
+    label: 'Yoshi',
+    value: 10,
+  },
+  {
+    label: 'Pikachu',
+    value: 11,
+  },
+  {
+    label: 'Fox',
+    value: 12,
+  },
+  {
+    label: 'Ganon',
+    value: 13,
   },
 ];
 
@@ -26,7 +66,7 @@ export const Default: Story<SelectProps> = (args) => {
   return <Select {...args} />;
 };
 Default.args = {
-  placeholder: 'Select ATO Package',
+  placeholder: 'Select characters',
   items,
   // onSelectChange:{(item) => setPkgOption(item)}
   // selectedItem={pkgOption}

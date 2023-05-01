@@ -1,6 +1,12 @@
 .root {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
   all: unset;
   background-color: var(--color-bg-input);
+  min-width: 1.2rem;
   width: 1.2rem;
   height: 1.2rem;
   display: flex;
@@ -18,12 +24,17 @@
   &:focus {
     border: 2px solid var(--color-black-40);
   }
-  &__indicator {
-    font-size: 1.2rem !important;
-    background-color: var(--color-bg-input-selected);
-    color: white;
-    font-weight: 900;
-  }
+}
+
+.indicator {
+  font-size: 1.2rem !important;
+  background-color: var(--color-bg-input-selected);
+  color: white;
+  font-weight: 900;
+}
+
+.label {
+  margin-left: 1rem;
 }
 
 .radio {

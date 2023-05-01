@@ -8,6 +8,7 @@
 }
 
 .container {
+  height: 3.4rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -47,7 +48,7 @@
   flex: 1;
   border: none;
   outline: none;
-  height: 3rem;
+  height: 100%;
 }
 
 .error {
