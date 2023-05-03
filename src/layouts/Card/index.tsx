@@ -1,13 +1,14 @@
 import { ReactElement, ReactNode } from 'react';
 
 import styles from './index.module.scss';
-import { Loader } from '../../components/Loader';
 import clsx from 'clsx';
+import { StatusIndicator } from '../../components/StatusIndicator';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   header?: ReactNode;
   footer?: ReactNode;
   loading?: boolean;
+  loadingText?: string;
   children?: React.ReactNode;
 }
 
@@ -45,6 +46,7 @@ export function Card({
   header,
   footer,
   loading,
+  loadingText = 'Loading resources',
   children,
   ...props
 }: CardProps) {
@@ -52,8 +54,8 @@ export function Card({
     <div className={styles.root} {...props}>
       {header && <div className={styles.header}>{header}</div>}
       {loading ? (
-        <div className={styles['root__loading']}>
-          <Loader loading size={20} speedMultiplier={1} borderWidth={3} />
+        <div className={styles.loading}>
+          <StatusIndicator type="loading">{loadingText}</StatusIndicator>
         </div>
       ) : (
         children

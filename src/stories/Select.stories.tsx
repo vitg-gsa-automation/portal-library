@@ -67,7 +67,5 @@ export const Default: Story<SelectProps> = (args) => {
 };
 Default.args = {
   placeholder: 'Select characters',
-  items,
-  // onSelectChange:{(item) => setPkgOption(item)}
-  // selectedItem={pkgOption}
+  items: [],
 };

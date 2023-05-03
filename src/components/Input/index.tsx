@@ -9,8 +9,7 @@ export interface InputProps
   icon?: string;
   iconFontSize?: string;
   extended?: boolean;
-  hints?: string;
-  error?: string;
+  invalid?: boolean;
 }
 
 export const Input = forwardRef(
@@ -21,8 +20,7 @@ export const Input = forwardRef(
       name,
       className,
       extended,
-      hints,
-      error,
+      invalid,
       style,
       ...props
     }: InputProps,
@@ -36,7 +34,9 @@ export const Input = forwardRef(
         <div
           className={clsx(
             styles.container,
-            error && styles['container--error'],
+            {
+              [styles.invalid]: invalid,
+            },
             className
           )}
         >
@@ -49,8 +49,6 @@ export const Input = forwardRef(
           )}
           <input ref={ref} className={styles.input} id={name} {...props} />
         </div>
-        {hints && <InputHints text={hints} />}
-        {error && <InputError error={error} />}
       </div>
     );
   }

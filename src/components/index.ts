@@ -38,3 +38,4 @@ export * from './Flashbar';
 export * from './Tiles';
 export * from './Editor';
 export * from './Modal';
+export * from './FormField';

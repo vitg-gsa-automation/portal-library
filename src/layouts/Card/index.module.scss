@@ -3,12 +3,13 @@
   box-shadow: var(--shadow-card);
   width: 100%;
   border-radius: 1.6rem;
-  &__loading {
-    min-height: 10rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+}
+
+.loading {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header {

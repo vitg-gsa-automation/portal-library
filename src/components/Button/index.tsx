@@ -10,10 +10,11 @@ type Color = 'primary' | 'secondary';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  text: string;
+  variant?: 'normal' | 'link';
   size?: 'small' | 'large';
   extended?: boolean;
   color?: Color;
-  text: string;
   icon?: string;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
@@ -26,6 +27,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       loading,
+      variant = 'normal',
       size = 'small',
       icon,
       iconPos = 'left',
@@ -42,16 +44,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const navigate = useNavigate();
     const renderChildren = function () {
-      if (loading) {
-        return (
-          <Loader
-            data-testid="loader"
-            loaderColor={color === 'primary' ? 'white' : 'primary'}
-            size={20}
-            speedMultiplier={1.25}
-          />
-        );
-      }
       return (
         <React.Fragment>
           {icon && iconPos === 'left' ? (
@@ -76,11 +68,23 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           styles.root,
           styles[color],
           styles[size],
-          extended && styles['extended'],
+          styles[variant],
+          {
+            [styles['extended']]: extended,
+            [styles['loading']]: loading,
+          },
           className
         )}
       >
         {startIcon}
+        {loading && (
+          <Loader
+            data-testid="loader"
+            loaderColor={color === 'primary' ? 'white' : 'primary'}
+            size={14}
+            borderWidth={2}
+          />
+        )}
         {renderChildren()}
         {endIcon}
       </button>

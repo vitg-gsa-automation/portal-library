@@ -35,14 +35,14 @@
   width: 100%;
 }
 
-//Sizes
+//SIZES
 .small {
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1.2rem;
   height: 3.2rem;
   font-size: 1.4rem;
 }
 
-//Colors
+//COLORS
 .secondary {
   border-color: var(--color-black-30);
   background-color: var(--color-bg-button-secondary);
@@ -51,4 +51,11 @@
 
 .red {
   background-color: #eb5757;
+}
+
+//VARIANT
+.link {
+  background-color: unset;
+  color: var(--font-color-link);
+  border-color: transparent;
 }

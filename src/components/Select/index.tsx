@@ -18,11 +18,14 @@ export interface SelectProps {
   items: Item[];
   selectedItem?: Item;
   onSelectChange: (item: Item) => any;
+  onBlur?: React.FocusEventHandler<HTMLButtonElement>;
   placeholder?: string;
   error?: string;
+  invalid?: boolean;
   className?: string;
   loading?: boolean;
   loadingText?: string;
+  errorText?: string;
 }
 
 export function Select({
@@ -30,10 +33,13 @@ export function Select({
   selectedItem,
   placeholder = 'Placeholder',
   onSelectChange,
+  onBlur,
   className,
   error,
+  invalid,
   loading,
   loadingText = 'Loading resources',
+  errorText,
   ...props
 }: SelectProps) {
   const {
@@ -55,11 +61,17 @@ export function Select({
   const renderItems = function () {
     if (loading)
       return (
-        <div className={styles.loading}>
+        <div className={styles.single}>
           <StatusIndicator type="loading">{loadingText}</StatusIndicator>
         </div>
       );
-    if (!items.length) return <Empty title="No items" />;
+    else if (errorText)
+      return (
+        <div className={styles.single}>
+          <StatusIndicator type="error">{errorText}</StatusIndicator>
+        </div>
+      );
+    if (!items.length) return <div className={styles.single}>No options</div>;
     return items.map((item, index) => (
       <SelectItem
         key={index}
@@ -76,9 +88,10 @@ export function Select({
       <div
         className={clsx(styles.toggle, className, {
           [styles.error]: error,
+          [styles.invalid]: invalid,
         })}
         {...props}
-        {...getToggleButtonProps()}
+        {...getToggleButtonProps({ onBlur })}
       >
         <span>{selectedItem?.label ? selectedItem.label : placeholder}</span>
         <MaterialIcon

@@ -6,10 +6,10 @@ export default {
   component: Button,
 };
 
-export const Primary: Story<ButtonProps> = (args) => {
+export const Default: Story<ButtonProps> = (args) => {
   return <Button {...args} />;
 };
-Primary.args = {
+Default.args = {
   text: 'Primary',
   color: 'primary',
   size: 'small',

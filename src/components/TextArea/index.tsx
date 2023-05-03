@@ -1,27 +1,25 @@
-import { InputError, InputHints } from '../Input';
 import clsx from 'clsx';
 
 import styles from './index.module.scss';
 
-interface TextAreaProps
+export interface TextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  hints?: string;
-  error?: string;
+  invalid?: boolean;
 }
 
-export function TextArea({ name, hints, error, ...props }: TextAreaProps) {
+export function TextArea({ name, invalid, ...props }: TextAreaProps) {
   return (
     <div className={styles.root}>
       <textarea
-        className={clsx(styles.textarea, error && styles['textarea--error'])}
+        className={clsx(styles.textarea, {
+          [styles.invalid]: invalid,
+        })}
         id={name}
         autoComplete="off"
         spellCheck={false}
         rows={4}
         {...props}
       />
-      {hints && <InputHints text={hints} />}
-      {error && <InputError error={error} />}
     </div>
   );
 }

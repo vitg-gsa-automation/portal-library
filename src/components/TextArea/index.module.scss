@@ -11,13 +11,14 @@
   background-color: var(--color-bg-input);
   &:focus,
   &:focus-visible {
-    border-color: var(--color-gsa-blue-40) !important;
+    border-color: black !important;
   }
+}
 
-  &--error {
-    border-color: var(--color-red-40);
-    &:focus {
-      outline-color: var(--color-red-40) !important;
-    }
+.invalid {
+  border-color: var(--color-red-40);
+  border-left-width: 8px;
+  &:focus {
+    outline-color: var(--color-red-40) !important;
   }
 }
