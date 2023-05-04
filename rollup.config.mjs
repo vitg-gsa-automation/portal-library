@@ -54,6 +54,7 @@ export default [
         exclude: [
           '**/stories',
           '**/*.stories.tsx',
+          '**/__tests__/**',
           '**/*.test.tsx',
           '**/*.test.ts',
         ],
