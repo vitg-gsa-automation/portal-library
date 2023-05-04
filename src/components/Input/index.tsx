@@ -32,6 +32,7 @@ export const Input = forwardRef(
         className={clsx(styles.root, extended && styles['extended'])}
       >
         <div
+          data-testid="input-container"
           className={clsx(
             styles.container,
             {

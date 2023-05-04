@@ -4,7 +4,8 @@ import { Input } from '.';
 
 describe('Input', () => {
   it('renders an input field with the given value', () => {
-    render(<Input name="test" value="Aaron" />);
+    const handleChange = jest.fn();
+    render(<Input name="test" value="Aaron" onChange={handleChange} />);
     const input = screen.getByRole('textbox') as HTMLInputElement;
     expect(input).toBeInTheDocument();
     expect(input.value).toBe('Aaron');

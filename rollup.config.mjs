@@ -57,6 +57,7 @@ export default [
           '**/__tests__/**',
           '**/*.test.tsx',
           '**/*.test.ts',
+          '**/setupTests.ts',
         ],
       }),
       terser(),
