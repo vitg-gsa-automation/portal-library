@@ -305,6 +305,7 @@ export const Table = <T extends unknown>({
 function TableRow({ selected, children, ...props }: TableRowProps) {
   return (
     <tr
+      role="row"
       className={clsx(styles.row, selected && styles['row--selected'])}
       {...props}
     >
