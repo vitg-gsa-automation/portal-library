@@ -23,7 +23,7 @@ const getIcon = function (type: AlertType) {
     case 'success':
       return 'check_circle';
     case 'error':
-      return 'error';
+      return 'error_outline';
 
     default:
       return 'info';
@@ -43,7 +43,12 @@ export function Alert({
   if (!open) return null;
   return (
     <div className={clsx(styles.root, styles[type])} {...props}>
-      <MaterialIcon icon={icon} className={styles.icon} fontSize="1.8rem" />
+      <MaterialIcon
+        icon={icon}
+        className={styles.icon}
+        fontSize="1.8rem"
+        type="outlined"
+      />
       <div className={styles.container}>
         <div className={styles.header}>{header}</div>
         {content}

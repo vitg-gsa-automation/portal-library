@@ -6,7 +6,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "test": "jest --watch --verbose",
+    "test": "jest --verbose",
     "build": "rollup -c",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
