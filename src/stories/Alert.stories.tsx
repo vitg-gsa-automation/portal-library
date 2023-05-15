@@ -10,10 +10,12 @@ export const Default: Story<AlertProps> = (args) => {
   return <Alert {...args} />;
 };
 Default.args = {
-  type: 'info',
+  type: 'error',
   header: 'Known issues/limitations',
   content:
     'No Savings Plans coverage data was returned for this time period. Please adjust the time period or filters if this seems incorrect.',
+  dismissable: true,
+  onDismiss: () => console.log('dismissed'),
 };
 export const WithAction: Story<AlertProps> = (args) => {
   return <Alert {...args} />;
@@ -28,7 +30,7 @@ export const Dismissable: Story<AlertProps> = (args) => {
   return <Alert {...args} />;
 };
 Dismissable.args = {
-  type: 'info',
+  type: 'success',
   header: 'Versioning is not enabled',
   content: 'Versioning is not enabled for documents in package.',
   action: <Button text="Enable versioning" color="secondary" />,

@@ -49,7 +49,7 @@ export function SideNavigation({
     return items.map((item) => {
       if (item.type === 'link')
         return (
-          <li className={styles.item}>
+          <li key={item.id} className={styles.item}>
             <SideNavigationLink key={item.id} to={item.href || '#'}>
               {item.text}
             </SideNavigationLink>
@@ -57,15 +57,15 @@ export function SideNavigation({
         );
       else if (item.type === 'section') {
         return (
-          <li className={styles.item}>
-            <Expandable key={item.text} text={item.text} value={item.id}>
+          <li key={item.id} className={styles.item}>
+            <Expandable text={item.text} value={item.id}>
               {renderItems(item.items)}
             </Expandable>
           </li>
         );
       } else if (item.type === 'divider') {
         return (
-          <Separator.Root asChild>
+          <Separator.Root key={item.id} asChild>
             <hr className={styles.separator} />
           </Separator.Root>
         );

@@ -29,6 +29,7 @@ export const Cards: Story<SpaceBetweenProps> = (args) => {
       >
         Content
       </Card>
+      {null}
       <Card
         header={<Header variant="h2" title="Card title" />}
         footer="Card footer"

@@ -16,11 +16,14 @@ export function SpaceBetween({
 }: SpaceBetweenProps) {
   return (
     <div className={clsx(styles.root, styles[direction], styles[size])}>
-      {React.Children.map(children, (child, index) => (
-        <div key={index} className={styles.child}>
-          {child}
-        </div>
-      ))}
+      {React.Children.map(children, (child, index) => {
+        if (!child) return null;
+        return (
+          <div key={index} className={styles.child}>
+            {child}
+          </div>
+        );
+      })}
     </div>
   );
 }

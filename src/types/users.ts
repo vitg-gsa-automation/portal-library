@@ -9,6 +9,7 @@ export interface User {
   LastLogin?: string;
   OrganizationID?: string;
   OrganizationName?: string;
+  PhoneNumber?: string;
 }
 
 export interface Credentials {

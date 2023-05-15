@@ -12,6 +12,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   content?: ReactNode;
   action?: ReactNode;
   dismissable?: boolean;
+  onDismiss?: () => any;
 }
 
 const getIcon = function (type: AlertType) {
@@ -36,11 +37,10 @@ export function Alert({
   content,
   action,
   dismissable,
+  onDismiss,
   ...props
 }: AlertProps) {
-  const [open, setOpen] = useState(true);
   const icon = getIcon(type);
-  if (!open) return null;
   return (
     <div className={clsx(styles.root, styles[type])} {...props}>
       <MaterialIcon
@@ -59,7 +59,7 @@ export function Alert({
           icon="close"
           className={styles.close}
           fontSize="2rem"
-          onClick={() => setOpen(false)}
+          onClick={onDismiss}
         />
       )}
     </div>
