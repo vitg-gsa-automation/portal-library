@@ -1,5 +1,5 @@
 import { Story } from '@storybook/react';
-import { Link } from '../components';
+import { ExpandableSection, FormField, Link, TextArea } from '../components';
 import { Box, Header } from '../layouts';
 import { Card, CardContent, CardProps } from '../layouts/Card';
 
@@ -20,9 +20,11 @@ Default.args = {
     />
   ),
   footer: (
-    <Box textAlign="center">
-      <Link to="#">View more</Link>
-    </Box>
+    <ExpandableSection header="Review comments">
+      <FormField label="Comments" htmlFor="comments">
+        <TextArea name="comments" placeholder="Enter comments" />
+      </FormField>
+    </ExpandableSection>
   ),
   children: <CardContent>This is content</CardContent>,
 };
