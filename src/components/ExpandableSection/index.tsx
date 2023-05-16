@@ -3,7 +3,7 @@ import styles from './index.module.scss';
 import { MaterialIcon } from '../MaterialIcon';
 import { ReactNode } from 'react';
 
-export interface ExpandableSectionProps {
+export interface ExpandableSectionProps extends Collapsible.CollapsibleProps {
   header?: ReactNode;
   headerText?: string;
   children: ReactNode;
@@ -12,10 +12,11 @@ export function ExpandableSection({
   header,
   headerText,
   children,
+  ...props
 }: ExpandableSectionProps) {
   const _header = header || headerText;
   return (
-    <Collapsible.Root className={styles.root}>
+    <Collapsible.Root className={styles.root} {...props}>
       <Collapsible.Trigger className={styles.trigger}>
         <MaterialIcon
           icon="play_arrow"
