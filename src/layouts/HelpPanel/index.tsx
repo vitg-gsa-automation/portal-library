@@ -43,7 +43,12 @@ export function HelpPanel({
       >
         <aside className={styles.root}>
           <DrawerTrigger className={styles.trigger}>
-            <MaterialIcon icon="info" className={styles['trigger__icon']} />
+            <MaterialIcon
+              icon="info"
+              className={styles['trigger__icon']}
+              type="outlined"
+              fontSize="2rem"
+            />
           </DrawerTrigger>
           <div className={styles['help-panel']}>
             {header && (

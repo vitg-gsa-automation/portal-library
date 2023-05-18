@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-fedramp-deep-blue-40);
+  background-color: var(--color-fedramp-deep-blue-50);
   color: white;
   cursor: pointer;
   border-radius: 999px;
@@ -31,8 +31,8 @@
 
 .animated {
   height: 100%;
-  transition: all 0.1s;
   &[data-state='open'] {
+    transition: all 0.115s;
     width: 28rem;
     & .trigger {
       display: none;

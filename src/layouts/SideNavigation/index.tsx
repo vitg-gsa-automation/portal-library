@@ -77,7 +77,11 @@ export function SideNavigation({
       {!open && (
         <nav className={styles.closed}>
           <DrawerTrigger className={styles.trigger}>
-            <MaterialIcon icon="menu" className={styles['trigger__icon']} />
+            <MaterialIcon
+              icon="menu"
+              className={styles['trigger__icon']}
+              fontSize="2rem"
+            />
           </DrawerTrigger>
         </nav>
       )}
