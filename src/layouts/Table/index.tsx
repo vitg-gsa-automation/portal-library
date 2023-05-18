@@ -42,6 +42,7 @@ export interface TableProps<T> {
   onRowSelectionChange?: OnChangeFn<RowSelectionState>;
   onRowClick?: (rowData: T) => unknown;
   header?: ReactElement;
+  footer?: ReactElement;
   filter?: ReactNode;
   pagination?: boolean;
   empty?: ReactNode;
@@ -77,6 +78,7 @@ export const Table = <T extends unknown>({
   onRowSelectionChange,
   onRowClick,
   header,
+  footer,
   filter,
   pagination,
   empty,
@@ -198,6 +200,7 @@ export const Table = <T extends unknown>({
           </div>
         )
       }
+      footer={footer}
     >
       <div className={styles.wrapper}>
         <table className={styles.table} data-cy="table" {...props}>

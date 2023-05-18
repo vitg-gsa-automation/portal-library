@@ -1,6 +1,7 @@
 import { Story } from '@storybook/react';
 import { createColumnHelper } from '@tanstack/react-table';
 import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { Package } from 'types';
 import {
   Button,
@@ -22,11 +23,10 @@ import {
   Card,
   CardContent,
   ColumnLayout,
-  Container,
   ContentLayout,
-  Dashboard,
   Header,
   HelpPanel,
+  Layout,
   Property,
   SideNavigation,
   SpaceBetween,
@@ -99,14 +99,6 @@ export const Default: Story<TableProps<Package>> = (args) => {
   useEffect(() => {
     publish([
       {
-        id: 1,
-        type: 'info',
-        content: 'Converting AwesomeCloudSSP1 to Word file',
-        dismissable: true,
-        onDismiss: dismiss,
-        loading: true,
-      },
-      {
         id: 2,
         type: 'success',
         content: 'Successfully converted AwesomeCloudSSP1 to aWord file',
@@ -116,266 +108,347 @@ export const Default: Story<TableProps<Package>> = (args) => {
     ]);
   }, []);
   return (
-    <Dashboard topNavigation={<TopNavigation title="Authorization portal" />}>
-      <AppLayout
-        {...args}
-        breadcrumbs={<div>breadcrumbs</div>}
-        notifications={
-          notifications.length ? <Flashbar items={notifications} /> : undefined
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Layout navigation={<TopNavigation title="Authorization portal" />} />
         }
-        navigation={
-          <SideNavigation
-            header={{ href: '#', text: 'Authorizations' }}
-            items={[
-              {
-                id: 'dashboard',
-                type: 'link',
-                text: 'Navigation link',
-                href: '/dashboard',
-              },
-              {
-                id: 'home',
-                type: 'link',
-                text: 'Navigation link',
-                href: '/home',
-              },
-              {
-                id: 'add',
-                type: 'section',
-                text: 'Navigation link',
-                href: '/add',
-                items: [
-                  {
-                    id: 'dashboard',
-                    type: 'link',
-                    text: 'Navigation link',
-                    href: '/dashboard',
-                  },
-                  {
-                    id: 'home',
-                    type: 'link',
-                    text: 'Navigation link',
-                    href: '/home',
-                  },
-                ],
-              },
-              {
-                id: 'add',
-                type: 'section',
-                text: 'Navigation link',
-                href: '/add',
-                items: [
-                  {
-                    id: 'dashboard',
-                    type: 'link',
-                    text: 'Navigation link',
-                    href: '/dashboard',
-                  },
-                  {
-                    id: 'home',
-                    type: 'link',
-                    text: 'Navigation link',
-                    href: '/home',
-                  },
-                ],
-              },
-              {
-                id: 'd1',
-                type: 'divider',
-              },
-              {
-                id: 'link1',
-                type: 'link',
-                text: 'Navigation link',
-                href: '/route/1',
-              },
-              {
-                id: 'link2',
-                type: 'link',
-                text: 'Navigation link',
-                href: '/route/2',
-              },
-              {
-                id: 'link3',
-                type: 'link',
-                text: 'Navigation link',
-                href: '/route/3',
-              },
-              {
-                id: 'link4',
-                type: 'link',
-                text: 'Navigation link',
-                href: '/route/4',
-              },
-            ]}
-          />
-        }
-        content={
-          <ContentLayout
-            header={
-              <PageHeader>
-                <Header
-                  title="AwesomeCloudSSP1"
-                  description="Lorem ipsum dolor sit amet consectetur. Vel ac id aliquam ac ullamcorper in justo vitae."
-                  actions={
-                    <React.Fragment>
-                      <Button text="Edit resource" color="secondary" />
-                      <DropdownButton text="Actions">list</DropdownButton>
-                    </React.Fragment>
-                  }
-                  info={
-                    <Link
-                      to="#"
-                      variant="info"
-                      onClick={() => setToolsOpen(true)}
-                    >
-                      Info
-                    </Link>
-                  }
+      >
+        <Route
+          index
+          element={
+            <AppLayout
+              {...args}
+              breadcrumbs={<div>breadcrumbs</div>}
+              notifications={
+                notifications.length ? (
+                  <Flashbar items={notifications} />
+                ) : undefined
+              }
+              navigation={
+                <SideNavigation
+                  header={{ href: '#', text: 'Authorizations' }}
+                  items={[
+                    {
+                      id: 'dashboard',
+                      type: 'link',
+                      text: 'Navigation link',
+                      href: '/dashboard',
+                    },
+                    {
+                      id: 'home',
+                      type: 'link',
+                      text: 'Navigation link',
+                      href: '/home',
+                    },
+                    {
+                      id: 'add',
+                      type: 'section',
+                      text: 'Navigation link',
+                      href: '/add',
+                      items: [
+                        {
+                          id: 'dashboard',
+                          type: 'link',
+                          text: 'Navigation link',
+                          href: '/dashboard',
+                        },
+                        {
+                          id: 'home',
+                          type: 'link',
+                          text: 'Navigation link',
+                          href: '/home',
+                        },
+                      ],
+                    },
+                    {
+                      id: 'add',
+                      type: 'section',
+                      text: 'Navigation link',
+                      href: '/add',
+                      items: [
+                        {
+                          id: 'dashboard',
+                          type: 'link',
+                          text: 'Navigation link',
+                          href: '/dashboard',
+                        },
+                        {
+                          id: 'home',
+                          type: 'link',
+                          text: 'Navigation link',
+                          href: '/home',
+                        },
+                      ],
+                    },
+                    {
+                      id: 'd1',
+                      type: 'divider',
+                    },
+                    {
+                      id: 'link1',
+                      type: 'link',
+                      text: 'Navigation link',
+                      href: '/route/1',
+                    },
+                    {
+                      id: 'link2',
+                      type: 'link',
+                      text: 'Navigation link',
+                      href: '/route/2',
+                    },
+                    {
+                      id: 'link3',
+                      type: 'link',
+                      text: 'Navigation link',
+                      href: '/route/3',
+                    },
+                    {
+                      id: 'link4',
+                      type: 'link',
+                      text: 'Navigation link',
+                      href: '/route/4',
+                    },
+                  ]}
                 />
-              </PageHeader>
-            }
-          >
-            <Container>
-              <Card
-                header={
-                  <Header
-                    variant="h2"
-                    title="Document overview"
-                    actions={<Button text="Edit" color="secondary" />}
-                    description="This is a description to create a system"
-                    info={
-                      <Link to="#" variant="info">
-                        Info
-                      </Link>
+              }
+              content={
+                <ContentLayout
+                  header={
+                    <PageHeader>
+                      <Header
+                        title="AwesomeCloudSSP1"
+                        description="Lorem ipsum dolor sit amet consectetur. Vel ac id aliquam ac ullamcorper in justo vitae."
+                        actions={
+                          <React.Fragment>
+                            <Button text="Edit resource" color="secondary" />
+                            <DropdownButton text="Actions">list</DropdownButton>
+                          </React.Fragment>
+                        }
+                        info={
+                          <Link
+                            to="#"
+                            variant="info"
+                            onClick={() => setToolsOpen(true)}
+                          >
+                            Info
+                          </Link>
+                        }
+                      />
+                    </PageHeader>
+                  }
+                >
+                  <Card
+                    header={
+                      <Header
+                        variant="h2"
+                        title="Document overview"
+                        actions={<Button text="Edit" color="secondary" />}
+                        description="This is a description to create a system"
+                        info={
+                          <Link to="#" variant="info">
+                            Info
+                          </Link>
+                        }
+                      />
                     }
-                  />
-                }
-                footer="View more"
-              >
-                <CardContent>
-                  <ColumnLayout columns={3}>
-                    <SpaceBetween>
-                      <Property label="Name">AwesomeClouSSP1</Property>
-                      <Property label="Description">
-                        System Security Plan
-                      </Property>
-                      <Property label="Status">
-                        <StatusIndicator type="success">
-                          FedRAMP Ready
-                        </StatusIndicator>
-                      </Property>
-                    </SpaceBetween>
-                    <SpaceBetween>
-                      <Property label="Name">AwesomeClouSSP1</Property>
-                      <Property label="Name">AwesomeClouSSP1</Property>
-                      <Property label="Name">AwesomeClouSSP1</Property>
-                    </SpaceBetween>
-                    <SpaceBetween>
-                      <Property label="Name">AwesomeClouSSP1</Property>
-                      <Property label="Name">AwesomeClouSSP1</Property>
-                      <Property label="Name">AwesomeClouSSP1</Property>
-                    </SpaceBetween>
-                  </ColumnLayout>
-                </CardContent>
-              </Card>
-              <Tabs defaultValue="1">
-                <TabsList loop={false}>
-                  <TabsTrigger value="1" asChild>
-                    <Tab title="Packages" />
-                  </TabsTrigger>
-                  <TabsTrigger value="2" asChild>
-                    <Tab title="Properties" />
-                  </TabsTrigger>
-                </TabsList>
-                <TabsContent value="1"></TabsContent>
-              </Tabs>
-            </Container>
-          </ContentLayout>
-        }
-        tools={
-          <HelpPanel
-            header={{ href: '#', text: 'Help panel' }}
-            content={
-              <p>
-                View your current distributions and related information such as
-                the associated domain names, delivery methods, SSL certificates,
-                and more. To drill down even further into the details, choose
-                the name of an individual distribution.
-              </p>
-            }
-            open={toolsOpen}
-            onOpenChange={setToolsOpen}
-          />
-        }
-      />
-    </Dashboard>
+                    footer="View more"
+                  >
+                    <CardContent>
+                      <ColumnLayout columns={3}>
+                        <SpaceBetween>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                          <Property label="Description">
+                            System Security Plan
+                          </Property>
+                          <Property label="Status">
+                            <StatusIndicator type="success">
+                              FedRAMP Ready
+                            </StatusIndicator>
+                          </Property>
+                        </SpaceBetween>
+                        <SpaceBetween>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                        </SpaceBetween>
+                        <SpaceBetween>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                          <Property label="Name">AwesomeClouSSP1</Property>
+                        </SpaceBetween>
+                      </ColumnLayout>
+                    </CardContent>
+                  </Card>
+                  <Tabs defaultValue="1">
+                    <TabsList loop={false}>
+                      <TabsTrigger value="1" asChild>
+                        <Tab title="Packages" />
+                      </TabsTrigger>
+                      <TabsTrigger value="2" asChild>
+                        <Tab title="Properties" />
+                      </TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="1"></TabsContent>
+                  </Tabs>
+                  <SpaceBetween>
+                    <Card
+                      header={
+                        <Header
+                          variant="h2"
+                          title="Document overview"
+                          actions={<Button text="Edit" color="secondary" />}
+                          description="This is a description to create a system"
+                          info={
+                            <Link to="#" variant="info">
+                              Info
+                            </Link>
+                          }
+                        />
+                      }
+                      footer="View more"
+                    >
+                      <CardContent>
+                        <ColumnLayout columns={3}>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Description">
+                              System Security Plan
+                            </Property>
+                            <Property label="Status">
+                              <StatusIndicator type="success">
+                                FedRAMP Ready
+                              </StatusIndicator>
+                            </Property>
+                          </SpaceBetween>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                          </SpaceBetween>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                          </SpaceBetween>
+                        </ColumnLayout>
+                      </CardContent>
+                    </Card>
+                    <Card
+                      header={
+                        <Header
+                          variant="h2"
+                          title="Document overview"
+                          actions={<Button text="Edit" color="secondary" />}
+                          description="This is a description to create a system"
+                          info={
+                            <Link to="#" variant="info">
+                              Info
+                            </Link>
+                          }
+                        />
+                      }
+                      footer="View more"
+                    >
+                      <CardContent>
+                        <ColumnLayout columns={3}>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Description">
+                              System Security Plan
+                            </Property>
+                            <Property label="Status">
+                              <StatusIndicator type="success">
+                                FedRAMP Ready
+                              </StatusIndicator>
+                            </Property>
+                          </SpaceBetween>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                          </SpaceBetween>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                          </SpaceBetween>
+                        </ColumnLayout>
+                      </CardContent>
+                    </Card>
+                    <Card
+                      header={
+                        <Header
+                          variant="h2"
+                          title="Document overview"
+                          actions={<Button text="Edit" color="secondary" />}
+                          description="This is a description to create a system"
+                          info={
+                            <Link to="#" variant="info">
+                              Info
+                            </Link>
+                          }
+                        />
+                      }
+                      footer="View more"
+                    >
+                      <CardContent>
+                        <ColumnLayout columns={3}>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Description">
+                              System Security Plan
+                            </Property>
+                            <Property label="Status">
+                              <StatusIndicator type="success">
+                                FedRAMP Ready
+                              </StatusIndicator>
+                            </Property>
+                          </SpaceBetween>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                          </SpaceBetween>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                          </SpaceBetween>
+                        </ColumnLayout>
+                      </CardContent>
+                    </Card>
+                  </SpaceBetween>
+                </ContentLayout>
+              }
+              tools={
+                <HelpPanel
+                  header={{ href: '#', text: 'Help panel' }}
+                  content={
+                    <p>
+                      View your current distributions and related information
+                      such as the associated domain names, delivery methods, SSL
+                      certificates, and more. To drill down even further into
+                      the details, choose the name of an individual
+                      distribution.
+                    </p>
+                  }
+                  open={toolsOpen}
+                  onOpenChange={setToolsOpen}
+                />
+              }
+            />
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
 Default.args = {
   data: pkgs,
 };
 
-export const NoContentLayout: Story<TableProps<Package>> = (args) => {
-  return (
-    <Dashboard topNavigation={<TopNavigation title="Authorization portal" />}>
-      <AppLayout
-        {...args}
-        disableBackground
-        navigation={
-          <SideNavigation
-            header={{ href: '#', text: 'Home' }}
-            items={[
-              {
-                id: 'dashboard',
-                type: 'link',
-                text: 'Navigation link',
-                icon: 'dashboard',
-                href: '/dashboard',
-              },
-              {
-                id: 'home',
-                type: 'link',
-                text: 'Navigation link',
-                icon: 'home',
-                href: '/home',
-              },
-              {
-                id: 'add',
-                type: 'section',
-                text: 'Navigation link',
-                icon: 'add',
-                href: '/add',
-                items: [
-                  {
-                    id: 'dashboard',
-                    type: 'link',
-                    text: 'Navigation link',
-                    icon: 'dashboard',
-                    href: '/dashboard',
-                  },
-                  {
-                    id: 'home',
-                    type: 'link',
-                    text: 'Navigation link',
-                    icon: 'home',
-                    href: '/home',
-                  },
-                ],
-              },
-              {
-                id: 'settings',
-                type: 'link',
-                text: 'Navigation link',
-                icon: 'settings',
-                href: '/settings',
-              },
-            ]}
-          />
-        }
-        content={<div>No Content Layout</div>}
-        tools={<HelpPanel header={{ href: '#', text: 'Help panel' }} />}
-      />
-    </Dashboard>
-  );
+Default.parameters = {
+  layout: 'none',
 };

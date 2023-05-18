@@ -1,5 +1,5 @@
 import { Story } from '@storybook/react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import '../src/sass/main.scss';
 
 export const parameters = {
@@ -14,8 +14,8 @@ export const parameters = {
 
 export const decorators = [
   (Story: Story) => (
-    <BrowserRouter>
+    <MemoryRouter initialEntries={['/']}>
       <Story />
-    </BrowserRouter>
+    </MemoryRouter>
   ),
 ];

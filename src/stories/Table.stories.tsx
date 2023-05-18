@@ -8,8 +8,16 @@ import {
   Pagination,
   Checkbox,
   StatusIndicator,
+  Link,
 } from '../components';
-import { Card, CardHeader, CardTitle, Header, SpaceBetween } from '../layouts';
+import {
+  Box,
+  Card,
+  CardHeader,
+  CardTitle,
+  Header,
+  SpaceBetween,
+} from '../layouts';
 import { Table, TableHeader, TableProps, TableTools } from '../layouts/Table';
 import { useState } from 'react';
 
@@ -232,6 +240,11 @@ export const Default: Story<TableProps<Package>> = (args) => {
             </SpaceBetween>
           }
         />
+      }
+      footer={
+        <Box textAlign="center">
+          <Link to="#">View all packages</Link>
+        </Box>
       }
       filter={
         <TextFilter
