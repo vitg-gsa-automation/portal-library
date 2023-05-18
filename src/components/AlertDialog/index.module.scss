@@ -5,6 +5,8 @@
   position: fixed;
   inset: 0;
   background-color: var(--color-bg-overlay);
+  z-index: 5000;
+
   @media (prefers-reduced-motion: no-preference) {
     animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -18,6 +20,7 @@
   width: 60rem;
   display: flex;
   flex-direction: column;
+  z-index: 5000;
 
   @media (prefers-reduced-motion: no-preference) {
     animation: contentShow 0.2s cubic-bezier(0.16, 1, 0.3, 1);

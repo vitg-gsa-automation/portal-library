@@ -101,7 +101,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
       {
         id: 2,
         type: 'success',
-        content: 'Successfully converted AwesomeCloudSSP1 to aWord file',
+        content: 'Successfully converted AwesomeCloudSSP1 to a Word file',
         dismissable: true,
         onDismiss: dismiss,
       },
@@ -255,7 +255,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
                     }
                     footer="View more"
                   >
-                    <CardContent>
+                    <CardContent disableTopPadding>
                       <ColumnLayout columns={3}>
                         <SpaceBetween>
                           <Property label="Name">AwesomeClouSSP1</Property>
@@ -309,7 +309,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
                       }
                       footer="View more"
                     >
-                      <CardContent>
+                      <CardContent disableTopPadding>
                         <ColumnLayout columns={3}>
                           <SpaceBetween>
                             <Property label="Name">AwesomeClouSSP1</Property>
@@ -351,7 +351,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
                       }
                       footer="View more"
                     >
-                      <CardContent>
+                      <CardContent disableTopPadding>
                         <ColumnLayout columns={3}>
                           <SpaceBetween>
                             <Property label="Name">AwesomeClouSSP1</Property>
@@ -393,7 +393,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
                       }
                       footer="View more"
                     >
-                      <CardContent>
+                      <CardContent disableTopPadding>
                         <ColumnLayout columns={3}>
                           <SpaceBetween>
                             <Property label="Name">AwesomeClouSSP1</Property>

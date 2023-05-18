@@ -39,8 +39,9 @@ export function HelpPanel({
         aria-describedby={undefined}
         className={styles.animated}
         forceMount
+        asChild
       >
-        <div className={styles.root}>
+        <aside className={styles.root}>
           <DrawerTrigger className={styles.trigger}>
             <MaterialIcon icon="info" className={styles['trigger__icon']} />
           </DrawerTrigger>
@@ -60,7 +61,7 @@ export function HelpPanel({
             )}
             <div className={styles.content}>{content}</div>
           </div>
-        </div>
+        </aside>
       </DrawerContent>
     </Drawer>
   );

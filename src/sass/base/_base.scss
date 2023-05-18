@@ -136,6 +136,7 @@ body {
   box-sizing: border-box;
   padding: 0;
   background-color: $color-200;
+  overflow-x: hidden;
   &.dark {
     --color-bg-page: #16191f;
     --color-bg-heading: #21252c;
