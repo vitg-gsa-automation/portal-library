@@ -9,7 +9,7 @@ interface DropdownButtonProps extends ButtonProps {
 
 export function DropdownButton({ children, ...props }: DropdownButtonProps) {
   return (
-    <Dropdown>
+    <Dropdown modal={false}>
       <DropdownTrigger className={styles.root}>
         <Button
           endIcon={

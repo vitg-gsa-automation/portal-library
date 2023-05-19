@@ -26,9 +26,15 @@ export interface DrawerProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   defaulOpen?: boolean;
+  icon?: string;
 }
 
-export function Drawer({ open, onOpenChange, children }: DrawerProps) {
+export function Drawer({
+  open,
+  onOpenChange,
+  icon = 'info',
+  children,
+}: DrawerProps) {
   return (
     <DrawerRoot modal={false} open={open} onOpenChange={onOpenChange}>
       <DrawerContent
@@ -41,12 +47,7 @@ export function Drawer({ open, onOpenChange, children }: DrawerProps) {
       >
         <div className={styles.root}>
           <DrawerTrigger className={styles.trigger}>
-            <MaterialIcon
-              icon="info"
-              className={styles['trigger__icon']}
-              type="outlined"
-              fontSize="2rem"
-            />
+            <MaterialIcon icon={icon} type="outlined" fontSize="2rem" />
           </DrawerTrigger>
           <div className={styles.children}>{children}</div>
         </div>

@@ -34,16 +34,9 @@ interface Item {
 export interface SideNavigationProps {
   header?: Header;
   items?: Item[];
-  defaultOpen?: boolean;
 }
 
-export function SideNavigation({
-  header,
-  items,
-  defaultOpen = true,
-  ...props
-}: SideNavigationProps) {
-  const [open, setOpen] = useState(defaultOpen);
+export function SideNavigation({ header, items }: SideNavigationProps) {
   const renderItems = function (items?: Item[]) {
     if (!items) return null;
     return items.map((item) => {
@@ -73,50 +66,28 @@ export function SideNavigation({
     });
   };
   return (
-    <DrawerRoot modal={false} open={open} onOpenChange={setOpen}>
-      {!open && (
-        <nav className={styles.closed}>
-          <DrawerTrigger className={styles.trigger}>
+    <nav className={styles.content}>
+      {header && (
+        <div className={styles.header}>
+          <DrawerTitle className={styles.title} asChild>
+            <h1>{header.text}</h1>
+          </DrawerTitle>
+          <DrawerClose className={styles['header__close']}>
             <MaterialIcon
-              icon="menu"
-              className={styles['trigger__icon']}
-              fontSize="2rem"
+              icon="chevron_left"
+              className={styles['header__icon']}
             />
-          </DrawerTrigger>
-        </nav>
+          </DrawerClose>
+        </div>
       )}
-      <DrawerContent
-        onInteractOutside={(e) => e.preventDefault()}
-        onEscapeKeyDown={(e) => e.preventDefault()}
-        aria-describedby={undefined}
-        className={styles.animated}
-        forceMount
-        asChild
-      >
-        <nav className={styles.content}>
-          {header && (
-            <div className={styles.header}>
-              <DrawerTitle className={styles.title} asChild>
-                <h1>{header.text}</h1>
-              </DrawerTitle>
-              <DrawerClose className={styles['header__close']}>
-                <MaterialIcon
-                  icon="chevron_left"
-                  className={styles['header__icon']}
-                />
-              </DrawerClose>
-            </div>
-          )}
-          <div>
-            <div className={styles.nav} aria-label="service navigation">
-              <Accordion.Root type="multiple">
-                <ul className={styles.list}>{renderItems(items)}</ul>
-              </Accordion.Root>
-            </div>
-          </div>
-        </nav>
-      </DrawerContent>
-    </DrawerRoot>
+      <div>
+        <div className={styles.nav} aria-label="service navigation">
+          <Accordion.Root type="multiple">
+            <ul className={styles.list}>{renderItems(items)}</ul>
+          </Accordion.Root>
+        </div>
+      </div>
+    </nav>
   );
 }
 

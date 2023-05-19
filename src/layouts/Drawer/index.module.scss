@@ -5,7 +5,6 @@
 .trigger {
   height: 4rem;
   width: 4rem;
-  margin: 1.2rem 2rem;
   padding: 1.6rem 0.8rem;
 
   display: flex;
@@ -34,14 +33,12 @@
   &:hover {
     filter: brightness(85%);
   }
-  &__icon {
-  }
 }
 
 .animated {
   height: 100%;
   &[data-state='open'] {
-    transition: all 0.115s;
+    transition: width 0.115s;
     width: 28rem;
     & .trigger {
       display: none;
@@ -52,6 +49,8 @@
   }
   &[data-state='closed'] {
     width: 8rem;
+    padding: 1.2rem 2rem;
+
     & .children {
       opacity: 0;
       display: none;
