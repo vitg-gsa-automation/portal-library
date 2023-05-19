@@ -1,8 +1,4 @@
-import { ReactElement, ReactNode, useState } from 'react';
-// type Tool = {
-//   header: string;
-//   content: ReactNode;
-// };
+import { ReactElement, useState } from 'react';
 
 export function useTools(tools: ReactElement[]) {
   const [toolsIndex, setToolsIndex] = useState(0);
