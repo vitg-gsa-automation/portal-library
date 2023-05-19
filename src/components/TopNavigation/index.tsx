@@ -7,6 +7,7 @@ import { Link } from '../Link';
 
 interface TopNavigationProps {
   title?: string;
+  logo: string;
   userToggle?: ReactElement;
   children?: React.ReactNode;
 }
@@ -14,13 +15,14 @@ interface TopNavigationProps {
 export function TopNavigation({
   userToggle,
   title,
+  logo,
   children,
 }: TopNavigationProps) {
   return (
     <div className={styles.root}>
       <div className={styles.left}>
         <Link to="/dashboard" className={styles.logo}>
-          <img src={'logo'} alt="logo" className={styles['logo__image']} />
+          <img src={logo} alt="logo" className={styles['logo__image']} />
         </Link>
         <span className={styles.title}>{title}</span>
       </div>

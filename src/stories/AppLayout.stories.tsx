@@ -32,6 +32,7 @@ import {
   SpaceBetween,
   TableProps,
 } from '../layouts';
+import { useTools } from '../hooks/useTools';
 
 export default {
   title: 'AppLayout',
@@ -94,8 +95,37 @@ const columns = [
 ];
 
 export const Default: Story<TableProps<Package>> = (args) => {
-  const [toolsOpen, setToolsOpen] = useState(false);
   const { notifications, dismiss, publish } = useNotifications();
+  const { activeTool, toolsOpen, openTool, setToolsOpen } = useTools([
+    <HelpPanel
+      header={{ href: '#', text: 'Control description' }}
+      content={
+        <p>
+          CM-8 Information System Component Inventory makes sure that the
+          organization develops, documents, and maintains an inventory of
+          information system components that:
+          <ol style={{ marginTop: '1rem' }}>
+            <li>Accurately reflects the current information system</li>
+            <li>Includes all components within the system</li>
+            <li>
+              Does not include duplicate accounting of components or components
+              assigned to any other system
+            </li>
+            <li>
+              Is at the level of granularity deemed necessary for tracking and
+              reporting
+            </li>
+            <li>
+              Includes the following information to achieve system component
+              accountability: [organization-defined information deemed necessary
+              to achieve effective system component accountability]
+            </li>
+          </ol>
+        </p>
+      }
+    />,
+  ]);
+  console.log(toolsOpen);
   useEffect(() => {
     publish([
       {
@@ -112,7 +142,11 @@ export const Default: Story<TableProps<Package>> = (args) => {
       <Route
         path="/"
         element={
-          <Layout navigation={<TopNavigation title="Authorization portal" />} />
+          <Layout
+            navigation={
+              <TopNavigation title="Authorization portal" logo={'/'} />
+            }
+          />
         }
       >
         <Route
@@ -131,54 +165,54 @@ export const Default: Story<TableProps<Package>> = (args) => {
                   header={{ href: '#', text: 'Authorizations' }}
                   items={[
                     {
-                      id: 'dashboard',
+                      id: 'dashboard1',
                       type: 'link',
                       text: 'Navigation link',
                       href: '/dashboard',
                     },
                     {
-                      id: 'home',
+                      id: 'home2',
                       type: 'link',
                       text: 'Navigation link',
                       href: '/home',
                     },
                     {
-                      id: 'add',
+                      id: 'add3',
                       type: 'section',
                       text: 'Navigation link',
-                      href: '/add',
+                      href: '/add1',
                       items: [
                         {
-                          id: 'dashboard',
+                          id: 'dashboard4',
                           type: 'link',
                           text: 'Navigation link',
-                          href: '/dashboard',
+                          href: '/dashboard1',
                         },
                         {
-                          id: 'home',
+                          id: 'home5',
                           type: 'link',
                           text: 'Navigation link',
-                          href: '/home',
+                          href: '/home1',
                         },
                       ],
                     },
                     {
-                      id: 'add',
+                      id: 'add6',
                       type: 'section',
                       text: 'Navigation link',
-                      href: '/add',
+                      href: '/add2',
                       items: [
                         {
-                          id: 'dashboard',
+                          id: 'dashboard7',
                           type: 'link',
                           text: 'Navigation link',
-                          href: '/dashboard',
+                          href: '/dashboard2',
                         },
                         {
-                          id: 'home',
+                          id: 'home8',
                           type: 'link',
                           text: 'Navigation link',
-                          href: '/home',
+                          href: '/home2',
                         },
                       ],
                     },
@@ -230,7 +264,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
                           <Link
                             to="#"
                             variant="info"
-                            onClick={() => setToolsOpen(true)}
+                            onClick={() => openTool(0)}
                           >
                             Info
                           </Link>
@@ -247,7 +281,11 @@ export const Default: Story<TableProps<Package>> = (args) => {
                         actions={<Button text="Edit" color="secondary" />}
                         description="This is a description to create a system"
                         info={
-                          <Link to="#" variant="info">
+                          <Link
+                            to="#"
+                            variant="info"
+                            onClick={() => openTool(1)}
+                          >
                             Info
                           </Link>
                         }
@@ -422,22 +460,9 @@ export const Default: Story<TableProps<Package>> = (args) => {
                   </SpaceBetween>
                 </ContentLayout>
               }
-              tools={
-                <HelpPanel
-                  header={{ href: '#', text: 'Help panel' }}
-                  content={
-                    <p>
-                      View your current distributions and related information
-                      such as the associated domain names, delivery methods, SSL
-                      certificates, and more. To drill down even further into
-                      the details, choose the name of an individual
-                      distribution.
-                    </p>
-                  }
-                  open={toolsOpen}
-                  onOpenChange={setToolsOpen}
-                />
-              }
+              tools={activeTool}
+              toolsOpen={toolsOpen}
+              onToolsChange={setToolsOpen}
             />
           }
         />

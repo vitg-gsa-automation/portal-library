@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import styles from './index.module.scss';
 import { MaterialIcon } from '../MaterialIcon';
 import { Loader } from '../Loader';
-type StatusIndicatorType =
+export type StatusIndicatorType =
   | 'info'
   | 'warning'
   | 'success'

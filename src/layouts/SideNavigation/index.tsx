@@ -6,12 +6,12 @@ import { NavLinkProps, NavLink as RouterNavLink } from 'react-router-dom';
 
 import { MaterialIcon } from '../../components/MaterialIcon';
 import {
-  Drawer,
+  DrawerRoot,
   DrawerClose,
   DrawerContent,
   DrawerTitle,
   DrawerTrigger,
-} from '../../layouts/Drawer';
+} from '../Drawer';
 import styles from './index.module.scss';
 
 interface Header {
@@ -73,7 +73,7 @@ export function SideNavigation({
     });
   };
   return (
-    <Drawer modal={false} open={open} onOpenChange={setOpen}>
+    <DrawerRoot modal={false} open={open} onOpenChange={setOpen}>
       {!open && (
         <nav className={styles.closed}>
           <DrawerTrigger className={styles.trigger}>
@@ -116,7 +116,7 @@ export function SideNavigation({
           </div>
         </nav>
       </DrawerContent>
-    </Drawer>
+    </DrawerRoot>
   );
 }
 

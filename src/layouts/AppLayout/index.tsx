@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 
 import styles from './index.module.scss';
 import clsx from 'clsx';
+import { Drawer } from '../Drawer';
 
 interface AppLayoutProps {
   navigation?: ReactElement;
@@ -10,7 +11,7 @@ interface AppLayoutProps {
   content?: ReactElement;
   tools?: ReactElement;
   toolsOpen?: boolean;
-  onToolsChange?: (open: boolean) => any;
+  onToolsChange?: (open: boolean) => void;
   disableBackground?: boolean;
 }
 
@@ -20,6 +21,8 @@ export function AppLayout({
   notifications,
   content,
   tools,
+  toolsOpen,
+  onToolsChange,
   disableBackground,
 }: AppLayoutProps) {
   const isBackgroundDisabled = !content || disableBackground;
@@ -38,7 +41,13 @@ export function AppLayout({
           {breadcrumbs}
         </div>
         <div className={styles.content}>{content}</div>
-        <div className={styles.tools}>{tools}</div>
+        <div className={styles.tools}>
+          {tools && (
+            <Drawer open={toolsOpen} onOpenChange={onToolsChange}>
+              {tools}
+            </Drawer>
+          )}
+        </div>
       </div>
     </div>
   );

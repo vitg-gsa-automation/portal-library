@@ -8,7 +8,7 @@ import styles from './index.module.scss';
 import { Sidebar } from '../../layouts/Sidebar';
 import { MaterialIcon } from '../MaterialIcon';
 import {
-  Drawer,
+  DrawerRoot,
   DrawerTrigger,
   DrawerContent,
   DrawerClose,
@@ -39,7 +39,7 @@ export function MainDrawer({}: MainDrawerProps) {
   ];
 
   return (
-    <Drawer modal={false} defaultOpen>
+    <DrawerRoot modal={false} defaultOpen>
       <DrawerTrigger asChild>
         <button className={styles.trigger}>
           <MaterialIcon icon="menu" className={styles['trigger__icon']} />
@@ -92,7 +92,7 @@ export function MainDrawer({}: MainDrawerProps) {
           </div>
         </Sidebar>
       </DrawerContent>
-    </Drawer>
+    </DrawerRoot>
   );
 }
 
