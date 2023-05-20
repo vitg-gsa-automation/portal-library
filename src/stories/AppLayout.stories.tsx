@@ -100,7 +100,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
     <HelpPanel
       header={{ href: '#', text: 'Control description' }}
       content={
-        <p>
+        <div>
           CM-8 Information System Component Inventory makes sure that the
           organization develops, documents, and maintains an inventory of
           information system components that:
@@ -121,11 +121,10 @@ export const Default: Story<TableProps<Package>> = (args) => {
               to achieve effective system component accountability]
             </li>
           </ol>
-        </p>
+        </div>
       }
     />,
   ]);
-  console.log(toolsOpen);
   useEffect(() => {
     publish([
       {

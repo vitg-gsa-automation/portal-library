@@ -1,7 +1,7 @@
 import { ReactElement, useRef } from 'react';
 import styles from './index.module.scss';
 import clsx from 'clsx';
-import { useSize } from '../../hooks/useSize';
+import { useDynamicOverlap } from '../../hooks/useDynamicOverlap';
 
 interface ContentLayoutProps extends React.HTMLAttributes<HTMLElement> {
   header?: ReactElement;
@@ -17,6 +17,7 @@ export function ContentLayout({
   disableBackground,
   ...props
 }: ContentLayoutProps) {
+  const overlapElementRef = useDynamicOverlap<HTMLDivElement>();
   const isOverlapDisabled = !children || !header || disableOverlap;
   const isBackgroundDisabled = disableBackground;
 
@@ -29,6 +30,7 @@ export function ContentLayout({
       {...props}
     >
       <div
+        ref={overlapElementRef}
         className={clsx(styles.background, {
           [styles['is-overlap-disabled']]: isOverlapDisabled,
           [styles['is-background-disabled']]: isBackgroundDisabled,

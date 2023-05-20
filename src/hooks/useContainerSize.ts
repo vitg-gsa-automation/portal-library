@@ -8,7 +8,7 @@ interface Size {
 
 type UseSizeResult<T> = [Size | undefined, RefObject<T>];
 
-export function useSize<T extends HTMLElement>(): UseSizeResult<T> {
+export function useContainerSize<T extends HTMLElement>(): UseSizeResult<T> {
   const elementRef = useRef<T>(null);
   const [size, setSize] = useState<Size>();
 
@@ -19,7 +19,13 @@ export function useSize<T extends HTMLElement>(): UseSizeResult<T> {
   }, [elementRef]);
 
   // Where the magic happens
-  useResizeObserver(elementRef, (entry) => setSize(entry.contentRect));
+  useResizeObserver(elementRef, (entry) => {
+    const { width, height } = entry.contentRect;
+    // Only update size if it has actually changed
+    if (width !== size?.width || height !== size?.height) {
+      setSize({ width, height });
+    }
+  });
 
   return [size, elementRef];
 }
