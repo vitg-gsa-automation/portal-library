@@ -21,14 +21,12 @@ import React, {
   useState,
 } from 'react';
 
-import {
-  Button,
-  Checkbox,
-  Pagination,
-  Radio,
-  RadioGroupRoot,
-  StatusIndicator,
-} from '../../components';
+import { Button } from '../../components/Button';
+import { Checkbox } from '../../components/Checkbox';
+import { Pagination } from '../../components/Pagination';
+import { Radio } from '../../components/Radio';
+import { RadioGroupRoot } from '../../components/Radio';
+import { StatusIndicator } from '../../components/StatusIndicator';
 import { Empty } from '../../components/Empty';
 import { Loader } from '../../components/Loader';
 import { MaterialIcon } from '../../components/MaterialIcon';
