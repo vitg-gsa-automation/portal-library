@@ -32,6 +32,7 @@ import { Loader } from '../../components/Loader';
 import { MaterialIcon } from '../../components/MaterialIcon';
 import { Card } from '../../layouts/Card';
 import styles from './index.module.scss';
+import { Thead } from './thead';
 
 export interface TableProps<T> {
   data: T[];
@@ -52,6 +53,7 @@ export interface TableProps<T> {
   filteringText?: string;
   selectionType?: 'single' | 'multi';
   wrapLines?: boolean;
+  resizableColumns?: boolean;
 }
 
 interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
@@ -87,6 +89,7 @@ export const Table = <T extends unknown>({
   filteringText,
   selectionType,
   wrapLines = true,
+  resizableColumns,
   ...props
 }: TableProps<T>) => {
   const columnHelper = createColumnHelper<T>();
@@ -100,6 +103,7 @@ export const Table = <T extends unknown>({
         columnHelper.display({
           id: 'select',
           size: 40,
+          minSize: 40,
           header: ({ table }) => (
             <div className="center-cell">
               <Checkbox
@@ -126,6 +130,7 @@ export const Table = <T extends unknown>({
         columnHelper.display({
           id: 'select',
           size: 40,
+          minSize: 40,
           cell: (info) => (
             <div className="center-cell">
               <RadioGroupRoot
@@ -178,6 +183,7 @@ export const Table = <T extends unknown>({
     enableSortingRemoval: false,
     sortDescFirst: false,
     enableMultiRowSelection: selectionType === 'multi',
+    columnResizeMode: resizableColumns ? 'onChange' : undefined,
   });
   const hasHeader = !!(header || filter);
   const hasTools = !!(filter || pagination);
@@ -201,55 +207,18 @@ export const Table = <T extends unknown>({
       footer={footer}
     >
       <div className={styles.wrapper}>
-        <table className={styles.table} data-cy="table" {...props}>
-          <thead data-cy="thead">
-            <tr>
-              {table.getHeaderGroups()[0].headers.map((header) => {
-                const colWidth = header.getSize();
-                return (
-                  <th
-                    key={header.id}
-                    style={
-                      colWidth !== 150 ? { width: header.getSize() } : undefined
-                    }
-                  >
-                    {header.column.getCanSort() ? (
-                      <button
-                        className={clsx(
-                          styles['heading-box'],
-                          header.column.getIsSorted() &&
-                            styles['heading-box--sorted']
-                        )}
-                        onClick={header.column.getToggleSortingHandler()}
-                        type="button"
-                      >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                        <MaterialIcon
-                          icon="expand_more"
-                          className={clsx(
-                            styles.icon,
-                            styles[
-                              `icon--${header.column.getIsSorted() as string}`
-                            ]
-                          )}
-                        />
-                      </button>
-                    ) : (
-                      <div className={styles['heading-box--alt']}>
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                      </div>
-                    )}
-                  </th>
-                );
-              })}
-            </tr>
-          </thead>
+        <table
+          className={clsx(styles.table, {
+            [styles.resizable]: resizableColumns,
+          })}
+          data-cy="table"
+          {...props}
+        >
+          <Thead
+            table={table}
+            resizableColumns={resizableColumns}
+            wrapLines={wrapLines}
+          />
           {!loading && (
             <tbody>
               {table.getRowModel().rows.map((row) => {
@@ -262,19 +231,23 @@ export const Table = <T extends unknown>({
                       onRowClick(row.original);
                     }}
                   >
-                    {row.getVisibleCells().map((cell) => (
-                      <td
-                        key={cell.id}
-                        className={clsx(styles.cell, {
-                          [styles['no-wrapped-lines']]: !wrapLines,
-                        })}
-                      >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </td>
-                    ))}
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <td
+                          key={cell.id}
+                          className={clsx(styles.cell, {
+                            [styles['no-wrapped-lines']]: !wrapLines,
+                            [styles.select]: cell.column.id === 'select',
+                          })}
+                          // style={{ width: cell.column.getSize() }}
+                        >
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </td>
+                      );
+                    })}
                   </TableRow>
                 );
               })}

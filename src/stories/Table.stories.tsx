@@ -9,6 +9,9 @@ import {
   Checkbox,
   StatusIndicator,
   Link,
+  DropdownButton,
+  DropdownItem,
+  ListItem,
 } from '../components';
 import {
   Box,
@@ -28,131 +31,11 @@ export default {
 
 const pkgs: Package[] = [
   {
-    PkgName: 'VITGPkg1',
-    SystemID: 43242,
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
-    PkgCreateDate: 'March 03, 2023',
-    ATOBeginDate: 'March 03, 2023',
-    ATOEndDate: 'March 03, 2023',
-    LastModified: 'March 03, 2023',
-    ContactName: 'Aaron Nolan',
-  },
-  {
-    PkgName: 'AwesomecloudPkg2',
-    SystemID: 543,
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
-    PkgCreateDate: 'November 03, 2023',
-    ATOBeginDate: 'November 03, 2023',
-    ATOEndDate: 'November 03, 2023',
-    LastModified: 'November 03, 2023',
-    ContactName: 'Aaron Nolan',
-  },
-  {
-    PkgName: 'GooglePkg3',
-    SystemID: 765,
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
-    PkgCreateDate: 'Jan 03, 2023',
-    ATOBeginDate: 'Jan 03, 2023',
-    ATOEndDate: 'Jan 03, 2023',
-    LastModified: 'Jan 03, 2023',
-    ContactName: 'Aaron Nolan',
-  },
-  {
-    PkgName: 'MicrosoftPkg3',
-    SystemID: 987,
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
-    PkgCreateDate: 'Jan 03, 2023',
-    ATOBeginDate: 'Jan 03, 2023',
-    ATOEndDate: 'Jan 03, 2023',
-    LastModified: 'Jan 03, 2023',
-    ContactName: 'Aaron Nolan',
-  },
-  {
-    PkgName: 'AwesomecloudPkg3',
-    SystemID: 987,
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
-    PkgCreateDate: 'Jan 03, 2023',
-    ATOBeginDate: 'Jan 03, 2023',
-    ATOEndDate: 'Jan 03, 2023',
-    LastModified: 'Jan 03, 2023',
-    ContactName: 'Aaron Nolan',
-  },
-  {
-    SystemID: 65,
-    PkgName: 'AwesomecloudPkg3',
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
-    PkgCreateDate: 'Jan 03, 2023',
-    ATOBeginDate: 'Jan 03, 2023',
-    ATOEndDate: 'Jan 03, 2023',
-    LastModified: 'Jan 03, 2023',
-    ContactName: 'Aaron Nolan',
-  },
-  {
-    SystemID: 98,
-    PkgName: 'AwesomecloudPkg3',
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
-    PkgCreateDate: 'Jan 03, 2023',
-    ATOBeginDate: 'Jan 03, 2023',
-    ATOEndDate: 'Jan 03, 2023',
-    LastModified: 'Jan 03, 2023',
-    ContactName: 'Aaron Nolan',
-  },
-  {
-    SystemID: 2345,
-    PkgName: 'AwesomecloudPkg3',
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
-    PkgCreateDate: 'Jan 03, 2023',
-    ATOBeginDate: 'Jan 03, 2023',
-    ATOEndDate: 'Jan 03, 2023',
-    LastModified: 'Jan 03, 2023',
-    ContactName: 'Aaron Nolan',
-  },
-  {
-    SystemID: 65,
-    PkgName: 'AwesomecloudPkg3',
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
-    PkgCreateDate: 'Jan 03, 2023',
-    ATOBeginDate: 'Jan 03, 2023',
-    ATOEndDate: 'Jan 03, 2023',
-    LastModified: 'Jan 03, 2023',
-    ContactName: 'Aaron Nolan',
-  },
-  {
-    SystemID: 9876,
-    PkgName: 'AwesomecloudPkg3',
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
-    PkgCreateDate: 'Jan 03, 2023',
-    ATOBeginDate: 'Jan 03, 2023',
-    ATOEndDate: 'Jan 03, 2023',
-    LastModified: 'Jan 03, 2023',
-    ContactName: 'Aaron Nolan',
-  },
-  {
-    SystemID: 65,
-    PkgName: 'AwesomecloudPkg3',
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
-    PkgCreateDate: 'Jan 03, 2023',
-    ATOBeginDate: 'Jan 03, 2023',
-    ATOEndDate: 'Jan 03, 2023',
-    LastModified: 'Jan 03, 2023',
-    ContactName: 'Aaron Nolan',
-  },
-  {
     SystemID: 2,
     PkgName: 'AwesomecloudPkg3',
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
+    PkgDesc:
+      'Here is a long enough package description some extra textHere is a long enough package description some extra textHere is a long enough package description some extra textHere is a long enough package description some extra text',
+    Status: 'FedRAMP Ready',
     PkgCreateDate: 'Jan 03, 2023',
     ATOBeginDate: 'Jan 03, 2023',
     ATOEndDate: 'Jan 03, 2023',
@@ -162,8 +45,9 @@ const pkgs: Package[] = [
   {
     SystemID: 234,
     PkgName: 'AwesomecloudPkg3',
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
+    PkgDesc:
+      'Here is a long enough package description for some extraHere is a long enough package description for some extra',
+    Status: 'FedRAMP Ready',
     PkgCreateDate: 'Jan 03, 2023',
     ATOBeginDate: 'Jan 03, 2023',
     ATOEndDate: 'Jan 03, 2023',
@@ -173,8 +57,9 @@ const pkgs: Package[] = [
   {
     SystemID: 654,
     PkgName: 'AwesomecloudPkg3',
-    PkgDesc: 'Pkg description',
-    Status: 'Pending',
+    PkgDesc:
+      'Here is a long enough package description againpackage description againpackage description againpackage description again',
+    Status: 'FedRAMP Ready',
     PkgCreateDate: 'Jan 03, 2023',
     ATOBeginDate: 'Jan 03, 2023',
     ATOEndDate: 'Jan 03, 2023',
@@ -187,28 +72,34 @@ const columnHelper = createColumnHelper<Package>();
 const columns = [
   columnHelper.accessor('PkgName', {
     header: 'Package name',
+    size: 200,
   }),
-  columnHelper.accessor('SystemID', {
-    header: 'SystemID',
-  }),
-  columnHelper.accessor('ATOBeginDate', {
-    header: 'ATO Begins',
-  }),
-  columnHelper.accessor('ATOEndDate', {
-    header: 'ATO Ends',
-  }),
-  columnHelper.accessor('ContactName', {
-    header: 'Created by',
-  }),
-  columnHelper.accessor('LastModified', {
-    header: 'Last modified',
-  }),
+
   columnHelper.accessor('Status', {
     header: 'Status',
     cell: (info) => (
-      <StatusIndicator type="pending">{info.getValue()}</StatusIndicator>
+      <StatusIndicator type="success">{info.getValue()}</StatusIndicator>
     ),
+    size: 175,
+    enableSorting: false,
   }),
+  columnHelper.accessor('PkgDesc', {
+    header: 'Description',
+    size: 0,
+    minSize: 0,
+  }),
+  // columnHelper.accessor('ATOBeginDate', {
+  //   header: 'ATO Begins',
+  // }),
+  // columnHelper.accessor('ATOEndDate', {
+  //   header: 'ATO Ends',
+  // }),
+  // columnHelper.accessor('ContactName', {
+  //   header: 'Created by',
+  // }),
+  // columnHelper.accessor('LastModified', {
+  //   header: 'Last modified',
+  // }),
 ];
 
 export const Default: Story<TableProps<Package>> = (args) => {
@@ -216,8 +107,6 @@ export const Default: Story<TableProps<Package>> = (args) => {
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   return (
     <Table
-      {...args}
-      columns={columns}
       header={
         <Header
           variant="h2"
@@ -236,16 +125,44 @@ export const Default: Story<TableProps<Package>> = (args) => {
                 text="Secondary button"
                 disabled={!Object.keys(rowSelection).length}
               />
-              <Button text="Create resource" />
+              <DropdownButton text="Create resource">
+                <DropdownItem>
+                  <ListItem>Item 1</ListItem>
+                </DropdownItem>
+                <DropdownItem>
+                  <ListItem>Item 1</ListItem>
+                </DropdownItem>
+                <DropdownItem>
+                  <ListItem>Item 1</ListItem>
+                </DropdownItem>
+                <DropdownItem>
+                  <ListItem>Item 1</ListItem>
+                </DropdownItem>
+                <DropdownItem>
+                  <ListItem>Item 1</ListItem>
+                </DropdownItem>
+                <DropdownItem>
+                  <ListItem>Item 1</ListItem>
+                </DropdownItem>
+                <DropdownItem>
+                  <ListItem>Item 1</ListItem>
+                </DropdownItem>
+                <DropdownItem>
+                  <ListItem>Item 1</ListItem>
+                </DropdownItem>
+                <DropdownItem>
+                  <ListItem>Item 1</ListItem>
+                </DropdownItem>
+              </DropdownButton>
             </SpaceBetween>
           }
         />
       }
-      footer={
-        <Box textAlign="center">
-          <Link to="#">View all packages</Link>
-        </Box>
-      }
+      // footer={
+      //   <Box textAlign="center">
+      //     <Link to="#">View all packages</Link>
+      //   </Box>
+      // }
       filter={
         <TextFilter
           filteringText={filteringText}
@@ -256,13 +173,14 @@ export const Default: Story<TableProps<Package>> = (args) => {
       filteringText={filteringText}
       rowSelection={rowSelection}
       onRowSelectionChange={setRowSelection}
+      resizableColumns
+      {...args}
     />
   );
 };
 Default.args = {
+  columns,
   data: pkgs,
-  pagination: true,
-  selectionType: 'multi',
 };
 
 export const EmptyState: Story<TableProps<Package>> = (args) => {

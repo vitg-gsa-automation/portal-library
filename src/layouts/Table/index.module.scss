@@ -1,6 +1,7 @@
 .wrapper {
   padding: 0 2rem;
   padding-bottom: 4px;
+  overflow-x: auto;
 }
 
 .table {
@@ -12,28 +13,9 @@
     background-color: var(--color-bg-table-heading);
     border-bottom: 2px solid var(--color-card-divider);
   }
-  & th {
-    position: relative;
-    text-align: left;
-    padding: 0 1rem;
-    font-weight: 700;
-    color: var(--font-color-column-header);
-    user-select: none;
 
-    &:not(:first-child) {
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 25%;
-        height: 50%;
-        border-left: 2px solid var(--color-card-divider);
-      }
-    }
-  }
-
-  & td {
-    padding: 0.8rem 2rem;
+  &.resizable {
+    table-layout: fixed;
   }
 }
 
@@ -47,7 +29,7 @@
   overflow: hidden;
 }
 
-.heading-box {
+.header-box {
   cursor: pointer;
   color: unset;
   border: none;
@@ -66,8 +48,11 @@
     width: 100%;
     padding: 0.8rem 1rem;
   }
-  &--sorted {
+  &.sorted {
     color: var(--font-color-column-header-sorted);
+  }
+
+  & .header-cell-text {
   }
 }
 
@@ -148,4 +133,46 @@
   &__text {
     margin-left: 1rem;
   }
+}
+
+.resizer {
+  bottom: 0;
+  cursor: col-resize;
+  position: absolute;
+  right: calc(-1 * 20px / 2);
+  top: 0;
+  width: 2rem;
+  z-index: 10;
+}
+
+.header-cell {
+  position: relative;
+  text-align: left;
+  padding: 0 1rem;
+  font-weight: 700;
+  color: var(--font-color-column-header);
+  overflow: hidden;
+  user-select: none;
+  &:not(:last-child) {
+    &::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 25%;
+      height: 50%;
+      border-left: 2px solid var(--color-card-divider);
+    }
+  }
+  &.resizable {
+    &::before {
+      border-color: #7d8998;
+    }
+  }
+  &.sortable {
+  }
+}
+
+.select {
+  width: 40px;
+  padding: 0 1.2rem;
 }
