@@ -163,14 +163,6 @@ export const Default: Story<TableProps<Package>> = (args) => {
       //     <Link to="#">View all packages</Link>
       //   </Box>
       // }
-      filter={
-        <TextFilter
-          filteringText={filteringText}
-          onChange={(e) => setFilteringText(e.target.value)}
-          filteringPlaceholder="Find by resource"
-        />
-      }
-      filteringText={filteringText}
       rowSelection={rowSelection}
       onRowSelectionChange={setRowSelection}
       resizableColumns
@@ -220,7 +212,4 @@ Loading.args = {
   header: <Header variant="h2" title="Packages" />,
   data: pkgs,
   loading: true,
-  filter: (
-    <TextFilter filteringText={''} filteringPlaceholder="Find by resource" />
-  ),
 };
