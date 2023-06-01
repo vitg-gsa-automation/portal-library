@@ -12,7 +12,7 @@ export default {
 export const Default: Story = (args) => {
   return (
     <Modal
-      title="Modal"
+      header="Modal"
       trigger={<Button text="View" color="secondary" icon="visibility" />}
       footer={
         <Box float="right">

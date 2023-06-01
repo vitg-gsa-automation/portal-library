@@ -9,6 +9,9 @@
 
 .text {
   margin-left: 4px;
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 //Types

@@ -16,14 +16,14 @@ import { Header } from '../../layouts/Header';
 import { MaterialIcon } from '../../components/MaterialIcon';
 export interface ModalProps {
   trigger?: ReactElement;
-  title?: string;
+  header?: ReactNode;
   footer?: ReactNode;
   visuallyHiddenDescription?: string;
   children: ReactNode;
 }
 export function Modal({
   trigger,
-  title,
+  header,
   footer,
   visuallyHiddenDescription,
   children,
@@ -39,15 +39,19 @@ export function Modal({
           </VisuallyHidden>
           <Card
             header={
-              <Header
-                variant="h2"
-                title={title}
-                actions={
-                  <DialogClose>
-                    <MaterialIcon icon="close" />
-                  </DialogClose>
-                }
-              />
+              typeof header === 'string' ? (
+                <Header
+                  variant="h2"
+                  title={header}
+                  actions={
+                    <DialogClose>
+                      <MaterialIcon icon="close" />
+                    </DialogClose>
+                  }
+                />
+              ) : (
+                header
+              )
             }
             footer={footer}
           >

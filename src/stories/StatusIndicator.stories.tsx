@@ -14,6 +14,6 @@ export const Default: Story<StatusIndicatorProps> = (args) => {
 };
 
 Default.args = {
-  type: 'info',
-  children: 'OK',
+  type: 'success',
+  children: 'approved',
 };

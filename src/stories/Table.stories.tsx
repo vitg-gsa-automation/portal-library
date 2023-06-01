@@ -72,7 +72,6 @@ const columnHelper = createColumnHelper<Package>();
 const columns = [
   columnHelper.accessor('PkgName', {
     header: 'Package name',
-    size: 200,
   }),
 
   columnHelper.accessor('Status', {
@@ -80,7 +79,6 @@ const columns = [
     cell: (info) => (
       <StatusIndicator type="success">{info.getValue()}</StatusIndicator>
     ),
-    size: 175,
     enableSorting: false,
   }),
   columnHelper.accessor('PkgDesc', {

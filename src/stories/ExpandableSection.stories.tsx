@@ -3,6 +3,7 @@ import {
   ExpandableSection,
   ExpandableSectionProps,
   FormField,
+  StatusIndicator,
   TextArea,
 } from '../components';
 
@@ -23,4 +24,16 @@ export const Default: Story<ExpandableSectionProps> = (args) => {
 
 Default.args = {
   header: 'Additional settings',
+};
+
+export const Test: Story<ExpandableSectionProps> = (args) => {
+  return (
+    <ExpandableSection {...args}>
+      <div>Testing testing</div>
+    </ExpandableSection>
+  );
+};
+
+Test.args = {
+  header: 'System Security Plan (SSP)',
 };
