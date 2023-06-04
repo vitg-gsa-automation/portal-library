@@ -12,6 +12,7 @@ import {
   DropdownButton,
   DropdownItem,
   ListItem,
+  Select,
 } from '../components';
 import {
   Box,
@@ -72,14 +73,37 @@ const columnHelper = createColumnHelper<Package>();
 const columns = [
   columnHelper.accessor('PkgName', {
     header: 'Package name',
+    minSize: 185,
   }),
 
   columnHelper.accessor('Status', {
     header: 'Status',
+    minSize: 185,
     cell: (info) => (
       <StatusIndicator type="success">{info.getValue()}</StatusIndicator>
     ),
     enableSorting: false,
+  }),
+  columnHelper.accessor('LastModified', {
+    header: 'Last modified',
+    minSize: 185,
+    cell: () => {
+      return (
+        <div>
+          <Select
+            items={[
+              { label: 'Item1', value: 1 },
+              { label: 'Item2', value: 2 },
+              { label: 'Item3', value: 3 },
+              { label: 'Item4', value: 4 },
+              { label: 'Item5', value: 5 },
+            ]}
+            onSelectChange={() => {}}
+            renderWithPortal
+          />
+        </div>
+      );
+    },
   }),
   columnHelper.accessor('PkgDesc', {
     header: 'Description',
@@ -94,9 +118,6 @@ const columns = [
   // }),
   // columnHelper.accessor('ContactName', {
   //   header: 'Created by',
-  // }),
-  // columnHelper.accessor('LastModified', {
-  //   header: 'Last modified',
   // }),
 ];
 

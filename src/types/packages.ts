@@ -19,3 +19,10 @@ export interface Package {
   OrgID?: string;
   OrgName?: string;
 }
+
+export type PackageStatus =
+  | 'cancelled'
+  | 'closed'
+  | 'fedramp ready'
+  | 'in progress'
+  | 'pending';

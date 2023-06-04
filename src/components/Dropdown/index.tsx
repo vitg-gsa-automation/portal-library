@@ -27,11 +27,9 @@ export const DropdownTrigger = forwardRef<
 export const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(
   ({ children, ...props }: DropdownContentProps, ref) => {
     return (
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content {...props} ref={ref} className={styles.content}>
-          {children}
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
+      <DropdownMenu.Content {...props} ref={ref} className={styles.content}>
+        {children}
+      </DropdownMenu.Content>
     );
   }
 );

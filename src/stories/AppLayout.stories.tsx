@@ -5,9 +5,14 @@ import { Route, Routes } from 'react-router-dom';
 import { Package } from 'types';
 import {
   Button,
+  Dropdown,
   DropdownButton,
+  DropdownContent,
+  DropdownItem,
+  DropdownTrigger,
   Flashbar,
   Link,
+  ListItem,
   PageHeader,
   StatusIndicator,
   Tab,
@@ -143,7 +148,25 @@ export const Default: Story<TableProps<Package>> = (args) => {
         element={
           <Layout
             navigation={
-              <TopNavigation title="Authorization portal" logo={'/'} />
+              <TopNavigation
+                title="Authorization portal"
+                logo={'/'}
+                userToggle={
+                  <Dropdown modal={false}>
+                    <DropdownTrigger asChild>
+                      <button>Dropdown trigger</button>
+                    </DropdownTrigger>
+                    <DropdownContent side="bottom" align="end" loop>
+                      <DropdownItem textValue="Account">
+                        <ListItem>Account</ListItem>
+                      </DropdownItem>
+                      <DropdownItem textValue="Sign out">
+                        <ListItem>Sign out</ListItem>
+                      </DropdownItem>
+                    </DropdownContent>
+                  </Dropdown>
+                }
+              />
             }
           />
         }
