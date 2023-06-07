@@ -50,10 +50,10 @@
 }
 .content {
   &[data-state='open'] {
-    animation: slideDown 0.1s ease-out;
+    animation: slideDown 0.115s ease-out;
   }
   &[data-state='closed'] {
-    animation: slideUp 0.1s ease-out;
+    animation: slideUp 0.115s ease-out;
   }
 }
 
