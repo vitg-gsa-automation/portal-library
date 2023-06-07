@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 
-import styles from './item.module.scss';
-import { StatusIndicator } from '../StatusIndicator';
+import styles from './index.module.scss';
 import { StatusType } from '../../types';
+import { StatusIndicator } from '../../components/StatusIndicator';
 
-export interface StepItemProps {
+interface StepItemProps {
   text: ReactNode;
   type?: StatusType;
   statusIndicatorText?: string;

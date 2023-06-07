@@ -2,10 +2,10 @@ import * as Accordion from '@radix-ui/react-accordion';
 import { ReactNode } from 'react';
 
 import styles from './index.module.scss';
-import { StepItem } from './item';
 import { StatusIndicator } from '../StatusIndicator';
 import { MaterialIcon } from '../MaterialIcon';
 import { StatusType } from '../../types';
+import { StepItem } from '../../internal/StepItem';
 
 interface StepItemDefinition {
   text: ReactNode;
