@@ -1,0 +1,43 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  padding: 1rem;
+  border-bottom: 2px solid var(--color-border-divider);
+}
+
+.status {
+  margin-top: 4px;
+}
+
+.content {
+}
+
+.text {
+}
+
+.link {
+  &,
+  &:visited,
+  &:link {
+    display: flex;
+    align-items: center;
+    color: var(--color-gsa-blue-40);
+    text-decoration: none;
+  }
+}
+
+.icon {
+  margin-left: 4px;
+}
+
+//Status
+.default {
+  color: var(--color-black-10);
+}
+.success {
+  color: var(--color-green-40);
+}
+.error {
+  color: var(--color-red-40);
+}

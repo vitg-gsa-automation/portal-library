@@ -40,3 +40,4 @@ export * from './Editor';
 export * from './Modal';
 export * from './FormField';
 export * from './ExpandableSection';
+export * from './Step';

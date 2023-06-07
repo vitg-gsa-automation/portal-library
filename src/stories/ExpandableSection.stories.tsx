@@ -35,5 +35,10 @@ export const Test: Story<ExpandableSectionProps> = (args) => {
 };
 
 Test.args = {
-  header: 'System Security Plan (SSP)',
+  header: (
+    <div>
+      System Security Plan (SSP)
+      <StatusIndicator type="loading">Validating</StatusIndicator>
+    </div>
+  ),
 };

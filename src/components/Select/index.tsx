@@ -68,17 +68,43 @@ export function Select({
   });
   const toggleRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLElement>(null);
+
   const setMenuPosition = function (toggleRect: DOMRect, target: HTMLElement) {
     target.style.position = 'fixed';
     target.style.width = toggleRect.width + 'px';
     target.style.top = `${toggleRect.bottom}px`;
     target.style.left = `${toggleRect.left}px`;
   };
+
   useLayoutEffect(() => {
     if (!renderWithPortal || !isOpen) return;
     if (!toggleRef.current) return;
     if (!menuRef.current) return;
     setMenuPosition(toggleRef.current.getBoundingClientRect(), menuRef.current);
+  }, [isOpen, renderWithPortal]);
+
+  const updateMenuPosition = function () {
+    if (!toggleRef.current || !menuRef.current) return;
+    const toggleRect = toggleRef.current.getBoundingClientRect();
+    const target = menuRef.current;
+    target.style.position = 'fixed';
+    target.style.width = toggleRect.width + 'px';
+    target.style.top = `${toggleRect.bottom}px`;
+    target.style.left = `${toggleRect.left}px`;
+  };
+
+  useLayoutEffect(() => {
+    if (!renderWithPortal || !isOpen) return;
+    if (!toggleRef.current) return;
+    if (!menuRef.current) return;
+    updateMenuPosition();
+
+    window.addEventListener('scroll', updateMenuPosition, true);
+    window.addEventListener('resize', updateMenuPosition, true);
+    return () => {
+      window.removeEventListener('scroll', updateMenuPosition, true);
+      window.removeEventListener('resize', updateMenuPosition, true);
+    };
   }, [isOpen, renderWithPortal]);
 
   const renderItems = function () {
@@ -118,7 +144,7 @@ export function Select({
       >
         <span>{selectedItem?.label ? selectedItem.label : placeholder}</span>
         <MaterialIcon
-          className={styles['toggle__icon']}
+          className={styles.icon}
           icon="play_arrow"
           type="round"
           style={{ rotate: isOpen ? '270deg' : '90deg', fontSize: '1.8rem' }}

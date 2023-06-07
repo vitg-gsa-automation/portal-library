@@ -17,3 +17,12 @@ export interface Notification {
   loading?: boolean;
   onDismiss: (index: number) => any;
 }
+
+export type StatusType =
+  | 'info'
+  | 'warning'
+  | 'success'
+  | 'error'
+  | 'pending'
+  | 'in-progress'
+  | 'loading';
