@@ -10,6 +10,7 @@ import {
   DropdownContent,
   DropdownItem,
   DropdownTrigger,
+  ExpandableSection,
   Flashbar,
   Link,
   ListItem,
@@ -130,17 +131,17 @@ export const Default: Story<TableProps<Package>> = (args) => {
       }
     />,
   ]);
-  useEffect(() => {
-    publish([
-      {
-        id: 2,
-        type: 'success',
-        content: 'Successfully converted AwesomeCloudSSP1 to a Word file',
-        dismissable: true,
-        onDismiss: dismiss,
-      },
-    ]);
-  }, []);
+  // useEffect(() => {
+  //   publish([
+  //     {
+  //       id: 2,
+  //       type: 'success',
+  //       content: 'Successfully converted AwesomeCloudSSP1 to a Word file',
+  //       dismissable: true,
+  //       onDismiss: dismiss,
+  //     },
+  //   ]);
+  // }, []);
   return (
     <Routes>
       <Route
@@ -274,12 +275,13 @@ export const Default: Story<TableProps<Package>> = (args) => {
                   header={
                     <PageHeader>
                       <Header
-                        title="AwesomeCloudSSP1"
-                        description="Lorem ipsum dolor sit amet consectetur. Vel ac id aliquam ac ullamcorper in justo vitae."
+                        title="Validation result for AwesomeCloudSSP1.xml"
                         actions={
                           <React.Fragment>
                             <Button text="Edit resource" color="secondary" />
-                            <DropdownButton text="Actions">list</DropdownButton>
+                            <DropdownButton text="Actions" color="secondary">
+                              list
+                            </DropdownButton>
                           </React.Fragment>
                         }
                         info={
@@ -295,79 +297,15 @@ export const Default: Story<TableProps<Package>> = (args) => {
                     </PageHeader>
                   }
                 >
-                  <Card
-                    header={
-                      <Header
-                        variant="h2"
-                        title="Document overview"
-                        actions={<Button text="Edit" color="secondary" />}
-                        description="This is a description to create a system"
-                        info={
-                          <Link
-                            to="#"
-                            variant="info"
-                            onClick={() => openTool(1)}
-                          >
-                            Info
-                          </Link>
-                        }
-                      />
-                    }
-                    footer="View more"
-                  >
-                    <CardContent disableTopPadding>
-                      <ColumnLayout columns={3}>
-                        <SpaceBetween>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Description">
-                            System Security Plan
-                          </Property>
-                          <Property label="Status">
-                            <StatusIndicator type="success">
-                              FedRAMP Ready
-                            </StatusIndicator>
-                          </Property>
-                        </SpaceBetween>
-                        <SpaceBetween>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                        </SpaceBetween>
-                        <SpaceBetween>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                          <Property label="Name">AwesomeClouSSP1</Property>
-                        </SpaceBetween>
-                      </ColumnLayout>
-                    </CardContent>
-                  </Card>
-                  <Tabs defaultValue="1">
-                    <TabsList loop={false}>
-                      <TabsTrigger value="1" asChild>
-                        <Tab title="Packages" />
-                      </TabsTrigger>
-                      <TabsTrigger value="2" asChild>
-                        <Tab title="Properties" />
-                      </TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="1"></TabsContent>
-                  </Tabs>
                   <SpaceBetween>
                     <Card
                       header={
                         <Header
                           variant="h2"
-                          title="Document overview"
+                          title="Validation details"
                           actions={<Button text="Edit" color="secondary" />}
-                          description="This is a description to create a system"
-                          info={
-                            <Link to="#" variant="info">
-                              Info
-                            </Link>
-                          }
                         />
                       }
-                      footer="View more"
                     >
                       <CardContent disableTopPadding>
                         <ColumnLayout columns={3}>
@@ -395,21 +333,13 @@ export const Default: Story<TableProps<Package>> = (args) => {
                         </ColumnLayout>
                       </CardContent>
                     </Card>
-                    <Card
-                      header={
-                        <Header
-                          variant="h2"
-                          title="Document overview"
-                          actions={<Button text="Edit" color="secondary" />}
-                          description="This is a description to create a system"
-                          info={
-                            <Link to="#" variant="info">
-                              Info
-                            </Link>
-                          }
-                        />
+                    <ExpandableSection
+                      variant="card"
+                      headerText="Basic Schema Check"
+                      headerCounter="(1)"
+                      headerActions={
+                        <Button text="View details" color="secondary" />
                       }
-                      footer="View more"
                     >
                       <CardContent disableTopPadding>
                         <ColumnLayout columns={3}>
@@ -436,22 +366,14 @@ export const Default: Story<TableProps<Package>> = (args) => {
                           </SpaceBetween>
                         </ColumnLayout>
                       </CardContent>
-                    </Card>
-                    <Card
-                      header={
-                        <Header
-                          variant="h2"
-                          title="Document overview"
-                          actions={<Button text="Edit" color="secondary" />}
-                          description="This is a description to create a system"
-                          info={
-                            <Link to="#" variant="info">
-                              Info
-                            </Link>
-                          }
-                        />
+                    </ExpandableSection>
+                    <ExpandableSection
+                      variant="card"
+                      headerText="NIST Schema Validation"
+                      headerCounter="(6)"
+                      headerActions={
+                        <Button text="View details" color="secondary" />
                       }
-                      footer="View more"
                     >
                       <CardContent disableTopPadding>
                         <ColumnLayout columns={3}>
@@ -478,7 +400,41 @@ export const Default: Story<TableProps<Package>> = (args) => {
                           </SpaceBetween>
                         </ColumnLayout>
                       </CardContent>
-                    </Card>
+                    </ExpandableSection>
+                    <ExpandableSection
+                      variant="card"
+                      headerText="FedRAMP Schematron Validation"
+                      headerCounter="(203)"
+                      headerActions={
+                        <Button text="View details" color="secondary" />
+                      }
+                    >
+                      <CardContent disableTopPadding>
+                        <ColumnLayout columns={3}>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Description">
+                              System Security Plan
+                            </Property>
+                            <Property label="Status">
+                              <StatusIndicator type="success">
+                                FedRAMP Ready
+                              </StatusIndicator>
+                            </Property>
+                          </SpaceBetween>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                          </SpaceBetween>
+                          <SpaceBetween>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                            <Property label="Name">AwesomeClouSSP1</Property>
+                          </SpaceBetween>
+                        </ColumnLayout>
+                      </CardContent>
+                    </ExpandableSection>
                   </SpaceBetween>
                 </ContentLayout>
               }

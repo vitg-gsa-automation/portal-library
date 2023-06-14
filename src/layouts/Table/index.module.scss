@@ -111,8 +111,9 @@
 
 .tools {
   padding-top: 8px;
+  padding-bottom: 4px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   &__filters {
     margin-right: 2rem;
     flex: 1;

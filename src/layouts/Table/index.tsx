@@ -1,5 +1,6 @@
 import {
   ColumnDef,
+  FilterFnOption,
   InitialTableState,
   OnChangeFn,
   RowSelectionState,
@@ -37,12 +38,14 @@ import { Thead } from './thead';
 export interface TableProps<T> {
   data: T[];
   columns: ColumnDef<T, any>[];
+  variant?: 'card' | 'embedded';
   rowSelection?: RowSelectionState;
   onRowSelectionChange?: OnChangeFn<RowSelectionState>;
   onRowClick?: (rowData: T) => unknown;
   header?: ReactElement;
   footer?: ReactElement;
   filter?: ReactNode;
+  globalFilterFn?: FilterFnOption<T>;
   pagination?: boolean;
   empty?: ReactNode;
   loading?: boolean;
@@ -50,10 +53,11 @@ export interface TableProps<T> {
   error?: string;
   columnVisibility?: ColumnVisibility;
   initialState?: InitialTableState;
-  filteringText?: string;
   selectionType?: 'single' | 'multi';
   wrapLines?: boolean;
   resizableColumns?: boolean;
+  globalFilter?: any;
+  onGlobalFilterChange?: OnChangeFn<any>;
 }
 
 interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
@@ -73,6 +77,7 @@ interface ColumnVisibility {
 export const Table = <T extends unknown>({
   data,
   columns,
+  variant = 'card',
   rowSelection,
   columnVisibility,
   onRowSelectionChange,
@@ -86,16 +91,16 @@ export const Table = <T extends unknown>({
   loadingText = 'Loading resources',
   error,
   initialState,
-  filteringText,
+  globalFilterFn,
   selectionType,
   wrapLines = true,
   resizableColumns,
+  globalFilter,
+  onGlobalFilterChange,
   ...props
 }: TableProps<T>) => {
   const columnHelper = createColumnHelper<T>();
 
-  const [internalGlobalFilter, setInternalGlobalFilter] =
-    useState(filteringText);
   const [sorting, setSorting] = useState<SortingState>([]);
   const internalColumns = useMemo(() => {
     if (selectionType === 'multi') {
@@ -150,10 +155,6 @@ export const Table = <T extends unknown>({
     return [];
   }, [columnHelper]);
 
-  useEffect(() => {
-    setInternalGlobalFilter(filteringText);
-  }, [filteringText]);
-
   const table = useReactTable<T>({
     data,
     columns: [...internalColumns, ...columns],
@@ -162,17 +163,20 @@ export const Table = <T extends unknown>({
       rowSelection,
       sorting,
       columnVisibility,
-      globalFilter: internalGlobalFilter,
+      globalFilter,
     },
-    globalFilterFn: (row, columnId, filterValue: string) => {
-      const search = filterValue.toLowerCase();
+    globalFilterFn:
+      globalFilterFn ||
+      ((row, columnId, filterValue) => {
+        console.log('row', row);
+        const search = filterValue.filteringText.toLowerCase();
 
-      let value = row.getValue(columnId) as string;
-      if (typeof value === 'number') value = String(value);
+        let value = row.getValue(columnId) as string;
+        if (typeof value === 'number') value = String(value);
 
-      return value?.toLowerCase().includes(search);
-    },
-    onGlobalFilterChange: setInternalGlobalFilter,
+        return value?.toLowerCase().includes(search);
+      }),
+    onGlobalFilterChange,
     onSortingChange: setSorting,
     onRowSelectionChange,
     getCoreRowModel: getCoreRowModel(),
@@ -191,6 +195,7 @@ export const Table = <T extends unknown>({
 
   return (
     <Card
+      variant={variant === 'card' ? 'default' : 'embedded'}
       header={
         hasHeader && (
           <div>

@@ -10,7 +10,7 @@ interface DropdownButtonProps extends ButtonProps {
 export function DropdownButton({ children, ...props }: DropdownButtonProps) {
   return (
     <Dropdown modal={false}>
-      <DropdownTrigger className={styles.root}>
+      <DropdownTrigger className={styles.root} asChild>
         <Button
           endIcon={
             <MaterialIcon
@@ -23,7 +23,7 @@ export function DropdownButton({ children, ...props }: DropdownButtonProps) {
           {...props}
         />
       </DropdownTrigger>
-      <DropdownContent side="bottom" align="end" loop>
+      <DropdownContent side="bottom" align="end" loop style={{ zIndex: 99999 }}>
         {children}
       </DropdownContent>
     </Dropdown>

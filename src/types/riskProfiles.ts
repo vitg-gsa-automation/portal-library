@@ -7,7 +7,7 @@ export interface Capability {
   PercentTotal: number;
 }
 
-export interface Control {
+export interface RiskProfileControl {
   'Control Number': string;
   'Control Name': string;
   'Percent Implemented': number;

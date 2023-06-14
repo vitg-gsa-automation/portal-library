@@ -107,6 +107,12 @@ export function Select({
     };
   }, [isOpen, renderWithPortal]);
 
+  useEffect(() => {
+    if (isOpen) {
+      toggleRef.current?.setAttribute('data-state', 'open');
+    } else toggleRef.current?.setAttribute('data-state', 'closed');
+  }, [isOpen]);
+
   const renderItems = function () {
     if (loading)
       return (
@@ -142,12 +148,14 @@ export function Select({
         {...props}
         {...getToggleButtonProps({ onBlur, ref: toggleRef })}
       >
-        <span>{selectedItem?.label ? selectedItem.label : placeholder}</span>
+        <span className={styles.label}>
+          {selectedItem?.label ? selectedItem.label : placeholder}
+        </span>
         <MaterialIcon
           className={styles.icon}
           icon="play_arrow"
           type="round"
-          style={{ rotate: isOpen ? '270deg' : '90deg', fontSize: '1.8rem' }}
+          fontSize="1.8rem"
         />
       </div>
       <SelectMenu

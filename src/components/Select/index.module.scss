@@ -15,9 +15,19 @@
   border-radius: 8px;
   height: 3.4rem;
   font-size: 1.4rem;
-  padding: 0 1.6rem;
+  padding: 0 1.2rem;
   background-color: var(--color-bg-input);
   transition: border-color 0.1s;
+  &[data-state='closed'] {
+    & .icon {
+      transform: rotate(90deg);
+    }
+  }
+  &[data-state='open'] {
+    & .icon {
+      transform: rotate(-90deg);
+    }
+  }
   &:hover {
     & .toggle__icon {
       color: black;
@@ -42,7 +52,15 @@
   }
 }
 
+.label {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  user-select: none;
+}
+
 .icon {
+  transition: transform 0.115s;
 }
 
 .single {

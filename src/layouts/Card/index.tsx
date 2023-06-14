@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { StatusIndicator } from '../../components/StatusIndicator';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: 'default' | 'embedded';
   header?: ReactNode;
   footer?: ReactNode;
   loading?: boolean;
@@ -42,6 +43,7 @@ interface CardStatValueProps {
 }
 
 export function Card({
+  variant = 'default',
   className,
   header,
   footer,
@@ -51,7 +53,7 @@ export function Card({
   ...props
 }: CardProps) {
   return (
-    <div className={styles.root} {...props}>
+    <div className={clsx(styles.root, styles[variant])} {...props}>
       {header && <div className={styles.header}>{header}</div>}
       {loading ? (
         <div className={styles.loading}>

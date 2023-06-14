@@ -3,16 +3,7 @@
 }
 
 .trigger {
-  padding: 4px 0;
-  display: flex;
-  align-items: center;
-  background-color: unset;
-  border: none;
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: inherit;
   cursor: pointer;
-  white-space: nowrap;
   &[data-state='open'] {
     & .icon {
       transform: rotate(90deg);
@@ -21,15 +12,38 @@
       animation: fadeIn 0.1s ease-out;
     }
   }
-  &:hover {
-    color: var(--font-color-link);
+
+  &.default {
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    background-color: unset;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    &:hover {
+      color: var(--font-color-link);
+    }
+  }
+
+  &.card {
+    font-weight: inherit;
   }
 }
 
 .icon {
   color: currentColor;
-  margin-right: 4px;
   transition: transform 0.1s ease-out;
+
+  &.default {
+    margin-right: 4px;
+  }
+  &.card {
+    margin-right: 8px;
+  }
 }
 
 .content {

@@ -5,8 +5,8 @@ import clsx from 'clsx';
 
 type HeaderVariant = 'h1' | 'h2' | 'h3';
 
-export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  title?: string;
+export interface HeaderProps {
+  title?: ReactNode;
   description?: ReactNode;
   actions?: ReactNode;
   count?: string;

@@ -8,3 +8,4 @@ export * from './riskProfiles';
 export * from './systems';
 export * from './users';
 export * from './validations';
+export * from './controls';

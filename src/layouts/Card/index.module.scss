@@ -1,8 +1,10 @@
 .root {
-  background-color: var(--color-bg-card-content);
-  box-shadow: var(--shadow-card);
   width: 100%;
-  border-radius: 1.6rem;
+  &.default {
+    background-color: white;
+    border-radius: 1.6rem;
+    box-shadow: var(--shadow-card);
+  }
 }
 
 .loading {
