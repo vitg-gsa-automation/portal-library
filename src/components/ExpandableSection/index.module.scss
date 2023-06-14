@@ -4,6 +4,7 @@
 
 .trigger {
   cursor: pointer;
+  line-height: inherit;
   &[data-state='open'] {
     & .icon {
       transform: rotate(90deg);
@@ -34,6 +35,9 @@
   }
 }
 
+.icon-container {
+}
+
 .icon {
   color: currentColor;
   transition: transform 0.1s ease-out;
@@ -43,6 +47,8 @@
   }
   &.card {
     margin-right: 8px;
+    line-height: inherit;
+    vertical-align: top;
   }
 }
 

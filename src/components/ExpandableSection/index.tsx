@@ -37,13 +37,15 @@ export function ExpandableSection({
                   <Collapsible.Trigger
                     className={clsx(styles.trigger, styles[variant])}
                   >
-                    <MaterialIcon
-                      icon="play_arrow"
-                      className={clsx(styles.icon, styles[variant])}
-                      fontSize="2rem"
-                      type="round"
-                    />
-                    {headerText}
+                    <span className={styles['icon-container']}>
+                      <MaterialIcon
+                        icon="play_arrow"
+                        className={clsx(styles.icon, styles[variant])}
+                        fontSize="2.4rem"
+                        type="round"
+                      />
+                    </span>
+                    <span>{headerText}</span>
                   </Collapsible.Trigger>
                 }
                 count={headerCounter}

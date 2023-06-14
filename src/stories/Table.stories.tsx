@@ -362,12 +362,6 @@ export const FiltersStory: Story<TableProps<Control>> = (args) => {
 
         return value?.toLowerCase().includes(search);
       }}
-      pagination
-      initialState={{
-        pagination: {
-          pageSize: 5,
-        },
-      }}
     />
   );
 };
