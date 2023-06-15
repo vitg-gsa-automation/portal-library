@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 
 export interface FormFieldProps {
   htmlFor?: any;
-  label: string;
+  label?: string;
   description?: string;
   info?: ReactNode;
   children?: ReactNode;
@@ -38,9 +38,11 @@ export function FormField({
   return (
     <div className={styles.root}>
       <div>
-        <label className={styles.label} htmlFor={htmlFor}>
-          {label}
-        </label>
+        {label && (
+          <label className={styles.label} htmlFor={htmlFor}>
+            {label}
+          </label>
+        )}
         {info && <span className={styles.info}>{info}</span>}
       </div>
       {description && <div className={styles.description}>{description}</div>}

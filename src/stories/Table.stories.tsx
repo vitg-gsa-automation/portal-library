@@ -316,7 +316,7 @@ export const FiltersStory: Story<TableProps<Control>> = (args) => {
             }
           />
           <SelectFilter>
-            <FormField label="Filter family">
+            <FormField>
               <Select
                 placeholder="Any family"
                 items={familyOptions}
@@ -331,7 +331,7 @@ export const FiltersStory: Story<TableProps<Control>> = (args) => {
             </FormField>
           </SelectFilter>
           <SelectFilter>
-            <FormField label="Filter status">
+            <FormField>
               <Select
                 placeholder="Any status"
                 items={statusOptions}

@@ -70,17 +70,17 @@ const columns = [
 
   columnHelper.accessor('Status', {
     header: 'Status',
+    size: 0,
     minSize: 185,
     cell: (info) => (
       <StatusIndicator type="success">{info.getValue()}</StatusIndicator>
     ),
-    enableSorting: false,
   }),
-  columnHelper.accessor('PkgDesc', {
-    header: 'Description',
-    size: 0,
-    minSize: 0,
-  }),
+  // columnHelper.accessor('PkgDesc', {
+  //   header: 'Description',
+  //   size: 0,
+  //   minSize: 0,
+  // }),
 ];
 
 export default {
@@ -140,7 +140,7 @@ export const Card: Story<ExpandableSectionProps> = (args) => {
         variant="embedded"
         rowSelection={rowSelection}
         onRowSelectionChange={setRowSelection}
-        selectionType='single'
+        selectionType="single"
         columns={columns}
         data={pkgs}
       />

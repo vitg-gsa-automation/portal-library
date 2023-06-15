@@ -1,0 +1,10 @@
+.root {
+  border: 2px solid var(--color-border-editor);
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.footer {
+  border-top: 2px solid var(--color-border-editor);
+}
