@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import styles from './index.module.scss';
 import { StatusType } from '../../types';
-import { StatusIndicator } from '../../components/StatusIndicator';
+import { StatusIndicator } from '../StatusIndicator';
 import clsx from 'clsx';
 
 interface StepItemProps {

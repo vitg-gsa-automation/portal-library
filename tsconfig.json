@@ -17,5 +17,5 @@
     "baseUrl": "src"
   },
   "include": ["src", ".storybook/preview.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "public"]
 }

@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 import { StatusIndicator } from '../StatusIndicator';
 import { MaterialIcon } from '../MaterialIcon';
 import { StatusType } from '../../types';
-import { StepItem } from '../../internal/StepItem';
+import { StepItem } from '../StepItem';
 
 interface StepItemDefinition {
   text: ReactNode;

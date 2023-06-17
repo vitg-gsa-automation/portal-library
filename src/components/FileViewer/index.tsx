@@ -1,39 +1,87 @@
-import 'highlight.js/styles/default.css';
+import { useRef, useState } from 'react';
 
-import React, { useEffect, useRef } from 'react';
-import hljs from 'highlight.js/lib/core';
-import json from 'highlight.js/lib/languages/json';
-import xml from 'highlight.js/lib/languages/xml';
-import yaml from 'highlight.js/lib/languages/yaml';
-
+import clsx from 'clsx';
+import { Box } from '../../layouts/Box';
+import { CardContent } from '../../layouts/Card';
+import { ColumnLayout } from '../../layouts/ColumnLayout';
+import { SpaceBetween } from '../../layouts/SpaceBetween';
+import { Button } from '../Button';
+import { Checkbox } from '../Checkbox';
+import { FormField } from '../FormField';
+import { MaterialIcon } from '../MaterialIcon';
+import { Modal } from '../Modal';
+import { Select } from '../Select';
 import styles from './index.module.scss';
 
-// Register languages
-hljs.registerLanguage('json', json);
-hljs.registerLanguage('xml', xml);
-hljs.registerLanguage('yaml', yaml);
-
 export interface FileViewerProps {
-  language: string;
-  content: string;
+  language: 'xml' | 'json' | 'yaml';
+  html: string;
 }
 
-export function FileViewer({ language, content }: FileViewerProps) {
+export function FileViewer({ language, html }: FileViewerProps) {
   const codeRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    if (codeRef && codeRef.current) {
-      hljs.highlightElement(codeRef.current);
-    }
-  }, [content]);
+  const [hasWrappedLines, setHasWrappedLines] = useState(true);
 
   return (
     <div className={styles.root}>
-      <pre>
-        <code ref={codeRef} className={language}>
-          {content}
-        </code>
-      </pre>
+      <div className={styles.view}>
+        <pre
+          className={clsx({ [styles['has-wrapped-lines']]: hasWrappedLines })}
+        >
+          <code
+            ref={codeRef}
+            className={clsx('hljs', language)}
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        </pre>
+      </div>
+      <div className={styles.footer}>
+        <div>
+          <span className={styles.cell}>{language}</span>
+        </div>
+        <div className={styles.settings}>
+          <Modal
+            header="Preferences"
+            footer={
+              <Box float="right">
+                <SpaceBetween direction="horizontal" size="sm">
+                  <Button text="Cancel" color="secondary" type="button" />
+                  <Button text="Submit" type="submit" />
+                </SpaceBetween>
+              </Box>
+            }
+            trigger={
+              <MaterialIcon
+                icon="settings"
+                type="outlined"
+                className={styles.icon}
+                fontSize="2rem"
+              />
+            }
+          >
+            <CardContent disableTopPadding>
+              <ColumnLayout columns={2}>
+                <Checkbox
+                  label="Wrap lines"
+                  id="c1"
+                  checked={hasWrappedLines}
+                  onCheckedChange={(checked) => {
+                    if (checked === 'indeterminate') return;
+                    setHasWrappedLines(checked);
+                  }}
+                />
+                <FormField label="Theme">
+                  <Select
+                    items={[]}
+                    onSelectChange={() => {}}
+                    placeholder="Default"
+                  />
+                </FormField>
+              </ColumnLayout>
+            </CardContent>
+          </Modal>
+        </div>
+      </div>
     </div>
   );
 }

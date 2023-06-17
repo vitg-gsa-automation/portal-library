@@ -4,7 +4,8 @@ export type Role = 'fatal' | 'warning' | 'information' | 'error';
 export type StageStatus = 'default' | 'error' | 'success';
 export interface SVRL {
   'svrl:schematron-output': {
-    'svrl:failed-assert'?: SVRLAssertion[];
+    'svrl:failed-assert'?: SVRLFailedAssertion[];
+    [propName: string]: any;
   };
 }
 export interface SVRLAssertion {
@@ -15,6 +16,18 @@ export interface SVRLAssertion {
     content: string;
   };
 }
+export type SVRLFailedAssertion = {
+  id: string;
+  location: string;
+  role: Role;
+  'svrl:text': string;
+  'svrl:diagnostic-reference': {
+    content: string;
+    diagnostic: string;
+  };
+  test: string;
+  see?: string;
+};
 export interface NISTAssertion {
   role: Role;
   text?: string;
@@ -43,3 +56,8 @@ export interface CheckResult {
   passed: boolean;
   response?: CheckFileSchemaResponse;
 }
+
+export type Annotation = {
+  uniqueId: string;
+  xpath: string;
+};

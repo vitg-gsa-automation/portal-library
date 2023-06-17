@@ -42,7 +42,7 @@ export default [
           // generateScopedName: 'vitg_[name]_[local]__[hash:base64:5]',
         },
         use: ['sass'],
-        extensions: ['.scss'],
+        extensions: ['.css', '.scss'],
         namedExports: true,
       }),
       json(),

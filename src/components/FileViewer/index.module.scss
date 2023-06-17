@@ -2,9 +2,51 @@
   border: 2px solid var(--color-border-editor);
   border-radius: 8px;
   overflow: hidden;
-  min-height: 500px;
+}
+
+.view {
+  height: 480px;
 }
 
 .footer {
+  background-color: #fafafa;
   border-top: 2px solid var(--color-border-editor);
+  padding-left: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+pre {
+  height: 100%;
+  &.has-wrapped-lines {
+    white-space: pre-wrap;
+  }
+}
+
+code {
+  height: 100%;
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+
+.cell {
+  display: inline-block;
+  padding: 8px 1.2rem;
+}
+
+.settings {
+  display: flex;
+  align-items: center;
+  border-left: 2px solid var(--color-border-editor);
+  padding: 1rem;
+}
+
+.icon {
+  color: var(--color-black-30);
+  cursor: pointer;
+  &:hover {
+    color: var(--color-black-50);
+  }
 }
