@@ -15,6 +15,6 @@ export function useTools(tools: ReactElement[]) {
     toolsOpen,
     setToolsIndex,
     setToolsOpen,
-    openTool,
+    openTool, 
   };
 }

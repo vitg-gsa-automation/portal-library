@@ -1,4 +1,4 @@
-import { FilterFnOption, RowSelectionState } from '@tanstack/react-table';
+import { RowSelectionState } from '@tanstack/react-table';
 import { useState } from 'react';
 interface GlobalFilter {
   filteringText: string;

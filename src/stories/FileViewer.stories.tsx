@@ -2645,6 +2645,7 @@ export const Default: Story<FileViewerProps> = (args) => {
       'xmlns:fedramp': 'https://fedramp.gov/ns/oscal',
     },
   };
+
   const annotations = useMemo<Annotation[]>(() => {
     const svrlFailedAssertions = getSVRLFailedAssertions(svrl);
     if (!svrlFailedAssertions) return [];
@@ -2655,6 +2656,7 @@ export const Default: Story<FileViewerProps> = (args) => {
       };
     });
   }, [svrl]);
+
   const fileString = `<?xml version="1.0" encoding="UTF-8"?>
   <system-security-plan xmlns:m="http://csrc.nist.gov/ns/oscal/metaschema/1.0"
       xmlns="http://csrc.nist.gov/ns/oscal/1.0"
@@ -3131,11 +3133,13 @@ export const Default: Story<FileViewerProps> = (args) => {
       </back-matter>
   </system-security-plan>  
   `;
-  const { html, prev, next, activeIndex, annotation } = useAnnotations({
-    fileString,
-    annotations,
-    SaxonJS,
-  });
+  
+  const { html, prev, next, activeIndex, annotation, activateAnnotation } =
+    useAnnotations({
+      fileString,
+      annotations,
+      SaxonJS,
+    });
   console.log('activeIndex', activeIndex);
   console.log('annotation', annotation);
   return (

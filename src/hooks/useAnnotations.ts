@@ -16,7 +16,7 @@ export function useAnnotations({
   annotations,
 }: UseAnnotationsOptions) {
   const [html, setHtml] = useState('');
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number>();
 
   useEffect(() => {
     if (!fileString) return;
@@ -41,6 +41,7 @@ export function useAnnotations({
   };
 
   const getTarget = function () {
+    if (activeIndex === undefined) return;
     const annotation = annotations.at(activeIndex);
     if (!annotation) return;
     const target = document.querySelector(
@@ -50,16 +51,21 @@ export function useAnnotations({
   };
 
   const activateAnnotation = function (uniqueId: string) {
-    const activeIndex = annotations.findIndex(
+    //Remove previous annotation's highlight
+    const target = getTarget();
+    if (target) target.style.backgroundColor = 'unset';
+
+    const index = annotations.findIndex(
       (annotation) => annotation.uniqueId === uniqueId
     );
-    setActiveIndex(activeIndex);
+    setActiveIndex(index);
   };
 
   const prev = function () {
     const target = getTarget();
     if (target) target.style.backgroundColor = 'unset';
     setActiveIndex((prevState) => {
+      if (prevState === undefined) return 0;
       const activeIndex =
         (prevState + annotations.length - 1) % annotations.length;
       return activeIndex;
@@ -70,13 +76,15 @@ export function useAnnotations({
     const target = getTarget();
     if (target) target.style.backgroundColor = 'unset';
     setActiveIndex((prevState) => {
+      if (prevState === undefined) return 0;
       const activeIndex = (prevState + 1) % annotations.length;
       return activeIndex;
     });
   };
   return {
     html,
-    annotation: annotations.at(activeIndex),
+    annotation:
+      activeIndex !== undefined ? annotations.at(activeIndex) : undefined,
     activeIndex,
     activateAnnotation,
     prev,
