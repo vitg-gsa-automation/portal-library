@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Story } from '@storybook/react';
 
 import { FileViewer, FileViewerProps } from '../components/FileViewer';
@@ -3140,8 +3140,11 @@ export const Default: Story<FileViewerProps> = (args) => {
       annotations,
       SaxonJS,
     });
-  console.log('activeIndex', activeIndex);
-  console.log('annotation', annotation);
+    
+  useEffect(() => {
+    activateAnnotation('invalid-component-match-4');
+  }, []);
+
   return (
     <React.Fragment>
       <FileViewer {...args} language="xml" html={html} />
