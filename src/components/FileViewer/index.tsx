@@ -16,12 +16,13 @@ import styles from './index.module.scss';
 export interface FileViewerProps {
   language: 'xml' | 'json' | 'yaml';
   html: string;
+  disableFooter?: boolean;
 }
 
-export function FileViewer({ language, html }: FileViewerProps) {
+export function FileViewer({ language, html, disableFooter }: FileViewerProps) {
   const codeRef = useRef<HTMLElement | null>(null);
   const [hasWrappedLines, setHasWrappedLines] = useState(true);
-
+  const isFooterDisabled = disableFooter;
   return (
     <div className={styles.root}>
       <div className={styles.view}>
@@ -35,53 +36,55 @@ export function FileViewer({ language, html }: FileViewerProps) {
           />
         </pre>
       </div>
-      <div className={styles.footer}>
-        <div>
-          <span className={styles.cell}>{language}</span>
-        </div>
-        <div className={styles.settings}>
-          <Modal
-            header="Preferences"
-            footer={
-              <Box float="right">
-                <SpaceBetween direction="horizontal" size="sm">
-                  <Button text="Cancel" color="secondary" type="button" />
-                  <Button text="Submit" type="submit" />
-                </SpaceBetween>
-              </Box>
-            }
-            trigger={
-              <MaterialIcon
-                icon="settings"
-                type="outlined"
-                className={styles.icon}
-                fontSize="2rem"
-              />
-            }
-          >
-            <CardContent disableTopPadding>
-              <ColumnLayout columns={2}>
-                <Checkbox
-                  label="Wrap lines"
-                  id="c1"
-                  checked={hasWrappedLines}
-                  onCheckedChange={(checked) => {
-                    if (checked === 'indeterminate') return;
-                    setHasWrappedLines(checked);
-                  }}
+      {!isFooterDisabled && (
+        <div className={styles.footer}>
+          <div>
+            <span className={styles.cell}>{language}</span>
+          </div>
+          <div className={styles.settings}>
+            <Modal
+              header="Preferences"
+              footer={
+                <Box float="right">
+                  <SpaceBetween direction="horizontal" size="sm">
+                    <Button text="Cancel" color="secondary" type="button" />
+                    <Button text="Submit" type="submit" />
+                  </SpaceBetween>
+                </Box>
+              }
+              trigger={
+                <MaterialIcon
+                  icon="settings"
+                  type="outlined"
+                  className={styles.icon}
+                  fontSize="2rem"
                 />
-                <FormField label="Theme">
-                  <Select
-                    items={[]}
-                    onSelectChange={() => {}}
-                    placeholder="Default"
+              }
+            >
+              <CardContent disableTopPadding>
+                <ColumnLayout columns={2}>
+                  <Checkbox
+                    label="Wrap lines"
+                    id="c1"
+                    checked={hasWrappedLines}
+                    onCheckedChange={(checked) => {
+                      if (checked === 'indeterminate') return;
+                      setHasWrappedLines(checked);
+                    }}
                   />
-                </FormField>
-              </ColumnLayout>
-            </CardContent>
-          </Modal>
+                  <FormField label="Theme">
+                    <Select
+                      items={[]}
+                      onSelectChange={() => {}}
+                      placeholder="Default"
+                    />
+                  </FormField>
+                </ColumnLayout>
+              </CardContent>
+            </Modal>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

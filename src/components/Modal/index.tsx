@@ -14,26 +14,34 @@ import {
 import { Card } from '../../layouts/Card';
 import { Header } from '../../layouts/Header';
 import { MaterialIcon } from '../../components/MaterialIcon';
+import clsx from 'clsx';
+
 export interface ModalProps {
+  size?: 'small' | 'medium' | 'large' | 'max';
   trigger?: ReactElement;
   header?: ReactNode;
   footer?: ReactNode;
   visuallyHiddenDescription?: string;
+  disablePaddings?: boolean;
   children: ReactNode;
 }
 export function Modal({
+  size = 'medium',
   trigger,
   header,
   footer,
   visuallyHiddenDescription,
+  disablePaddings,
   children,
 }: ModalProps) {
+  const paddingsDisabled = !!disablePaddings;
+  const hasFooter = !!footer;
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogPortal>
         <DialogOverlay className={styles.overlay} />
-        <DialogContent className={styles.content}>
+        <DialogContent className={clsx(styles.content, styles[size])}>
           <VisuallyHidden asChild>
             <DialogDescription>{visuallyHiddenDescription}</DialogDescription>
           </VisuallyHidden>
@@ -55,7 +63,14 @@ export function Modal({
             }
             footer={footer}
           >
-            {children}
+            <div
+              className={clsx(styles.children, {
+                [styles['paddings-disabled']]: paddingsDisabled,
+                [styles['has-footer']]: hasFooter,
+              })}
+            >
+              {children}
+            </div>
           </Card>
         </DialogContent>
       </DialogPortal>

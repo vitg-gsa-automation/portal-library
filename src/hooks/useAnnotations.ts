@@ -27,7 +27,7 @@ export function useAnnotations({
     const target = getTarget();
     if (!target?.style) return;
     target.style.backgroundColor = '#ffc3c3';
-    target.scrollIntoView({ behavior: 'smooth' });
+    target.scrollIntoView();
   }, [activeIndex]);
 
   const annotate = function (fileString: string) {

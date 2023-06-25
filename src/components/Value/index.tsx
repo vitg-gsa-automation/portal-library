@@ -2,15 +2,17 @@ import { ReactNode } from 'react';
 import { MaterialIcon } from '../MaterialIcon';
 
 import styles from './index.module.scss';
+import clsx from 'clsx';
 
-interface ValueProps {
+export interface ValueProps {
+  variant?: 'default' | 'large';
   copyable?: boolean;
   children?: ReactNode;
 }
 
-export function Value({ copyable, children }: ValueProps) {
+export function Value({ variant = 'default', copyable, children }: ValueProps) {
   return (
-    <div className={styles.root}>
+    <div className={clsx(styles.root, styles[variant])}>
       {copyable && (
         <MaterialIcon
           icon="content_copy"

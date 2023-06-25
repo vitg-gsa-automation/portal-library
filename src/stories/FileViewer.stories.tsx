@@ -3133,7 +3133,7 @@ export const Default: Story<FileViewerProps> = (args) => {
       </back-matter>
   </system-security-plan>  
   `;
-  
+
   const { html, prev, next, activeIndex, annotation, activateAnnotation } =
     useAnnotations({
       fileString,
@@ -3144,7 +3144,7 @@ export const Default: Story<FileViewerProps> = (args) => {
   console.log('annotation', annotation);
   return (
     <React.Fragment>
-      <FileViewer language="xml" html={html} />
+      <FileViewer {...args} language="xml" html={html} />
       <SpaceBetween direction="horizontal" size="sm">
         <Button text="prev" onClick={prev} />
         <Button text="next" onClick={next} />
