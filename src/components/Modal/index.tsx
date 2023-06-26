@@ -1,4 +1,5 @@
 import { ReactElement, ReactNode } from 'react';
+import { DialogProps } from '@radix-ui/react-dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 import styles from './index.module.scss';
@@ -16,7 +17,7 @@ import { Header } from '../../layouts/Header';
 import { MaterialIcon } from '../../components/MaterialIcon';
 import clsx from 'clsx';
 
-export interface ModalProps {
+export interface ModalProps extends DialogProps {
   size?: 'small' | 'medium' | 'large' | 'max';
   trigger?: ReactElement;
   header?: ReactNode;
@@ -33,11 +34,12 @@ export function Modal({
   visuallyHiddenDescription,
   disablePaddings,
   children,
+  ...props
 }: ModalProps) {
   const paddingsDisabled = !!disablePaddings;
   const hasFooter = !!footer;
   return (
-    <Dialog>
+    <Dialog {...props}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogPortal>
         <DialogOverlay className={styles.overlay} />

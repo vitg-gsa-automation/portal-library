@@ -3,6 +3,7 @@ import { Button } from '../components';
 import { Modal } from '../components/Modal';
 import { CardContent, SpaceBetween } from '../layouts';
 import { Box } from '../layouts/Box';
+import { useState } from 'react';
 
 export default {
   title: 'Modal',
@@ -31,8 +32,14 @@ export const Default: Story = (args) => {
 
 Default.args = {};
 export const WithScrollableContent: Story = (args) => {
+  const [open, setOpen] = useState(false);
   return (
     <Modal
+      open={open}
+      onOpenChange={(open) => {
+        console.log(open);
+        setOpen(open);
+      }}
       header="Modal title"
       trigger={<Button text="View" color="secondary" />}
       footer={

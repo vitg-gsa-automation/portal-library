@@ -28,7 +28,7 @@ export function ExpandableSection({
   switch (variant) {
     case 'card':
       return (
-        <Collapsible.Root className={styles.root} {...props}>
+        <Collapsible.Root className={styles.root} {...props} asChild>
           <Card
             header={
               <Header

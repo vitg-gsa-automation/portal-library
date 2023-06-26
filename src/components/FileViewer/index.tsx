@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import clsx from 'clsx';
 import { Box } from '../../layouts/Box';
@@ -17,11 +17,22 @@ export interface FileViewerProps {
   language: 'xml' | 'json' | 'yaml';
   html: string;
   disableFooter?: boolean;
+  onMount?: () => void;
 }
 
-export function FileViewer({ language, html, disableFooter }: FileViewerProps) {
+export function FileViewer({
+  language,
+  html,
+  disableFooter,
+  onMount,
+}: FileViewerProps) {
   const codeRef = useRef<HTMLElement | null>(null);
   const [hasWrappedLines, setHasWrappedLines] = useState(true);
+  useEffect(() => {
+    if (onMount) {
+      onMount();
+    }
+  }, []);
   const isFooterDisabled = disableFooter;
   return (
     <div className={styles.root}>

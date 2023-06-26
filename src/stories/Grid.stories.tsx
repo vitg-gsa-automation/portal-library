@@ -7,6 +7,7 @@ import {
   Grid,
   GridProps,
 } from '../layouts';
+import { ExpandableSection } from '../components/ExpandableSection';
 
 export default {
   title: 'Grid',
@@ -23,6 +24,7 @@ export const Default: Story<GridProps> = (args) => {
         { colspan: 4 },
         { colspan: 8 },
         { colspan: 12 },
+        { colspan: 12 },
       ]}
     >
       <Card header={<Header title="colspan-12" variant="h2" />}>
@@ -37,6 +39,9 @@ export const Default: Story<GridProps> = (args) => {
       <Card header={<Header title="colspan-12" variant="h2" />}>
         <CardContent>colspan-12</CardContent>
       </Card>
+      <ExpandableSection variant="card" headerText="colspan-12">
+        <CardContent>colspan-12</CardContent>
+      </ExpandableSection>
     </Grid>
   );
 };

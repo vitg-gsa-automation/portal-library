@@ -23,13 +23,6 @@ export function useAnnotations({
     annotate(fileString);
   }, [fileString]);
 
-  useEffect(() => {
-    const target = getTarget();
-    if (!target?.style) return;
-    target.style.backgroundColor = '#ffc3c3';
-    target.scrollIntoView();
-  }, [activeIndex]);
-
   const annotate = function (fileString: string) {
     const annotated = annotateXML({
       SaxonJS,
@@ -40,9 +33,9 @@ export function useAnnotations({
     setHtml(annotated);
   };
 
-  const getTarget = function () {
-    if (activeIndex === undefined) return;
-    const annotation = annotations.at(activeIndex);
+  const getTarget = function (index: number) {
+    if (index === undefined) return;
+    const annotation = annotations.at(index);
     if (!annotation) return;
     const target = document.querySelector(
       `#${annotation.uniqueId}`
@@ -50,44 +43,43 @@ export function useAnnotations({
     return target;
   };
 
-  const activateAnnotation = function (uniqueId: string) {
-    //Remove previous annotation's highlight
-    const target = getTarget();
-    if (target) target.style.backgroundColor = 'unset';
+  const removeActiveHighlight = function () {
+    if (activeIndex) {
+      const target = getTarget(activeIndex);
+      if (target) target.style.backgroundColor = 'unset';
+    }
+  };
 
+  const addBackgroundAndScrollIntoView = function (index: number) {
+    const target = getTarget(index);
+    if (!target?.style) return;
+    target.style.backgroundColor = '#ffc3c3';
+    target.scrollIntoView();
+  };
+
+  const activateById = function (uniqueId: string) {
+    removeActiveHighlight();
     const index = annotations.findIndex(
       (annotation) => annotation.uniqueId === uniqueId
     );
     setActiveIndex(index);
+    addBackgroundAndScrollIntoView(index);
   };
 
-  const prev = function () {
-    const target = getTarget();
-    if (target) target.style.backgroundColor = 'unset';
-    setActiveIndex((prevState) => {
-      if (prevState === undefined) return 0;
-      const activeIndex =
-        (prevState + annotations.length - 1) % annotations.length;
-      return activeIndex;
-    });
+  const activateByIndex = function (annotationIndex: number) {
+    const exists = !!annotations.at(annotationIndex);
+    if (!exists) throw new Error('Index does not exist');
+    removeActiveHighlight();
+    setActiveIndex(annotationIndex);
+    addBackgroundAndScrollIntoView(annotationIndex);
   };
 
-  const next = function () {
-    const target = getTarget();
-    if (target) target.style.backgroundColor = 'unset';
-    setActiveIndex((prevState) => {
-      if (prevState === undefined) return 0;
-      const activeIndex = (prevState + 1) % annotations.length;
-      return activeIndex;
-    });
-  };
   return {
     html,
     annotation:
       activeIndex !== undefined ? annotations.at(activeIndex) : undefined,
     activeIndex,
-    activateAnnotation,
-    prev,
-    next,
+    activateById,
+    activateByIndex,
   };
 }

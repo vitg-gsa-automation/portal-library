@@ -32,7 +32,6 @@ export function AppLayout({
 }: AppLayoutProps) {
   const [dynamicOverlapHeight, setDynamicOverlapHeight] = useState(0);
   const isBackgroundDisabled = !content || disableBackground;
-  console.log('dynamicOverlapHeight', dynamicOverlapHeight);
   return (
     <AppLayoutContext.Provider
       value={{ dynamicOverlapHeight, setDynamicOverlapHeight }}
