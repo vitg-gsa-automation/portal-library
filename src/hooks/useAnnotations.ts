@@ -4,7 +4,7 @@ import { annotateXML } from '../helpers/annotate-xml';
 import { highlightXML } from '../helpers/highlight-js';
 import { Annotation } from '../types/validations';
 
-export interface UseAnnotationsOptions {
+interface UseAnnotationsOptions {
   SaxonJS: any;
   annotations: Annotation[];
   fileString?: string;
@@ -19,7 +19,7 @@ export function useAnnotations({
   const [activeIndex, setActiveIndex] = useState<number>();
 
   useEffect(() => {
-    if (!fileString) return;
+    if (!fileString?.length) return;
     annotate(fileString);
   }, [fileString]);
 

@@ -30,3 +30,5 @@ export interface UploadResult {
   message?: string;
   checkResult?: CheckResult;
 }
+
+export type OSCALExtension = 'xml' | 'json' | 'yaml';

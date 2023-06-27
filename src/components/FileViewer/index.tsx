@@ -12,11 +12,17 @@ import { MaterialIcon } from '../MaterialIcon';
 import { Modal } from '../Modal';
 import { Select } from '../Select';
 import styles from './index.module.scss';
+import { StatusIndicator } from '../StatusIndicator';
+import { OSCALExtension } from '../../types/files';
+import { Empty } from '../Empty';
 
 export interface FileViewerProps {
-  language: 'xml' | 'json' | 'yaml';
+  language: OSCALExtension;
   html: string;
   disableFooter?: boolean;
+  loading?: boolean;
+  loadingText?: string;
+  error?: string;
   onMount?: () => void;
 }
 
@@ -24,6 +30,9 @@ export function FileViewer({
   language,
   html,
   disableFooter,
+  loading,
+  loadingText = 'Loading',
+  error,
   onMount,
 }: FileViewerProps) {
   const codeRef = useRef<HTMLElement | null>(null);
@@ -37,15 +46,27 @@ export function FileViewer({
   return (
     <div className={styles.root}>
       <div className={styles.view}>
-        <pre
-          className={clsx({ [styles['has-wrapped-lines']]: hasWrappedLines })}
-        >
-          <code
-            ref={codeRef}
-            className={clsx('hljs', language)}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-        </pre>
+        {loading ? (
+          <div className={styles.loading}>
+            <StatusIndicator type="loading">{loadingText}</StatusIndicator>
+          </div>
+        ) : error ? (
+          <div className={styles.error}>
+            <StatusIndicator type="error">{error}</StatusIndicator>
+          </div>
+        ) : (
+          <pre
+            className={clsx({
+              [styles['has-wrapped-lines']]: hasWrappedLines,
+            })}
+          >
+            <code
+              ref={codeRef}
+              className={clsx('hljs', language)}
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          </pre>
+        )}
       </div>
       {!isFooterDisabled && (
         <div className={styles.footer}>
