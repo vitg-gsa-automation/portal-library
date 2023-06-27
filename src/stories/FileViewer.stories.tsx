@@ -3680,7 +3680,7 @@ export const InModal: Story<FileViewerProps> = (args) => {
         language="xml"
         html={html}
         disableFooter
-        onMount={() => {
+        onRendered={() => {
           // activateById('responsible-role-has-role-definition-112');
           activateByIndex(65);
         }}

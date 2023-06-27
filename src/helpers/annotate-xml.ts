@@ -37,21 +37,21 @@ export function annotateXML({
 }: AnnotateXMLOptions) {
   const doc = SaxonJS.getPlatform().parseXmlFromString(options.xmlString);
   for (let i = 0; i < annotations.length; i++) {
-    const annotation = annotations[i];
-    let xmlContext = SaxonJS.XPath.evaluate(annotation.xpath, doc, {
+    const { xpath, uniqueId } = annotations[i];
+    //continue if there is no xpath to evaluate
+    if (!xpath.length) continue;
+    let xmlContext = SaxonJS.XPath.evaluate(xpath, doc, {
       namespaceContext: { svrl: 'http://purl.oclc.org/dsdl/svrl' },
       resultForm: 'array',
     });
     const node = xmlContext[0];
     if (node && node.parentNode) {
       node.parentNode.insertBefore(
-        doc.createComment(
-          `ASSERTION-START:${annotation.uniqueId}:ASSERTION-START`
-        ),
+        doc.createComment(`ASSERTION-START:${uniqueId}:ASSERTION-START`),
         node
       );
       node.parentNode.insertBefore(
-        doc.createComment(`ASSERTION-END:${annotation.uniqueId}:ASSERTION-END`),
+        doc.createComment(`ASSERTION-END:${uniqueId}:ASSERTION-END`),
         node.nextSibling
       );
     }

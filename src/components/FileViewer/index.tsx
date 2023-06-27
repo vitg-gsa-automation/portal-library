@@ -24,6 +24,8 @@ export interface FileViewerProps {
   loadingText?: string;
   error?: string;
   onMount?: () => void;
+  onHtmlChange?: (html: string) => void;
+  onRendered?: (html: string) => void;
 }
 
 export function FileViewer({
@@ -34,19 +36,40 @@ export function FileViewer({
   loadingText = 'Loading',
   error,
   onMount,
+  onHtmlChange,
+  onRendered,
 }: FileViewerProps) {
   const codeRef = useRef<HTMLElement | null>(null);
   const [hasWrappedLines, setHasWrappedLines] = useState(true);
+  const [internalLoading, setInternalLoading] = useState(true);
+  const isLoading = internalLoading || !!loading;
   useEffect(() => {
     if (onMount) {
       onMount();
     }
   }, []);
+
+  useEffect(() => {
+    if (onHtmlChange) {
+      onHtmlChange(html);
+    }
+  }, [html]);
+
+  useEffect(() => {
+    if (!onRendered) return;
+    //requestAnimationFrame schedules the execution of a function after the next frame is painted
+    // Here, it's used to ensure that `onRendered` is called after the DOM is painted
+    requestAnimationFrame(() => {
+      onRendered(html);
+      setInternalLoading(false);
+    });
+  }, [html, onRendered]);
+
   const isFooterDisabled = disableFooter;
   return (
     <div className={styles.root}>
       <div className={styles.view}>
-        {loading ? (
+        {isLoading ? (
           <div className={styles.loading}>
             <StatusIndicator type="loading">{loadingText}</StatusIndicator>
           </div>
