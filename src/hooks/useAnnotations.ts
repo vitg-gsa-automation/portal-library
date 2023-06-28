@@ -19,11 +19,11 @@ export function useAnnotations({
   const [activeIndex, setActiveIndex] = useState<number>();
 
   useEffect(() => {
-    if (!fileString?.length) return;
-    annotate(fileString);
-  }, [fileString]);
+    if (!fileString) return;
+    annotate(fileString, annotations);
+  }, [fileString, annotations]);
 
-  const annotate = function (fileString: string) {
+  const annotate = function (fileString: string, annotations: Annotation[]) {
     const annotated = annotateXML({
       SaxonJS,
       xmlString: fileString,
@@ -79,6 +79,7 @@ export function useAnnotations({
     annotation:
       activeIndex !== undefined ? annotations.at(activeIndex) : undefined,
     activeIndex,
+    annotate,
     activateById,
     activateByIndex,
   };
