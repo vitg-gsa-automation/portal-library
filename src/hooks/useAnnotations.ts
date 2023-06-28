@@ -34,25 +34,25 @@ export function useAnnotations({
   };
 
   const getTarget = function (index: number) {
-    if (index === undefined) return;
+    if (index === undefined) throw new Error('Index to getTarget is undefined');
     const annotation = annotations.at(index);
-    if (!annotation) return;
-    const target = document.querySelector(
+    if (!annotation) throw new Error('No annotation to target');
+    const target = document.querySelector<HTMLElement>(
       `#${annotation.uniqueId}`
-    ) as HTMLElement;
+    );
+    if (!target) throw new Error('Unable to find target');
     return target;
   };
 
   const removeActiveHighlight = function () {
-    if (activeIndex) {
+    if (activeIndex !== undefined) {
       const target = getTarget(activeIndex);
-      if (target) target.style.backgroundColor = 'unset';
+      target.style.backgroundColor = 'unset';
     }
   };
 
   const addBackgroundAndScrollIntoView = function (index: number) {
     const target = getTarget(index);
-    if (!target?.style) return;
     target.style.backgroundColor = '#ffc3c3';
     target.scrollIntoView();
   };
