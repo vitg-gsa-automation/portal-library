@@ -41,8 +41,6 @@ export function FileViewer({
 }: FileViewerProps) {
   const codeRef = useRef<HTMLElement | null>(null);
   const [hasWrappedLines, setHasWrappedLines] = useState(true);
-  const [internalLoading, setInternalLoading] = useState(true);
-  const isLoading = internalLoading || !!loading;
   useEffect(() => {
     if (onMount) {
       onMount();
@@ -61,7 +59,6 @@ export function FileViewer({
     // Here, it's used to ensure that `onRendered` is called after the DOM is painted
     requestAnimationFrame(() => {
       onRendered(html);
-      setInternalLoading(false);
     });
   }, [html, onRendered]);
 
@@ -69,7 +66,7 @@ export function FileViewer({
   return (
     <div className={styles.root}>
       <div className={styles.view}>
-        {isLoading ? (
+        {loading ? (
           <div className={styles.loading}>
             <StatusIndicator type="loading">{loadingText}</StatusIndicator>
           </div>
