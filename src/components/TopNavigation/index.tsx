@@ -4,18 +4,22 @@ import styles from './index.module.scss';
 import { MaterialIcon } from '../MaterialIcon';
 import { Input } from '../Input';
 import { Link } from '../Link';
+import { MenuDropdownUtility } from './interfaces';
+import { UtilityComponent } from './utility';
 
-interface TopNavigationProps {
+export interface TopNavigationProps {
   title?: string;
   logo: string;
   userToggle?: ReactElement;
   children?: React.ReactNode;
+  menuDropdownUtility?: MenuDropdownUtility;
 }
 
 export function TopNavigation({
   userToggle,
   title,
   logo,
+  menuDropdownUtility,
   children,
 }: TopNavigationProps) {
   return (
@@ -35,13 +39,17 @@ export function TopNavigation({
       </div>
       <div className={styles.right}>
         {children}
-        <MaterialIcon
+        {/* <MaterialIcon
           className={styles.icon}
           icon="notifications"
           type="outlined"
           fontSize="2rem"
-        />
+        /> */}
+        {/* //toggle */}
         {userToggle}
+        {menuDropdownUtility && (
+          <UtilityComponent utility={menuDropdownUtility} />
+        )}
       </div>
     </div>
   );

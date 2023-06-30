@@ -152,21 +152,36 @@ export const Default: Story<TableProps<Package>> = (args) => {
               <TopNavigation
                 title="Authorization portal"
                 logo={'/'}
-                userToggle={
-                  <Dropdown modal={false}>
-                    <DropdownTrigger asChild>
-                      <button>Dropdown trigger</button>
-                    </DropdownTrigger>
-                    <DropdownContent side="bottom" align="end" loop>
-                      <DropdownItem textValue="Account">
-                        <ListItem>Account</ListItem>
-                      </DropdownItem>
-                      <DropdownItem textValue="Sign out">
-                        <ListItem>Sign out</ListItem>
-                      </DropdownItem>
-                    </DropdownContent>
-                  </Dropdown>
-                }
+                menuDropdownUtility={{
+                  type: 'menu-dropdown',
+                  text: 'Aaron Nolan',
+                  description: 'aaron.nolan@volpegroup.com',
+                  icon: 'user-profile',
+                  items: [
+                    {
+                      id: 'profile',
+                      text: 'Account',
+                    },
+                    { id: 'preferences', text: 'Preferences' },
+                    {
+                      id: 'support-group',
+                      text: 'Support',
+                      items: [
+                        {
+                          id: 'documentation',
+                          text: 'API Documentation',
+                        },
+                        {
+                          id: 'feedback',
+                          text: 'Feedback',
+                          href: 'mailto:aaron.nolan@volpegroup.com',
+                          external: true,
+                        },
+                      ],
+                    },
+                    { id: 'signout', text: 'Sign out' },
+                  ],
+                }}
               />
             }
           />

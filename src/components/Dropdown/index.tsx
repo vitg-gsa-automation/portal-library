@@ -1,7 +1,9 @@
 import { forwardRef } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { DropdownMenuProps } from '@radix-ui/react-dropdown-menu';
 
 import styles from './index.module.scss';
+import clsx from 'clsx';
 
 interface DropdownTriggerProps extends DropdownMenu.DropdownMenuTriggerProps {
   children: React.ReactElement<HTMLButtonElement>;
@@ -11,8 +13,8 @@ interface DropdownItemProps extends DropdownMenu.DropdownMenuItemProps {
   children: React.ReactNode;
 }
 
+export type { DropdownMenuProps };
 export const Dropdown = DropdownMenu.Root;
-
 export const DropdownTrigger = forwardRef<
   HTMLButtonElement,
   DropdownTriggerProps
@@ -27,7 +29,7 @@ export const DropdownTrigger = forwardRef<
 export const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(
   ({ children, ...props }: DropdownContentProps, ref) => {
     return (
-      <DropdownMenu.Content {...props} ref={ref} className={styles.content}>
+      <DropdownMenu.Content ref={ref} className={styles.content} {...props}>
         {children}
       </DropdownMenu.Content>
     );
