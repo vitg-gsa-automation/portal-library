@@ -1,17 +1,11 @@
 import * as Accordion from '@radix-ui/react-accordion';
 import * as Separator from '@radix-ui/react-separator';
 import clsx from 'clsx';
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import { NavLinkProps, NavLink as RouterNavLink } from 'react-router-dom';
 
 import { MaterialIcon } from '../../components/MaterialIcon';
-import {
-  DrawerRoot,
-  DrawerClose,
-  DrawerContent,
-  DrawerTitle,
-  DrawerTrigger,
-} from '../Drawer';
+import { DrawerClose, DrawerTitle } from '../Drawer';
 import styles from './index.module.scss';
 
 interface Header {
@@ -21,23 +15,25 @@ interface Header {
 
 type ItemType = 'link' | 'section' | 'divider';
 
-interface Item {
+interface SideNavigationItem {
   id: any;
   type: ItemType;
   text?: string;
-  items?: Item[];
+  items?: SideNavigationItem[];
   icon?: string;
   defaultExpanded?: boolean;
   href?: string;
 }
 
+type SideNavigationItems = ReadonlyArray<SideNavigationItem>;
+
 export interface SideNavigationProps {
   header?: Header;
-  items?: Item[];
+  items?: SideNavigationItems;
 }
 
 export function SideNavigation({ header, items }: SideNavigationProps) {
-  const renderItems = function (items?: Item[]) {
+  const renderItems = function (items?: SideNavigationItems) {
     if (!items) return null;
     return items.map((item) => {
       if (item.type === 'link')

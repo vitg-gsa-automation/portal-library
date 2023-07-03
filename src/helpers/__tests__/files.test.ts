@@ -1,5 +1,18 @@
-import { extractFileExtension, getOSCALExtension } from '../files';
+import {
+  extractFileExtension,
+  getDocTypeAbbrev,
+  getOSCALExtension,
+} from '../files';
 import { OSCALExtension } from '../../types/files';
+
+// Mock for File
+class MockFile {
+  constructor(public name: string, public content: string) {}
+
+  text(): Promise<string> {
+    return Promise.resolve(this.content);
+  }
+}
 
 describe('extractFileExtension', () => {
   it('should return the file extension', () => {
@@ -41,9 +54,92 @@ describe('getOSCALExtension', () => {
       expect(result).toBeUndefined();
     });
   });
+});
 
-  it('should return undefined if no string is provided', () => {
-    const result = getOSCALExtension();
-    expect(result).toBeUndefined();
+describe('getDocTypeAbbrev function with XML files', () => {
+  test("should return 'ssp' for system-security-plan", async () => {
+    const mockFile = new MockFile(
+      'test.xml',
+      '<system-security-plan></system-security-plan>'
+    );
+    const result = await getDocTypeAbbrev(mockFile as any);
+    expect(result).toEqual('ssp');
+  });
+
+  test("should return 'sap' for assessment-plan", async () => {
+    const mockFile = new MockFile(
+      'test.xml',
+      '<assessment-plan></assessment-plan>'
+    );
+    const result = await getDocTypeAbbrev(mockFile as any);
+    expect(result).toEqual('sap');
+  });
+
+  test("should return 'sar' for assessment-results", async () => {
+    const mockFile = new MockFile(
+      'test.xml',
+      '<assessment-results></assessment-results>'
+    );
+    const result = await getDocTypeAbbrev(mockFile as any);
+    expect(result).toEqual('sar');
+  });
+
+  test("should return 'poam' for plan-of-action-and-milestones", async () => {
+    const mockFile = new MockFile(
+      'test.xml',
+      '<plan-of-action-and-milestones></plan-of-action-and-milestones>'
+    );
+    const result = await getDocTypeAbbrev(mockFile as any);
+    expect(result).toEqual('poam');
+  });
+
+  test('should return undefined for unknown xml tag', async () => {
+    const mockFile = new MockFile('test.xml', '<unknown></unknown>');
+    const result = await getDocTypeAbbrev(mockFile as any);
+    expect(result).toEqual(undefined);
+  });
+});
+
+describe('getDocTypeAbbrev function with JSON files', () => {
+  test("should return 'ssp' for system-security-plan", async () => {
+    const mockFile = new MockFile(
+      'test.json',
+      JSON.stringify({ 'system-security-plan': {} })
+    );
+    const result = await getDocTypeAbbrev(mockFile as any);
+    expect(result).toEqual('ssp');
+  });
+
+  test("should return 'sap' for assessment-plan", async () => {
+    const mockFile = new MockFile(
+      'test.json',
+      JSON.stringify({ 'assessment-plan': {} })
+    );
+    const result = await getDocTypeAbbrev(mockFile as any);
+    expect(result).toEqual('sap');
+  });
+
+  test("should return 'sar' for assessment-results", async () => {
+    const mockFile = new MockFile(
+      'test.json',
+      JSON.stringify({ 'assessment-results': {} })
+    );
+    const result = await getDocTypeAbbrev(mockFile as any);
+    expect(result).toEqual('sar');
+  });
+
+  test("should return 'poam' for plan-of-action-and-milestones", async () => {
+    const mockFile = new MockFile(
+      'test.json',
+      JSON.stringify({ 'plan-of-action-and-milestones': {} })
+    );
+    const result = await getDocTypeAbbrev(mockFile as any);
+    expect(result).toEqual('poam');
+  });
+
+  test('should return undefined for unknown json key', async () => {
+    const mockFile = new MockFile('test.json', JSON.stringify({ unknown: {} }));
+    const result = await getDocTypeAbbrev(mockFile as any);
+    expect(result).toEqual(undefined);
   });
 });

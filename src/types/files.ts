@@ -1,5 +1,6 @@
 import { Item } from './form';
 import { CheckResult } from '../types/validations';
+import { DocTypeAbbrev } from './documents';
 
 export interface AcceptableFileType {
   ID: number;
@@ -12,8 +13,10 @@ export interface CustomFile extends File {
   ftDescription?: string;
   FileTypeId?: number;
   docType?: Item;
+  docTypeAbbrev?: DocTypeAbbrev;
   FileIdentifier?: string;
 }
+
 export interface UploadFileParams {
   AuthCode: string;
   PackageId: number | string;
