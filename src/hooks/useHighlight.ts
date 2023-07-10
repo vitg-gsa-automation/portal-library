@@ -1,4 +1,4 @@
-import { OSCALExtension } from 'types';
+import { OSCALExtension } from '../types/files';
 import { highlight } from '../helpers/highlight-js';
 import { useMemo } from 'react';
 
