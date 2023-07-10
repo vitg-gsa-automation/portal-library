@@ -24,7 +24,7 @@ const getIcon = function (type: AlertType) {
     case 'success':
       return 'check_circle';
     case 'error':
-      return 'error_outline';
+      return 'highlight_off';
 
     default:
       return 'info';

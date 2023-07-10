@@ -15,11 +15,11 @@ export function PieChart({ height, ...props }: PieChartProps) {
   return (
     <div style={{ height, minHeight: 0, width: '100%', minWidth: 0 }}>
       <ResponsivePie
-        margin={{ top: 30, right: 40, bottom: 60, left: 40 }}
+        margin={{ top: 20, right: 40, bottom: 30, left: 40 }}
         innerRadius={0.5}
         padAngle={0.7}
         cornerRadius={3}
-        activeOuterRadiusOffset={8}
+        activeOuterRadiusOffset={4}
         borderWidth={1}
         borderColor={{
           from: 'color',
@@ -37,12 +37,12 @@ export function PieChart({ height, ...props }: PieChartProps) {
         }}
         legends={[
           {
-            anchor: 'bottom-left',
-            direction: 'row',
+            anchor: 'bottom-right',
+            direction: 'column',
             justify: false,
             translateX: 0,
-            translateY: 56,
-            itemsSpacing: 0,
+            translateY: 0,
+            itemsSpacing: 10,
             itemWidth: 75,
             itemHeight: 18,
             itemTextColor: '#999',

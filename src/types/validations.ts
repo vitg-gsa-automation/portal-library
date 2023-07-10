@@ -2,6 +2,12 @@ import { CustomFile } from './files';
 
 export type Role = 'fatal' | 'warning' | 'information' | 'error';
 export type StageStatus = 'default' | 'error' | 'success';
+export interface Assertion {
+  message: string;
+  status: Role;
+  standard: 'file' | 'nist' | 'fedramp';
+  location: string;
+}
 export interface SVRL {
   'svrl:schematron-output': {
     'svrl:failed-assert'?: SVRLFailedAssertion[];

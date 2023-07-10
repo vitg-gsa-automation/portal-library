@@ -9,22 +9,34 @@ export default {
 
 const data = [
   {
-    id: 'OK',
-    label: 'OK',
-    value: 78,
-    color: '#8CC37E',
+    id: 'Error',
+    label: 'Error',
+    value: 11,
+    color: '#ca4040',
   },
   {
-    id: 'Concerns',
-    label: 'Concerns',
-    value: 8,
-    color: '#C25C5C',
+    id: 'Fatal',
+    label: 'Fatal',
+    value: 0,
+    color: '#ca4040',
+  },
+  {
+    id: 'Information',
+    label: 'Information',
+    value: 6,
+    color: '#3c97ff',
+  },
+  {
+    id: 'Warning',
+    label: 'Warning',
+    value: 12,
+    color: '#f58047',
   },
 ];
 
 export const Default: Story<PieChartProps> = (args) => {
   return (
-    <Card header={<Header variant="h2" title="Report overview" />}>
+    <Card header={<Header variant="h2" title="Summary" />}>
       <CardContent disableTopPadding>
         <PieChart {...args} />
       </CardContent>

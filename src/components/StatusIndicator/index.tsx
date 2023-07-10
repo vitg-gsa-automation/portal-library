@@ -28,7 +28,7 @@ const getIcon = function (type: StatusIndicatorType) {
     case 'success':
       return 'check_circle';
     case 'error':
-      return 'error_outline';
+      return 'highlight_off';
     case 'pending':
       return 'schedule';
     case 'in-progress':

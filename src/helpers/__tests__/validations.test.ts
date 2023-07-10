@@ -2,6 +2,7 @@ import {
   isSVRL,
   hasFailedAssert,
   getSVRLFailedAssertions,
+  getHasSVRLFatalsOrErrors,
 } from '../validations';
 import { SVRL, SVRLFailedAssertion } from '../../types/validations';
 
@@ -64,6 +65,41 @@ describe('Validation helper functions', () => {
         'svrl:schematron-output': {},
       };
       expect(getSVRLFailedAssertions(svrlWithoutFailedAsserts)).toBeUndefined();
+    });
+  });
+
+  describe('getHasSVRLFatalsOrErrors', () => {
+    it('should return true if there are errors or fatal', () => {
+      expect(getHasSVRLFatalsOrErrors(mockSVRL)).toBeTruthy();
+    });
+
+    it('should return false if there are no errors or fatal', () => {
+      const svrlWithNoErrorOrFatal: SVRL = {
+        ...mockSVRL,
+        'svrl:schematron-output': {
+          'svrl:failed-assert': [
+            {
+              id: 'test',
+              location: 'test',
+              test: 'test',
+              role: 'information',
+              'svrl:text': 'test',
+              'svrl:diagnostic-reference': { content: '', diagnostic: '' },
+            },
+          ],
+        },
+      };
+
+      expect(getHasSVRLFatalsOrErrors(svrlWithNoErrorOrFatal)).toBeFalsy();
+    });
+
+    it('should return false if failedAssertions are undefined', () => {
+      const svrlWithUndefinedAssertions: SVRL = {
+        ...mockSVRL,
+        'svrl:schematron-output': {},
+      };
+
+      expect(getHasSVRLFatalsOrErrors(svrlWithUndefinedAssertions)).toBeFalsy();
     });
   });
 });
