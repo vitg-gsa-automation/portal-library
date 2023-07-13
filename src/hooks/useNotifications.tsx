@@ -1,18 +1,23 @@
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { Notification } from '../types/misc';
 
 export function useNotifications(initialValue: Notification[] = []) {
-  const [items, setNotifications] = useState<Notification[]>(initialValue);
+  const [notifications, setNotifications] =
+    useState<Notification[]>(initialValue);
 
   const publish = function (notifications: Notification[]) {
-    setNotifications([...notifications, ...items]);
+    setNotifications((prevState) => [...notifications, ...prevState]);
   };
 
   const dismiss = function (index: number) {
-    setNotifications((notifications) =>
-      notifications.filter((item, i) => i !== index)
+    setNotifications((prevState) => prevState.filter((item, i) => i !== index));
+  };
+
+  const update = function (id: string, notification: Notification) {
+    setNotifications((prevState) =>
+      prevState.map((n) => (n.id === id ? notification : n))
     );
   };
 
-  return { notifications: items, publish, dismiss, setNotifications };
+  return { notifications, publish, dismiss, setNotifications, update };
 }

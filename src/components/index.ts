@@ -45,3 +45,4 @@ export * from './Filters';
 export * from './SelectFilter';
 export * from './FileViewer';
 export * from './PieChart';
+export * from './ErrorComponent';

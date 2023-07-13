@@ -1,19 +1,18 @@
-import { Link } from 'react-router-dom';
-
+import { ReactNode } from 'react';
+import { Link } from '../../components/Link';
 import { Container } from '../../layouts/Container';
-import { ContentLayout } from '../../layouts/ContentLayout';
+import styles from './index.module.scss';
 
-export function NoMatch() {
+export interface NoMatchProps {
+  actions: ReactNode;
+}
+
+export function NoMatch({ actions }: NoMatchProps) {
   return (
-    <ContentLayout>
-      <Container style={{ padding: '3.2rem' }}>
-        <h1>Nothing to see here!</h1>
-        <div>
-          <Link to="/login" className="link">
-            Go to the login page
-          </Link>
-        </div>
-      </Container>
-    </ContentLayout>
+    <div className={styles.root}>
+      <h1>404 Error</h1>
+      <h2>Page not found</h2>
+      <div>{actions}</div>
+    </div>
   );
 }
