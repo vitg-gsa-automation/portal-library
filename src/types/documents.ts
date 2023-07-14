@@ -1,11 +1,10 @@
-export type DocStatus =
-  | 'validated'
-  | 'validation errors'
-  | 'Validation Errors'
-  | 'not validated'
-  | 'Pending'
-  | 'Not Validated'
-  | 'Pending Review';
+export enum DocStatus {
+  Validated = 'validated',
+  ValidationErrors = 'validation errors',
+  NotValidated = 'not validated',
+  PendingReview = 'pending review',
+}
+
 export interface Document {
   PkgName?: string;
   PkgID?: number;
@@ -17,7 +16,7 @@ export interface Document {
   DocFullName?: string;
   DocTypeAbbrev?: string;
   DocTypeDesc?: string;
-  DocStatus?: DocStatus;
+  DocStatus?: string;
   FileLink?: string;
   FileName?: string;
   DocOjectCreatedDate?: string;
@@ -27,7 +26,7 @@ export interface Document {
   UploadUserID?: number;
   UploadUserName?: string;
   fileType?: string;
-  status: DocStatus;
+  status: string;
   FileSize?: number;
   FileIdentifier?: string;
   DocumentDescription?: string;

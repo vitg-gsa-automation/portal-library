@@ -5,29 +5,23 @@ export function getPackageStatusIndicatorType(
   status: PackageStatus
 ): StatusIndicatorType {
   switch (status) {
-    case 'cancelled':
-      return 'warning';
-    case 'closed':
-      return 'warning';
-    case 'fedramp ready':
+    case PackageStatus.Cancelled:
+    case PackageStatus.Closed:
+      return 'error';
+    case PackageStatus.FedRampReady:
       return 'success';
-    case 'in progress':
+    case PackageStatus.InProgress:
       return 'in-progress';
-    case 'pending':
+    case PackageStatus.Pending:
       return 'pending';
   }
 }
 
 export function stringToPackageStatus(str: string): PackageStatus | undefined {
-  const statuses: Array<PackageStatus> = [
-    'cancelled',
-    'closed',
-    'fedramp ready',
-    'in progress',
-    'pending',
-  ];
   const lowerCasedStr = str.toLowerCase();
-  return statuses.includes(lowerCasedStr as PackageStatus)
+  const statuses = Object.values(PackageStatus);
+
+  return statuses.includes(lowerCasedStr as any)
     ? (lowerCasedStr as PackageStatus)
     : undefined;
 }

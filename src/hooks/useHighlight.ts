@@ -6,6 +6,6 @@ export function useHighlight(fileString?: string, language?: OSCALExtension) {
   const html = useMemo(() => {
     if (!fileString || !language) return;
     return highlight(fileString, language);
-  }, [fileString]);
+  }, [fileString, language]);
   return html;
 }

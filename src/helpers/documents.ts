@@ -5,31 +5,22 @@ export function getDocumentStatusIndicatorType(
   status: DocStatus
 ): StatusIndicatorType {
   switch (status) {
-    case 'Pending':
-    case 'Pending Review':
+    case DocStatus.PendingReview:
       return 'pending';
-    case 'Not Validated':
-    case 'not validated':
-      return 'warning';
-    case 'validated':
+    case DocStatus.NotValidated:
+      return 'error';
+    case DocStatus.Validated:
       return 'success';
-    case 'Validation Errors':
-    case 'validation errors':
+    case DocStatus.ValidationErrors:
       return 'error';
   }
 }
 
 export function stringToDocStatus(str: string): DocStatus | undefined {
-  const statuses: Array<DocStatus> = [
-    'Pending',
-    'Pending Review',
-    'Not Validated',
-    'not validated',
-    'validated',
-    'Validation Errors',
-    'not validated',
-  ];
-  return statuses.includes(str as DocStatus) ? (str as DocStatus) : undefined;
+  const lowerCasedStr = str.toLowerCase();
+  const statuses = Object.values(DocStatus);
+
+  return statuses.includes(lowerCasedStr as any)
+    ? (lowerCasedStr as DocStatus)
+    : undefined;
 }
-
-

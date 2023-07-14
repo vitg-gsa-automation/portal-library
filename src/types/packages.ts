@@ -20,9 +20,10 @@ export interface Package {
   OrgName?: string;
 }
 
-export type PackageStatus =
-  | 'cancelled'
-  | 'closed'
-  | 'fedramp ready'
-  | 'in progress'
-  | 'pending';
+export enum PackageStatus {
+  Pending = 'pending',
+  InProgress = 'in progress',
+  Closed = 'closed',
+  Cancelled = 'cancelled',
+  FedRampReady = 'fedramp ready',
+}
