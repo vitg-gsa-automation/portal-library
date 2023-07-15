@@ -20,7 +20,7 @@ Default.args = {
     />
   ),
   footer: (
-    <ExpandableSection header="Review comments">
+    <ExpandableSection headerText="Review comments">
       <FormField label="Comments" htmlFor="comments">
         <TextArea name="comments" placeholder="Enter comments" />
       </FormField>
