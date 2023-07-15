@@ -18,12 +18,11 @@ export interface Notification {
   onDismiss: (index: number) => any;
 }
 
-export enum StatusType {
-  Info = 'info',
-  Warning = 'warning',
-  Success = 'success',
-  Error = 'error',
-  Pending = 'pending',
-  InProgress = 'in-progress',
-  Loading = 'loading',
-}
+export type StatusType =
+  | 'info'
+  | 'warning'
+  | 'success'
+  | 'error'
+  | 'pending'
+  | 'in-progress'
+  | 'loading';
