@@ -9,8 +9,7 @@
     "test": "jest --verbose",
     "build": "rollup -c",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "check": "tsc --noEmit"
+    "build-storybook": "build-storybook"
   },
   "main": "dist/index.js",
   "module": "dist/index.js",

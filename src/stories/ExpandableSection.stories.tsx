@@ -8,7 +8,6 @@ import {
   FormField,
   ListItem,
   StatusIndicator,
-  StatusIndicatorType,
   TextArea,
 } from '../components';
 import {
@@ -74,9 +73,7 @@ const columns = [
     size: 0,
     minSize: 185,
     cell: (info) => (
-      <StatusIndicator type={StatusIndicatorType.Success}>
-        {info.getValue()}
-      </StatusIndicator>
+      <StatusIndicator type="success">{info.getValue()}</StatusIndicator>
     ),
   }),
   // columnHelper.accessor('PkgDesc', {
@@ -99,9 +96,7 @@ export const Default: Story<ExpandableSectionProps> = (args) => {
           <Property label="File name">VITGSSP1.xml</Property>
           <Property label="File size">12 KB</Property>
           <Property label="Status">
-            <StatusIndicator type={StatusIndicatorType.Success}>
-              Uploaded
-            </StatusIndicator>
+            <StatusIndicator type="success">Uploaded</StatusIndicator>
           </Property>
         </ColumnLayout>
       </CardContent>

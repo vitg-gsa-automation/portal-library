@@ -27,10 +27,7 @@ import { Checkbox } from '../../components/Checkbox';
 import { Pagination } from '../../components/Pagination';
 import { Radio } from '../../components/Radio';
 import { RadioGroupRoot } from '../../components/Radio';
-import {
-  StatusIndicator,
-  StatusIndicatorType,
-} from '../../components/StatusIndicator';
+import { StatusIndicator } from '../../components/StatusIndicator';
 import { Empty } from '../../components/Empty';
 import { Loader } from '../../components/Loader';
 import { MaterialIcon } from '../../components/MaterialIcon';
@@ -264,9 +261,7 @@ export const Table = <T extends unknown>({
         </table>
         {loading ? (
           <div className={styles['loading']}>
-            <StatusIndicator type={StatusIndicatorType.Loading}>
-              {loadingText}
-            </StatusIndicator>
+            <StatusIndicator type="loading">{loadingText}</StatusIndicator>
           </div>
         ) : error ? (
           <Empty title={error} />

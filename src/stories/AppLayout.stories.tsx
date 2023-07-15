@@ -16,7 +16,6 @@ import {
   ListItem,
   PageHeader,
   StatusIndicator,
-  StatusIndicatorType,
   Tab,
   Tabs,
   TabsContent,
@@ -331,9 +330,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
                               System Security Plan
                             </Property>
                             <Property label="Status">
-                              <StatusIndicator
-                                type={StatusIndicatorType.Success}
-                              >
+                              <StatusIndicator type="success">
                                 FedRAMP Ready
                               </StatusIndicator>
                             </Property>
@@ -367,9 +364,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
                               System Security Plan
                             </Property>
                             <Property label="Status">
-                              <StatusIndicator
-                                type={StatusIndicatorType.Success}
-                              >
+                              <StatusIndicator type="success">
                                 FedRAMP Ready
                               </StatusIndicator>
                             </Property>
@@ -403,9 +398,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
                               System Security Plan
                             </Property>
                             <Property label="Status">
-                              <StatusIndicator
-                                type={StatusIndicatorType.Success}
-                              >
+                              <StatusIndicator type="success">
                                 FedRAMP Ready
                               </StatusIndicator>
                             </Property>
@@ -439,9 +432,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
                               System Security Plan
                             </Property>
                             <Property label="Status">
-                              <StatusIndicator
-                                type={StatusIndicatorType.Success}
-                              >
+                              <StatusIndicator type="success">
                                 FedRAMP Ready
                               </StatusIndicator>
                             </Property>

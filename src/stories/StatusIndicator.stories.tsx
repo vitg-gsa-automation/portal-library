@@ -2,7 +2,6 @@ import { Story } from '@storybook/react';
 import {
   StatusIndicator,
   StatusIndicatorProps,
-  StatusIndicatorType,
 } from '../components/StatusIndicator';
 
 export default {
@@ -15,6 +14,6 @@ export const Default: Story<StatusIndicatorProps> = (args) => {
 };
 
 Default.args = {
-  type: StatusIndicatorType.Success,
+  type: 'success',
   children: 'approved',
 };

@@ -3,7 +3,6 @@ import { Step, StepProps } from '../components/Step';
 import { Link } from '../components/Link';
 import { Accordion } from '../components/Accordion';
 import { Card, CardContent, Header } from '../layouts';
-import { StatusIndicatorType } from '../components/StatusIndicator';
 
 export default {
   title: 'Step',
@@ -22,24 +21,24 @@ export const Default: Story<StepProps> = (args) => {
           <Step
             value="1"
             text="System Security Plan (SSP)"
-            type={StatusIndicatorType.Warning}
+            type="warning"
             statusIndicatorText="Concern"
             items={[
               {
                 text: 'System Security Plan (SSP)',
-                type: StatusIndicatorType.Success,
+                type: 'success',
                 statusIndicatorText: 'OK',
                 actions: <Link to="#">View</Link>,
               },
               {
                 text: 'Att. 1: Information Security Policies and Procedures',
-                type: StatusIndicatorType.Success,
+                type: 'success',
                 statusIndicatorText: 'OK',
                 actions: <Link to="#">View</Link>,
               },
               {
                 text: 'Att. 2: User Guide',
-                type: StatusIndicatorType.Warning,
+                type: 'warning',
                 statusIndicatorText: 'Concern',
               },
             ]}
@@ -47,24 +46,24 @@ export const Default: Story<StepProps> = (args) => {
           <Step
             value="2"
             text="Security Assessment Plan (SAP)"
-            type={StatusIndicatorType.Success}
+            type="warning"
             statusIndicatorText="Concern"
             items={[
               {
                 text: 'System Security Plan (SSP)',
-                type: StatusIndicatorType.Success,
+                type: 'success',
                 statusIndicatorText: 'OK',
                 actions: <Link to="#">View</Link>,
               },
               {
                 text: 'Att. 1: Information Security Policies and Procedures',
-                type: StatusIndicatorType.Success,
+                type: 'success',
                 statusIndicatorText: 'OK',
                 actions: <Link to="#">View</Link>,
               },
               {
                 text: 'Att. 2: User Guide',
-                type: StatusIndicatorType.Warning,
+                type: 'warning',
                 statusIndicatorText: 'Concern',
               },
             ]}

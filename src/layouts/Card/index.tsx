@@ -2,10 +2,7 @@ import { ReactElement, ReactNode } from 'react';
 
 import styles from './index.module.scss';
 import clsx from 'clsx';
-import {
-  StatusIndicator,
-  StatusIndicatorType,
-} from '../../components/StatusIndicator';
+import { StatusIndicator } from '../../components/StatusIndicator';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'embedded';
@@ -60,9 +57,7 @@ export function Card({
       {header && <div className={styles.header}>{header}</div>}
       {loading ? (
         <div className={styles.loading}>
-          <StatusIndicator type={StatusIndicatorType.Loading}>
-            {loadingText}
-          </StatusIndicator>
+          <StatusIndicator type="loading">{loadingText}</StatusIndicator>
         </div>
       ) : (
         children
