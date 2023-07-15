@@ -14,7 +14,7 @@ import { ListItem } from '../ListItem';
 import { MaterialIcon } from '../MaterialIcon';
 import { InputError } from '../Input';
 import { Item } from '../../types/form';
-import { StatusIndicator } from '../StatusIndicator';
+import { StatusIndicator, StatusIndicatorType } from '../StatusIndicator';
 import { createPortal } from 'react-dom';
 
 function itemToString(item: Item<any> | null) {
@@ -117,13 +117,17 @@ export function Select({
     if (loading)
       return (
         <div className={styles.single}>
-          <StatusIndicator type="loading">{loadingText}</StatusIndicator>
+          <StatusIndicator type={StatusIndicatorType.Loading}>
+            {loadingText}
+          </StatusIndicator>
         </div>
       );
     else if (errorText)
       return (
         <div className={styles.single}>
-          <StatusIndicator type="error">{errorText}</StatusIndicator>
+          <StatusIndicator type={StatusIndicatorType.Error}>
+            {errorText}
+          </StatusIndicator>
         </div>
       );
     if (!items.length) return <div className={styles.single}>No options</div>;

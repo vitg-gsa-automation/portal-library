@@ -1,22 +1,21 @@
 import * as Accordion from '@radix-ui/react-accordion';
 import { ReactNode } from 'react';
 
-import styles from './index.module.scss';
-import { StatusIndicator } from '../StatusIndicator';
 import { MaterialIcon } from '../MaterialIcon';
-import { StatusType } from '../../types';
+import { StatusIndicator, StatusIndicatorType } from '../StatusIndicator';
 import { StepItem } from '../StepItem';
+import styles from './index.module.scss';
 
 interface StepItemDefinition {
   text: ReactNode;
-  type?: StatusType;
+  type?: StatusIndicatorType;
   statusIndicatorText?: string;
   actions?: ReactNode;
 }
 
 export interface StepProps extends Accordion.AccordionItemProps {
   text: string;
-  type?: StatusType;
+  type?: StatusIndicatorType;
   items?: ReadonlyArray<StepItemDefinition>;
   children?: ReactNode[];
   loading?: boolean;
@@ -36,7 +35,11 @@ export function Step({
 }: StepProps) {
   const renderStatusIndicator = function () {
     if (loading)
-      return <StatusIndicator type="loading">{loadingText}</StatusIndicator>;
+      return (
+        <StatusIndicator type={StatusIndicatorType.Loading}>
+          {loadingText}
+        </StatusIndicator>
+      );
     if (!type) return null;
     return <StatusIndicator type={type}>{statusIndicatorText}</StatusIndicator>;
   };

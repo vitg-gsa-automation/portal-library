@@ -12,7 +12,7 @@ import { MaterialIcon } from '../MaterialIcon';
 import { Modal } from '../Modal';
 import { Select } from '../Select';
 import styles from './index.module.scss';
-import { StatusIndicator } from '../StatusIndicator';
+import { StatusIndicator, StatusIndicatorType } from '../StatusIndicator';
 import { OSCALExtension } from '../../types/files';
 import { Empty } from '../Empty';
 
@@ -68,11 +68,15 @@ export function FileViewer({
       <div className={styles.view}>
         {loading ? (
           <div className={styles.loading}>
-            <StatusIndicator type="loading">{loadingText}</StatusIndicator>
+            <StatusIndicator type={StatusIndicatorType.Loading}>
+              {loadingText}
+            </StatusIndicator>
           </div>
         ) : error ? (
           <div className={styles.error}>
-            <StatusIndicator type="error">{error}</StatusIndicator>
+            <StatusIndicator type={StatusIndicatorType.Error}>
+              {error}
+            </StatusIndicator>
           </div>
         ) : (
           <pre
