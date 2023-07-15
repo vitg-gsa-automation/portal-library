@@ -1,13 +1,12 @@
 import { ReactNode } from 'react';
 
 import styles from './index.module.scss';
-import { StatusType } from '../../types';
-import { StatusIndicator } from '../StatusIndicator';
+import { StatusIndicator, StatusIndicatorType } from '../StatusIndicator';
 import clsx from 'clsx';
 
 interface StepItemProps {
   text: ReactNode;
-  type?: StatusType;
+  type?: StatusIndicatorType;
   statusIndicatorText?: string;
   to?: string;
   actions?: ReactNode;
@@ -16,7 +15,7 @@ interface StepItemProps {
 export function StepItem({
   text,
   to,
-  type = 'success',
+  type = StatusIndicatorType.Success,
   statusIndicatorText = 'OK',
   actions,
 }: StepItemProps) {

@@ -7,13 +7,13 @@ export function getPackageStatusIndicatorType(
   switch (status) {
     case PackageStatus.Cancelled:
     case PackageStatus.Closed:
-      return 'error';
+      return StatusIndicatorType.Error;
     case PackageStatus.FedRampReady:
-      return 'success';
+      return StatusIndicatorType.Success;
     case PackageStatus.InProgress:
-      return 'in-progress';
+      return StatusIndicatorType.InProgress;
     case PackageStatus.Pending:
-      return 'pending';
+      return StatusIndicatorType.Pending;
   }
 }
 

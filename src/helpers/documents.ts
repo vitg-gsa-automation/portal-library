@@ -6,13 +6,13 @@ export function getDocumentStatusIndicatorType(
 ): StatusIndicatorType {
   switch (status) {
     case DocStatus.PendingReview:
-      return 'pending';
+      return StatusIndicatorType.Pending;
     case DocStatus.NotValidated:
-      return 'error';
+      return StatusIndicatorType.Error;
     case DocStatus.Validated:
-      return 'success';
+      return StatusIndicatorType.Success;
     case DocStatus.ValidationErrors:
-      return 'error';
+      return StatusIndicatorType.Error;
   }
 }
 

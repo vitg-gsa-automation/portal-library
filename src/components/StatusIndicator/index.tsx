@@ -4,14 +4,15 @@ import clsx from 'clsx';
 import styles from './index.module.scss';
 import { MaterialIcon } from '../MaterialIcon';
 import { Loader } from '../Loader';
-export type StatusIndicatorType =
-  | 'info'
-  | 'warning'
-  | 'success'
-  | 'error'
-  | 'pending'
-  | 'in-progress'
-  | 'loading';
+export enum StatusIndicatorType {
+  Info = 'info',
+  Warning = 'warning',
+  Success = 'success',
+  Error = 'error',
+  Pending = 'pending',
+  InProgress = 'in-progress',
+  Loading = 'loading',
+}
 
 export interface StatusIndicatorProps
   extends React.HTMLAttributes<HTMLSpanElement> {
@@ -37,7 +38,7 @@ const getIcon = function (type: StatusIndicatorType) {
 };
 
 export function StatusIndicator({
-  type = 'info',
+  type = StatusIndicatorType.Info,
   children,
   ...props
 }: StatusIndicatorProps) {

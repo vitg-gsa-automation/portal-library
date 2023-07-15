@@ -104,9 +104,9 @@ const columns = [
       ): StatusIndicatorType {
         switch (status) {
           case 'implemented':
-            return 'success';
+            return StatusIndicatorType.Success;
           case 'not-implemented':
-            return 'warning';
+            return StatusIndicatorType.Warning;
         }
       };
       const type = getType(status);
