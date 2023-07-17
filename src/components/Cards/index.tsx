@@ -27,6 +27,7 @@ export function Cards<T extends unknown>({
 }: CardsProps<T>) {
   const columnStyle = {
     flexBasis: `${100 / cardsPerRow}%`,
+    display: 'flex',
   };
   return (
     <div className={styles.root} {...props}>
@@ -39,7 +40,6 @@ export function Cards<T extends unknown>({
                 style={{
                   marginLeft: '2.4rem',
                   marginBottom: '2.4rem',
-                  width: 'auto',
                 }}
               >
                 <CardContent>
