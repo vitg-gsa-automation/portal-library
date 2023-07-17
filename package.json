@@ -1,6 +1,6 @@
 {
   "name": "@vitg-gsa-automation/portal-library",
-  "version": "5.1.2",
+  "version": "5.2.0",
   "description": "react component library for fedramp automation portals",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
