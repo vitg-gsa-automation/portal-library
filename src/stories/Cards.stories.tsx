@@ -94,6 +94,6 @@ Default.args = {
       },
     ],
   },
-  items: [],
+  items: pkgs,
   cardsPerRow: 3,
 };
