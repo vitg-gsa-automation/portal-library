@@ -15,7 +15,7 @@ interface LoaderProps extends LoaderSizeProps {
 function getColor(color: LoaderColor): string {
   switch (color) {
     case 'primary':
-      return '#bfbfbf';
+      return '#5f6b7a';
     case 'black':
       return '#000000';
     case 'white':
