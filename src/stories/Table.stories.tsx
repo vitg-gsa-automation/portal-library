@@ -1,10 +1,6 @@
 import { Story } from '@storybook/react';
-import {
-  FilterFnOption,
-  RowSelectionState,
-  createColumnHelper,
-} from '@tanstack/react-table';
-import { useCallback, useMemo, useState } from 'react';
+import { createColumnHelper } from '@tanstack/react-table';
+import { useMemo } from 'react';
 import {
   Button,
   DropdownButton,
@@ -19,11 +15,11 @@ import {
   StatusIndicatorType,
   TextFilter,
 } from '../components';
+import { useCollection } from '../hooks/useCollection';
 import { Header, SpaceBetween } from '../layouts';
 import { Table, TableProps } from '../layouts/Table';
-import { Control, ImplementationStatus } from '../types/controls';
 import { Item } from '../types';
-import { useCollection } from '../hooks/useCollection';
+import { Control, ImplementationStatus } from '../types/controls';
 
 export default {
   title: 'Table',
@@ -81,9 +77,9 @@ const controls: Control[] = [
   },
   {
     name: 'MA-3',
-    description: 'Maintenance Tools',
+    description: '',
     status: 'implemented',
-    origin: 'Inherited',
+    origin: '',
   },
 ];
 const columnHelper = createColumnHelper<Control>();

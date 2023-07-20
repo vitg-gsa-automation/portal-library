@@ -19,7 +19,12 @@ export function MenuDropdown({ items, text, ...props }: MenuDropdownProps) {
   const renderItem = function (item: MenuItem) {
     if (item.href) {
       return (
-        <a href={item.href} className={styles['menu-item']}>
+        <a
+          href={item.href}
+          className={styles['menu-item']}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {item.text}
           {item.external && (
             <MaterialIcon

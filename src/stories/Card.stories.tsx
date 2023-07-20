@@ -1,6 +1,12 @@
 import { Story } from '@storybook/react';
-import { ExpandableSection, FormField, Link, TextArea } from '../components';
-import { Box, Header } from '../layouts';
+import {
+  Button,
+  ExpandableSection,
+  FormField,
+  Link,
+  TextArea,
+} from '../components';
+import { Box, Header, SpaceBetween } from '../layouts';
 import { Card, CardContent, CardProps } from '../layouts/Card';
 
 export default {
@@ -17,14 +23,14 @@ Default.args = {
       title="Card header"
       variant="h2"
       description="This is a description"
+      actions={
+        <SpaceBetween direction="horizontal" size="sm">
+          <Button text="View" color="secondary" />
+          <Button text="Edit resource" color="secondary" />
+          <Button text="Create resource" />
+        </SpaceBetween>
+      }
     />
-  ),
-  footer: (
-    <ExpandableSection headerText="Review comments">
-      <FormField label="Comments" htmlFor="comments">
-        <TextArea name="comments" placeholder="Enter comments" />
-      </FormField>
-    </ExpandableSection>
   ),
   children: <CardContent>This is content</CardContent>,
 };

@@ -47,11 +47,7 @@ export function Cards<T extends unknown>({
       );
 
     if (items.length === 0) {
-      return (
-        empty || (
-          <Empty title="No resources" description="No resources to display" />
-        )
-      );
+      return empty || <Empty />;
     } else {
       return (
         <ol className={clsx(styles.list, header && styles['has-header'])}>

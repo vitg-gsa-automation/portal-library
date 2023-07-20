@@ -3,12 +3,16 @@ import { ReactNode } from 'react';
 import styles from './index.module.scss';
 
 interface EmptyProps {
-  title: string;
+  title?: string;
   description?: string;
   actions?: ReactNode;
 }
 
-export function Empty({ title, description, actions }: EmptyProps) {
+export function Empty({
+  title = 'No resources',
+  description = 'No resources to display',
+  actions,
+}: EmptyProps) {
   return (
     <div className={styles.root}>
       <span className={styles.title}>{title}</span>

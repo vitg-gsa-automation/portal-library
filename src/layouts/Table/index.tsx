@@ -157,6 +157,9 @@ export const Table = <T extends unknown>({
 
   const table = useReactTable<T>({
     data,
+    defaultColumn: {
+      cell: (info) => info.getValue() || '-',
+    },
     columns: [...internalColumns, ...columns],
     initialState,
     state: {
@@ -244,7 +247,6 @@ export const Table = <T extends unknown>({
                             [styles['no-wrapped-lines']]: !wrapLines,
                             [styles.select]: cell.column.id === 'select',
                           })}
-                          // style={{ width: cell.column.getSize() }}
                         >
                           {flexRender(
                             cell.column.columnDef.cell,
@@ -266,9 +268,7 @@ export const Table = <T extends unknown>({
         ) : error ? (
           <Empty title={error} />
         ) : data.length === 0 ? (
-          empty || (
-            <Empty title="No resources" description="No resources to display" />
-          )
+          empty || <Empty />
         ) : hasNoMatches ? (
           <Empty
             title="No matches"

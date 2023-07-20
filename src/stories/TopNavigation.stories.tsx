@@ -38,6 +38,12 @@ Default.args = {
             href: '#',
             external: true,
           },
+          {
+            id: 'github',
+            text: 'GitHub',
+            href: 'https://github.com/vitg-gsa-automation',
+            external: true,
+          },
         ],
       },
       { id: 'signout', text: 'Sign out' },

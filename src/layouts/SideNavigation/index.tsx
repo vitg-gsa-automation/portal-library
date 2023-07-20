@@ -23,6 +23,7 @@ interface SideNavigationItem {
   icon?: string;
   defaultExpanded?: boolean;
   href?: string;
+  end?: boolean;
 }
 
 type SideNavigationItems = ReadonlyArray<SideNavigationItem>;
@@ -39,7 +40,11 @@ export function SideNavigation({ header, items }: SideNavigationProps) {
       if (item.type === 'link')
         return (
           <li key={item.id} className={styles.item}>
-            <SideNavigationLink key={item.id} to={item.href || '#'}>
+            <SideNavigationLink
+              key={item.id}
+              to={item.href || '#'}
+              end={item.end}
+            >
               {item.text}
             </SideNavigationLink>
           </li>
