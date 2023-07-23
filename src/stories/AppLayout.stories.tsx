@@ -29,7 +29,7 @@ import {
   SpaceBetween,
   TableProps,
 } from '../layouts';
-import Footer from '../layouts/Footer';
+import { Footer } from '../layouts/Footer';
 import packageJSON from '../../package.json';
 
 export default {

@@ -1,5 +1,4 @@
 .root {
-  height: 4rem;
   padding: 1rem 3.2rem;
   border-top: 2px solid var(--color-border-footer, #e6e6e6);
   background-color: var(--color-fedramp-deep-blue-50, #162e51);
@@ -11,6 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 2rem 0;
 }
 
 .list {
