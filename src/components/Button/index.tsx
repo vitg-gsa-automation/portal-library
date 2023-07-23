@@ -9,7 +9,7 @@ import styles from './index.module.scss';
 type Color = 'primary' | 'secondary';
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   text: string;
   variant?: 'normal' | 'link';
   size?: 'small' | 'large';
@@ -21,9 +21,13 @@ export interface ButtonProps
   iconPos?: 'left' | 'right';
   loading?: boolean;
   to?: To;
+  href?: string;
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ButtonProps
+>(
   (
     {
       loading,
@@ -38,11 +42,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       color = 'primary',
       className,
       to,
+      href,
       ...props
     }: ButtonProps,
     forwardedRef
   ) => {
     const navigate = useNavigate();
+
     const renderChildren = function () {
       return (
         <React.Fragment>
@@ -57,9 +63,43 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       );
     };
 
+    if (href) {
+      return (
+        <a
+          ref={forwardedRef as ForwardedRef<HTMLAnchorElement>}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={clsx(
+            styles.root,
+            styles[color],
+            styles[size],
+            styles[variant],
+            {
+              [styles['extended']]: extended,
+              [styles['loading']]: loading,
+            },
+            className
+          )}
+        >
+          {startIcon}
+          {loading && (
+            <Loader
+              data-testid="loader"
+              loaderColor={color === 'primary' ? 'white' : 'primary'}
+              size={14}
+              borderWidth={2}
+            />
+          )}
+          {renderChildren()}
+          {endIcon}
+        </a>
+      );
+    }
+
     return (
       <button
-        ref={forwardedRef}
+        ref={forwardedRef as ForwardedRef<HTMLButtonElement>}
         onClick={() => {
           if (to) navigate(to);
         }}

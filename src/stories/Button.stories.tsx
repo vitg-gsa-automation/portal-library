@@ -1,5 +1,6 @@
 import { Story } from '@storybook/react';
 import { Button, ButtonProps } from '../components/Button';
+import { MaterialIcon } from '../components/MaterialIcon';
 
 export default {
   title: 'Button',
@@ -52,12 +53,12 @@ Icon.args = {
   icon: 'add',
 };
 
-export const Loading: Story<ButtonProps> = (args) => {
+export const External: Story<ButtonProps> = (args) => {
   return <Button {...args} />;
 };
-Loading.args = {
-  text: 'Primary',
-  color: 'primary',
-  size: 'small',
-  loading: true,
+External.args = {
+  text: 'External link',
+  color: 'secondary',
+  href: 'https://google.com',
+  endIcon: <MaterialIcon icon="open_in_new" />,
 };
