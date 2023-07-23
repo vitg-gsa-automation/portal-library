@@ -25,7 +25,7 @@ interface FooterProps {
   version?: string;
 }
 
-function Footer({ appName, items, version }: FooterProps) {
+export function Footer({ appName, items, version }: FooterProps) {
   const internalVersion = version || '0.0.0';
   const renderItems = function () {
     return items?.map((item) => {
@@ -68,4 +68,3 @@ function Footer({ appName, items, version }: FooterProps) {
     </footer>
   );
 }
-export default Footer;
