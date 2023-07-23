@@ -15,7 +15,7 @@
 }
 
 .background {
-  background-color: var(--color-bg-layout-main);
+  background-color: var(--color-bg-layout-main, #081932);
   grid-column: 1 / span 5;
   grid-row: 1 / span 4;
 }

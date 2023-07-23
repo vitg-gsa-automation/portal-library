@@ -16,7 +16,7 @@
 }
 
 .background {
-  background-color: var(--color-bg-layout-main);
+  background-color: var(--color-bg-layout-main, #081932);
   grid-column: 1;
   grid-row: 1/3;
   &.is-overlap-disabled {

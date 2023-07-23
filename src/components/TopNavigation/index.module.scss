@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--color-fedramp-deep-blue-50);
+  background-color: var(--color-bg-navbar, #162e51);
   font-size: 1.4rem;
   z-index: 1000;
 }

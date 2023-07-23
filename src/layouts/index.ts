@@ -19,3 +19,4 @@ export * from './HelpPanel';
 export * from './ContentLayout';
 export * from './Grid';
 export * from './Box';
+export * from './Footer';

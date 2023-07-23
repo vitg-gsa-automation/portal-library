@@ -14,16 +14,16 @@ type BaseLinkProps = {
   children?: ReactNode;
 };
 
-type ExternalLinkProps = {
-  external: true;
-  href: string;
-} & BaseLinkProps;
-
 type InternalLinkProps = {
   external?: false;
   to: string;
 } & BaseLinkProps &
   LinkPrimitiveProps;
+
+type ExternalLinkProps = {
+  external: true;
+  href: string;
+} & BaseLinkProps;
 
 export type LinkProps = InternalLinkProps | ExternalLinkProps;
 

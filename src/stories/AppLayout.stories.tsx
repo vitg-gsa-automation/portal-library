@@ -1,29 +1,20 @@
 import { Story } from '@storybook/react';
 import { createColumnHelper } from '@tanstack/react-table';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Package } from 'types';
 import {
   Button,
-  Dropdown,
   DropdownButton,
-  DropdownContent,
-  DropdownItem,
-  DropdownTrigger,
   ExpandableSection,
   Flashbar,
   Link,
-  ListItem,
   PageHeader,
   StatusIndicator,
-  Tab,
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
   TopNavigation,
 } from '../components';
 import { useNotifications } from '../hooks';
+import { useTools } from '../hooks/useTools';
 import {
   AppLayout,
   Card,
@@ -38,7 +29,8 @@ import {
   SpaceBetween,
   TableProps,
 } from '../layouts';
-import { useTools } from '../hooks/useTools';
+import Footer from '../layouts/Footer';
+import packageJSON from '../../package.json';
 
 export default {
   title: 'AppLayout',
@@ -182,6 +174,32 @@ export const Default: Story<TableProps<Package>> = (args) => {
                     { id: 'signout', text: 'Sign out' },
                   ],
                 }}
+              />
+            }
+            footer={
+              <Footer
+                appName={packageJSON.name}
+                version={packageJSON.version}
+                items={[
+                  {
+                    id: 'about',
+                    text: 'About',
+                    to: '/',
+                    external: false,
+                  },
+                  {
+                    id: 'feedback',
+                    text: 'Feedback',
+                    to: '/',
+                    external: false,
+                  },
+                  {
+                    id: 'doc',
+                    text: 'API documentation',
+                    href: 'https://google.com',
+                    external: true,
+                  },
+                ]}
               />
             }
           />
