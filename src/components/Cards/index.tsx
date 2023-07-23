@@ -60,14 +60,14 @@ export function Cards<T extends unknown>({
                     marginBottom: '2.4rem',
                   }}
                 >
-                  <CardContent>
+                  <div className={styles.content}>
                     {cardDefinition.header(item)}
                     {cardDefinition.sections.map((section) => (
                       <Property key={section.id} label={section.label}>
                         {section.value(item)}
                       </Property>
                     ))}
-                  </CardContent>
+                  </div>
                 </Card>
               </li>
             );
