@@ -178,8 +178,9 @@ export const Default: Story<TableProps<Package>> = (args) => {
             }
             footer={
               <Footer
-                appName={packageJSON.name}
+                appName="FedRAMP Authorization Portal"
                 version={packageJSON.version}
+                buildDate="July 25, 2023"
                 items={[
                   {
                     id: 'about',

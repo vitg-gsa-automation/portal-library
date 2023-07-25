@@ -38,6 +38,14 @@ describe('Validation helper functions', () => {
     it('should return false if the data is not SVRL', () => {
       expect(isSVRL(mockInvalidSVRL)).toBe(false);
     });
+
+    it('should return false if the data is a string', () => {
+      expect(isSVRL('not an SVRL')).toBe(false);
+    });
+
+    it('should return false if the data is null', () => {
+      expect(isSVRL(null)).toBe(false);
+    });
   });
 
   describe('hasFailedAssert', () => {

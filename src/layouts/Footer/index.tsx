@@ -21,11 +21,12 @@ type FooterItem = InternalLink | ExternalLink;
 
 interface FooterProps {
   appName: string;
+  version: string;
+  buildDate: string;
   items?: ReadonlyArray<FooterItem>;
-  version?: string;
 }
 
-export function Footer({ appName, items, version }: FooterProps) {
+export function Footer({ appName, items, version, buildDate }: FooterProps) {
   const internalVersion = version || '0.0.0';
   const renderItems = function () {
     return items?.map((item) => {
@@ -63,7 +64,7 @@ export function Footer({ appName, items, version }: FooterProps) {
     <footer className={styles.root}>
       <div className={styles.content}>
         <ul className={styles.list}>{renderItems()}</ul>
-        &copy; {new Date().getFullYear()}, {appName}, v{internalVersion}
+        {appName} | Version: {internalVersion} | Last Built: {buildDate}
       </div>
     </footer>
   );

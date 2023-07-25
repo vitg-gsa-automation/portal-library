@@ -1,6 +1,7 @@
 import { SVRL } from '../types/validations';
 
 export function isSVRL(data: any) {
+  if (typeof data !== 'object') return false;
   return !!data?.['svrl:schematron-output'];
 }
 
