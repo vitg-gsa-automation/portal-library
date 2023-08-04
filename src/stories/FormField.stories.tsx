@@ -34,9 +34,19 @@ Default.args = {
   constraintText: 'Requirements and constraints for the field.',
 };
 export const WithSelect: Story<FormFieldProps> = (args) => {
+  const items = [
+    {
+      label: 'aaron.nolan@volpegroup.com',
+      value: 32,
+    },
+  ];
   return (
     <FormField {...args}>
-      <Select placeholder="Enter email" items={[]} onSelectChange={() => []} />
+      <Select
+        placeholder="Enter email"
+        items={items}
+        onSelectChange={() => []}
+      />
     </FormField>
   );
 };

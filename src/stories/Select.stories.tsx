@@ -1,59 +1,34 @@
 import { Story } from '@storybook/react';
 import { Item } from '../types/form';
-import { Select, SelectProps } from '../components';
+import { Select } from '../components/Select';
+import { SelectProps } from '../components/Select/interfaces';
+import { OptionDefinition } from '../internal/components/Option';
+import { useState } from '@storybook/addons';
 
-const items: Item[] = [
+const items: OptionDefinition[] = [
   {
-    label: 'Mario',
-    value: 1,
+    label: 'VITGSSP1.xml',
+    value: '1',
+    icon: 'description',
+    description: 'System Security Plan',
+    tags: ['SSP', 'OSCAL XML'],
+    labelTag: '09/13/23',
   },
   {
-    label: 'Luigi',
-    value: 2,
+    label: 'AwesomeCloudSSP1.xml',
+    value: '1',
+    icon: 'description',
+    description: 'System Security Plan',
+    tags: ['SSP', 'OSCAL XML'],
+    labelTag: '10/09/23',
   },
   {
-    label: 'Zelda',
-    value: 3,
-  },
-  {
-    label: 'Peach',
-    value: 4,
-  },
-  {
-    label: 'Toad',
-    value: 5,
-  },
-  {
-    label: 'Bowser',
-    value: 6,
-  },
-  {
-    label: 'Link',
-    value: 7,
-  },
-  {
-    label: 'Donkey Kong',
-    value: 8,
-  },
-  {
-    label: 'Wario',
-    value: 9,
-  },
-  {
-    label: 'Yoshi',
-    value: 10,
-  },
-  {
-    label: 'Pikachu',
-    value: 11,
-  },
-  {
-    label: 'Fox',
-    value: 12,
-  },
-  {
-    label: 'Ganon',
-    value: 13,
+    label: 'VITG_sar.json',
+    value: '1',
+    icon: 'description',
+    description: 'Security Assessment Report',
+    tags: ['SAR', 'OSCAL JSON'],
+    labelTag: '09/13/23',
   },
 ];
 
@@ -63,9 +38,16 @@ export default {
 };
 
 export const Default: Story<SelectProps> = (args) => {
-  return <Select {...args} />;
+  const [selectedItem, setSelectedItem] = useState<OptionDefinition>({});
+  return (
+    <Select
+      {...args}
+      selectedItem={selectedItem}
+      onSelectChange={setSelectedItem}
+    />
+  );
 };
 Default.args = {
-  placeholder: 'Select characters',
-  items: [],
+  placeholder: 'Select document',
+  items: items,
 };

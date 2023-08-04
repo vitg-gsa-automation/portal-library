@@ -4,7 +4,7 @@ import { useCombobox } from 'downshift';
 import styles from './index.module.scss';
 import { Input, InputProps } from '../Input';
 import { Item } from '../../types/form';
-import { ListItem } from '../ListItem';
+import { ListItem } from '../../internal/components/ListItem';
 
 interface ComboBoxProps extends InputProps {
   selectedItem?: Item;

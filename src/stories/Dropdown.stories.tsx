@@ -5,7 +5,7 @@ import {
   DropdownItem,
   DropdownTrigger,
 } from '../components/Dropdown';
-import { ListItem } from '../components/ListItem';
+import { ListItem } from '../internal/components/ListItem';
 
 export default {
   title: 'Dropdown',

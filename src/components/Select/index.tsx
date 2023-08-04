@@ -1,3 +1,5 @@
+import { clsx } from 'clsx';
+import { useSelect } from 'downshift';
 import {
   forwardRef,
   ReactNode,
@@ -5,35 +7,18 @@ import {
   useLayoutEffect,
   useRef,
 } from 'react';
-import { clsx } from 'clsx';
-import { useSelect } from 'downshift';
 
-import styles from './index.module.scss';
-import { Empty } from '../Empty';
-import { ListItem } from '../ListItem';
-import { MaterialIcon } from '../MaterialIcon';
-import { InputError } from '../Input';
-import { Item } from '../../types/form';
-import { StatusIndicator } from '../StatusIndicator';
 import { createPortal } from 'react-dom';
+import { InputError } from '../Input';
+import { MaterialIcon } from '../MaterialIcon';
+import { StatusIndicator } from '../StatusIndicator';
+import styles from './index.module.scss';
+import { SelectProps } from './interfaces';
+import { ListItem } from '../../internal/components/ListItem';
+import { Option } from '../../internal/components/Option';
 
-function itemToString(item: Item<any> | null) {
+function itemToString(item: SelectProps.Item | null) {
   return item?.label ? item.label : '';
-}
-
-export interface SelectProps {
-  items: Item[];
-  selectedItem?: Item;
-  onSelectChange: (item: Item) => any;
-  onBlur?: React.FocusEventHandler<HTMLButtonElement>;
-  placeholder?: string;
-  error?: string;
-  invalid?: boolean;
-  className?: string;
-  loading?: boolean;
-  loadingText?: string;
-  errorText?: string;
-  renderWithPortal?: boolean;
 }
 
 export function Select({
@@ -128,13 +113,13 @@ export function Select({
       );
     if (!items.length) return <div className={styles.single}>No options</div>;
     return items.map((item, index) => (
-      <SelectItem
-        key={index}
-        item={item}
-        highlighted={highlightedIndex === index}
-        selected={selectedItem === item}
-        {...getItemProps({ item, index })}
-      />
+      <ListItem key={index} {...getItemProps({ item, index })}>
+        <Option
+          option={item}
+          highlighted={highlightedIndex === index}
+          selected={selectedItem === item}
+        />
+      </ListItem>
     ));
   };
 
@@ -169,33 +154,6 @@ export function Select({
     </div>
   );
 }
-interface SelectItemProps {
-  children?: ReactNode;
-  item: Item;
-  highlighted?: boolean;
-  selected?: boolean;
-}
-
-export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
-  (
-    { highlighted, selected, item, children, ...props }: SelectItemProps,
-    ref
-  ) => {
-    const myRef = useRef<HTMLLIElement>(null);
-    useEffect(() => {
-      if (highlighted) {
-        myRef.current?.setAttribute('data-highlighted', 'true');
-        myRef.current?.scrollIntoView({ block: 'nearest' });
-      } else myRef.current?.removeAttribute('data-highlighted');
-    }, [highlighted]);
-
-    return (
-      <ListItem ref={myRef} {...props}>
-        <span>{item.label}</span>
-      </ListItem>
-    );
-  }
-);
 
 interface SelectMenuProps {
   open?: boolean;

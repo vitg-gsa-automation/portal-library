@@ -1,26 +1,23 @@
 import { Story } from '@storybook/react';
+import { RowSelectionState, createColumnHelper } from '@tanstack/react-table';
+import { useState } from 'react';
 import {
   Button,
   DropdownButton,
   DropdownItem,
   ExpandableSection,
   ExpandableSectionProps,
-  FormField,
-  ListItem,
   StatusIndicator,
-  TextArea,
 } from '../components';
+import { ListItem } from '../internal/components/ListItem';
 import {
   CardContent,
   ColumnLayout,
-  Header,
   Property,
   SpaceBetween,
   Table,
 } from '../layouts';
 import { Package } from '../types/packages';
-import { RowSelectionState, createColumnHelper } from '@tanstack/react-table';
-import { useState } from 'react';
 
 const pkgs: Package[] = [
   {

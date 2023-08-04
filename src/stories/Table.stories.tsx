@@ -8,7 +8,6 @@ import {
   Empty,
   Filters,
   FormField,
-  ListItem,
   Select,
   SelectFilter,
   StatusIndicator,
@@ -20,6 +19,7 @@ import { Header, SpaceBetween } from '../layouts';
 import { Table, TableProps } from '../layouts/Table';
 import { Item } from '../types';
 import { Control, ImplementationStatus } from '../types/controls';
+import { ListItem } from '../internal/components/ListItem';
 
 export default {
   title: 'Table',
