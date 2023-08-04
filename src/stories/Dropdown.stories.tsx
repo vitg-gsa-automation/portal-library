@@ -19,6 +19,7 @@ export const Default: Story = (args) => {
         <button>Dropdown trigger</button>
       </DropdownTrigger>
       <DropdownContent side="bottom" align="end" loop>
+        
         <DropdownItem textValue="Account">
           <ListItem>Account</ListItem>
         </DropdownItem>

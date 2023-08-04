@@ -39,7 +39,7 @@ export const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(
 export const DropdownItem = forwardRef<any, DropdownItemProps>(
   ({ children, ...props }: DropdownItemProps, ref) => {
     return (
-      <DropdownMenu.Item {...props} ref={ref} asChild>
+      <DropdownMenu.Item ref={ref} className={styles.item} {...props}>
         {children}
       </DropdownMenu.Item>
     );

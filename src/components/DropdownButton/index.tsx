@@ -3,7 +3,7 @@ import { Dropdown, DropdownTrigger, DropdownContent } from '../Dropdown';
 import { Button, ButtonProps } from '../Button';
 import { MaterialIcon } from '../MaterialIcon';
 
-interface DropdownButtonProps extends ButtonProps {
+export interface DropdownButtonProps extends ButtonProps {
   children: React.ReactNode;
 }
 
