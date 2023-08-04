@@ -9,6 +9,20 @@ const items: OptionDefinition[] = [
   {
     label: 'VITGSSP1.xml',
     value: '1',
+  },
+  {
+    label: 'AwesomeCloudSSP1.xml',
+    value: '1',
+  },
+  {
+    label: 'VITG_sar.json',
+    value: '1',
+  },
+];
+const options: OptionDefinition[] = [
+  {
+    label: 'VITGSSP1.xml',
+    value: '1',
     icon: 'description',
     description: 'System Security Plan',
     tags: ['SSP', 'OSCAL XML'],
@@ -50,4 +64,27 @@ export const Default: Story<SelectProps> = (args) => {
 Default.args = {
   placeholder: 'Select document',
   items: items,
+};
+
+export const OptionVariant: Story<SelectProps> = (args) => {
+  const [selectedItem, setSelectedItem] = useState<OptionDefinition>({
+    label: 'VITGSSP1.xml',
+    value: '10',
+    icon: 'description',
+    description: 'System Security Plan',
+    tags: ['SSP', 'OSCAL XML'],
+    labelTag: '09/29/23',
+  });
+  return (
+    <Select
+      {...args}
+      selectedItem={selectedItem}
+      onSelectChange={setSelectedItem}
+    />
+  );
+};
+OptionVariant.args = {
+  placeholder: 'Select document',
+  items: options,
+  triggerVariant: 'option',
 };

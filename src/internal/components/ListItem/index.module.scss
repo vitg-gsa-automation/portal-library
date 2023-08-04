@@ -1,25 +1,9 @@
 .root {
-  display: flex;
-  align-items: center;
-  padding: 0.8rem 1.6rem;
-  white-space: nowrap;
-  border: 1px solid transparent;
-  border: 2px solid transparent;
-
-  font-size: 1.4rem;
-  cursor: pointer;
-
-  &[data-highlighted] {
-    border: 2px solid var(--color-gsa-blue-40);
-    border-radius: 8px;
+  border-bottom: 2px solid transparent;
+  &:last-child {
+    border-bottom: none;
   }
-
-  &[data-disabled] {
-    opacity: 0.25;
+  &:not(:last-child) {
+    border-bottom-color: var(--color-border-divider, #e6e6e6);
   }
-}
-
-.icon {
-  color: inherit;
-  margin-right: 1.2rem;
 }

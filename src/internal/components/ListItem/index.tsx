@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import styles from './index.module.scss';
 
 export interface ListItemProps extends React.HTMLAttributes<HTMLLIElement> {}
 
@@ -8,7 +9,7 @@ export const ListItem = forwardRef(
     ref: React.ForwardedRef<HTMLLIElement>
   ) => {
     return (
-      <li ref={ref} {...props}>
+      <li ref={ref} className={styles.root} {...props}>
         {children}
       </li>
     );

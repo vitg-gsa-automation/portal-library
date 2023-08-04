@@ -10,12 +10,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-right: 1.2rem;
   border: 2px solid var(--color-border-input);
   box-shadow: none;
   border-radius: 8px;
-  height: 3.4rem;
-  font-size: 1.4rem;
-  padding: 0 1.2rem;
   background-color: var(--color-bg-input);
   transition: border-color 0.1s;
   &[data-state='closed'] {
@@ -53,6 +51,13 @@
 }
 
 .label {
+  line-height: 20px;
+  font-size: 1.4rem;
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  padding-left: 1.2rem;
+
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

@@ -25,6 +25,7 @@ export function Select({
   items,
   selectedItem,
   placeholder = 'Placeholder',
+  triggerVariant,
   onSelectChange,
   onBlur,
   className,
@@ -98,6 +99,18 @@ export function Select({
     } else toggleRef.current?.setAttribute('data-state', 'closed');
   }, [isOpen]);
 
+  const renderTriggerVariant = function () {
+    if (triggerVariant === 'option' && selectedItem?.label) {
+      return <Option option={selectedItem} />;
+    } else {
+      return (
+        <span className={styles.label}>
+          {selectedItem?.label ? selectedItem.label : placeholder}
+        </span>
+      );
+    }
+  };
+
   const renderItems = function () {
     if (loading)
       return (
@@ -133,9 +146,7 @@ export function Select({
         {...props}
         {...getToggleButtonProps({ onBlur, ref: toggleRef })}
       >
-        <span className={styles.label}>
-          {selectedItem?.label ? selectedItem.label : placeholder}
-        </span>
+        {renderTriggerVariant()}
         <MaterialIcon
           className={styles.icon}
           icon="play_arrow"

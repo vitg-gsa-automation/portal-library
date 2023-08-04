@@ -3,9 +3,8 @@ import { OptionDefinition } from '../../internal/components/Option';
 interface BaseSelectProps {
   items: SelectProps.Items;
   selectedItem?: SelectProps.Item;
-  onSelectChange: (item: SelectProps.Item) => any;
-  onBlur?: React.FocusEventHandler<HTMLButtonElement>;
   placeholder?: string;
+  triggerVariant?: 'label' | 'option';
   error?: string;
   invalid?: boolean;
   className?: string;
@@ -13,6 +12,8 @@ interface BaseSelectProps {
   loadingText?: string;
   errorText?: string;
   renderWithPortal?: boolean;
+  onSelectChange: (item: SelectProps.Item) => any;
+  onBlur?: React.FocusEventHandler<HTMLButtonElement>;
 }
 
 export interface SelectProps extends BaseSelectProps {}
