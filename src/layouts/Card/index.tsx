@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { StatusIndicator } from '../../components/StatusIndicator';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'default' | 'embedded';
+  variant?: 'default' | 'embedded' | 'stacked';
   header?: ReactNode;
   footer?: ReactNode;
   loading?: boolean;

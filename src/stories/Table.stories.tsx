@@ -13,13 +13,22 @@ import {
   StatusIndicator,
   StatusIndicatorType,
   TextFilter,
+  Value,
 } from '../components';
 import { useCollection } from '../hooks/useCollection';
-import { Header, SpaceBetween } from '../layouts';
+import {
+  Card,
+  CardContent,
+  ColumnLayout,
+  Header,
+  Property,
+  SpaceBetween,
+} from '../layouts';
 import { Table, TableProps } from '../layouts/Table';
 import { Item } from '../types';
 import { Control, ImplementationStatus } from '../types/controls';
 import { ListItem } from '../internal/components/ListItem';
+import React from 'react';
 
 export default {
   title: 'Table',
@@ -411,3 +420,76 @@ export const SimpleFilter: Story<TableProps<Control>> = (args) => {
   );
 };
 SimpleFilter.args = {};
+export const Stacked: Story<TableProps<Control>> = (args) => {
+  const { filterProps, collectionProps } = useCollection<Control>();
+
+  return (
+    <React.Fragment>
+      <Card
+        variant="stacked"
+        header={<Header variant="h2" title="Validations summary" />}
+      >
+        <CardContent disableTopPadding>
+          <ColumnLayout columns={3}>
+            <Property label="Error">
+              <Value variant="large">127</Value>
+            </Property>
+            <Property label="Fatal">
+              <Value variant="large">-</Value>
+            </Property>
+            <Property label="Information">
+              <Value variant="large">46</Value>
+            </Property>
+            <Property label="Warning">
+              <Value variant="large">24</Value>
+            </Property>
+          </ColumnLayout>
+        </CardContent>
+      </Card>
+      <Table
+        {...collectionProps}
+        {...filterProps}
+        variant="stacked"
+        header={
+          <Header
+            variant="h2"
+            title="Controls"
+            count={
+              controls.length
+                ? Object.keys(collectionProps.rowSelection).length
+                  ? `(${Object.keys(collectionProps.rowSelection).length}/${
+                      controls.length
+                    })`
+                  : `(${controls.length})`
+                : ''
+            }
+          />
+        }
+        filter={
+          <TextFilter
+            filteringText={filterProps.globalFilter.filteringText}
+            placeholder="Find controls"
+            onChange={(e) =>
+              filterProps.onGlobalFilterChange((prevState) => {
+                return { ...prevState, filteringText: e.target.value };
+              })
+            }
+          />
+        }
+        selectionType="single"
+        columns={columns}
+        data={controls}
+        wrapLines={false}
+        globalFilterFn={(row, columnId, filterValue) => {
+          const search = filterValue.filteringText.toLowerCase();
+
+          let value = row.getValue(columnId) as string;
+          if (typeof value === 'number') value = String(value);
+
+          return value?.toLowerCase().includes(search);
+        }}
+      />
+    </React.Fragment>
+  );
+};
+Stacked.args = {};

@@ -38,7 +38,7 @@ import { Thead } from './thead';
 export interface TableProps<T> {
   data: T[];
   columns: ColumnDef<T, any>[];
-  variant?: 'card' | 'embedded';
+  variant?: 'card' | 'embedded' | 'stacked';
   rowSelection?: RowSelectionState;
   onRowSelectionChange?: OnChangeFn<RowSelectionState>;
   onRowClick?: (rowData: T) => unknown;
@@ -198,7 +198,7 @@ export const Table = <T extends unknown>({
 
   return (
     <Card
-      variant={variant === 'card' ? 'default' : 'embedded'}
+      variant={variant === 'card' ? 'default' : variant}
       header={
         hasHeader && (
           <div>
