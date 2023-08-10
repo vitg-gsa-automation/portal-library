@@ -14,7 +14,7 @@ export function RadialProgressBar({
   width,
 }: RadialProgressBarProps) {
   const calculateColor = (percentage: number): string => {
-    if (percentage > 75) return '#037f0c';
+    if (percentage >= 100) return '#037f0c';
     if (percentage > 50) return '#e47800';
     return '#CA4040';
   };

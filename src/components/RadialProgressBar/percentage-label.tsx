@@ -16,7 +16,7 @@ export function PercentageLabel({ x, y, value }: PercentageLabelProps) {
         fontWeight: 'bold',
       }}
     >
-      {value}%
+      {value ? `${value}%` : '-'}
     </text>
   );
 }
