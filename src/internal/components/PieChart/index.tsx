@@ -1,6 +1,6 @@
 import { ResponsivePie, PieSvgProps } from '@nivo/pie';
 
-interface PieChartData {
+export interface PieChartData {
   id: any;
   label: string;
   value: number;
@@ -9,13 +9,20 @@ interface PieChartData {
 
 export interface PieChartProps
   extends Omit<PieSvgProps<PieChartData>, 'height' | 'width'> {
-  height?: number;
+  height: number;
+  width?: number;
 }
-export function PieChart({ height, ...props }: PieChartProps) {
+export function PieChart({ height, width, ...props }: PieChartProps) {
   return (
-    <div style={{ height, minHeight: 0, width: '100%', minWidth: 0 }}>
+    <div
+      style={{
+        height: height || '100%',
+        minHeight: 0,
+        width: width || '100%',
+        minWidth: 0,
+      }}
+    >
       <ResponsivePie
-        margin={{ top: 20, right: 40, bottom: 30, left: 40 }}
         innerRadius={0.5}
         padAngle={0.7}
         cornerRadius={3}

@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react';
 import { Card, CardContent, Header } from '../layouts';
-import { PieChart, PieChartProps } from '../components/PieChart';
+import { PieChart, PieChartProps } from '../internal/components/PieChart';
 
 export default {
   title: 'PieChart',
@@ -11,32 +11,41 @@ const data = [
   {
     id: 'Error',
     label: 'Error',
-    value: 11,
-    color: '#ca4040',
+    value: 48,
+    color: '#CA4040',
   },
   {
     id: 'Fatal',
     label: 'Fatal',
-    value: 0,
-    color: '#ca4040',
-  },
-  {
-    id: 'Information',
-    label: 'Information',
-    value: 6,
-    color: '#3c97ff',
-  },
-  {
-    id: 'Warning',
-    label: 'Warning',
-    value: 12,
-    color: '#f58047',
+    value: 52,
+    color: '#E6E6E6',
   },
 ];
 
+type PercentageLabelProps = {
+  x: number;
+  y: number;
+  value: number;
+};
+
+const PercentageLabel = ({ x, y, value }: PercentageLabelProps) => (
+  <text
+    x={x}
+    y={y - 20}
+    textAnchor="middle"
+    dominantBaseline="central"
+    style={{
+      fontSize: '28px',
+      fontWeight: 'bold',
+    }}
+  >
+    {value}%
+  </text>
+);
+
 export const Default: Story<PieChartProps> = (args) => {
   return (
-    <Card header={<Header variant="h2" title="Summary" />}>
+    <Card header={<Header variant="h2" title="Document compliance" />}>
       <CardContent disableTopPadding>
         <PieChart {...args} />
       </CardContent>
@@ -45,8 +54,23 @@ export const Default: Story<PieChartProps> = (args) => {
 };
 
 Default.args = {
-  height: 270,
-  innerRadius: 0.5,
-  padAngle: 2,
+  height: 63,
+  width: 125,
+  innerRadius: 0.8,
+  padAngle: 0,
   data,
+  startAngle: -90,
+  endAngle: 90,
+  animate: false,
+  isInteractive: false,
+  enableArcLabels: false,
+  enableArcLinkLabels: false,
+  cornerRadius: 0,
+  borderWidth: 0,
+  layers: [
+    'arcs',
+    ({ centerX, centerY, dataWithArc }) => (
+      <PercentageLabel x={centerX} y={centerY} value={dataWithArc[0].value} />
+    ),
+  ],
 };
