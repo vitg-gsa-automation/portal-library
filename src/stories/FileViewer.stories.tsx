@@ -3690,3 +3690,194 @@ export const InModal: Story<FileViewerProps> = (args) => {
 };
 
 InModal.args = {};
+
+export const AnnotationsError: Story<FileViewerProps> = (args) => {
+  const fileString = `<?xml version="1.0" encoding="UTF-8"?>
+  <?xml-model href="https://raw.githubusercontent.com/usnistgov/OSCAL/release-1.0/xml/schema/oscal_complete_schema.xsd" schematypens="http://www.w3.org/2001/XMLSchema" title="OSCAL complete schema"?>
+  <!-- Modified by the OSCAL 1.0.0 RC2 to OSCAL 1.0.0 conversion XSLT on 2021-06-09T14:27:50.591-04:00 -->
+  <system-security-plan xmlns="http://csrc.nist.gov/ns/oscal/1.0"
+     uuid="8c000726-ba93-480d-a221-8cb60df10c24">
+      <metadata>
+          <!-- title, published, last-modified, version, oscal-version --> 
+          <!--revision-history>
+              <revision> 
+                  <published>2019-06-01T00:00:00.00-04:00</published> 
+                  <version>1.0</version>
+                  <oscal-version>1.0-Milestone3</oscal-version>
+                  <prop name="party-uuid" ns="https://fedramp.gov/ns/oscal" value="f84d8edc-d83e-440d-96c9-09b28c395ad5"/> 
+                  <remarks><p>Initial publication.</p></remarks>
+              </revision>
+              <revision>
+                  <published>2020-06-01T00:00:00.00-04:00</published>
+                  <version>2.0</version>
+                  <oscal-version>1.0-Milestone3</oscal-version>
+                  <prop name="party-uuid" ns="https://fedramp.gov/ns/oscal" value="2e0db7cf-08f5-472e-9360-fb3a9698476d"/>
+                  <remarks><p>Updated for annual assessment.</p></remarks>
+              </revision>
+              <!-- Additional revision assemblies as needed. -->
+          </revision-history-->
+  
+          <!-- doc-id, prop, link, role -->
+          <role id="prepared-by">
+              <title>Prepared By</title>
+              <description>The CSP for FedRAMP SSP, SAP, SAR, and POA&M.</description>
+          </role>
+          <role id="fedramp-pmo">
+              <title>FedRAMP Program Management Office</title>
+          </role>
+          <role id="content-approver">
+              <title>[SSP, SAP, or SAR] Approval</title>
+              <desc>The executive(s)accountable for the accuracy of this content.</desc>
+          </role>
+          <role id="cloud-service-provider">
+              <title>Cloud Service Provider</title>
+              <short-name>CSP</short-name>
+          </role>
+          <!-- cut: location assemblies-->
+          <party id="2e0db7cf-08f5-472e-9360-fb3a9698476d">
+              <name>Cloud Service Provider (CSP) Name</name>
+              <short-name>CSP Acronym/Short Name</short-name>
+              <location-uuid>[uuid-value-of-location]</location-uuid>
+          </party>
+          <party uuid="f84d8edc-d83e-440d-96c9-09b28c395ad5">
+              <name>Name of Consulting Org</name> <short-name>Acronym/Short Name</short-name>
+              <address type="work">
+                  <!-- address lines cut here for space --> 
+              </address>
+          </party>
+          <party uuid="77e0e2c8-2560-4fe9-ac78-c3ff4ffc9f6d" type="organization">
+              <name>Federal Risk and Authorization Management Program: Program Management Office</name>
+              <short-name>FedRAMP PMO</short-name>
+              <link href="https://fedramp.gov" rel="homepage"/>
+              <link href="#a2381e87-3d04-4108-a30b-b4d2f36d001f" rel="logo"/>
+              <link href="#985475ee-d4d6-4581-8fdf-d84d3d8caa48" rel="reference"/>
+              <link href="#1a23a771-d481-4594-9a1a-71d584fa4123" rel="reference"/>
+              <email-address>info@fedramp.gov</email-address>
+              <address type="work">
+                  <addr-line>1800 F St. NW</addr-line>
+                  <city>Washington</city>
+                  <state>DC</state>
+                  <postal-code>20006</postal-code>
+                  <country>US</country>
+              </address>
+              <remarks>
+                  <p>This party entry must be present in a FedRAMP SSP.</p>
+                  <p>The uuid may be different; however, the uuid must be associated with the
+                  "fedramp-pmo" role in the responsible-party assemblies.</p>
+              </remarks>
+          </party>
+          <party uuid="uuid-of-csp" type="organization">
+              <name>Cloud Service Provider (CSP) Name</name>
+              <short-name>CSP Acronym/Short Name</short-name>
+          </party>
+          <party uuid="uuid-of-person-1" type="person">
+              <name>[SAMPLE]Person Name 1</name>
+              <prop name="title" ns="https://fedramp.gov/ns/oscal">Individual's Title</prop>
+              <member-of-organization>uuid-of-csp-party</member-of-organization>
+          </party>
+          <party uuid="uuid-of-person-2" type="person">
+              <name>[SAMPLE]Person Name 2</name>
+              <prop name="title" ns="https://fedramp.gov/ns/oscal">Individual's Title</prop>
+              <member-of-organization>uuid-of-csp</member-of-organization>
+          </party>
+          <responsible-party role-id="cloud-service-provider">
+              <party-uuid>uuid-of-csp</party-uuid>
+          </responsible-party>
+          <responsible-party role-id="content-approver">
+              <party-uuid>uuid-of-person-1</party-uuid>
+              <party-uuid>uuid-of-person-2</party-uuid>
+          </responsible-party>
+  
+  
+  
+  
+  
+          <!-- cut: other party assemblies --> 
+          <responsible-party role-id="prepared-for">
+              <party-id>2e0db7cf-08f5-472e-9360-fb3a9698476d</party-id>
+          </responsible-party>
+          <responsible-party role-id="prepared-by">
+              <party-id>f84d8edc-d83e-440d-96c9-09b28c395ad5</party-id>
+          </responsible-party>
+      </metadata>
+      <!-- OSCAL File Body -->
+      <back-matter>
+          <resource id="1507f5e0-635c-4e23-a5f3-93f368f8e022">
+              <description><p>Peparer Logo</p></description>
+              <prop name=type >logo</prop>
+              <!-- Use rlink and/or base64 -->
+              <rlink href="./party-1-logo.png" media-type="image/png" /> <base64>00000000</base64>
+          </resource>
+          <resource uuid="985475ee-d4d6-4581-8fdf-d84d3d8caa48">
+              <title>FedRAMP Applicable Laws and Regulations</title>
+              <prop name="type" value="fedramp-citations"/>
+              <rlink href="https://-cut-/SSP-A12-FedRAMP-Laws-and-Regulations-Template.xlsx" />
+          </resource>
+          <resource uuid="1a23a771-d481-4594-9a1a-71d584fa4123">
+              <title>FedRAMP Master Acronym and Glossary</title>
+              <prop name="type" value="fedramp-acronyms"/>
+              <rlink href="https://-cut-/FedRAMP_Master_Acronym_and_Glossary.pdf" />
+          </resource>
+          <resource uuid="d45612a9-cf25-4ef6-b2dd-69e38ba2967a">
+              <title>[SAMPLE]Name or Title of Cited Law</title>
+              <prop name="type" value="law"/>
+              <prop name="publication" value="Document Date"/>
+              <prop name="version" value="Document Version"/>
+              <doc-id type="doi">Identification Number</doc-id>
+              <rlink href="https://domain.example/path/to/document.pdf" />
+          </resource>
+          <resource uuid="a8a0cc81-800f-479f-93d3-8b8743d9b98d">
+              <title>[SAMPLE]Name or Title of Privacy-Related Law Citation</title>
+              <prop name="type" value="law"/>
+              <prop name="type" value="personally-identifiable-information"/>
+              <prop name="publication" value="Document Date"/>
+              <prop name="version" value="Document Version"/>
+              <doc-id type="doi">Identification Number</doc-id>
+              <rlink href="https://domain.example/path/to/document.pdf" />
+          </resource>
+          <!-- citation -->
+          <resource uuid="fab59751-b855-40cb-93c1-492562e20e18">
+              <title>Privacy Impact Assessment</title>
+              <prop name="type" value="privacy-impact-assessment"/>
+              <prop name="publication" value="Document Date"/>
+              <prop name="version" value="Document Version"/>
+              761B<!-- Add rlink with relative path OR embed with base64 encoding --> 
+              <rlink href="./pia.docx" />
+              <base64>00000000</base64>
+          </resource>
+          <resource id="diag-boundary-1">
+              <desc>The primary authorization boundary diagram.</desc>
+              <!-- Add rlink with relative path or embed with base64 encoding -->
+              <rlink media-type="image/png" href="./boundary.png" />
+              <base64 media-type="image/png" filename="boundary.png">00000000</base64> 
+              <remarks>
+                  <p>Set system-characteristics/authorization-boundary/diagram/link/@href="#diag-boundary-1"</p>
+              </remarks>
+          </resource>
+      </back-matter>
+  </system-security-plan>
+  `;
+  const { html, activateByIndex, error } = useAnnotations({
+    fileString,
+    annotations: [],
+    SaxonJS,
+  });
+
+  return (
+    <Modal trigger={<Button text="Open" />} header="File viewer" size="max">
+      <FileViewer
+        {...args}
+        language="xml"
+        html={html}
+        disableFooter
+        onRendered={() => {
+          // activateById('responsible-role-has-role-definition-112');
+          activateByIndex(0);
+        }}
+        error={error}
+      />
+    </Modal>
+  );
+};
+
+AnnotationsError.args = {};

@@ -17,6 +17,7 @@ export function useAnnotations({
 }: UseAnnotationsOptions) {
   const [html, setHtml] = useState('');
   const [activeIndex, setActiveIndex] = useState<number>();
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (!fileString) return;
@@ -24,13 +25,19 @@ export function useAnnotations({
   }, [fileString, annotations]);
 
   const annotate = function (fileString: string, annotations: Annotation[]) {
-    const annotated = annotateXML({
-      SaxonJS,
-      xmlString: fileString,
-      annotations,
-      formatXML: highlightXML,
-    });
-    setHtml(annotated);
+    try {
+      const annotated = annotateXML({
+        SaxonJS,
+        xmlString: fileString,
+        annotations,
+        formatXML: highlightXML,
+      });
+      setHtml(annotated);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      }
+    }
   };
 
   const getTarget = function (index: number) {
@@ -79,6 +86,7 @@ export function useAnnotations({
     annotation:
       activeIndex !== undefined ? annotations.at(activeIndex) : undefined,
     activeIndex,
+    error,
     annotate,
     activateById,
     activateByIndex,
