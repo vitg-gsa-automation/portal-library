@@ -18,6 +18,7 @@ export interface Package {
   PkgModifiedDate?: string;
   OrgID?: string;
   OrgName?: string;
+  RevisionName?: string;
 }
 
 export enum PackageStatus {

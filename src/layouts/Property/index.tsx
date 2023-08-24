@@ -7,9 +7,9 @@ interface PropertyProps {
   children: ReactNode;
 }
 
-export function Property({ label, children }: PropertyProps) {
+export function Property({ label, children, ...props }: PropertyProps) {
   return (
-    <div className={styles.root}>
+    <div className={styles.root} {...props}>
       <span className={styles.label}>{label}</span>
       <span className={styles.value}>{children || '-'}</span>
     </div>

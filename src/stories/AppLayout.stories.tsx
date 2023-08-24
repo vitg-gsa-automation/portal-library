@@ -344,8 +344,10 @@ export const Default: Story<TableProps<Package>> = (args) => {
                       <CardContent disableTopPadding>
                         <ColumnLayout columns={3}>
                           <SpaceBetween>
-                            <Property label="Name">AwesomeClouSSP1</Property>
-                            <Property label="Description">
+                            <Property data-cy="name" label="Name">
+                              AwesomeClouSSP1
+                            </Property>
+                            <Property data-cy="description" label="Description">
                               System Security Plan
                             </Property>
                             <Property label="Status">
