@@ -11,6 +11,7 @@ export const Default: Story<TopNavigationProps> = (args) => {
   return <TopNavigation {...args} />;
 };
 Default.args = {
+  href: '#',
   menuDropdownUtility: {
     type: 'menu-dropdown',
     text: 'Customer Name',

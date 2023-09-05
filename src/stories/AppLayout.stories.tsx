@@ -144,6 +144,7 @@ export const Default: Story<TableProps<Package>> = (args) => {
               <TopNavigation
                 title="Authorization portal"
                 logo={'/'}
+                href="#"
                 menuDropdownUtility={{
                   type: 'menu-dropdown',
                   text: 'Aaron Nolan',
@@ -242,8 +243,9 @@ export const Default: Story<TableProps<Package>> = (args) => {
                         {
                           id: 'dashboard4',
                           type: 'link',
-                          text: 'Navigation link',
-                          href: '/dashboard1',
+                          text: 'Monitoring (ConMon)',
+                          href: 'https://google.com',
+                          external: true,
                         },
                         {
                           id: 'home5',

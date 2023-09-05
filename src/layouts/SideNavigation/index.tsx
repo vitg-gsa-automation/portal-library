@@ -24,6 +24,7 @@ interface SideNavigationItem {
   defaultExpanded?: boolean;
   href?: string;
   end?: boolean;
+  external?: boolean;
 }
 
 type SideNavigationItems = ReadonlyArray<SideNavigationItem>;
@@ -34,22 +35,38 @@ export interface SideNavigationProps {
 }
 
 export function SideNavigation({ header, items }: SideNavigationProps) {
+  const renderLinkItem = function (item: SideNavigationItem) {
+    const { href, external } = item;
+    if (external) {
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles['nav-link']}
+        >
+          {item.text}{' '}
+          <MaterialIcon icon="open_in_new" className={styles.icon} />
+        </a>
+      );
+    } else {
+      return (
+        <SideNavigationLink key={item.id} to={item.href || '#'} end={item.end}>
+          {item.text}
+        </SideNavigationLink>
+      );
+    }
+  };
   const renderItems = function (items?: SideNavigationItems) {
     if (!items) return null;
     return items.map((item) => {
-      if (item.type === 'link')
+      if (item.type === 'link') {
         return (
           <li key={item.id} className={styles.item}>
-            <SideNavigationLink
-              key={item.id}
-              to={item.href || '#'}
-              end={item.end}
-            >
-              {item.text}
-            </SideNavigationLink>
+            {renderLinkItem(item)}
           </li>
         );
-      else if (item.type === 'section') {
+      } else if (item.type === 'section') {
         return (
           <li key={item.id} className={styles.item}>
             <Expandable text={item.text} value={item.id}>
