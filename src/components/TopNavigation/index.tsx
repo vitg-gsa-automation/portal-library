@@ -8,14 +8,16 @@ import { MenuDropdownUtility } from './interfaces';
 import { UtilityComponent } from './utility';
 
 export interface TopNavigationProps {
-  title?: string;
   logo: string;
+  href: string;
+  title?: string;
   userToggle?: ReactElement;
   children?: React.ReactNode;
   menuDropdownUtility?: MenuDropdownUtility;
 }
 
 export function TopNavigation({
+  href,
   userToggle,
   title,
   logo,
@@ -25,7 +27,7 @@ export function TopNavigation({
   return (
     <div className={styles.root}>
       <div className={styles.left}>
-        <Link to="/dashboard" className={styles.logo}>
+        <Link to={href} className={styles.logo}>
           <img src={logo} alt="logo" className={styles['logo__image']} />
         </Link>
         <span className={styles.title}>{title}</span>
