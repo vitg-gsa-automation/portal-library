@@ -2,6 +2,7 @@ import { DocStatus } from '../../types/documents';
 import {
   getDocumentStatusIndicatorType,
   stringToDocStatus,
+  stringToDocTypeAbbrev,
 } from '../documents';
 
 describe('getDocumentStatusIndicatorType', () => {
@@ -33,3 +34,34 @@ describe('stringToDocStatus', () => {
     expect(stringToDocStatus('Invalid Status')).toBeUndefined();
   });
 });
+
+
+describe('stringToDocTypeAbbrev', () => {
+  it('should return valid doc type abbreviations in lowercase', () => {
+    expect(stringToDocTypeAbbrev('SSP')).toBe('ssp');
+    expect(stringToDocTypeAbbrev('sap')).toBe('sap');
+    expect(stringToDocTypeAbbrev('SAR')).toBe('sar');
+    expect(stringToDocTypeAbbrev('POAM')).toBe('poam');
+  });
+
+  it('should return undefined for invalid doc type abbreviations', () => {
+    expect(stringToDocTypeAbbrev('abc')).toBeUndefined();
+    expect(stringToDocTypeAbbrev('ssa')).toBeUndefined();
+    expect(stringToDocTypeAbbrev('sa')).toBeUndefined();
+    expect(stringToDocTypeAbbrev('pom')).toBeUndefined();
+  });
+
+  it('should be case insensitive', () => {
+    expect(stringToDocTypeAbbrev('Ssp')).toBe('ssp');
+    expect(stringToDocTypeAbbrev('SaP')).toBe('sap');
+    expect(stringToDocTypeAbbrev('saR')).toBe('sar');
+    expect(stringToDocTypeAbbrev('POaM')).toBe('poam');
+  });
+
+  it('should return undefined for empty strings or whitespace strings', () => {
+    expect(stringToDocTypeAbbrev('')).toBeUndefined();
+    expect(stringToDocTypeAbbrev(' ')).toBeUndefined();
+    expect(stringToDocTypeAbbrev('     ')).toBeUndefined();
+  });
+});
+
