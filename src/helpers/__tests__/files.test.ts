@@ -1,5 +1,6 @@
 import {
   extractFileExtension,
+  formatBytes,
   getDocTypeAbbrev,
   getOSCALExtension,
 } from '../files';
@@ -141,5 +142,27 @@ describe('getDocTypeAbbrev function with JSON files', () => {
     const mockFile = new MockFile('test.json', JSON.stringify({ unknown: {} }));
     const result = await getDocTypeAbbrev(mockFile as any);
     expect(result).toEqual(undefined);
+  });
+});
+
+describe('formatBytes', () => {
+  it('should correctly format bytes with default decimal setting', () => {
+    expect(formatBytes(1024)).toBe('1 KB');
+    expect(formatBytes(1048576)).toBe('1 MB');
+  });
+
+  it('should return correct format with custom decimals', () => {
+    expect(formatBytes(1024, 0)).toBe('1 KB');
+    expect(formatBytes(543454, 3)).toBe('530.717 KB');
+  });
+
+  it('should return "0 Bytes" for non-positive numbers or when input is invalid', () => {
+    expect(formatBytes(0)).toBe('0 Bytes');
+    expect(formatBytes(-5)).toBe('0 Bytes');
+    expect(formatBytes(NaN)).toBe('0 Bytes');
+  });
+
+  it('should not allow negative decimal values', () => {
+    expect(formatBytes(1024, -2)).toBe('1 KB'); // Uses default 2 decimals since negative is not allowed
   });
 });

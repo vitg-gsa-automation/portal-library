@@ -67,3 +67,10 @@ export type Annotation = {
   uniqueId: string;
   xpath: string;
 };
+
+export interface ValidationResult {
+  file: CustomFile;
+  status: 'success' | 'error';
+  assertions: Assertion[];
+  message?: string;
+}

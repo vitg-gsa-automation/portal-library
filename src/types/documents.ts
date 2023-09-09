@@ -32,6 +32,7 @@ export interface Document {
   DocumentDescription?: string;
   OrgName?: string;
   OrgID?: number;
+  RevisionName?: string;
 
   //
   User?: string;
