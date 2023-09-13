@@ -1,12 +1,21 @@
 import React, { ForwardedRef, forwardRef } from 'react';
 import styles from './index.module.scss';
 
-interface FileInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface FileInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  webkitdirectory?: string;
+  directory?: string;
+  mozdirectory?: string;
+  odirectory?: string;
+  msdirectory?: string;
   onUploadChange: (fileList: FileList) => void;
 }
 
 export const FileInput = forwardRef(
-  ({ onUploadChange }: FileInputProps, ref: ForwardedRef<HTMLInputElement>) => {
+  (
+    { onUploadChange, ...props }: FileInputProps,
+    ref: ForwardedRef<HTMLInputElement>
+  ) => {
     const handleUploadChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       event.preventDefault();
       const fileList = event.target.files;
@@ -22,6 +31,7 @@ export const FileInput = forwardRef(
         accept="*"
         onChange={handleUploadChange}
         multiple
+        {...props}
       />
     );
   }
