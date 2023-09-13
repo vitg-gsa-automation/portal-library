@@ -82,3 +82,5 @@ export interface DocumentDetails {
   Planned: number;
   Published: string;
 }
+
+export type Revision = 'rev4' | 'rev5';
