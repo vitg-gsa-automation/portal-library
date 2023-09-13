@@ -5,6 +5,7 @@ import {
   OnChangeFn,
   RowSelectionState,
   SortingState,
+  VisibilityState,
   createColumnHelper,
   flexRender,
   getCoreRowModel,
@@ -51,7 +52,7 @@ export interface TableProps<T> {
   loading?: boolean;
   loadingText?: string;
   error?: string;
-  columnVisibility?: ColumnVisibility;
+  columnVisibility?: ColumnVisibility<T>;
   initialState?: InitialTableState;
   selectionType?: 'single' | 'multi';
   wrapLines?: boolean;
@@ -70,9 +71,9 @@ interface FlexCellProps {
   text: string;
 }
 
-interface ColumnVisibility {
-  [key: string]: boolean;
-}
+export type ColumnVisibility<T = any> = {
+  [key in keyof T]?: boolean;
+};
 
 export const Table = <T extends unknown>({
   data,
@@ -165,7 +166,7 @@ export const Table = <T extends unknown>({
     state: {
       rowSelection,
       sorting,
-      columnVisibility,
+      columnVisibility: columnVisibility as VisibilityState,
       globalFilter,
     },
     globalFilterFn:

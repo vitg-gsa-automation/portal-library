@@ -128,6 +128,7 @@ const columns = [
 export const Default: Story<TableProps<Control>> = (args) => {
   const { collectionProps } = useCollection<Control>();
   const { rowSelection } = collectionProps;
+  
   return (
     <Table
       {...args}
