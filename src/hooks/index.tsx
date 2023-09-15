@@ -5,3 +5,4 @@ export * from './useAnnotations';
 export * from './useCollection';
 export * from './useHighlight';
 export * from './useFileString';
+export * from './useLocalStorage';
