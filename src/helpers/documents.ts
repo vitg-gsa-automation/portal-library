@@ -1,5 +1,6 @@
 import { DocStatus, DocTypeAbbrev } from '../types/documents';
 import { StatusIndicatorType } from '../components/StatusIndicator';
+import { extractFileExtension } from './files';
 
 export function getDocumentStatusIndicatorType(
   status: DocStatus
@@ -26,14 +27,14 @@ export function stringToDocStatus(str: string): DocStatus | undefined {
 }
 
 export function stringToDocTypeAbbrev(str: string): DocTypeAbbrev | undefined {
-  const validDocTypeAbbrevs: ReadonlyArray<DocTypeAbbrev> = [
+  const validDocTypeAbbrevs = new Set<DocTypeAbbrev>([
     'ssp',
     'sap',
     'sar',
     'poam',
-  ];
+  ]);
   const lowercase = str.toLowerCase();
-  if (validDocTypeAbbrevs.includes(lowercase as DocTypeAbbrev)) {
+  if (validDocTypeAbbrevs.has(lowercase as DocTypeAbbrev)) {
     return lowercase as DocTypeAbbrev;
   }
   return;

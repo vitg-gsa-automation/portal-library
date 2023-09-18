@@ -1,3 +1,4 @@
+import { MockFile } from '../../__mocks__/mock-file';
 import { DocStatus } from '../../types/documents';
 import {
   getDocumentStatusIndicatorType,
@@ -35,7 +36,6 @@ describe('stringToDocStatus', () => {
   });
 });
 
-
 describe('stringToDocTypeAbbrev', () => {
   it('should return valid doc type abbreviations in lowercase', () => {
     expect(stringToDocTypeAbbrev('SSP')).toBe('ssp');
@@ -64,4 +64,3 @@ describe('stringToDocTypeAbbrev', () => {
     expect(stringToDocTypeAbbrev('     ')).toBeUndefined();
   });
 });
-

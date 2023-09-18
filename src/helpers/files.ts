@@ -19,22 +19,7 @@ export function getOSCALExtension(str: string): OSCALExtension | undefined {
 export async function getDocTypeAbbrev(
   file: File
 ): Promise<DocTypeAbbrev | undefined> {
-  const extension = extractFileExtension(file.name);
-  if (!extension) return;
-  const oscalExtension = getOSCALExtension(extension);
-  if (!oscalExtension) return;
-  const text = await file.text();
-  let rootElement = '';
-
-  if (oscalExtension === 'xml') {
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(text, 'application/xml');
-    rootElement = xmlDoc.documentElement.nodeName;
-  } else if (oscalExtension === 'json') {
-    const jsonDoc = JSON.parse(text);
-    rootElement = Object.keys(jsonDoc)[0];
-  }
-
+  const rootElement = await getRootElement(file);
   switch (rootElement) {
     case 'system-security-plan':
       return 'ssp';
@@ -59,4 +44,51 @@ export function formatBytes(bytes: number, decimals = 2) {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+}
+
+export function getRootElementFromYAML(text: string): string {
+  const lines = text.split('\n');
+  for (let line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('---') || trimmed.startsWith('#')) {
+      continue;
+    }
+    if (line[0] !== ' ' && line[0] !== '\t') {
+      // No leading whitespace
+      return trimmed.split(':')[0];
+    } else break;
+  }
+  return '';
+}
+
+/**
+ * Retrieves the root element of the provided file. The file must be one of the following formats: XML, JSON, or YAML.
+ *
+ * @param {File} file - The file object from which the root element should be extracted. The file's format must be either XML, JSON, or YAML.
+ * @returns {Promise<string>} A promise that resolves with the name of the root element.
+ *
+ * @example
+ *
+ * const file = new File(["<system-security-plan>Hello World</system-security-plan>"], "sample.xml", { type: "text/xml" });
+ * const root = await getRootElement(file);
+ * console.log(root); // "system-security-plan"
+ */
+export async function getRootElement(file: File): Promise<string> {
+  const extension = extractFileExtension(file.name);
+  const text = await file.text();
+  let rootElement = '';
+
+  if (extension === 'xml') {
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(text, 'application/xml');
+    rootElement = xmlDoc.documentElement.nodeName;
+  } else if (extension === 'json') {
+    const jsonDoc = JSON.parse(text);
+    rootElement = Object.keys(jsonDoc)[0];
+  } else if (extension === 'yml' || extension === 'yaml') {
+    rootElement = getRootElementFromYAML(text);
+  } else {
+    throw new Error('Unsupported file format');
+  }
+  return rootElement;
 }

@@ -34,4 +34,4 @@ export interface UploadResult {
   checkResult?: CheckResult;
 }
 
-export type OSCALExtension = 'xml' | 'json' | 'yaml';
+export type OSCALExtension = 'xml' | 'json' | 'yaml' | 'yml';
