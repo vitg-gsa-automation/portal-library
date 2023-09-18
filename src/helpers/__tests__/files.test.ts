@@ -2,6 +2,7 @@ import {
   extractFileExtension,
   formatBytes,
   getDocTypeAbbrev,
+  getIsOscal,
   getOSCALExtension,
   getRootElement,
   getRootElementFromYAML,
@@ -317,5 +318,53 @@ describe('getRootElement', () => {
     await expect(getRootElement(file)).rejects.toThrow(
       'Unsupported file format'
     );
+  });
+});
+
+describe('getIsOscal', () => {
+  it('returns true for a valid ssp in XML', async () => {
+    const file = new MockFile(
+      '<system-security-plan>Hello World</system-security-plan>',
+      'sample.xml',
+      { type: 'text/xml' }
+    );
+    const result = await getIsOscal(file);
+    expect(result).toBe(true);
+  });
+  it('returns true for a valid ssp in JSON', async () => {
+    const fileContent = JSON.stringify({
+      'system-security-plan': 'Hello World',
+    });
+    const file = new MockFile(fileContent, 'sample.json', {
+      type: 'application/json',
+    });
+    const result = await getIsOscal(file);
+    expect(result).toBe(true);
+  });
+  it('returns true for a valid ssp in YAML', async () => {
+    const fileContent = 'system-security-plan:\n  Hello: World';
+    const file = new MockFile(fileContent, 'sample.yaml', {
+      type: 'text/yaml',
+    });
+    const result = await getIsOscal(file);
+    expect(result).toBe(true);
+  });
+
+  it('returns false for an invalid oscal root element', async () => {
+    const file = new MockFile('<yikes>Hello World</yikes>', 'sample.xml', {
+      type: 'text/xml',
+    });
+    const result = await getIsOscal(file);
+    expect(result).toBe(false);
+  });
+  it('throws an error when an invalid file format is used', async () => {
+    const file = new MockFile(
+      'This is a sample plaintext content.',
+      'sample.txt',
+      {
+        type: 'text/plain',
+      }
+    );
+    await expect(getIsOscal(file)).rejects.toThrow();
   });
 });

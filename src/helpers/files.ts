@@ -7,9 +7,14 @@ export function extractFileExtension(fileName: string) {
 }
 
 export function getOSCALExtension(str: string): OSCALExtension | undefined {
-  const validExtensions: OSCALExtension[] = ['xml', 'json', 'yaml'];
+  const validExtensions = new Set<OSCALExtension>([
+    'xml',
+    'json',
+    'yaml',
+    'yml',
+  ]);
 
-  if (validExtensions.includes(str as OSCALExtension)) {
+  if (validExtensions.has(str as OSCALExtension)) {
     return str as OSCALExtension;
   }
 
@@ -91,4 +96,16 @@ export async function getRootElement(file: File): Promise<string> {
     throw new Error('Unsupported file format');
   }
   return rootElement;
+}
+
+export async function getIsOscal(file: File): Promise<boolean> {
+  const rootElement = await getRootElement(file);
+  const validRootElements = new Set([
+    'system-security-plan',
+    'assessment-plan',
+    'assessment-results',
+    'plan-of-action-and-milestones',
+  ]);
+
+  return validRootElements.has(rootElement);
 }

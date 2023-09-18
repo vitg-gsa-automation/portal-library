@@ -1,4 +1,3 @@
-import { MockFile } from '../../__mocks__/mock-file';
 import { DocStatus } from '../../types/documents';
 import {
   getDocumentStatusIndicatorType,
