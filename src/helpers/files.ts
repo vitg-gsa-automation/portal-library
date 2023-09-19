@@ -98,7 +98,16 @@ export async function getRootElement(file: File): Promise<string> {
   return rootElement;
 }
 
-export async function getIsOscal(file: File): Promise<boolean> {
+/**
+ * Checks if the provided file has a root element matching any of the valid OSCAL document types.
+ *
+ * @param {File} file - The file to be checked.
+ * @returns {Promise<boolean>} - Returns true if the file is an OSCAL document, otherwise false.
+ */
+export async function isOscal(file: File): Promise<boolean> {
+  const extension = extractFileExtension(file.name);
+  const oscalExtension = extension ? getOSCALExtension(extension) : undefined;
+  if (!oscalExtension) return false;
   const rootElement = await getRootElement(file);
   const validRootElements = new Set([
     'system-security-plan',

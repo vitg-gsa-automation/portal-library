@@ -2,7 +2,7 @@ import {
   extractFileExtension,
   formatBytes,
   getDocTypeAbbrev,
-  getIsOscal,
+  isOscal,
   getOSCALExtension,
   getRootElement,
   getRootElementFromYAML,
@@ -321,14 +321,14 @@ describe('getRootElement', () => {
   });
 });
 
-describe('getIsOscal', () => {
+describe('isOscal', () => {
   it('returns true for a valid ssp in XML', async () => {
     const file = new MockFile(
       '<system-security-plan>Hello World</system-security-plan>',
       'sample.xml',
       { type: 'text/xml' }
     );
-    const result = await getIsOscal(file);
+    const result = await isOscal(file);
     expect(result).toBe(true);
   });
   it('returns true for a valid ssp in JSON', async () => {
@@ -338,7 +338,7 @@ describe('getIsOscal', () => {
     const file = new MockFile(fileContent, 'sample.json', {
       type: 'application/json',
     });
-    const result = await getIsOscal(file);
+    const result = await isOscal(file);
     expect(result).toBe(true);
   });
   it('returns true for a valid ssp in YAML', async () => {
@@ -346,7 +346,7 @@ describe('getIsOscal', () => {
     const file = new MockFile(fileContent, 'sample.yaml', {
       type: 'text/yaml',
     });
-    const result = await getIsOscal(file);
+    const result = await isOscal(file);
     expect(result).toBe(true);
   });
 
@@ -354,10 +354,10 @@ describe('getIsOscal', () => {
     const file = new MockFile('<yikes>Hello World</yikes>', 'sample.xml', {
       type: 'text/xml',
     });
-    const result = await getIsOscal(file);
+    const result = await isOscal(file);
     expect(result).toBe(false);
   });
-  it('throws an error when an invalid file format is used', async () => {
+  it('returns false for a non-oscal document', async () => {
     const file = new MockFile(
       'This is a sample plaintext content.',
       'sample.txt',
@@ -365,6 +365,7 @@ describe('getIsOscal', () => {
         type: 'text/plain',
       }
     );
-    await expect(getIsOscal(file)).rejects.toThrow();
+    const result = await isOscal(file);
+    expect(result).toBe(false);
   });
 });
