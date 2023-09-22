@@ -45,3 +45,4 @@ export * from './SelectFilter';
 export * from './FileViewer';
 export * from './ErrorComponent';
 export * from './RadialProgressBar';
+export * from './Table';

@@ -23,15 +23,15 @@ import React, {
   useState,
 } from 'react';
 
-import { Button } from '../../components/Button';
-import { Checkbox } from '../../components/Checkbox';
-import { Pagination } from '../../components/Pagination';
-import { Radio } from '../../components/Radio';
-import { RadioGroupRoot } from '../../components/Radio';
-import { StatusIndicator } from '../../components/StatusIndicator';
-import { Empty } from '../../components/Empty';
-import { Loader } from '../../components/Loader';
-import { MaterialIcon } from '../../components/MaterialIcon';
+import { Button } from '../Button';
+import { Checkbox } from '../Checkbox';
+import { Pagination } from '../Pagination';
+import { Radio } from '../Radio';
+import { RadioGroupRoot } from '../Radio';
+import { StatusIndicator } from '../StatusIndicator';
+import { Empty } from '../Empty';
+import { Loader } from '../Loader';
+import { MaterialIcon } from '../MaterialIcon';
 import { Card } from '../../layouts/Card';
 import styles from './index.module.scss';
 import { Thead } from './thead';

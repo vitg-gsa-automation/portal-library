@@ -1,7 +1,7 @@
 import { Header, Table, flexRender } from '@tanstack/react-table';
 import styles from './index.module.scss';
 import clsx from 'clsx';
-import { MaterialIcon } from '../../components/MaterialIcon';
+import { MaterialIcon } from '../MaterialIcon';
 import React from 'react';
 
 interface TheadProps {

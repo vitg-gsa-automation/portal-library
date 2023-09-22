@@ -24,7 +24,7 @@ import {
   Property,
   SpaceBetween,
 } from '../layouts';
-import { Table, TableProps } from '../layouts/Table';
+import { Table, TableProps } from '../components/Table';
 import { Item } from '../types';
 import { Control, ImplementationStatus } from '../types/controls';
 import { ListItem } from '../internal/components/ListItem';
@@ -128,7 +128,7 @@ const columns = [
 export const Default: Story<TableProps<Control>> = (args) => {
   const { collectionProps } = useCollection<Control>();
   const { rowSelection } = collectionProps;
-  
+
   return (
     <Table
       {...args}

@@ -12,7 +12,6 @@ export * from './AppLayout';
 export * from './Property';
 export * from './Sidebar';
 export * from './SpaceBetween';
-export * from './Table';
 export * from './Window';
 export * from './SideNavigation';
 export * from './HelpPanel';
