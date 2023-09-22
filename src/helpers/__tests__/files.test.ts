@@ -221,6 +221,16 @@ describe('getDocTypeAbbrev function with YAML files', () => {
   });
 });
 
+describe('getDocTypeAbbrev function with non-oscal files', () => {
+  test('should return undefined for plaintext file', async () => {
+    const file = new MockFile('unsupported content', 'sample.txt', {
+      type: 'text/plain',
+    });
+    const result = await getDocTypeAbbrev(file);
+    expect(result).toEqual(undefined);
+  });
+});
+
 describe('formatBytes', () => {
   it('should correctly format bytes with default decimal setting', () => {
     expect(formatBytes(1024)).toBe('1 KB');

@@ -1,14 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react';
 import { Story } from '@storybook/react';
+import React, { useMemo } from 'react';
 
-import { FileViewer, FileViewerProps } from '../components/FileViewer';
-import { useAnnotations } from '../hooks/useAnnotations';
 import { Button } from '../components/Button';
-import { Annotation, SVRL } from '../types/validations';
-import { getSVRLFailedAssertions } from '../helpers/validations';
-import { SpaceBetween } from '../layouts/SpaceBetween';
+import { FileViewer, FileViewerProps } from '../components/FileViewer';
 import { Modal } from '../components/Modal';
+import { getSVRLFailedAssertions } from '../helpers/validations';
+import { useAnnotations } from '../hooks/useAnnotations';
 import { useHighlight } from '../hooks/useHighlight';
+import { Annotation, SVRL } from '../types/validations';
 
 // version via a script tag in index.html.
 const SaxonJS = (window as any).SaxonJS;
@@ -19,483 +18,35 @@ export default {
 };
 
 export const Default: Story<FileViewerProps> = (args) => {
-  const xmlString = `<?xml version="1.0" encoding="UTF-8"?>
-  <system-security-plan xmlns:m="http://csrc.nist.gov/ns/oscal/metaschema/1.0"
-      xmlns="http://csrc.nist.gov/ns/oscal/1.0"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://csrc.nist.gov/ns/oscal/1.0 https://raw.githubusercontent.com/usnistgov/OSCAL/main/xml/schema/oscal_ssp_schema.xsd" uuid="993cbf3c-3e67-4f3f-94c8-535fef442346">
-      <metadata>
-          <title>AwesomeCloud SSP</title>
-          <last-modified>2023-01-12T10:33:05.579569700-05:00</last-modified>
-          <version>1.0</version>
-          <oscal-version>1.0.4</oscal-version>
-      </metadata>
-      <import-profile href="FedRAMP_rev4_MODERATE-baseline_profile.xml"/>    
-      <system-characteristics>
-          <system-id identifier-type="https://fedramp.gov">F00000001</system-id>
-          <system-id>F00000001</system-id>
-          <system-name>AwesomeCloud</system-name>
-          <description>
-              <p>AwesomeCloud hosts a public facing web application that collects surveys from consumers on their favorite condiments. Based on responses to surveys the AwesomeCloud proprietary algorithm assigns a score to each condiment and determines whether a condiment earns the endorsement of Awesome Sauce. The scores are updated dynamically as new surveys are submitted and the scores and Awesome Sauce endorsements are posted to the AwesomeCloud public web page.
-              </p>
-          </description>
-          <security-sensitivity-level>fips-199-moderate</security-sensitivity-level>
-          <system-information>
-              <information-type uuid="a955e21e-2050-420a-914e-8424132b9342">
-                  <title> Research and Developemnt</title>
-                  <description>
-                      <p>Research and Development involves the gathering and analysis of data, dissemination of results, and development of new products, methodologies, and ideas. The sensitivity and criticality of most research and development information depends on the subject matter involved.</p>
-                  </description>
-                  <categorization system="https://doi.org/10.6028/NIST.SP.800-60v2r1">
-                      <information-type-id>D.20.1</information-type-id>
-                  </categorization>
-                  <confidentiality-impact>
-                      <base>fips-199-low</base>
-                      <selected>fips-199-moderate</selected>
-                  </confidentiality-impact>
-                  <integrity-impact>
-                      <base>fips-199-moderate</base>
-                      <selected>fips-199-moderate</selected>
-                  </integrity-impact>
-                  <availability-impact>
-                      <base>fips-199-low</base>
-                      <selected>fips-199-low</selected>
-                  </availability-impact>
-              </information-type>         
-          </system-information>
-          <security-impact-level>
-              <security-objective-confidentiality>fips-199-moderate</security-objective-confidentiality>
-              <security-objective-integrity>fips-199-moderate</security-objective-integrity>
-              <security-objective-availability>fips-199-low</security-objective-availability>
-          </security-impact-level>
-          <status state="operational"/>        
-          <authorization-boundary>
-              <description/>            
-              <diagram uuid="16ebbf5d-b2ca-4447-9ea0-da9ef5a9a1a1">
-                  <description></description>
-                  <link href="#51cbc2c8-7eb8-4ab1-a9fc-5a742508c968" rel="diagram"/>
-                  <caption/>
-              </diagram>
-          </authorization-boundary>
-      </system-characteristics>
-      <system-implementation>
-          <user uuid="c81c9e24-aa12-48dd-8518-ba266d014250">
-              <prop name="type" value="internal"/>
-              <prop name="privilege-level" value="privileged"/>
-          </user>        
-          <component uuid="f6203cd1-22da-4702-a054-739d168777fe" type="this-system">
-              <title>Awesome Cloud</title>
-              <description>
-                  <p>AwesomeCloud Software as a Service Solution</p>
-              </description>
-              <status state="operational"/>            
-          </component>
-          <inventory-item uuid="a9836f1e-2069-4996-aaa2-82686cac4e71">
-              <description>
-                  <p>Microsoft Azure Traffic Manager</p>
-              </description>
-              <prop name="asset-id" value="a9836f1e-2069-4996-aaa2-82686cac4e71"/>
-              <prop name="ipv4-address" value="35.140.50.0"/>
-              <prop name="virtual" value="yes"/>
-              <prop name="public" value="yes"/>
-              <prop name="fqdn" value="AwesomeCloud.com"/>
-              <prop name="netbios-name" value="TM01"/>
-              <prop name="mac-address" value="AC-10-F0-39-27-04"/>
-              <prop name="asset-type" value="firewall"/>
-              <prop name="vendor-name" value="Microsoft"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-              <prop name="allows-authenticated-scan" value="no">
-                  <remarks>
-                  <p>This is an appliance.</p>
-                  </remarks>
-              </prop>
-              <prop name="baseline-configuration-name" value="TM_Config_01"/>
-              <prop name="is-scanned" value="no">
-                  <remarks>
-                  <p>This is an appliance.</p>
-                  </remarks>
-              </prop>
-              <prop name="function" value="Traffic Manager"/>
-          </inventory-item>
-          <inventory-item uuid="e0e6b53a-c8b2-42db-ae2e-e40ed1e43746">
-              <description>
-                  <p>Citrix NetScaler SDX</p>
-              </description>
-              <prop name="asset-id" value="e0e6b53a-c8b2-42db-ae2e-e40ed1e43746"/>
-              <prop name="ipv4-address" value="192.168.100.5"/>
-              <prop name="virtual" value="no"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="NS01.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="NS01"/>
-              <prop name="mac-address" value="AC-2D-AF-2B-3F-79"/>
-              <prop name="asset-type" value="router"/>
-              <prop name="vendor-name" value="Citrix"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-              <prop name="allows-authenticated-scan" value="no">
-                  <remarks>
-                  <p>This is an appliance.</p>
-                  </remarks>
-              </prop>
-              <prop name="baseline-configuration-name" value="NS_Config_01"/>
-              <prop name="is-scanned" value="no">
-                  <remarks>
-                  <p>This is an appliance.</p>
-                  </remarks>
-              </prop>
-              <prop name="function" value="Load Balancer"/>
-          </inventory-item>
-          <inventory-item uuid="6e42dda9-ab8d-4b66-bf7e-bf65a548f174">
-              <description>
-                  <p>Citrix NetScaler SDX</p>
-              </description>
-              <prop name="asset-id" value="6e42dda9-ab8d-4b66-bf7e-bf65a548f174"/>
-              <prop name="ipv4-address" value="192.168.100.6"/>
-              <prop name="virtual" value="no"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="NS02.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="NS02"/>
-              <prop name="mac-address" value="AC-C4-82-FD-F0-B0"/>
-              <prop name="asset-type" value="router"/>
-              <prop name="vendor-name" value="Citrix"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-              <prop name="allows-authenticated-scan" value="no">
-                  <remarks>
-                  <p>This is an appliance.</p>
-                  </remarks>
-              </prop>
-              <prop name="baseline-configuration-name" value="NS_Config_01"/>
-              <prop name="is-scanned" value="no">
-                  <remarks>
-                  <p>This is an appliance.</p>
-                  </remarks>
-              </prop>
-              <prop name="function" value="Load Balancer"/>
-          </inventory-item>
-          <inventory-item uuid="20bae7c3-232f-4756-9be8-0bdf0c61f951">
-              <description>
-                  <p>Microsoft IIS 10 Web Server</p>
-              </description>
-              <prop name="asset-id" value="20bae7c3-232f-4756-9be8-0bdf0c61f951"/>
-              <prop name="ipv4-address" value="192.168.100.100"/>
-              <prop name="virtual" value="yes"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="WEB01.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="WEB01"/>
-              <prop name="mac-address" value="AC-FD-6F-0D-16-1D"/>
-              <prop name="software-name" value="Windows Server Datacenter"/>
-              <prop name="version" value="2019"/>
-              <prop name="asset-type" value="web-server"/>
-              <prop name="vendor-name" value="Microsoft"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="web"/>
-              <prop name="allows-authenticated-scan" value="yes"/>
-              <prop name="baseline-configuration-name" value="Web_Server_Config"/>
-              <prop name="is-scanned" value="yes"/>
-              <prop name="function" value="Web Server"/>
-          </inventory-item>
-          <inventory-item uuid="f36128e6-952a-4d43-82e5-96380db7c591">
-              <description>
-                  <p>Microsoft IIS 10 Web Server</p>
-              </description>
-              <prop name="asset-id" value="f36128e6-952a-4d43-82e5-96380db7c591"/>
-              <prop name="ipv4-address" value="192.168.100.101"/>
-              <prop name="virtual" value="yes"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="WEB02.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="WEB02"/>
-              <prop name="mac-address" value="AC-8E-2B-2C-C2-CA"/>
-              <prop name="software-name" value="Windows Server Datacenter"/>
-              <prop name="version" value="2019"/>
-              <prop name="asset-type" value="web-server"/>
-              <prop name="vendor-name" value="Microsoft"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="web"/>
-              <prop name="allows-authenticated-scan" value="yes"/>
-              <prop name="baseline-configuration-name" value="Web_Server_Config"/>
-              <prop name="is-scanned" value="yes"/>
-              <prop name="function" value="Web Server"/>
-          </inventory-item>
-          <inventory-item uuid="26c06837-8545-4702-8dee-b616aab0ac1c">
-              <description>
-                  <p>Apache 2.4 Web Server</p>
-              </description>
-              <prop name="asset-id" value="26c06837-8545-4702-8dee-b616aab0ac1c"/>
-              <prop name="ipv4-address" value="192.168.100.150"/>
-              <prop name="virtual" value="yes"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="WEBAPI01.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="WEBAPI01"/>
-              <prop name="mac-address" value="AC-F0-F1-22-5D-1E"/>
-              <prop name="software-name" value="RHEL"/>
-              <prop name="version" value="7"/>
-              <prop name="asset-type" value="web-server"/>
-              <prop name="vendor-name" value="RedHat"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="web"/>
-              <prop name="allows-authenticated-scan" value="yes"/>
-              <prop name="baseline-configuration-name" value="Web_Server_Config_2"/>
-              <prop name="is-scanned" value="yes"/>
-              <prop name="function" value="Web Server"/>
-          </inventory-item>
-          <inventory-item uuid="3cfa6896-28f6-4e25-823d-f8899b954880">
-              <description>
-                  <p>Citrix NetScaler SDX</p>
-              </description>
-              <prop name="asset-id" value="3cfa6896-28f6-4e25-823d-f8899b954880"/>
-              <prop name="ipv4-address" value="192.168.100.7"/>
-              <prop name="virtual" value="no"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="NS03.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="NS03"/>
-              <prop name="mac-address" value="AC-2B-50-FD-21-D1"/>
-              <prop name="asset-type" value="router"/>
-              <prop name="vendor-name" value="Citrix"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-              <prop name="allows-authenticated-scan" value="no">
-                  <remarks>
-                  <p>This is an appliance.</p>
-                  </remarks>
-              </prop>
-              <prop name="baseline-configuration-name" value="NS_Config_02"/>
-              <prop name="is-scanned" value="no">
-                  <remarks>
-                  <p>This is an appliance.</p>
-                  </remarks>
-              </prop>
-              <prop name="function" value="Load Balancer"/>
-          </inventory-item>
-          <inventory-item uuid="9f11c744-f917-4cec-a56b-4831fd3e10cc">
-              <description>
-                  <p>Application Server hosting Splunk Enterprise Edition 9</p>
-              </description>
-              <prop name="asset-id" value="9f11c744-f917-4cec-a56b-4831fd3e10cc"/>
-              <prop name="ipv4-address" value="192.168.101.102"/>
-              <prop name="virtual" value="yes"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="SPLUNK01.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="SPLUNK01"/>
-              <prop name="mac-address" value="AC-CE-BE-B4-25-62"/>
-              <prop name="software-name" value="CentOs"/>
-              <prop name="version" value="13.1"/>
-              <prop name="asset-type" value="web-server"/>
-              <prop name="vendor-name" value="CentOs"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-              <prop name="allows-authenticated-scan" value="yes"/>
-              <prop name="baseline-configuration-name" value="App_Server_Config"/>
-              <prop name="is-scanned" value="yes"/>
-              <prop name="function" value="Log Aggregation Server"/>
-          </inventory-item>
-          <inventory-item uuid="10022d51-072a-4115-bf3b-9958863404e7">
-              <description>
-                  <p>Microsoft Windows Server 2019 Datacenter File Server</p>
-              </description>
-              <prop name="asset-id" value="10022d51-072a-4115-bf3b-9958863404e7"/>
-              <prop name="ipv4-address" value="192.168.101.103"/>
-              <prop name="virtual" value="yes"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="FS01.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="FS01"/>
-              <prop name="mac-address" value="AC-7B-E8-53-FA-2B"/>
-              <prop name="software-name" value="Windows Server Datacenter"/>
-              <prop name="version" value="2019"/>
-              <prop name="asset-type" value="storage-array"/>
-              <prop name="vendor-name" value="Microsoft"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-              <prop name="allows-authenticated-scan" value="yes"/>
-              <prop name="baseline-configuration-name" value="File_Server_Config"/>
-              <prop name="is-scanned" value="yes"/>
-              <prop name="function" value="File Server"/>
-          </inventory-item>
-          <inventory-item uuid="b8a94603-e5fb-4ee7-86ff-9f8123584449">
-              <description>
-                  <p>RHEL Application Server hosting REST APIs</p>
-              </description>
-              <prop name="asset-id" value="b8a94603-e5fb-4ee7-86ff-9f8123584449"/>
-              <prop name="ipv4-address" value="192.168.101.104"/>
-              <prop name="virtual" value="yes"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="APP01.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="APP01"/>
-              <prop name="mac-address" value="AC-BD-C7-70-DA-4F"/>
-              <prop name="software-name" value="RHEL"/>
-              <prop name="version" value="7"/>
-              <prop name="asset-type" value="web-server"/>
-              <prop name="vendor-name" value="RedHat"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-              <prop name="allows-authenticated-scan" value="yes"/>
-              <prop name="baseline-configuration-name" value="APP_Server_Config"/>
-              <prop name="is-scanned" value="yes"/>
-              <prop name="function" value="REST API Server"/>
-          </inventory-item>
-          <inventory-item uuid="93a27f42-6f4e-4500-9c87-d03567c13cfe">
-              <description>
-                  <p>Ubuntu Database Server</p>
-              </description>
-              <prop name="asset-id" value="93a27f42-6f4e-4500-9c87-d03567c13cfe"/>
-              <prop name="ipv4-address" value="192.168.102.101"/>
-              <prop name="virtual" value="yes"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="DB01.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="DB01"/>
-              <prop name="mac-address" value="AC-E8-FF-A0-B6-61"/>
-              <prop name="software-name" value="Ubuntu"/>
-              <prop name="version" value="22.04"/>
-              <prop name="asset-type" value="database"/>
-              <prop name="vendor-name" value="Ubuntu"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="database"/>
-              <prop name="allows-authenticated-scan" value="yes"/>
-              <prop name="baseline-configuration-name" value="DB_Server_Config"/>
-              <prop name="is-scanned" value="yes"/>
-              <prop name="function" value="Database Server"/>
-          </inventory-item>
-          <inventory-item uuid="3c0081ca-7283-4072-8748-52f5fb804d7a">
-              <description>
-                  <p>Ubuntu Database Server</p>
-              </description>
-              <prop name="asset-id" value="3c0081ca-7283-4072-8748-52f5fb804d7a"/>
-              <prop name="ipv4-address" value="192.168.102.102"/>
-              <prop name="virtual" value="yes"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="DB02.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="DB02"/>
-              <prop name="mac-address" value="AC-8E-2C-B0-DB-2E"/>
-              <prop name="software-name" value="Ubuntu"/>
-              <prop name="version" value="22.04"/>
-              <prop name="asset-type" value="database"/>
-              <prop name="vendor-name" value="Ubuntu"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="database"/>
-              <prop name="allows-authenticated-scan" value="yes"/>
-              <prop name="baseline-configuration-name" value="DB_Server_Config"/>
-              <prop name="is-scanned" value="yes"/>
-              <prop name="function" value="Database Server"/>
-          </inventory-item>
-          <inventory-item uuid="93ca750c-0f3a-4fde-810e-89585d46e671">
-              <description>
-                  <p>Jump box for administrator access to AwesomeCloud network</p>
-              </description>
-              <prop name="asset-id" value="93ca750c-0f3a-4fde-810e-89585d46e671"/>
-              <prop name="ipv4-address" value="35.140.50.30"/>
-              <prop name="virtual" value="yes"/>
-              <prop name="public" value="yes"/>
-              <prop name="fqdn" value="JUMP01.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="JUMP01"/>
-              <prop name="mac-address" value="AC-65-CA-E2-53-66"/>
-              <prop name="software-name" value="Windows"/>
-              <prop name="version" value="11"/>
-              <prop name="asset-type" value="os"/>
-              <prop name="vendor-name" value="Microsoft"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-              <prop name="allows-authenticated-scan" value="yes"/>
-              <prop name="baseline-configuration-name" value="DB_Server_Config"/>
-              <prop name="is-scanned" value="yes"/>
-              <prop name="function" value="Jump box for Admin"/>
-          </inventory-item>
-          <inventory-item uuid="004a098e-024f-4e56-8ad7-3cc65dd950fa">
-              <description>
-                  <p>LDAP Active Directory Server</p>
-              </description>
-              <prop name="asset-id" value="004a098e-024f-4e56-8ad7-3cc65dd950fa"/>
-              <prop name="ipv4-address" value="192.168.100.9"/>
-              <prop name="virtual" value="yes"/>
-              <prop name="public" value="no"/>
-              <prop name="fqdn" value="AD01.AwesomeCloud.local"/>
-              <prop name="netbios-name" value="AD01"/>
-              <prop name="mac-address" value="AC-F5-7C-49-94-B4"/>
-              <prop name="software-name" value="Server 2019 Datacenter"/>
-              <prop name="version" value="2019"/>
-              <prop name="asset-type" value="directory-server"/>
-              <prop name="vendor-name" value="Microsoft"/>
-              <prop ns="https://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-              <prop name="allows-authenticated-scan" value="yes"/>
-              <prop name="baseline-configuration-name" value="DB_Server_Config"/>
-              <prop name="is-scanned" value="yes"/>
-              <prop name="function" value="Jump box for Admin"/>
-          </inventory-item>
-      </system-implementation>
-      <control-implementation>
-          <description/>        
-          <implemented-requirement control-id="cm-8" uuid="41af2ac0-5e22-488d-a052-549a46ad181d">
-              <!-- Control title: Information System Component Inventory -->
-              <prop name="control-origination" ns="https://fedramp.gov/ns/oscal" value="sp-system"/>
-              <prop name="implementation-status" ns="https://fedramp.gov/ns/oscal" value="implemented"/>            
-              <set-parameter param-id="cm-8_prm_1">
-                  <value>the information contained in the FedRAMP Integrated Inventory Workbook Template</value>
-              </set-parameter>
-              <set-parameter param-id="cm-8_prm_2">
-                  <value>at least monthly</value>
-                  <remarks>
-                      <p>There is a FedRAMP constraint on this ODP: <q>at least monthly</q></p>
-                  </remarks>
-              </set-parameter>
-              <responsible-role role-id="implemented-requirement-responsible-role"/>
-              <!-- Required response points are: cm-8_smt.a, cm-8_smt.b, cm-8.1_smt, cm-8.3_smt.a, cm-8.3_smt.b, cm-8.5_smt-->
-              <statement statement-id="cm-8_smt" uuid="58b818b2-f282-4a7b-bc67-9cedc94fff57">
-                  <by-component component-uuid="19a38c5f-e4af-494b-a482-acf22c28a448" uuid="67795913-5256-49af-9275-fbd4c3db0960">
-                      <description>
-                          <p>AwesomeCloud</p>
-                      </description>
-                  </by-component>
-              </statement>
-              <statement statement-id="cm-8_smt.a" uuid="256453ac-da24-47fd-8693-047ee68610c6">
-                  <by-component component-uuid="19a38c5f-e4af-494b-a482-acf22c28a448" uuid="67795913-5256-49af-9275-fbd4c3db0960">
-                      <description>
-                          <p>AwesomeCloud maintains the information system inventory to include the data elements outlined in the FedRAMP Integrated Inventory Workbook Template. Information system inventory items are documented within the AwesomeCloud System Security Plan (SSP). Monthly, the AwesomeCloud SSP is exported to OSCAL and submitted to the FedRAMP ConMon Web Service.</p>
-                      </description>
-                  </by-component>
-              </statement>
-              <statement statement-id="cm-8_smt.a.1" uuid="059e9814-d41f-4847-8d3e-001419fb0650">
-                  <by-component component-uuid="19a38c5f-e4af-494b-a482-acf22c28a448" uuid="67795913-5256-49af-9275-fbd4c3db0960">
-                      <description>
-                          <p>The inventory: Accurately reflects the current information system, by documenting all of the mandatory fields contained within the FedRAMP Integrated Inventory Workbook Template</p>
-                      </description>
-                  </by-component>
-              </statement>
-              <statement statement-id="cm-8_smt.a.2" uuid="89fa36e9-5432-41fa-a532-dbf252b5aa52">
-                  <by-component component-uuid="19a38c5f-e4af-494b-a482-acf22c28a448" uuid="67795913-5256-49af-9275-fbd4c3db0960">
-                      <description>
-                          <p>AwesomeCloud ensures that the inventory includes all components within the authorization boundary of the information system by reconciling the inventory with discovery scans performed by the vulnerability management tool (i.e. Tenable Nessus)</p>
-                      </description>
-                  </by-component>
-              </statement>
-              <statement statement-id="cm-8_smt.a.3" uuid="aafa3cd2-7c12-4a73-85bb-ad5fcf94c9c1">
-                  <by-component component-uuid="19a38c5f-e4af-494b-a482-acf22c28a448" uuid="67795913-5256-49af-9275-fbd4c3db0960">
-                      <description>
-                          <p>AwesomeCloud ensures that the inventory is at the level of granularity deemed necessary for tracking and reporting, by capturing all of the required fields identified in the FedRAMP Integrated Inventory Workbook Template.</p>
-                      </description>
-                  </by-component>
-              </statement>
-              <statement statement-id="cm-8_smt.a.4" uuid="03e00899-39ee-41f0-8e3c-5b5791b67e88">
-                  <by-component component-uuid="19a38c5f-e4af-494b-a482-acf22c28a448" uuid="67795913-5256-49af-9275-fbd4c3db0960">
-                      <description>
-                          <p>Awesome ensure that the inventory contains the fields outlined within the FedRAMP Integrated Inventory Workbook Template.</p>
-                      </description>
-                  </by-component>
-              </statement>
-              <statement statement-id="cm-8_smt.b" uuid="e918de9b-a205-4e14-b256-4fe850fa5f61">
-                  <by-component component-uuid="19a38c5f-e4af-494b-a482-acf22c28a448" uuid="67795913-5256-49af-9275-fbd4c3db0960">
-                      <description>
-                          <p>Monthly, AwesomeCloud performs discovery scans using the vulnerability management tool (i.e. Tenable Nessus) and reconciles the inventory items from the discovery scan with the official inventory maintained within the AwesomeCloud GRC tool. The inventory is updated within the GRC tool to reflect the current state of the AwesomeCloud system.</p>
-                      </description>
-                  </by-component>
-              </statement>
-              <statement statement-id="cm-8_fr_smt.1" uuid="75a78c4c-efaf-4317-901a-0f315ea01016">
-                  <by-component component-uuid="19a38c5f-e4af-494b-a482-acf22c28a448" uuid="67795913-5256-49af-9275-fbd4c3db0960">
-                      <description>
-                          <p>Monthly, the AwesomeCloud ISSO exports the SSP containing the inventory items to OSCAL and submits it to the FedRAMP using the FedRAMP Web Services API.</p>
-                      </description>
-                  </by-component>
-              </statement>
-          </implemented-requirement>        
-      </control-implementation>
-      <back-matter>
-          <!--Authorization Boundary Diagram-->
-          <resource uuid="51cbc2c8-7eb8-4ab1-a9fc-5a742508c968">
-              <title>Authorization Boundary Diagram</title>
-              <description/>
-              <prop name="type" value="diagram"/>
-              <rlink href="AwesomeCloudHLA1.png"/>            
-          </resource>
-      </back-matter>
-  </system-security-plan>  
+  const yamlString = `system-security-plan:
+  uuid: 9809eddf-2cd5-468f-97c5-9769905d0629
+  metadata:
+    title: FedRAMP System Security Plan (SSP)
+    published: 2023-08-31T00:00:00Z
+    last-modified: 2023-08-31T00:00:00Z
+    version: fedramp2.0.0-oscal1.0.4
+    oscal-version: 1.0.4
+    revisions:
+      - published: 2023-06-30T00:00:00Z
+        version: '1.0'
+        oscal-version: 1.0.4
+        props:
+          - name: party-uuid
+            uuid: 528974e9-fcde-494f-a2fa-35d6f1e31171
+            ns: https://fedramp.gov/ns/oscal
+            value: 6b286b5d-8f07-4fa7-8847-1dd0d88f73fb
+        remarks: Initial publication.
+      - published: 2023-07-06T00:00:00Z
+        version: '1.1'
+        oscal-version: 1.0.4
+        props:
+          - name: party-uuid
+            uuid: 528974e9-fcde-494f-a2fa-35d6f1e31171
+            ns: https://fedramp.gov/ns/oscal
+            value: 6b286b5d-8f07-4fa7-8847-1dd0d88f73fb
+        remarks: Minor "prop" updates. 
   `;
-  const html = useHighlight(xmlString, 'xml');
+  const html = useHighlight(yamlString, 'yml');
   return (
     <React.Fragment>
       <FileViewer {...args} html={html || ''} />
@@ -504,7 +55,7 @@ export const Default: Story<FileViewerProps> = (args) => {
 };
 
 Default.args = {
-  language: 'xml',
+  language: 'yml',
 };
 
 export const JSONOutput: Story<FileViewerProps> = (args) => {

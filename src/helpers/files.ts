@@ -24,6 +24,9 @@ export function getOSCALExtension(str: string): OSCALExtension | undefined {
 export async function getDocTypeAbbrev(
   file: File
 ): Promise<DocTypeAbbrev | undefined> {
+  const extension = extractFileExtension(file.name);
+  const oscalExtension = extension ? getOSCALExtension(extension) : undefined;
+  if (!oscalExtension) return;
   const rootElement = await getRootElement(file);
   switch (rootElement) {
     case 'system-security-plan':
