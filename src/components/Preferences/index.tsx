@@ -48,14 +48,23 @@ export function Preferences({
       footer={
         <Box float="right">
           <SpaceBetween direction="horizontal" size="xs">
-            <Button text={cancelLabel} color="secondary" onClick={onCancel} />
+            <Button
+              text={cancelLabel}
+              color="secondary"
+              onClick={(e) => {
+                if (onCancel) {
+                  onCancel();
+                }
+                setOpen(false);
+              }}
+            />
             <Button
               text={confirmLabel}
               onClick={(e) => {
                 if (onConfirm) {
                   onConfirm(tempPreferences);
-                  setOpen(false);
                 }
+                setOpen(false);
               }}
             />
           </SpaceBetween>

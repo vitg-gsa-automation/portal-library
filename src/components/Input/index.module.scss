@@ -12,7 +12,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  border: 2px solid var(--color-border-input);
+  border: 2px solid var(--color-border-input, #7d8998);
   border-radius: 8px;
   padding: 0 1.6rem;
   background-color: var(--color-bg-input);
@@ -37,7 +37,7 @@
   }
 
   &__icon {
-    color: var(--color-black-20);
+    color: #5f6b7a;
     margin-right: 1rem;
     transition: color 0.1s;
   }
@@ -49,6 +49,22 @@
   border: none;
   outline: none;
   height: 100%;
+
+  &::placeholder, // For most modern browsers
+  &::-webkit-input-placeholder, // For Safari and Chrome
+  &::-moz-placeholder, // For Firefox 19+
+  &:-moz-placeholder, // For Firefox 18-
+  &:-ms-input-placeholder {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--font-color-input-placeholder, #5f6b7a);
+  }
+
+  // For Firefox which sets a default opacity to placeholders
+  &::-moz-placeholder,
+  &:-moz-placeholder {
+    opacity: 1;
+  }
 }
 
 .invalid {

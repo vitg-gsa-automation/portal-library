@@ -4,7 +4,7 @@
 }
 
 .item {
-  border: 2px solid var(--color-border-input);
+  border: 2px solid var(--color-border-input, #7d8998);
   background-color: white;
   width: 1.6rem;
   height: 1.6rem;
@@ -35,14 +35,3 @@
 .label {
   padding-left: 1rem;
 }
-
-// @keyframes fadeIn {
-//   from {
-//     border: 2px solid var(--color-border-input);
-//     background-color: white;
-//   }
-//   to {
-//     border: 2px solid var(--color-bg-input-selected);
-//     background-color: var(--color-bg-input-selected);
-//   }
-// }

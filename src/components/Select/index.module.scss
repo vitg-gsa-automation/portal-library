@@ -1,3 +1,5 @@
+@import '../../sass/base/animations';
+
 .root {
   position: relative;
   &__placeholder {
@@ -11,7 +13,7 @@
   align-items: center;
   justify-content: space-between;
   padding-right: 1.2rem;
-  border: 2px solid var(--color-border-input);
+  border: 2px solid var(--color-border-input, #7d8998);
   box-shadow: none;
   border-radius: 8px;
   background-color: var(--color-bg-input);
@@ -87,6 +89,7 @@
   z-index: 3;
   max-height: 40rem;
   overflow-y: auto;
+  animation: open 0.115s ease;
 
   &--close {
     display: none;

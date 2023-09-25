@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--color-border-input);
+  border: 2px solid var(--color-border-input, #7d8998);
   border-radius: 3px;
   cursor: pointer;
   &[data-state='checked'] {
@@ -75,7 +75,7 @@
 
 @keyframes fadeIn {
   from {
-    border: 2px solid var(--color-border-input);
+    border: 2px solid var(--color-border-input, #7d8998);
     background-color: white;
   }
   to {

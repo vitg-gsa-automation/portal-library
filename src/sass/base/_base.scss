@@ -65,7 +65,7 @@
   --color-bg-flashbar-error: var(--color-red-40);
   --color-bg-flashbar-success: #037f0c;
 
-  --color-border-input: var(--color-black-20);
+  --color-border-input: #7d8998;
   --color-border-radio-item: var(--color-black-20);
   --color-border-card-top: #eaeded;
   --color-border-tabs: var(--color-black-10);
@@ -108,6 +108,7 @@
   --font-color-status-error: #d91515;
   --font-color-status-success: #037f0c;
   --font-color-status-inactive: #5f6b7a;
+  --font-color-input-placeholder: #5f6b7a;
 
   //SHADOW
   --shadow-menu: 0px 2px 2px rgba(0, 0, 0, 0.25);
@@ -193,7 +194,6 @@ textarea {
   resize: none;
   &::placeholder {
     font-weight: 400;
-    color: $color-black-20;
     font-style: italic;
   }
   &:-webkit-autofill {

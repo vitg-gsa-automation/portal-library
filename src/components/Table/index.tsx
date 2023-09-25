@@ -120,7 +120,10 @@ export const Table = <T extends unknown>({
 
   useEffect(() => {
     if (!pagination) return;
-    setInternalPagination(pagination);
+    setInternalPagination((prevState) => ({
+      ...prevState,
+      pageSize: pagination.pageSize,
+    }));
   }, [pagination]);
 
   const internalColumns = useMemo(() => {
