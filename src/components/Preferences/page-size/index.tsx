@@ -14,23 +14,22 @@ export function PageSizePreference({
 }: PageSizePreferenceProps) {
   const { title = 'Page size', options } = pageSizePreference;
   return (
-    <FormField label={title}>
-      {
-        <RadioGroup
-          value={value?.toString()}
-          onValueChange={(value) => {
-            onChange(+value);
-          }}
-          items={options.map(({ value, label }) => {
-            return {
-              id: label,
-              value: value.toString(),
-              label,
-              disabled: false,
-            };
-          })}
-        />
-      }
+    <FormField label={title} labelId="page-size">
+      <RadioGroup
+        aria-labelledby="page-size"
+        value={value?.toString()}
+        onValueChange={(value) => {
+          onChange(+value);
+        }}
+        items={options.map(({ value, label }) => {
+          return {
+            id: label,
+            value: value.toString(),
+            label,
+            disabled: false,
+          };
+        })}
+      />
     </FormField>
   );
 }

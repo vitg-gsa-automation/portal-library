@@ -343,7 +343,7 @@ export const Default: Story<TableProps<Control>> = (args) => {
   const { collectionProps } = useCollection<Control>();
   const [preferences, setPreferences] = useLocalStorage<
     PreferencesProps.Preferences | undefined
-  >('preferences', { pageSize: 5 });
+  >('preferences', { pageSize: 10 });
 
   const { rowSelection } = collectionProps;
 
@@ -401,10 +401,6 @@ export const Default: Story<TableProps<Control>> = (args) => {
           }}
           pageSizePreference={{
             options: [
-              {
-                label: '5 resources',
-                value: 5,
-              },
               {
                 label: '10 resources',
                 value: 10,
@@ -522,6 +518,10 @@ export const FiltersStory: Story<TableProps<Control>> = (args) => {
   const { filterProps, collectionProps } = useCollection<Control>();
   const { rowSelection } = collectionProps;
 
+  const [preferences, setPreferences] = useLocalStorage<
+    PreferencesProps.Preferences | undefined
+  >('preferences', { pageSize: 10 });
+
   const family = useMemo<Item<string>>(() => {
     return {
       label: filterProps.globalFilter.family,
@@ -540,6 +540,14 @@ export const FiltersStory: Story<TableProps<Control>> = (args) => {
     <Table
       {...collectionProps}
       {...filterProps}
+      pagination={
+        preferences?.pageSize
+          ? {
+              pageSize: preferences.pageSize,
+              pageIndex: 0,
+            }
+          : undefined
+      }
       header={
         <Header
           variant="h2"
@@ -611,6 +619,33 @@ export const FiltersStory: Story<TableProps<Control>> = (args) => {
         </Filters>
       }
       selectionType="single"
+      preferences={
+        <Preferences
+          preferences={preferences}
+          onConfirm={setPreferences}
+          contentDisplayPreference={{
+            options: [
+              { id: 'name', label: 'Control name', alwaysVisible: true },
+              { id: 'status', label: 'Implementation status' },
+              { id: 'description', label: 'Control description' },
+              { id: 'origin', label: 'Control origin' },
+            ],
+          }}
+          pageSizePreference={{
+            options: [
+              {
+                label: '10 resources',
+                value: 10,
+              },
+              {
+                label: '20 resources',
+                value: 20,
+              },
+            ],
+          }}
+        />
+      }
+      columnDisplay={preferences?.contentDisplay}
       columns={columns}
       data={controls}
       wrapLines={false}

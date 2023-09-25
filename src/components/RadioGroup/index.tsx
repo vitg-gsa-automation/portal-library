@@ -11,9 +11,10 @@ interface RadioButtonDefinition {
 
 export interface RadioGroupProps extends RadioGroupPrimitive.RadioGroupProps {
   items?: ReadonlyArray<RadioButtonDefinition>;
+  invalid?: boolean;
 }
 
-export function RadioGroup({ items, ...props }: RadioGroupProps) {
+export function RadioGroup({ items, invalid, ...props }: RadioGroupProps) {
   return (
     <RadioGroupPrimitive.Root {...props}>
       {items && (

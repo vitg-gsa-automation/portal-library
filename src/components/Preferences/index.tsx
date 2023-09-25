@@ -1,16 +1,14 @@
-import { MaterialIcon } from '../MaterialIcon';
+import { MaterialIcon, MaterialIconButton } from '../MaterialIcon';
 import { Modal } from '../Modal';
 import { PreferencesProps } from './interfaces';
 
-import styles from './index.module.scss';
-import { Box } from '../../layouts/Box';
-import { Button } from '../Button';
-import { SpaceBetween } from '../../layouts/SpaceBetween';
-import { ColumnLayout } from '../../layouts/ColumnLayout';
-import { ContentDisplayOption } from './content-display/content-display-option';
-import { ContentDisplayPreference } from './content-display';
 import { useState } from 'react';
-import { FormField } from '../FormField';
+import { Box } from '../../layouts/Box';
+import { ColumnLayout } from '../../layouts/ColumnLayout';
+import { SpaceBetween } from '../../layouts/SpaceBetween';
+import { Button } from '../Button';
+import { ContentDisplayPreference } from './content-display';
+import styles from './index.module.scss';
 import { PageSizePreference } from './page-size';
 
 export function Preferences({
@@ -40,9 +38,9 @@ export function Preferences({
       size="large"
       header={title}
       trigger={
-        <MaterialIcon
+        <MaterialIconButton
+          iconType="outlined"
           icon="settings"
-          type="outlined"
           className={styles.trigger}
           fontSize="2rem"
         />
