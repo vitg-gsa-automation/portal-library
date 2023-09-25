@@ -347,16 +347,6 @@ export const Default: Story<TableProps<Control>> = (args) => {
 
   const { rowSelection } = collectionProps;
 
-  const contentDisplayToColumnVisibility = function <T>(
-    contentDisplay?: ReadonlyArray<PreferencesProps.ContentDisplayItem>
-  ): ColumnVisibility<T> {
-    const result: ColumnVisibility<T> = {};
-    contentDisplay?.forEach((option) => {
-      result[option.id as keyof T] = option.visible;
-    });
-    return result;
-  };
-
   return (
     <Table
       {...args}
@@ -427,9 +417,7 @@ export const Default: Story<TableProps<Control>> = (args) => {
           }}
         />
       }
-      columnVisibility={contentDisplayToColumnVisibility(
-        preferences?.contentDisplay
-      )}
+      columnDisplay={preferences?.contentDisplay}
     />
   );
 };
@@ -437,7 +425,6 @@ Default.args = {
   columns,
   data: controls,
   wrapLines: false,
-  columnVisibility: { name: true },
 };
 
 export const EmptyState: Story<TableProps<Control>> = (args) => {

@@ -55,7 +55,7 @@ export interface TableProps<T> {
   loading?: boolean;
   loadingText?: string;
   error?: string;
-  columnVisibility?: ColumnVisibility<T>;
+  columnDisplay?: ReadonlyArray<ColumnDisplayProperties>;
   initialState?: InitialTableState;
   selectionType?: 'single' | 'multi';
   wrapLines?: boolean;
@@ -74,6 +74,11 @@ interface FlexCellProps {
   text: string;
 }
 
+interface ColumnDisplayProperties {
+  id: string;
+  visible: boolean;
+}
+
 export type ColumnVisibility<T = any> = {
   [key in keyof T]?: boolean;
 };
@@ -82,7 +87,7 @@ export const Table = <T extends unknown>({
   data,
   columns,
   variant = 'card',
-  columnVisibility,
+  columnDisplay,
   rowSelection,
   onRowSelectionChange,
   onRowClick,
@@ -171,6 +176,15 @@ export const Table = <T extends unknown>({
     return [];
   }, [columnHelper]);
 
+  const columnVisibility = useMemo(() => {
+    if (!columnDisplay) return;
+    const result: VisibilityState = {};
+    columnDisplay?.forEach((option) => {
+      result[option.id] = option.visible;
+    });
+    return result;
+  }, [columnDisplay]);
+
   const table = useReactTable<T>({
     data,
     defaultColumn: {
@@ -182,7 +196,7 @@ export const Table = <T extends unknown>({
       rowSelection,
       sorting,
       pagination: internalPagination,
-      columnVisibility: columnVisibility as VisibilityState,
+      columnVisibility,
       globalFilter,
     },
     globalFilterFn:
