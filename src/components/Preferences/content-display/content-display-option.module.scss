@@ -1,0 +1,15 @@
+.root {
+  border-top: 1px solid #e9ebed;
+  user-select: none;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  padding-left: 0;
+}
+
+.label {
+}

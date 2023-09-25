@@ -24,11 +24,14 @@ import {
   Property,
   SpaceBetween,
 } from '../layouts';
-import { Table, TableProps } from '../components/Table';
+import { ColumnVisibility, Table, TableProps } from '../components/Table';
 import { Item } from '../types';
 import { Control, ImplementationStatus } from '../types/controls';
 import { ListItem } from '../internal/components/ListItem';
 import React from 'react';
+import { Preferences } from '../components/Preferences';
+import { PreferencesProps } from '../components/Preferences/interfaces';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 export default {
   title: 'Table',
@@ -36,6 +39,120 @@ export default {
 };
 
 const controls: Control[] = [
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
+  {
+    name: 'AC-1',
+    description: 'Policy and Procedures',
+    status: 'not-implemented',
+    origin: 'Inherited',
+  },
   {
     name: 'AC-1',
     description: 'Policy and Procedures',
@@ -90,6 +207,102 @@ const controls: Control[] = [
     status: 'implemented',
     origin: '',
   },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
+  {
+    name: 'MA-3',
+    description: '',
+    status: 'implemented',
+    origin: '',
+  },
 ];
 const columnHelper = createColumnHelper<Control>();
 
@@ -97,9 +310,7 @@ const columns = [
   columnHelper.accessor('name', {
     header: 'Control name',
   }),
-  columnHelper.accessor('description', {
-    header: 'Control description',
-  }),
+
   columnHelper.accessor('status', {
     header: 'Implementation status',
     cell: (info) => {
@@ -118,6 +329,9 @@ const columns = [
       return <StatusIndicator type={type}>{status}</StatusIndicator>;
     },
   }),
+  columnHelper.accessor('description', {
+    header: 'Control description',
+  }),
   columnHelper.accessor('origin', {
     header: 'Control origin',
     minSize: 0,
@@ -127,12 +341,34 @@ const columns = [
 
 export const Default: Story<TableProps<Control>> = (args) => {
   const { collectionProps } = useCollection<Control>();
+  const [preferences, setPreferences] = useLocalStorage<
+    PreferencesProps.Preferences | undefined
+  >('preferences', { pageSize: 5 });
+
   const { rowSelection } = collectionProps;
+
+  const contentDisplayToColumnVisibility = function <T>(
+    contentDisplay?: ReadonlyArray<PreferencesProps.ContentDisplayItem>
+  ): ColumnVisibility<T> {
+    const result: ColumnVisibility<T> = {};
+    contentDisplay?.forEach((option) => {
+      result[option.id as keyof T] = option.visible;
+    });
+    return result;
+  };
 
   return (
     <Table
       {...args}
       {...collectionProps}
+      pagination={
+        preferences?.pageSize
+          ? {
+              pageSize: preferences.pageSize,
+              pageIndex: 0,
+            }
+          : undefined
+      }
       header={
         <Header
           variant="h2"
@@ -161,6 +397,39 @@ export const Default: Story<TableProps<Control>> = (args) => {
         />
       }
       selectionType="single"
+      preferences={
+        <Preferences
+          preferences={preferences}
+          onConfirm={setPreferences}
+          contentDisplayPreference={{
+            options: [
+              { id: 'name', label: 'Control name', alwaysVisible: true },
+              { id: 'status', label: 'Implementation status' },
+              { id: 'description', label: 'Control description' },
+              { id: 'origin', label: 'Control origin' },
+            ],
+          }}
+          pageSizePreference={{
+            options: [
+              {
+                label: '5 resources',
+                value: 5,
+              },
+              {
+                label: '10 resources',
+                value: 10,
+              },
+              {
+                label: '20 resources',
+                value: 20,
+              },
+            ],
+          }}
+        />
+      }
+      columnVisibility={contentDisplayToColumnVisibility(
+        preferences?.contentDisplay
+      )}
     />
   );
 };
@@ -168,6 +437,7 @@ Default.args = {
   columns,
   data: controls,
   wrapLines: false,
+  columnVisibility: { name: true },
 };
 
 export const EmptyState: Story<TableProps<Control>> = (args) => {

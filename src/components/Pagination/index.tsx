@@ -9,6 +9,7 @@ export function Pagination({ table }: PaginationProps) {
   return (
     <div className={styles.root}>
       <MaterialIconButton
+        fontSize="2.8rem"
         icon="navigate_before"
         onClick={() => table.previousPage()}
         disabled={!table.getCanPreviousPage()}
@@ -17,6 +18,7 @@ export function Pagination({ table }: PaginationProps) {
         {table.getState().pagination.pageIndex + 1}
       </div>
       <MaterialIconButton
+        fontSize="2.8rem"
         icon="navigate_next"
         onClick={() => table.nextPage()}
         disabled={!table.getCanNextPage()}

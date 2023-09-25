@@ -8,15 +8,10 @@ import {
   ExpandableSection,
   ExpandableSectionProps,
   StatusIndicator,
+  Table,
 } from '../components';
 import { ListItem } from '../internal/components/ListItem';
-import {
-  CardContent,
-  ColumnLayout,
-  Property,
-  SpaceBetween,
-  Table,
-} from '../layouts';
+import { CardContent, ColumnLayout, Property, SpaceBetween } from '../layouts';
 import { Package } from '../types/packages';
 
 const pkgs: Package[] = [

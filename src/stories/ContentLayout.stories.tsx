@@ -7,6 +7,7 @@ import {
   Link,
   PageHeader,
   Tab,
+  TableProps,
   Tabs,
   TabsContent,
   TabsList,
@@ -20,7 +21,6 @@ import {
   Header,
   Property,
   SpaceBetween,
-  TableProps,
 } from '../layouts';
 
 export default {

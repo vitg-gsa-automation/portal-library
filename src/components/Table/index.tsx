@@ -3,6 +3,7 @@ import {
   FilterFnOption,
   InitialTableState,
   OnChangeFn,
+  PaginationState,
   RowSelectionState,
   SortingState,
   VisibilityState,
@@ -35,6 +36,7 @@ import { MaterialIcon } from '../MaterialIcon';
 import { Card } from '../../layouts/Card';
 import styles from './index.module.scss';
 import { Thead } from './thead';
+import { TableTools } from './table-tools';
 
 export interface TableProps<T> {
   data: T[];
@@ -47,7 +49,8 @@ export interface TableProps<T> {
   footer?: ReactElement;
   filter?: ReactNode;
   globalFilterFn?: FilterFnOption<T>;
-  pagination?: boolean;
+  pagination?: PaginationState;
+  preferences?: ReactElement;
   empty?: ReactNode;
   loading?: boolean;
   loadingText?: string;
@@ -79,14 +82,15 @@ export const Table = <T extends unknown>({
   data,
   columns,
   variant = 'card',
-  rowSelection,
   columnVisibility,
+  rowSelection,
   onRowSelectionChange,
   onRowClick,
   header,
   footer,
   filter,
   pagination,
+  preferences,
   empty,
   loading,
   loadingText = 'Loading resources',
@@ -103,6 +107,17 @@ export const Table = <T extends unknown>({
   const columnHelper = createColumnHelper<T>();
 
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [internalPagination, setInternalPagination] =
+    React.useState<PaginationState>({
+      pageIndex: pagination?.pageIndex || 0,
+      pageSize: pagination?.pageSize || 10,
+    });
+
+  useEffect(() => {
+    if (!pagination) return;
+    setInternalPagination(pagination);
+  }, [pagination]);
+
   const internalColumns = useMemo(() => {
     if (selectionType === 'multi') {
       return [
@@ -166,13 +181,13 @@ export const Table = <T extends unknown>({
     state: {
       rowSelection,
       sorting,
+      pagination: internalPagination,
       columnVisibility: columnVisibility as VisibilityState,
       globalFilter,
     },
     globalFilterFn:
       globalFilterFn ||
       ((row, columnId, filterValue) => {
-        console.log('row', row);
         const search = filterValue.filteringText.toLowerCase();
 
         let value = row.getValue(columnId) as string;
@@ -183,18 +198,19 @@ export const Table = <T extends unknown>({
     onGlobalFilterChange,
     onSortingChange: setSorting,
     onRowSelectionChange,
+    onPaginationChange: setInternalPagination,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: pagination ? getPaginationRowModel() : undefined,
+    getPaginationRowModel: getPaginationRowModel(),
     debugTable: false,
     enableSortingRemoval: false,
     sortDescFirst: false,
     enableMultiRowSelection: selectionType === 'multi',
     columnResizeMode: resizableColumns ? 'onChange' : undefined,
   });
-  const hasHeader = !!(header || filter);
-  const hasTools = !!(filter || pagination);
+  const hasHeader = !!(header || filter || preferences);
+  const hasTools = !!(filter || pagination || preferences);
   const hasNoMatches = !table.getFilteredRowModel().rows.length;
 
   return (
@@ -208,6 +224,7 @@ export const Table = <T extends unknown>({
               <TableTools
                 filter={filter}
                 pagination={pagination && <Pagination table={table} />}
+                preferences={preferences}
               />
             )}
           </div>
@@ -316,19 +333,6 @@ export function TableHeader({
         {actions && <div className={styles['header__actions']}>{actions}</div>}
       </div>
       {tools}
-    </div>
-  );
-}
-
-interface TableToolsProps {
-  filter?: ReactNode;
-  pagination?: ReactNode;
-}
-export function TableTools({ filter, pagination, ...props }: TableToolsProps) {
-  return (
-    <div className={styles.tools} {...props}>
-      <div className={styles['tools__filters']}>{filter}</div>
-      <div className={styles['tools__pagination']}>{pagination}</div>
     </div>
   );
 }

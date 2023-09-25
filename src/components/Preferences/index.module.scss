@@ -1,0 +1,10 @@
+.root {
+}
+
+.trigger {
+  color: var(--color-black-30);
+  cursor: pointer;
+  &:hover {
+    color: var(--color-black-50);
+  }
+}

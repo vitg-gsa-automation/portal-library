@@ -11,6 +11,7 @@ import {
   Link,
   PageHeader,
   StatusIndicator,
+  TableProps,
   TopNavigation,
 } from '../components';
 import { useNotifications } from '../hooks';
@@ -27,7 +28,6 @@ import {
   Property,
   SideNavigation,
   SpaceBetween,
-  TableProps,
 } from '../layouts';
 import { Footer } from '../layouts/Footer';
 import packageJSON from '../../package.json';

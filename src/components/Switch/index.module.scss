@@ -11,6 +11,9 @@
   &[data-state='checked'] {
     background-color: var(--color-gsa-blue-40);
   }
+  &[data-disabled] {
+    opacity: 0.4;
+  }
 }
 
 .thumb {

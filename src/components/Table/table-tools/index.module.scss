@@ -1,0 +1,35 @@
+.root {
+  padding-top: 8px;
+  padding-bottom: 4px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.filters {
+  margin-right: 2rem;
+  flex: 1;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  &__page {
+    margin: 1rem;
+    font-weight: 700;
+  }
+}
+
+.preferences {
+  display: flex;
+  align-items: center;
+  border-left: 2px solid #e9ebed;
+  margin-left: 1rem;
+  padding: 4px 0;
+  padding-left: 1rem;
+}

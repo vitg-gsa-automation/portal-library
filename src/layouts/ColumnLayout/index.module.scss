@@ -4,6 +4,7 @@
 
 .column {
   padding: 0 2rem;
+  margin: 1rem 0;
   &:not(:first-child) {
     border-left: var(--border-column-seperator);
   }
