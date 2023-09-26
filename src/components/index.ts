@@ -46,3 +46,4 @@ export * from './FileViewer';
 export * from './ErrorComponent';
 export * from './RadialProgressBar';
 export * from './Table';
+export * from './Preferences';
