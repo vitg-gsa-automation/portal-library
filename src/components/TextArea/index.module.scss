@@ -9,9 +9,8 @@
   border-radius: 8px;
   padding: 4px 1.6rem;
   background-color: var(--color-bg-input);
-  &:focus,
-  &:focus-visible {
-    border-color: black !important;
+  &:focus {
+    border: 2px solid var(--color-border-item-focused, #539fe5);
   }
 
   &::placeholder, // For most modern browsers

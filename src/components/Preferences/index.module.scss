@@ -2,9 +2,9 @@
 }
 
 .trigger {
-  color: var(--color-black-30);
+  color: var(--color-text-interactive-default);
   cursor: pointer;
   &:hover {
-    color: var(--color-black-50);
+    color: var(--color-text-interactive-hover);
   }
 }

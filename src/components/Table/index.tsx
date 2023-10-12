@@ -37,11 +37,12 @@ import { Card } from '../../layouts/Card';
 import styles from './index.module.scss';
 import { Thead } from './thead';
 import { TableTools } from './table-tools';
+import { useDynamicOverlap } from '../../hooks/useDynamicOverlap';
 
 export interface TableProps<T> {
   data: T[];
   columns: ColumnDef<T, any>[];
-  variant?: 'card' | 'embedded' | 'stacked';
+  variant?: 'card' | 'embedded' | 'stacked' | 'full-page';
   rowSelection?: RowSelectionState;
   onRowSelectionChange?: OnChangeFn<RowSelectionState>;
   onRowClick?: (rowData: T) => unknown;
@@ -117,6 +118,11 @@ export const Table = <T extends unknown>({
       pageIndex: pagination?.pageIndex || 0,
       pageSize: pagination?.pageSize || 10,
     });
+
+  const hasDynamicHeight = variant === 'full-page';
+  const overlapElementRef = useDynamicOverlap<HTMLDivElement>({
+    disabled: !hasDynamicHeight,
+  });
 
   useEffect(() => {
     if (!pagination) return;
@@ -230,26 +236,49 @@ export const Table = <T extends unknown>({
   const hasTools = !!(filter || pagination || preferences);
   const hasNoMatches = !table.getFilteredRowModel().rows.length;
 
+  const getCardVariant = function () {
+    switch (variant) {
+      case 'card':
+        return 'default';
+      case 'full-page':
+        return 'embedded';
+
+      default:
+        return variant;
+    }
+  };
+
   return (
     <Card
-      variant={variant === 'card' ? 'default' : variant}
+      variant={getCardVariant()}
+      disableHeaderPaddings={variant === 'full-page'}
       header={
         hasHeader && (
-          <div>
-            {header}
-            {hasTools && (
-              <TableTools
-                filter={filter}
-                pagination={pagination && <Pagination table={table} />}
-                preferences={preferences}
-              />
-            )}
+          <div
+            ref={overlapElementRef}
+            className={clsx(hasDynamicHeight && styles['dark-header'])}
+          >
+            <div
+              className={clsx(
+                styles['header-tools'],
+                styles[`variant-${variant}`]
+              )}
+            >
+              {header}
+              {hasTools && (
+                <TableTools
+                  filter={filter}
+                  pagination={pagination && <Pagination table={table} />}
+                  preferences={preferences}
+                />
+              )}
+            </div>
           </div>
         )
       }
       footer={footer}
     >
-      <div className={styles.wrapper}>
+      <div className={clsx(styles.wrapper, styles[variant])}>
         <table
           className={clsx(styles.table, {
             [styles.resizable]: resizableColumns,

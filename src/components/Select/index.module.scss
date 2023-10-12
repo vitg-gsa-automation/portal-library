@@ -35,7 +35,7 @@
   }
   &:focus,
   &:focus-within {
-    border-color: black;
+    border-color: var(--color-border-item-focused, #539fe5);
   }
   &.error {
     border-color: var(--color-red-40);

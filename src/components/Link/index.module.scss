@@ -4,7 +4,6 @@
   &:visited,
   &:active {
     color: var(--font-color-link);
-    text-decoration: none;
     transition: all 0.1s;
     cursor: pointer;
   }
@@ -25,6 +24,7 @@
 
 //VARIANTS
 .default {
+  text-decoration: none;
   &:hover {
     text-decoration: underline;
     &,
@@ -34,9 +34,20 @@
   }
 }
 .info {
+  text-decoration: none;
   font-size: 1.2rem;
   font-weight: 700;
   &:hover {
     color: #89bdee;
+  }
+}
+
+.primary {
+  text-decoration: underline;
+  &:hover {
+    &,
+    & .icon {
+      color: var(--font-color-link-hover);
+    }
   }
 }

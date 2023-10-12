@@ -786,3 +786,46 @@ export const Stacked: Story<TableProps<Control>> = (args) => {
   );
 };
 Stacked.args = {};
+
+export const FullPage: Story<TableProps<Control>> = (args) => {
+  const { filterProps, collectionProps } = useCollection<Control>();
+
+  return (
+    <Table
+      {...collectionProps}
+      {...filterProps}
+      variant="full-page"
+      header={
+        <Header
+          variant="h1"
+          title="Controls"
+          count={
+            controls.length
+              ? Object.keys(collectionProps.rowSelection).length
+                ? `(${Object.keys(collectionProps.rowSelection).length}/${
+                    controls.length
+                  })`
+                : `(${controls.length})`
+              : ''
+          }
+        />
+      }
+      filter={
+        <TextFilter
+          filteringText={filterProps.globalFilter.filteringText}
+          placeholder="Find controls"
+          onChange={(e) =>
+            filterProps.onGlobalFilterChange((prevState) => {
+              return { ...prevState, filteringText: e.target.value };
+            })
+          }
+        />
+      }
+      selectionType="single"
+      columns={columns}
+      data={controls}
+      wrapLines={false}
+    />
+  );
+};
+FullPage.args = {};

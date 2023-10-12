@@ -65,6 +65,11 @@
   --color-bg-flashbar-error: var(--color-red-40);
   --color-bg-flashbar-success: #037f0c;
 
+  --color-text-interactive-active: #000716;
+  --color-text-interactive-default: #414d5c;
+  --color-text-interactive-disabled: #9ba7b6;
+  --color-text-interactive-hover: #000716;
+
   --color-border-input: #7d8998;
   --color-border-radio-item: var(--color-black-20);
   --color-border-card-top: #eaeded;
@@ -79,6 +84,7 @@
   --color-border-editor: #d1d5db;
   --color-border-item-default: var(--color-black-20);
   --color-border-item-selected: #3c97ff;
+  --color-border-item-focused: #539fe5;
   --color-border-button-secondary: var(--color-black-30);
 
   --color-card-divider: var(--color-black-10);
@@ -234,6 +240,4 @@ label {
   height: 100vh;
 }
 
-#anolan23 {
-  background-color: orangered;
-}
+

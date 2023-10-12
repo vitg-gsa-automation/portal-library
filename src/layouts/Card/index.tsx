@@ -11,6 +11,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   loading?: boolean;
   loadingText?: string;
   children?: React.ReactNode;
+  disableHeaderPaddings?: boolean;
 }
 
 interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -49,12 +50,21 @@ export function Card({
   footer,
   loading,
   loadingText = 'Loading resources',
+  disableHeaderPaddings = false,
   children,
   ...props
 }: CardProps) {
   return (
     <div className={clsx(styles.root, styles[variant])} {...props}>
-      {header && <div className={styles.header}>{header}</div>}
+      {header && (
+        <div
+          className={clsx(styles.header, {
+            [styles['with-paddings']]: !disableHeaderPaddings,
+          })}
+        >
+          {header}
+        </div>
+      )}
       {loading ? (
         <div className={styles.loading}>
           <StatusIndicator type="loading">{loadingText}</StatusIndicator>

@@ -2,6 +2,10 @@
   padding: 0 2rem;
   padding-bottom: 4px;
   overflow-x: auto;
+
+  &.full-page {
+    padding: 0;
+  }
 }
 
 .table {
@@ -157,4 +161,34 @@
 .select {
   width: 40px;
   padding: 0 1.2rem;
+}
+
+.header-tools {
+  &.variant-full-page {
+    padding-top: 0;
+    padding-bottom: 1.2rem;
+  }
+}
+
+.dark-header {
+  --font-color-heading-title: white;
+  --font-color-heading-secondary: #c2c2c2;
+  --font-color-label: #d1d5db;
+  --font-color-button-secondary: var(--color-fedramp-deep-blue-20, #a2abb9);
+  --font-color-button-primary: #081932;
+
+  --color-border-button-secondary: var(--color-fedramp-deep-blue-20, #a2abb9);
+  --color-border-divider: #414d5c;
+
+  --color-bg-button-primary: var(--color-fedramp-deep-blue-20, #a2abb9);
+  --color-bg-button-secondary: transparent;
+  --color-bg-input: var(--color-bg-layout-main, #081932);
+
+  --color-text-interactive-active: #fbfbfb;
+  --color-text-interactive-default: #d1d5db;
+  --color-text-interactive-disabled: #5f6b7a;
+  --color-text-interactive-hover: #fbfbfb;
+
+  background-color: var(--color-bg-layout-main, #081932);
+  color: white;
 }

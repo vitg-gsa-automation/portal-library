@@ -3,7 +3,15 @@
   align-items: center;
 }
 
+.arrow {
+  color: var(--color-text-interactive-default, #414d5c);
+  &.disabled {
+    color: var(--color-text-interactive-disabled, #9ba7b6);
+  }
+}
+
 .page {
   margin: 0 1rem;
   font-weight: 700;
+  color: var(--color-text-interactive-active, #000716);
 }

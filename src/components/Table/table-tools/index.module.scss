@@ -27,7 +27,7 @@
 .preferences {
   display: flex;
   align-items: center;
-  border-left: 2px solid #e9ebed;
+  border-left: 2px solid var(--color-border-divider);
   margin-left: 1rem;
   padding: 4px 0;
   padding-left: 1rem;

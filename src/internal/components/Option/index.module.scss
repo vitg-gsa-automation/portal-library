@@ -6,11 +6,12 @@
   border: 2px solid transparent;
   font-size: 1.4rem;
   cursor: pointer;
+  color: var(--font-color, #16191f);
 
   &[data-highlighted] {
-    border: 2px solid var(--color-gsa-blue-40);
+    border: 2px solid var(--color-black-30);
     border-radius: 8px;
-    background-color: #3c97ff18;
+    background-color: rgba($color: #000000, $alpha: 0.04);
   }
 
   &[data-disabled] {

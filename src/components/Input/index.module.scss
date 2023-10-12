@@ -18,7 +18,7 @@
   background-color: var(--color-bg-input);
   transition: border-color 0.1s;
   &:focus-within {
-    border-color: black;
+    border-color: var(--color-border-item-focused, #539fe5);
     & .input-box__icon {
       color: var(--color-gsa-blue-30);
     }

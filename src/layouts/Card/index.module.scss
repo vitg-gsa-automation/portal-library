@@ -41,11 +41,14 @@
 }
 
 .header {
-  padding: 1.2rem 2rem;
-  padding-bottom: 0.8rem;
   background-color: var(--color-bg-heading);
 
   color: var(--font-color-card-header-content);
+
+  &.with-paddings {
+    padding: 1.2rem 2rem;
+    padding-bottom: 0.8rem;
+  }
 
   &__container {
     display: flex;

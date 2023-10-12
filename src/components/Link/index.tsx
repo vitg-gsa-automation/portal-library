@@ -10,7 +10,7 @@ import { MaterialIcon } from '../../components/MaterialIcon';
 
 type BaseLinkProps = {
   size?: 'sm' | 'l';
-  variant?: 'default' | 'info';
+  variant?: 'default' | 'info' | 'primary';
   children?: ReactNode;
 };
 
