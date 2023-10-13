@@ -4,7 +4,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: var(--color-bg-overlay);
+  background-color: var(--color-bg-overlay, rgba(35, 47, 62, 0.7));
   @media (prefers-reduced-motion: no-preference) {
     animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }

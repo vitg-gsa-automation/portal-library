@@ -81,6 +81,11 @@ const columnHelper = createColumnHelper<Package>();
 const columns = [
   columnHelper.accessor('PkgName', {
     header: 'Package name',
+    cell: (info) => (
+      <Link to="#" variant="primary">
+        {info.getValue()}
+      </Link>
+    ),
   }),
   columnHelper.accessor('ATOBeginDate', {
     header: 'ATO Begins',
@@ -552,7 +557,7 @@ export const FullPageTable: Story<TableProps<Package>> = (args) => {
     return options;
   }
 
-  const statusOptions = prepareSelectOptions('Status', defaultStatus);
+  const statusOptions = prepareSelectOptions('PkgName', defaultStatus);
 
   const matchesStatus = function (status: string, selectedStatus: string) {
     if (!selectedStatus) return true;
@@ -777,7 +782,7 @@ export const FullPageTable: Story<TableProps<Package>> = (args) => {
                           })
                         }
                       />
-                      <SelectFilter>
+                      <SelectFilter maxWidth="25rem">
                         <FormField label="Package status">
                           <Select
                             placeholder="Any status"

@@ -44,8 +44,9 @@
   flex: 0 1 45rem;
   &__input {
     font-size: 1.4rem;
-    background-color: #162e51;
+    background-color: #081932;
     border: 2px solid var(--color-fedramp-deep-blue-20);
+    color: white;
     &:focus,
     &:focus-within {
       border-color: white;

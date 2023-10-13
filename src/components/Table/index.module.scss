@@ -4,7 +4,7 @@
   overflow-x: auto;
 
   &.full-page {
-    padding: 0;
+    padding: 2px;
   }
 }
 
@@ -174,21 +174,23 @@
   --font-color-heading-title: white;
   --font-color-heading-secondary: #c2c2c2;
   --font-color-label: #d1d5db;
-  --font-color-button-secondary: var(--color-fedramp-deep-blue-20, #a2abb9);
-  --font-color-button-primary: #081932;
+  --font-color-button-secondary: #539fe5;
+  --font-color-button-primary: #000716;
+  --font-color-link: #539fe5;
+  --font-color-link-hover: #89bdee;
 
-  --color-border-button-secondary: var(--color-fedramp-deep-blue-20, #a2abb9);
+  --color-border-button-secondary: #539fe5;
   --color-border-divider: #414d5c;
 
-  --color-bg-button-primary: var(--color-fedramp-deep-blue-20, #a2abb9);
+  --color-bg-button-primary: #539fe5;
   --color-bg-button-secondary: transparent;
-  --color-bg-input: var(--color-bg-layout-main, #081932);
+  --color-bg-input: var(--color-bg-layout-main, #000716);
 
   --color-text-interactive-active: #fbfbfb;
   --color-text-interactive-default: #d1d5db;
   --color-text-interactive-disabled: #5f6b7a;
   --color-text-interactive-hover: #fbfbfb;
 
-  background-color: var(--color-bg-layout-main, #081932);
+  background-color: var(--color-bg-layout-main, #000716);
   color: white;
 }

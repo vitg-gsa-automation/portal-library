@@ -3,8 +3,13 @@ import styles from './index.module.scss';
 
 export interface SelectFilterProps {
   children: ReactNode;
+  maxWidth?: string;
 }
 
-export function SelectFilter({ children }: SelectFilterProps) {
-  return <div className={styles.root}>{children}</div>;
+export function SelectFilter({ maxWidth, children }: SelectFilterProps) {
+  return (
+    <div className={styles.root} style={{ maxWidth }}>
+      {children}
+    </div>
+  );
 }

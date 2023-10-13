@@ -15,11 +15,15 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: var(--color-bg-overlay);
+  background-color: var(--color-bg-overlay, rgba(35, 47, 62, 0.7));
   z-index: 5000;
   @media (prefers-reduced-motion: no-preference) {
     animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
+}
+
+.close {
+  cursor: pointer;
 }
 
 .content {

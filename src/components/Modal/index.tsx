@@ -55,7 +55,7 @@ export function Modal({
                   title={header}
                   actions={
                     <DialogClose>
-                      <MaterialIcon icon="close" />
+                      <MaterialIcon icon="close" className={styles.close} />
                     </DialogClose>
                   }
                 />
