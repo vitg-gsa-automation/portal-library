@@ -16,7 +16,6 @@ type BaseLinkProps = {
 
 type InternalLinkProps = {
   external?: false;
-  to: string;
 } & BaseLinkProps &
   LinkPrimitiveProps;
 
