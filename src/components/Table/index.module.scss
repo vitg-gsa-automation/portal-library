@@ -43,14 +43,14 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 0.7rem 1rem;
   &:hover {
     color: var(--font-color-column-header-sorted);
   }
   &--alt {
     font-weight: 700;
     width: 100%;
-    padding: 0.8rem 1rem;
+    padding: 0.7rem 1rem;
   }
   &.sorted {
     color: var(--font-color-column-header-sorted);
@@ -172,7 +172,7 @@
 
 .dark-header {
   --font-color-heading-title: white;
-  --font-color-heading-secondary: #c2c2c2;
+  --font-color-heading-secondary: #8d99a8;
   --font-color-label: #d1d5db;
   --font-color-button-secondary: #539fe5;
   --font-color-button-primary: #000716;

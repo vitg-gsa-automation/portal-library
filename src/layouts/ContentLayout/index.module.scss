@@ -9,7 +9,7 @@
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 36px 1fr;
   min-height: 100%;
-  padding: 0 1rem;
+  // padding: 0 1rem;
   &.is-overlap-disabled {
     grid-template-rows: auto 0 1fr;
   }
@@ -34,7 +34,7 @@
   padding-bottom: 2.4rem;
   &.is-background-enabled {
     --font-color-heading-title: white;
-    --font-color-heading-secondary: #c2c2c2;
+    --font-color-heading-secondary: #8d99a8;
     --font-color-label: #d1d5db;
     --font-color-button-secondary: #539fe5;
     --font-color-button-primary: #000716;
